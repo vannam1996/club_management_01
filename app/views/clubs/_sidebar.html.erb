@@ -108,15 +108,14 @@
   <% end %>
   <nav class="menu_sign_in">
     <ul class="site-nav site-nav-club">
-      <li><%= link_to t("organizations.organization"), organizations_path %></li>
-      <li><%= link_to t("my_clubs"), my_clubs_path %></li>
-      <li><%= link_to t("other_club"), clubs_path %></li>
-      </li>
-      <li><%= link_to t("send_request_club"),
+      <li class="<%= active_class(organizations_path) %>"><%= link_to t("organizations.organization"), organizations_path %></li>
+      <li class="<%= active_class(my_clubs_path) %>"><%= link_to t("my_clubs"), my_clubs_path %></li>
+      <li class="<%= active_class(clubs_path) %>"><%= link_to t("other_club"), clubs_path %></li>
+      <li class="<%= active_class(new_user_club_request_path(user_id: current_user.id)) %>"><%= link_to t("send_request_club"),
         new_user_club_request_path(user_id: current_user.id) %>
       </li>
       <%= render "request/request_question" %>
-      <li><%= link_to t("feed_back"),
+      <li class="<%= active_class(new_user_feed_back_path(user_id: current_user.id)) %>"><%= link_to t("feed_back"),
         new_user_feed_back_path(user_id: current_user.id) %>
       </li>
       <li><%= link_to t("more_tool"), Settings.tools_url, target: "_blank" %>

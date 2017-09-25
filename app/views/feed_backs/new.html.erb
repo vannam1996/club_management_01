@@ -9,7 +9,7 @@
             <%= f.hidden_field :content %>
             <%= f.label(:description, t("description"), class: "control-label") %>
             <%= f.text_area :description, class: "form-control",
-              id: "contact-message", rows: 15, required: true, minlength: 20%>
+              id: "contact-message", rows: 10, required: true, minlength: 20%>
           </div>
           <div class="text-center radio_custom">
             <label class="radio-inline">
@@ -26,7 +26,7 @@
             </label>
           </div><br>
           <div class="form-group center">
-            <%= f.submit t("send_request"), class: "btn btn-secondary btn-lg full-width" %>
+            <%= f.submit t("send_request"), class: "btn btn-secondary full-width" %>
           </div>
         <% end %>
       </div>
