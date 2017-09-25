@@ -25,7 +25,7 @@ wb.add_worksheet(name: "Budgets") do |sheet|
   sheet.add_row [t("history_budget") + @club.name], :style=>title
   sheet.add_row [t("timeline"), t("form"), t("name_event"), t("money"),
   t("money_first"), t("money_last")], :style=>head
-  @event_clubs.each do |event|
+  @events.each do |event|
     sheet.add_row [event.created_at, t("#{event.event_category}"),
     event.name,
     if event.get_money?

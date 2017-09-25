@@ -26,8 +26,8 @@ class Event < ApplicationRecord
   scope :without_notification, ->category_notification do
     where.not event_category: category_notification
   end
-  scope :by_created_at, ->first_date, end_date do
-    where(created_at: first_date..end_date)
+  scope :by_created_at, ->(first_date, end_date) do
+    where("DATE(created_at) BETWEEN DATE(?) AND DATE(?)", first_date, end_date)
   end
 
   enum status: {inprocess: 0, finished: 1}
