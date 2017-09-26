@@ -5,8 +5,14 @@
   <div class="ui-block">
     <div class="ui-block-title ui-block-title-small">
       <h6 class="title"><%= t("history_budget") %></h6>
-      <%= link_to t("export_budget"), dashboard_export_history_budgets_path( format: :xlsx, id: @club),
-    class: "btn btn-sm btn-danger pull-right" %>
+      <div class="pull-right" id="export-budget">
+        <% if @support.history_budget.any? %>
+          <%= link_to t("export_budget"), dashboard_export_history_budgets_path( format: :xlsx, id: @club,
+            first_date: format_date(@support.history_budget.last.created_at), second_date:
+            format_date(@support.history_budget.first.created_at)),
+            class: "btn btn-sm btn-danger" %>
+        <% end %>
+      </div>
     </div>
     <div class="input-group" data-date-format="dd/mm/yyyy" id="budget-filter">
       <div class="col-md-2 span-date text-center"><span><strong><%= t("from") %></span></strong></div>

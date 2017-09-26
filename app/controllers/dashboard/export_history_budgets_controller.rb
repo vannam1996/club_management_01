@@ -2,6 +2,7 @@ class Dashboard::ExportHistoryBudgetsController < BaseDashboardController
   before_action :load_club, only: :index
   def index
     @event_clubs = @club.events.without_notification(Settings.notification).newest
+    @events = @event_clubs.by_created_at params[:first_date], params[:second_date]
   end
 
   def create

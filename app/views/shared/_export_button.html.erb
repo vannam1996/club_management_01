@@ -1,0 +1,8 @@
+<% if events.any? %>
+  <%= link_to t("export_budget"), dashboard_export_history_budgets_path( format: :xlsx, id: club,
+    first_date: format_date(events.last.created_at),
+    second_date: format_date(events.first.created_at)),
+    class: "btn btn-sm btn-danger" %>
+<% else %>
+  <%= link_to t("export_budget"), "javascript:void(0)", class: "btn btn-sm btn-danger", title: t("title_export") %>
+<% end %>

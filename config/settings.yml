@@ -154,3 +154,4 @@ max_display_image_club: 15
 professed: "professed"
 hide: "hide"
 name_office: " Office"
+date_format: "%Y-%m-%d"
