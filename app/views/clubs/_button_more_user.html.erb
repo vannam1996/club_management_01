@@ -1,15 +1,37 @@
 <div class="modal-dialog">
   <div class="modal-content">
     <div class="modal-body row">
+      <strong><%= t "modal_manager" %></strong>
+    </div>
+    <div class="modal-body row">
       <% @support.members_joined.each do |member| %>
-        <div class="col-md-2 col-sm-2 col-xs-3">
-          <div class="text-center">
-            <%= link_to user_path(member.user_id), title: member.full_name do %>
-              <%= image_tag member.avatar,
-                class: "member-club-view" %>
-            <% end %>
+        <% if member.is_manager? %>
+          <div class="col-md-2 col-sm-2 col-xs-3">
+            <div class="text-center">
+              <%= link_to user_path(member.user_id), title: member.full_name do %>
+                <%= image_tag member.avatar,
+                  class: "member-club-view" %>
+              <% end %>
+            </div>
           </div>
-        </div>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="modal-body row">
+      <strong><%= t "modal_member" %></strong>
+    </div>
+    <div class="modal-body row">
+      <% @support.members_joined.each do |member| %>
+        <% if !member.is_manager? %>
+          <div class="col-md-2 col-sm-2 col-xs-3">
+            <div class="text-center">
+              <%= link_to user_path(member.user_id), title: member.full_name do %>
+                <%= image_tag member.avatar,
+                  class: "member-club-view" %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
       <% end %>
     </div>
     <div class="modal-footer">

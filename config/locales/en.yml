@@ -771,3 +771,5 @@ en:
   your_notification: "your notification"
   all_read: "Mark all as read"
   no_notification: "You have no notifications"
+  modal_manager: "Manager:"
+  modal_member: "Member:"

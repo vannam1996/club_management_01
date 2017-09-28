@@ -23,20 +23,20 @@
           <div class="item_club col-md-4 text-center">
             <%= render "clubs/budget" %>
           </div>
-          <div class="col-md-4 view-member">
+          <div class="col-md-4 view-member" id="view_user">
+            <% if @support.members_joined.size > Settings.max_display_member_club %>
+              <div class="col-md-2 pull-right view-icon-user_member">
+                <%= link_to "#modal-user", data: {toggle: "modal"},
+                  class: "animation-fadeIn360", title: t("more") do %>
+                  <span class = "view-user-member">+<%= @support.members_joined.size - Settings.max_display_member_club %></span>
+                <% end %>
+              </div>
+            <% end %>
             <% @support.members_joined.take(Settings.max_display_member_club).each do |member| %>
               <div class="col-md-2 pull-right view-icon-memeber">
                 <%= link_to user_path(member.user_id) do %>
                   <%= image_tag member.avatar, class: "member-club-view",
                     title: "#{member.full_name}" %>
-                <% end %>
-              </div>
-            <% end %>
-            <% if @support.members_joined.size > Settings.max_display_member_club %>
-              <div class="col-md-2 pull-right view-icon-memeber">
-                <%= link_to "#modal-user", data: {toggle: "modal"},
-                  class: "animation-fadeIn360", title: t("more") do %>
-                  <%= image_tag "more_user", class: "member-club-view-more" %>
                 <% end %>
               </div>
             <% end %>
