@@ -6,6 +6,7 @@
 <div class="more-dropdown more-with-triangle triangle-top-center">
   <div class="ui-block-title ui-block-title-small">
     <h6 class="title"><%= t "notifications" %></h6>
+      <%= link_to t("all_read"),"",class: "tick" %>
   </div>
   <div class="mCustomScrollbar notification_custom" data-mcs-theme="dark">
     <ul class="notification-list">
@@ -16,5 +17,8 @@
         <% end %>
       <% end %>
     </ul>
+  </div>
+  <div class="text-center show-all">
+    <%= link_to t("show_all"), notifications_path %>
   </div>
 </div>

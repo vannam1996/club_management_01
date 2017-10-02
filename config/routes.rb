@@ -105,4 +105,5 @@ Rails.application.routes.draw do
   resources :activities, only: :create
   resources :user_clubs, only: [:create, :destroy]
   resources :user_organizations, only: [:create, :destroy]
+  resources :notifications
 end

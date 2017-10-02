@@ -767,3 +767,7 @@ en:
   login_with_wsm: "Login with WSM's account"
   auth_failure: "Authenticated fail"
   title_export: "No export data, please check again!!"
+  show_all: "Show all"
+  your_notification: "your notification"
+  all_read: "Mark all as read"
+  no_notification: "You have no notifications"
