@@ -155,3 +155,4 @@ professed: "professed"
 hide: "hide"
 name_office: " Office"
 date_format: "%Y-%m-%d"
+notification_per_page: 15

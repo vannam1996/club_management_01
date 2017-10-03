@@ -1,0 +1,27 @@
+<div class="header-spacer header-spacer_custom"></div>
+<section class="site-content site-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 ui-block">
+        <div class="title_custom col-sm-6 col-md-6 push-md-3 notification-title">
+          <h3>
+            <strong><%= t "your_notification" %></strong>
+          </h3>
+          <div class="hr-center-line-div"></div>
+        </div>
+        <div class="notifications show-all">
+            <ul class="notification-list">
+              <% @notifications.each do |notification| %>
+                <%= render partial: "notifications/notification_show_all",
+                  locals: {notification: notification} %>
+              <% end %>
+            </ul>
+        </div>
+        <nav aria-label="Page navigation example">
+          <%= paginate @notifications %>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+

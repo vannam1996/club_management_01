@@ -1,0 +1,26 @@
+<% if notification.trackable.present? %>
+  <li class="custom_notifications notification-<%= notification.read %>" id ="notification-avata">
+    <div class="notifyBody notification-show" data-link="<%= url_notification(notification) %>"
+      data-link-target="new" id="notify-id-<%= notification.id %>"
+      data-id="<%= notification.id %>">
+      <div class="row">
+        <%= option_image(notification) %>
+        <div class="col-md-9">
+          <%= link_to "", class: "h6 notification-friend" do %>
+            <%= notification.owner_full_name %>
+          <% end %>
+          <%= t "has_been" %><%= t notification.key.try(:downcase) %>
+          <%= t notification.trackable_type.try(:downcase) %>:
+            <%= link_to "", class: "notification-link" do %>
+              <%= notification.trackable_name %>
+            <% end %>
+          <% if notification.container %>
+            <%= t "in_the" %>
+            <%= t notification.container_type.try(:downcase) %>
+            <strong><%= notification.container_name %></strong>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </li>
+<% end %>

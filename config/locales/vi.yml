@@ -1010,3 +1010,7 @@ vi:
   login_with_wsm: "Đăng nhập với tài khoản WSM"
   auth_failure: "Xác thực không thành công"
   title_export: "Không có dử liệu export, vui lòng kiểm tra lại!!"
+  show_all: "Xem tấc cả"
+  your_notification: "Thông báo của bạn"
+  all_read: "Đánh dấu tấc cả là đã đọc"
+  no_notification: "Bạn không có thông báo nào"
