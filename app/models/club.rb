@@ -57,6 +57,22 @@ class Club < ApplicationRecord
     end
   end
 
+  class << self
+    def create_after_approve request
+    @club = self.create organization_id: request.organization_id, name: request.name,
+      description: request.description, member: request.member, goal: request.goal,
+      local: request.local, content: request.content, time_activity: request.time_activity,
+      rules: request.rules, rule_finance: request.rule_finance, time_join: request.time_join,
+      punishment: request.punishment, plan: request.plan, logo: request.logo, is_active: true,
+      club_type: request.club_type
+    end
+
+    def create_user_club club, request
+      UserClub.create user_id: request.user_id, club_id: club.id, is_manager: true,
+        status: :joined
+    end
+  end
+
   def money_pay money
     self.update_attribute :money, self.money - money
   end
