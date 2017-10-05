@@ -1,0 +1,41 @@
+require "rubygems"
+require "axlsx"
+col_widths= [Settings.export_member.with_colums.a,
+  Settings.export_member.with_colums.b,
+  Settings.export_member.with_colums.c]
+wb = xlsx_package.workbook
+
+title = wb.styles.add_style(
+  :bg_color => Settings.export_member.bg_title,
+  :fg_color => Settings.export_member.fg_title,
+  :sz=>Settings.export_member.sz_title,
+  :border=>Axlsx::STYLE_THIN_BORDER,
+  :alignment=>{:horizontal => :center})
+
+percent = wb.styles.add_style(
+  :border=>Axlsx::STYLE_THIN_BORDER,
+  :alignment=>{:horizontal => :center})
+
+manager = wb.styles.add_style(
+  :border=>Axlsx::STYLE_THIN_BORDER,
+  :fg_color=>Settings.export_member.fg_manager,
+  :alignment=>{:horizontal => :center})
+
+head = wb.styles.add_style(
+  :fg_color => Settings.export_member.fg_title,
+  :sz=>Settings.export_member.sz_head,
+  :border=>Axlsx::STYLE_THIN_BORDER,
+  :alignment=>{:horizontal => :center})
+
+wb.add_worksheet(name: "Budgets") do |sheet|
+  sheet.merge_cells "A1:C1"
+  sheet.add_row [t("list_member") + ": " + @club.name], :style=>title
+  sheet.add_row [t("full_name"), t("email"), t("phone")], :style=>head
+  @manager.each do |member|
+    sheet.add_row [member.full_name, member.email, member.phone], :style=>manager
+  end
+  @members.each do |member|
+    sheet.add_row [member.full_name, member.email, member.phone], :style=>percent
+  end
+  sheet.column_widths *col_widths
+end

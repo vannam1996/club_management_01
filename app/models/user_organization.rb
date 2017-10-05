@@ -7,6 +7,7 @@ class UserOrganization < ApplicationRecord
   enum status: {pending: 0, joined: 1, reject: 2}
 
   scope :are_admin, ->{where is_admin: true}
+  scope :are_member, ->{where is_admin: false}
   scope :without_user_ids, ->user_ids{where.not user_id: user_ids}
   scope :newest, ->{order created_at: :desc}
 
