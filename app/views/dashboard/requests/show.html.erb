@@ -1,50 +1,59 @@
 <div class="block">
   <h1><%= t "detail_request" %></h1>
   <p><%= link_to t("back"),
-    manager_organization_path(id: @request.organization_id),
+    dashboard_organization_path(id: @request.organization_id),
     class: "btn btn-default" %></p>
   <div class="center"><%= image_tag @request.logo,
     class: "circle-profile" %></div><hr>
   <div class="row">
-    <div class="col-md-3"></div>
-    <div class="col-md-2">
-      <strong class="pull-right"><%= t "name" %></strong>
+    <div class="col-md-5">
+      <strong class="pull-right"><%= t "club_request.name" %></strong>
     </div>
-    <div class="col-md-6 center"><%= @request.name %></div>
-    <div class="col-md-1"></div>
+    <div class="col-md-7 center"><%= @request.name %></div>
   </div><hr>
   <div class="row">
-    <div class="col-md-3"></div>
-    <div class="col-md-2">
+    <div class="col-md-5">
       <strong class="pull-right"><%= t "user_request" %></strong>
     </div>
-    <div class="col-md-6 center"><%= @request.user.full_name %></div>
-    <div class="col-md-1"></div>
+    <div class="col-md-7 center"><%= @request.user.full_name %></div>
   </div><hr>
   <div class="row">
-    <div class="col-md-3"></div>
-    <div class="col-md-2">
-      <strong class="pull-right"><%= t "description" %></strong>
-    </div>
-    <div class="col-md-6 center"><%= @request.description %></div>
-    <div class="col-md-1"></div>
-  </div><hr>
-  <div class="row">
-    <div class="col-md-3"></div>
-    <div class="col-md-2">
+    <div class="col-md-5">
       <strong class="pull-right"><%= t "date_request" %></strong>
     </div>
-    <div class="col-md-6 center">
+    <div class="col-md-7 center">
       <%= l @request.created_at, format: :short %>
     </div>
-    <div class="col-md-1"></div>
   </div><hr>
   <div class="row">
-    <div class="col-md-3"></div>
-    <div class="col-md-2">
+    <div class="col-md-5">
+      <strong class="pull-right"><%= t "content_club" %></strong>
+    </div>
+    <div class="col-md-7 center"><%= @request.content %></div>
+  </div><hr>
+  <div class="row">
+    <div class="col-md-5">
+      <strong class="pull-right"><%= t "goal_club" %></strong>
+    </div>
+    <div class="col-md-7 center"><%= @request.goal %></div>
+  </div><hr>
+  <div class="row">
+    <div class="col-md-5">
+      <strong class="pull-right"><%= t "plan" %></strong>
+    </div>
+    <div class="col-md-7 center"><%= @request.plan %></div>
+  </div><hr>
+  <div class="row">
+    <div class="col-md-5">
+      <strong class="pull-right"><%= t "member_count" %></strong>
+    </div>
+    <div class="col-md-7 center"><%= @request.member %></div>
+  </div><hr>
+  <div class="row">
+    <div class="col-md-5">
       <strong class="pull-right"><%= t "status" %></strong>
     </div>
-    <div class="col-md-6 center">
+    <div class="col-md-7 center">
       <%= link_to t("active"),
         dashboard_request_path(id: @request,
         status: ClubRequest.statuses[:joined],
@@ -56,6 +65,5 @@
         organization: @request.organization.id), method: :put, class: "btn btn-danger",
         data: {confirm: t("answer_reject_club")} %>
     </div>
-    <div class="col-md-1"></div>
   </div><hr>
 </div>
