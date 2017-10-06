@@ -504,8 +504,17 @@ body{
   width: 30px;
   height: 30px;
   border-radius: 30px;
-  background-color: red;
   margin-top: 9px;
+}
+.view-user-member {
+  border: 1px solid;
+  background-color: #ff5e3a;
+  color: white;
+  padding: 12px;
+  border-radius: 20px;
+}
+.view-icon-user_member {
+  margin-top: 17px;
 }
 .view-icon-memeber {
   margin-left: -10px;
@@ -523,13 +532,8 @@ body{
 .fa-cog {
   font-size: 18px;
 }
-.tab_list_detail_club li {
-  background-color: #FB5D39;
-  padding: 7px;
-}
 .tab_list_detail_club li a {
   font-size: 13px;
-  color: white;
 }
 .tab_list_detail_club li .active {
   color: black;

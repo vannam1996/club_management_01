@@ -1,7 +1,7 @@
 <div class="block">
   <h1><%= t "detail_request" %></h1>
   <p><%= link_to t("back"),
-    manager_organization_path(id: @request.organization_id),
+    dashboard_organization_path(id: @request.organization_id),
     class: "btn btn-default" %></p>
   <div class="center"><%= image_tag @request.logo,
     class: "circle-profile" %></div><hr>

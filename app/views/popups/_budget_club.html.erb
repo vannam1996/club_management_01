@@ -4,7 +4,7 @@
   </a>
   <div class="ui-block">
     <div class="ui-block-title ui-block-title-small">
-      <h6 class="title"><%= t("history_budget") %></h6>
+      <h6 class="title col-md-9"><%= t("history_budget") %></h6>
       <div class="pull-right" id="export-budget">
         <% if @support.history_budget.any? %>
           <%= link_to t("export_budget"), dashboard_export_history_budgets_path( format: :xlsx, id: @club,

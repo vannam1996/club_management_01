@@ -52,4 +52,8 @@ module Dashboard::LayoutHelper
       end
     end)
   end
+
+  def view_class_dashboard event
+    event.pay_money? ? "text-danger" : "text-success"
+  end
 end

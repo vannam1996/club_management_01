@@ -777,7 +777,6 @@ vi:
   accept_request: "Đã chấp nhận yêu cầu gia nhập!"
   reject_request: "Đã từ chối yêu cầu gia nhập"
   error_process: "Có lỗi trong quá trình xử lý,vui lòng thử lại"
-  success_process: "Bạn đã xử lý thành công"
   organization: "tổ chức"
   club: "Câu lạc bộ"
   overview_intro: "Giới thiệu tổng quan"
@@ -1014,3 +1013,5 @@ vi:
   your_notification: "Thông báo của bạn"
   all_read: "Đánh dấu tấc cả là đã đọc"
   no_notification: "Bạn không có thông báo nào"
+  modal_manager: "Người quản lý:"
+  modal_member: "Thành viên:"

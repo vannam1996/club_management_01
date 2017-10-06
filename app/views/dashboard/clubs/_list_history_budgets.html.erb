@@ -33,9 +33,10 @@
             </div>
           </td>
           <td class="location">
-            <%= link_to event.name, club_event_url(event.club, event), target: "_blank" %>
+            <%= link_to event.name, club_event_url(event.club, event), target: "_blank",
+              class: "#{view_class_dashboard(event)}" %>
           </td>
-          <td class="description <%= view_class(event) %>">
+          <td class="description <%= view_class_dashboard(event) %>">
             <%= view_icon event %>
             <% if event.get_money? %>
               <%= number_to_currency(get_money_expense(event, @club), locale: :vi) %>
