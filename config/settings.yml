@@ -162,3 +162,13 @@ export_budget:
   sz_title: 14
   sz_head: 13
   with_colum: 15
+export_member:
+  bg_title: "F16ecd0"
+  fg_title: "#FF000000"
+  fg_manager: "Fff5e3a"
+  sz_title: 14
+  sz_head: 13
+  with_colums:
+    a: 40
+    b: 50
+    c: 20

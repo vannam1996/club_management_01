@@ -7,6 +7,7 @@ class UserClub < ApplicationRecord
   enum status: {pending: 0, joined: 1, reject: 2}
 
   scope :manager, ->{where is_manager: true}
+  scope :are_member, ->{where is_manager: false}
   scope :unactive, ->{where.not(status: UserClub.statuses[:joined])}
   scope :user_club, ->club_id do
     where club_id: club_id

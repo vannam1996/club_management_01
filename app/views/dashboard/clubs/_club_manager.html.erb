@@ -33,6 +33,10 @@
           class: "btn btn-sm btn-danger animation-fadeIn360" do %>
           <i class="fa fa-plus "></i> <%= t "add" %>
         <% end %>
+        <%= link_to dashboard_club_export_members_path(format: :xlsx, id: @club),
+          class: "btn btn-sm btn-danger animation-fadeIn360" do %>
+          <i class="fa fa-download" aria-hidden="true"></i> <%= t "export_member" %>
+        <% end %>
       </h4>
     </div>
   </div>
@@ -63,7 +67,7 @@
         <%= t("members") %>
         <span class="label label-primary label-indicator
           animation-floating">
-          <%= @support.members.joined.size %>
+          <%= @support.members.are_member.joined.size %>
         </span>
       <% end %>
     </li>
@@ -105,7 +109,7 @@
         <div role="tabpanel" class="tab-pane fade in" id="members">
           <div class="row block">
             <%= render partial: "list_member",
-              locals: {members: @support.members.joined} %>
+              locals: {members: @support.members.are_member.joined} %>
           </div>
         </div>
         <div role="tabpanel" class="tab-pane fade in" id="manager">

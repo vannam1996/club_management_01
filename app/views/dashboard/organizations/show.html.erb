@@ -49,7 +49,7 @@
         <%= t("members") %>
         <span class="label label-primary label-indicator
           animation-floating">
-          <%= @members.joined.size %>
+          <%= @members.are_member.joined.size %>
         </span>
       <% end %>
     </li>
@@ -94,7 +94,7 @@
         <div role="tabpanel" class="tab-pane fade in" id="members_organization">
           <div class="row block">
             <%= render partial: "list_member",
-              locals: {members: @members.joined.newest} %>
+              locals: {members: @members.are_member.joined.newest} %>
           </div>
         </div>
         <div role="tabpanel" class="tab-pane fade in" id="manager_organization">

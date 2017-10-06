@@ -1015,3 +1015,5 @@ vi:
   no_notification: "Bạn không có thông báo nào"
   modal_manager: "Người quản lý:"
   modal_member: "Thành viên:"
+  export_member: "Xuất file"
+  list_member: "Danh sách thành viên"
