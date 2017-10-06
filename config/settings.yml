@@ -156,3 +156,9 @@ hide: "hide"
 name_office: " Office"
 date_format: "%Y-%m-%d"
 notification_per_page: 15
+export_budget:
+  bg_title: "F7abce7"
+  fg_title: "#FF000000"
+  sz_title: 14
+  sz_head: 13
+  with_colum: 15

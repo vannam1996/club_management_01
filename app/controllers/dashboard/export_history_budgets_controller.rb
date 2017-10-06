@@ -3,6 +3,12 @@ class Dashboard::ExportHistoryBudgetsController < BaseDashboardController
   def index
     @event_clubs = @club.events.without_notification(Settings.notification).newest
     @events = @event_clubs.by_created_at params[:first_date], params[:second_date]
+    respond_to do |format|
+      format.html
+      format.xlsx {
+        response.headers["Content-Disposition"] = "filename='#{t("history_budget")}: #{@club.name}.xlsx'"
+      }
+    end
   end
 
   def create

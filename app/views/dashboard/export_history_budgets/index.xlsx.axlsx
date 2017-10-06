@@ -1,11 +1,12 @@
 require "rubygems"
 require "axlsx"
+col_widths= [Settings.export_budget.with_colum]
 wb = xlsx_package.workbook
 
 title = wb.styles.add_style(
-  :bg_color => "FFFF0000",
-  :fg_color=>"#FF000000",
-  :sz=>14,
+  :bg_color => Settings.export_budget.bg_title,
+  :fg_color=>Settings.export_budget.fg_title,
+  :sz=>Settings.export_budget.sz_title,
   :border=>Axlsx::STYLE_THIN_BORDER,
   :alignment=>{:horizontal => :center})
 
@@ -15,25 +16,30 @@ percent = wb.styles.add_style(
   :alignment=>{:horizontal => :center})
 
 head = wb.styles.add_style(
-  :fg_color=>"#FF000000",
-  :sz=>13,
+  :fg_color=>Settings.export_budget.fg_title,
+  :sz=>Settings.export_budget.sz_head,
   :border=>Axlsx::STYLE_THIN_BORDER,
   :alignment=>{:horizontal => :center})
 
 wb.add_worksheet(name: "Budgets") do |sheet|
   sheet.merge_cells "A1:F1"
-  sheet.add_row [t("history_budget") + @club.name], :style=>title
+  sheet.add_row [t("history_budget") + @club.name + ": " + params[:first_date] +" -> "+ params[:second_date]], :style=>title
   sheet.add_row [t("timeline"), t("form"), t("name_event"), t("money"),
   t("money_first"), t("money_last")], :style=>head
   @events.each do |event|
     sheet.add_row [event.created_at, t("#{event.event_category}"),
     event.name,
     if event.get_money?
-      number_to_currency(get_money_expense(event, @club), locale: :vi)
+      "+ " + number_to_currency(get_money_expense(event, @club), locale: :vi)
     else
-      number_to_currency(event.expense, locale: :vi)
+      if event.event_category=="pay_money"
+        "- " + number_to_currency(event.expense, locale: :vi)
+      else
+        "+ " + number_to_currency(event.expense, locale: :vi)
+      end
     end ,
     number_to_currency(event.amount, locale: :vi),
     number_to_currency(view_case_money_event_after(event, @club), locale: :vi)], :style=>percent
   end
+  sheet.column_widths *col_widths
 end
