@@ -1,6 +1,6 @@
 module NotificationsHelper
   def notifications_result
-    Activity.of_user_clubs(current_user.user_clubs.joined).oder_by_read
+    Activity.of_user_clubs(current_user.user_clubs.joined.map(&:club_id)).oder_by_read
   end
 
   def option_image notification
@@ -23,7 +23,7 @@ module NotificationsHelper
     when Settings.notification_event
       club_event_path(id: notification.trackable_id, club_id: notification.container_id)
     when Settings.notification_club
-      club_path(id: notification.container_id)
+      club_path(id: notification.trackable_id)
     else
       club_albums_path(club_id: notification.container_id)
     end

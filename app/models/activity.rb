@@ -8,7 +8,10 @@ class Activity < ApplicationRecord
 
   after_create :push_notify
 
-  scope :of_user_clubs, ->user_clubs{where container_id: user_clubs.map(&:club_id).uniq}
+  scope :of_user_clubs, ->(ar_club_id) do
+    where "container_id IN (?) AND container_type = ? OR trackable_id IN (?) AND trackable_type = ?" ,
+      ar_club_id, Settings.notification_club, ar_club_id, Settings.notification_club
+  end
   scope :oder_by_read, ->{order read: :asc}
 
   delegate :name, to: :container, prefix: :container, allow_nil: :true

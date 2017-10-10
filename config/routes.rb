@@ -76,6 +76,7 @@ Rails.application.routes.draw do
     resources :budgets
     resources :export_history_budgets
     resources :club_export_members
+    resources :request_clubs
   end
 
   resources :users do
