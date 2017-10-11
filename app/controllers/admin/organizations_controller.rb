@@ -7,7 +7,7 @@ class Admin::OrganizationsController < ApplicationController
   end
 
   def show
-    @organization = Organization.find_by id: params[:id]
+    @organization = Organization.friendly.find params[:id]
     unless @organization
       flash[:danger] = t "not_found_oraganization"
       render :index

@@ -1,4 +1,7 @@
 class Club < ApplicationRecord
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+
   acts_as_taggable
   attr_accessor :image_width, :image_height
 
@@ -99,5 +102,10 @@ class Club < ApplicationRecord
   def display_organization
     return "" if self.nil?
     "#{self.organization_name} / #{I18n.t("club_type.#{self.club_type}")}"
+  end
+
+  private
+  def should_generate_new_friendly_id?
+    slug.blank? || name_changed?
   end
 end

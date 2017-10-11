@@ -1,4 +1,7 @@
 class Organization < ApplicationRecord
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+
   has_many :clubs, dependent: :destroy
   has_many :users, through: :user_organizations
   has_many :user_organizations, dependent: :destroy
@@ -21,5 +24,10 @@ class Organization < ApplicationRecord
   scope :newest, ->{order created_at: :desc}
   scope :by_user_organizations, ->user_organizations do
     where id: user_organizations.map(&:organization_id)
+  end
+
+  private
+  def should_generate_new_friendly_id?
+    slug.blank? || name_changed?
   end
 end
