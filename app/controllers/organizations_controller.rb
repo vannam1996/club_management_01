@@ -20,7 +20,7 @@ class OrganizationsController < ApplicationController
 
   private
   def load_organization
-    @organization = Organization.find_by id: params[:id]
+    @organization = Organization.friendly.find params[:id]
     return if @organization
     flash[:danger] = t("organization_not_found")
     redirect_to root_url

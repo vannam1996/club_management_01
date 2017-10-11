@@ -8,7 +8,7 @@
         <div class="friend-item-content">
           <div class="friend-avatar">
             <div class="author-content">
-              <%= link_to club_path(club), class: "h5 author-name" do %>
+              <%= link_to organization_club_path(club.organization.slug, club), class: "h5 author-name" do %>
                 <%= club.name %>
               <% end %>
               <div class="detail_item">

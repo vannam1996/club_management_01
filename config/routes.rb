@@ -96,7 +96,9 @@ Rails.application.routes.draw do
   resources :messages
   resources :user_events, only: :create
   resources :ratings, only: :create
-  resources :organizations, only: [:show, :index]
+  resources :organizations, only: [:show, :index] do
+    resources :clubs, only: [:show, :index]
+  end
   resources :time_line_homes
   resources :time_line_homes
   resources :my_clubs
