@@ -775,3 +775,5 @@ en:
   modal_member: "Member:"
   export_membber: "Export file"
   list_member: "List members"
+  total: "Total"
+  total_member: "members"

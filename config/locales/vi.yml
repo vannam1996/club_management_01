@@ -1018,3 +1018,5 @@ vi:
   modal_member: "Thành viên:"
   export_member: "Xuất file"
   list_member: "Danh sách thành viên"
+  total: "Tổng"
+  total_member: "thành viên"
