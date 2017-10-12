@@ -27,7 +27,7 @@
                 <td><%= l request.created_at, format: :short %></td>
                 <td><%= request.full_name %></td>
                 <td class="text-center">
-                  <%= link_to t("view"), dashboard_request_path(request.id),
+                  <%= link_to t("view"), dashboard_request_club_path(request),
                     class: "btn btn-primary" %>
                 </td>
               </tr>

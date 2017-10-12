@@ -2,8 +2,8 @@ class NotificationsController < ApplicationController
   before_action :authenticate_user!
   before_action :load_user_club, only: :index
   def index
-    @notifications = Activity.of_user_clubs(@user_club).oder_by_read.
-      page(params[:page]).per Settings.notification_per_page
+    @notifications = Activity.of_user_clubs(@user_club.map(&:club_id).uniq).oder_by_read
+      .page(params[:page]).per Settings.notification_per_page
   end
 
   private

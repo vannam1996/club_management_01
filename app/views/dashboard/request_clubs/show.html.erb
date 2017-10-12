@@ -55,12 +55,12 @@
     </div>
     <div class="col-md-7 center">
       <%= link_to t("active"),
-        dashboard_request_path(id: @request,
+        dashboard_request_club_path(id: @request,
         status: ClubRequest.statuses[:joined],
         organization: @request.organization.id), method: :put, class: "btn btn-primary",
         data: {confirm: t("answer_active_club")} %>
       <%= link_to t("reject"),
-        dashboard_request_path(id: @request,
+        dashboard_request_club_path(id: @request,
         status: ClubRequest.statuses[:reject],
         organization: @request.organization.id), method: :put, class: "btn btn-danger",
         data: {confirm: t("answer_reject_club")} %>

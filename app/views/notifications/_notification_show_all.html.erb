@@ -19,6 +19,7 @@
             <%= t notification.container_type.try(:downcase) %>
             <strong><%= notification.container_name %></strong>
           <% end %>
+          </br><i class="fa fa-clock-o time_create" aria-hidden="true">  <%= l notification.created_at, format: :short %></i>
         </div>
       </div>
     </div>
