@@ -6,8 +6,8 @@ class ActivitiesController < ApplicationController
       arr_read = [current_user.id]
     else
       arr_read = @activity.user_read
-      if !arr.include?(current_user.id)
-        arr_read = arr.push(current_user.id)
+      if !arr_read.include?(current_user.id)
+        arr_read = arr_read.push(current_user.id)
       end
     end
     @activity.update_attributes user_read: arr_read

@@ -1,16 +1,20 @@
 <div class="label-avatar bg-primary">
-  <% @notifications = notifications_result %>
-  <%= size_notification(@notifications) if @notifications %>
+  <span class="size_unread">
+    <% notifications = notifications_result %>
+    <%= size_notification(notifications) if notifications %>
+  </span>
 </div>
 
 <div class="more-dropdown more-with-triangle triangle-top-center">
   <div class="ui-block-title ui-block-title-small">
     <h6 class="title"><%= t "notifications" %></h6>
-      <%= link_to t("all_read"),"",class: "tick" %>
+      <%= link_to notification_path(current_user.id), class: "tick", method: :put, remote: true do %>
+        <%= t("all_read") %>
+      <% end %>
   </div>
   <div class="mCustomScrollbar notification_custom" data-mcs-theme="dark">
     <ul class="notification-list">
-      <% @notifications.each do |notification| %>
+      <% notifications.each do |notification| %>
         <% if current_user.user_clubs.of_club(notification.container_id).joined? %>
           <%= render partial: "notifications/notification",
             locals: {notification: notification} %>
