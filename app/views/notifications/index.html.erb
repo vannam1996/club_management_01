@@ -11,10 +11,8 @@
         </div>
         <div class="notifications show-all">
             <ul class="notification-list">
-              <% @notifications.each do |notification| %>
                 <%= render partial: "notifications/notification_show_all",
-                  locals: {notification: notification} %>
-              <% end %>
+                  locals: {notification: @notification} %>
             </ul>
         </div>
         <nav aria-label="Page navigation example">
@@ -24,4 +22,3 @@
     </div>
   </div>
 </section>
-

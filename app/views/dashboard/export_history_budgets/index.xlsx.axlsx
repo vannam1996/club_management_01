@@ -23,7 +23,9 @@ head = wb.styles.add_style(
 
 wb.add_worksheet(name: "Budgets") do |sheet|
   sheet.merge_cells "A1:F1"
-  sheet.add_row [t("history_budget") + @club.name + ": " + params[:first_date] +" -> "+ params[:second_date]], :style=>title
+  sheet.add_row [t("history_budget") + @club.name + ": " +
+    @events.first.created_at.strftime(Settings.date_format_vi) +" -> " +
+    @events.last.created_at.strftime(Settings.date_format_vi)], :style=>title
   sheet.add_row [t("timeline"), t("form"), t("name_event"), t("money"),
   t("money_first"), t("money_last")], :style=>head
   @events.each do |event|

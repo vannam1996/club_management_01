@@ -28,4 +28,18 @@ module NotificationsHelper
       club_albums_path(club_id: notification.container_id)
     end
   end
+
+  def option_class read
+    class_read = read.present? && read.include?(current_user.id) ? Settings.read : Settings.un_read
+  end
+
+  def size_notification notifications
+    un_read = notifications.size
+    notifications.each do |notification|
+      if notification.user_read.present? && notification.user_read.include?(current_user.id)
+        un_read = un_read - Settings.notification_read
+      end
+    end
+    un_read
+  end
 end
