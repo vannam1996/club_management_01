@@ -1,6 +1,6 @@
 <div class="label-avatar bg-primary">
   <% @notifications = notifications_result %>
-  <%= @notifications.un_read.size if @notifications %>
+  <%= size_notification(@notifications) if @notifications %>
 </div>
 
 <div class="more-dropdown more-with-triangle triangle-top-center">

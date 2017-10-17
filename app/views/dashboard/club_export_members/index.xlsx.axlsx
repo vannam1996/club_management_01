@@ -29,9 +29,9 @@ head = wb.styles.add_style(
 
 wb.add_worksheet(name: "Budgets") do |sheet|
   sheet.merge_cells "A1:C3"
-  sheet.add_row [@club.organization.name + "\n" + t("list_member") + ": "
-    + @club.name + "\n" + t("total") + ": #{@manager.size + @members.size} "
-    + t("total_member") ], :style=>title
+  sheet.add_row [@club.organization.name + "\n" + t("list_member") + ": " +
+    @club.name + "\n" + t("total") + ": #{@manager.size + @members.size} " +
+    t("total_member") ], :style=>title
   sheet.add_row [t("full_name"), t("email"), t("phone")], :style=>head
   @manager.each do |member|
     sheet.add_row [member.full_name, member.email, member.phone], :style=>manager
