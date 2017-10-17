@@ -76,7 +76,7 @@ class Dashboard::EventsController < BaseDashboardController
   end
 
   def load_club
-    @club = Club.find_by id: params[:club_id]
+    @club = Club.friendly.find params[:club_id]
     unless @club
       flash[:danger] = t "club_manager.club.not_found"
       redirect_to dashboard_club_albums_path params[:club_id]

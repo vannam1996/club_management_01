@@ -10,15 +10,20 @@
           <div class="hr-center-line-div"></div>
         </div>
         <div class="notifications show-all">
-            <ul class="notification-list">
-                <%= render partial: "notifications/notification_show_all",
-                  locals: {notification: @notification} %>
-            </ul>
+          <ul class="notification-list">
+            <%= render partial: "notifications/notification_show_all",
+              locals: {notification: @notification} %>
+          </ul>
         </div>
-        <nav aria-label="Page navigation example">
-          <%= paginate @notifications %>
-        </nav>
+        <% unless @notifications.current_page == @notifications.total_pages %>
+          <h1 id="view-more" class="text-center">
+            <%= link_to url_for(page: @notifications.next_page), remote: true do %>
+              <i class="fa fa-spinner fa-spin"></i>
+            <% end %>
+          </h1>
+        <% end %>
       </div>
     </div>
   </div>
 </section>
+<%= javascript_include_tag "load_notification" %>

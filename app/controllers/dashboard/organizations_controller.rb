@@ -23,7 +23,7 @@ class Dashboard::OrganizationsController < BaseDashboardController
 
   private
   def load_organization
-    @organization = Organization.find_by id: params[:id]
+    @organization = Organization.friendly.find params[:id]
     unless @organization
       flash[:danger] = t("organization_not_found")
       redirect_to dashboard_path

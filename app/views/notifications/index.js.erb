@@ -1,0 +1,7 @@
+$('.notification-list').append('<%= escape_javascript(render partial: 'notifications/notification_show_all',
+  locals: {notification: @notification}) %>')
+<% if @notifications.current_page == @notifications.total_pages %>
+  $('#view-more').remove();
+<% else %>
+  $('#view-more a').attr('href', '<%= url_for(page: @notifications.next_page) %>');
+<% end %>

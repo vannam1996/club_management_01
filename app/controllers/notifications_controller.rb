@@ -4,6 +4,10 @@ class NotificationsController < ApplicationController
   def index
     @notifications = Activity.of_user_clubs(@user_club.map(&:club_id).uniq).oder_by_read
       .page(params[:page]).per Settings.notification_per_page
+      respond_to do |format|
+       format.html
+       format.js
+      end
   end
 
   private

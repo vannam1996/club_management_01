@@ -28,7 +28,7 @@ class ClubManager::ClubsController < BaseDashboardController
   end
 
   def load_club
-    @club = Club.find_by id: params[:id]
+    @club = Club.friendly.find params[:id]
     unless @club
       flash[:danger] = t "club_manager.cant_fount"
       redirect_to club_manager_path
@@ -36,7 +36,7 @@ class ClubManager::ClubsController < BaseDashboardController
   end
 
   def manager_club
-    correct_manager = manager_of_club(current_user).find_by club_id: params[:id]
+    correct_manager = manager_of_club(current_user).find_by club_id: @club.id
     unless correct_manager
       flash[:danger] = t "not_correct_manager"
       redirect_to club_manager_path

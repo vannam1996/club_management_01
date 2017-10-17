@@ -51,6 +51,40 @@
   </div><hr>
   <div class="row">
     <div class="col-md-5">
+      <strong class="pull-right"><%= t "rules_club" %></strong>
+    </div>
+    <div class="col-md-7 center"><%= @request.rules %></div>
+  </div><hr>
+  <div class="row">
+    <div class="col-md-5">
+      <strong class="pull-right"><%= t "local_club" %></strong>
+    </div>
+    <div class="col-md-7 center"><%= @request.time_join %></div>
+  </div><hr>
+  <div class="row">
+    <div class="col-md-5">
+      <strong class="pull-right"><%= t "rule_finance" %></strong>
+    </div>
+    <div class="col-md-7 center"><%= @request.rule_finance %></div>
+  </div><hr>
+  <div class="row">
+    <div class="col-md-5">
+      <strong class="pull-right"><%= t "punishment" %></strong>
+    </div>
+    <div class="col-md-7 center"><%= @request.punishment %></div>
+  </div><hr>
+  <div class="row">
+    <div class="col-md-5">
+      <strong class="pull-right"><%= t "time_club" %></strong>
+    </div>
+    <div class="col-md-7 center">
+      <% @request.time_activity.each do |time|%>
+        - <%= time %></br>
+      <% end %>
+    </div>
+  </div><hr>
+  <div class="row">
+    <div class="col-md-5">
       <strong class="pull-right"><%= t "status" %></strong>
     </div>
     <div class="col-md-7 center">
