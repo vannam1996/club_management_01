@@ -1,0 +1,4 @@
+$('li.notification-un_read').removeClass('notification-un_read');
+$('div.notification-un_read').removeClass('notification-un_read');
+$('.size_unread').fadeOut();
+$('.label-avatar').prepend('<%= escape_javascript(render "update_read_all") %>');

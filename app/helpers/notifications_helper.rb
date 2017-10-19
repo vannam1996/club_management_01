@@ -30,14 +30,14 @@ module NotificationsHelper
   end
 
   def option_class read
-    class_read = read.present? && read.include?(current_user.id) ? Settings.read : Settings.un_read
+    class_read = read.present? && read.include?(current_user.id) ? Settings.notifications.read : Settings.notifications.un_read
   end
 
   def size_notification notifications
     un_read = notifications.size
     notifications.each do |notification|
       if notification.user_read.present? && notification.user_read.include?(current_user.id)
-        un_read = un_read - Settings.notification_read
+        un_read = un_read - Settings.notifications.notification_read
       end
     end
     un_read

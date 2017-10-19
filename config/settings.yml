@@ -173,6 +173,8 @@ export_member:
     a: 40
     b: 50
     c: 20
-read: "readed"
-un_read: "un_read"
-notification_read: 1
+notifications:
+  nothing_to_read: 0
+  read: "readed"
+  un_read: "un_read"
+  notification_read: 1
