@@ -57,7 +57,6 @@ Rails.application.routes.draw do
     get "/" => "static_pages#index"
     resources :requests
     resources :members
-    resources :clubs
     resources :organizations
     resources :import_users, only: :create
     resources :request_members

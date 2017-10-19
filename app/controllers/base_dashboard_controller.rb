@@ -21,7 +21,7 @@ class BaseDashboardController < ApplicationController
   end
 
   def correct_manager
-    correct_manager = manager_of_club(current_user).find_by club_id: params[:club_id]
+    correct_manager = manager_of_club(current_user).find_by club_id: @club.id
     unless correct_manager
       flash[:danger] = t "not_correct_manager"
       redirect_to dashboard_path

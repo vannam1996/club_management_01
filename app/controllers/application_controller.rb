@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   end
 
   def load_organization
-    @organization = Organization.find_by id: params[:id]
+    @organization = Organization.friendly.find params[:id]
     unless @organization
       flash[:danger] = t("cant_found")
       redirect_to root_url
@@ -43,7 +43,7 @@ class ApplicationController < ActionController::Base
   end
 
   def load_club
-    @club = Club.find_by id: params[:club_id]
+    @club = Club.friendly.find params[:club_id]
     return if @club
     flash[:danger] = t("not_found_club")
     redirect_to :back
