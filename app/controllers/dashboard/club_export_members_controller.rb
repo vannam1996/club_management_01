@@ -16,7 +16,7 @@ class Dashboard::ClubExportMembersController < BaseDashboardController
 
   private
   def load_club
-    @club = Club.find_by slug: params[:id]
+    @club = Club.friendly.find params[:id]
     unless @club
       flash[:danger] = t "club_manager.cant_fount"
       redirect_to dashboard_path

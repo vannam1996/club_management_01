@@ -7,7 +7,7 @@
         <h2 class="modal-title text-center"><i class="fa fa-pencil"></i> <%= t "edit" %></h2>
       </div>
       <div class="modal-body">
-        <%= form_for [:club_manager, @club],
+        <%= form_for [:dashboard, @club],
           html: {multipart: true, enctype: "multipart/form-data",
           class: "form-horizontal form-bordered"} do |f| %>
           <fieldset>
