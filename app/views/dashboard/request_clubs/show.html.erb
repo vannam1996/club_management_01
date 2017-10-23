@@ -59,7 +59,13 @@
     <div class="col-md-5">
       <strong class="pull-right"><%= t "local_club" %></strong>
     </div>
-    <div class="col-md-7 center"><%= @request.time_join %></div>
+    <div class="col-md-7">
+      <% time_join(@request.time_join).each do |time_join| %>
+        <% if time_join.present? %>
+          - <%= time_join %><br/>
+        <% end %>
+      <% end %>
+    </div>
   </div><hr>
   <div class="row">
     <div class="col-md-5">
@@ -77,9 +83,9 @@
     <div class="col-md-5">
       <strong class="pull-right"><%= t "time_club" %></strong>
     </div>
-    <div class="col-md-7 center">
+    <div class="col-md-7">
       <% @request.time_activity.each do |time|%>
-        - <%= time %></br>
+        <%= time %>,
       <% end %>
     </div>
   </div><hr>

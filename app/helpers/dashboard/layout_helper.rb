@@ -56,4 +56,8 @@ module Dashboard::LayoutHelper
   def view_class_dashboard event
     event.pay_money? ? "text-danger" : "text-success"
   end
+
+  def time_join time
+    timejoin = time.split("*")
+  end
 end
