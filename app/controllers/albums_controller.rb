@@ -11,7 +11,7 @@ class AlbumsController < ClubsController
 
   private
   def load_club
-    @club = Club.find_by id: params[:club_id]
+    @club = Club.friendly.find params[:club_id]
     unless @club
       flash[:danger] = t "not_found"
       redirect_to root_url

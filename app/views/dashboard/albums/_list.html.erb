@@ -21,7 +21,7 @@
         </div>
         <div class="gallery-image-options text-center">
           <div class="btn-group btn-group-sm">
-            <%= link_to t("view"), club_manager_club_album_path(id: album.id),
+            <%= link_to t("view"), dashboard_club_album_path(id: album.id),
               class: "btn btn-sm btn-alt btn-primary" %>
             <%= link_to "#modal-album-edit-#{album.id}",
               data: {toggle: "modal"}, class: "btn btn-sm btn-warning" do %>

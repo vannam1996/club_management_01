@@ -15,11 +15,11 @@
                 class: "widget-background img-header animation-pulseSlow" %>
               <h3 class="widget-content widget-content-image widget-content-light clearfix">
                 <%= image_tag "logo.png", class: "widget-image pull-right" %>
-                <%= link_to event.name, club_manager_club_event_path(id: event.id),
+                <%= link_to event.name, dashboard_club_event_path(id: event.id),
                   class: "themed-color-autumn" %><br>
               </h3>
               <div class="widget-options-left">
-                <%= link_to edit_club_manager_club_event_path(id: event.id),
+                <%= link_to edit_dashboard_club_event_path(id: event.id),
                   class: "btn btn-nm btn-warning" do %>
                   <i class="fa fa-pencil"></i>
                 <% end %>
