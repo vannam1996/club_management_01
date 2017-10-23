@@ -1,4 +1,4 @@
-class Dashboard::ExportHistoryBudgetsController < BaseDashboardController
+class Dashboard::ExportHistoryBudgetsController < ApplicationController
   before_action :load_club, only: :index
   def index
     @event_clubs = @club.events.without_notification(Settings.notification).newest

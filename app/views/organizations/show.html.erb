@@ -82,8 +82,12 @@
       </div>
       <div class="row" id="organization_club">
         <% if @clubs.present? %>
-          <% unless current_user.user_organizations.joined.join?( @organization) %>
+          <% unless current_user.user_organizations.joined.join?(@organization) %>
             <%= render "clubs/clubs", collection: @clubs %>
+          <% else %>
+            <div class="col-md-12 text-center">
+              <h5 class="notifi-join text-center"><%= t "organizations.organization_not_joined" %></h5>
+            </div>
           <% end %>
         <% end %>
       </div>
