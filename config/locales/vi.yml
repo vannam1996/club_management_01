@@ -960,6 +960,7 @@ vi:
       member: "Thành viên"
       club: "Câu lạc bộ"
     organization: "Tổ chức"
+    organization_not_joined: "Hãy tham gia vào tổ chức để xem được tất cả các câu lạc bộ!"
   languages: "Ngôn ngữ"
   my_account: "Tài khoản"
   mobie_menus:

@@ -717,6 +717,7 @@ en:
       member: "members"
       club: "clubs"
     organization: "Organizations"
+    organization_not_joined: "Join the organization to see all the clubs!"
   languages: "Languages"
   my_account: "My Account"
   mobie_menus:

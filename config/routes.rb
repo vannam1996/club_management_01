@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   delete "join_event" => "user_events#destroy"
   get "other-clubs" => "clubs#index"
 
+  get "/auth/:provider/callback", to: "omniauth_callbacks#create"
+  get "/auth/failure", to: "omniauth_callbacks#failure"
+
   devise_for :users, controllers: {registrations: "registrations",
     sessions: "authentications", passwords: "passwords",
     omniauth_callbacks: "omniauth_callbacks"}
