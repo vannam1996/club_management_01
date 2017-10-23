@@ -96,7 +96,7 @@
 .event-item-table {
   width: 100%;
   td {
-    padding: 25px 12px;
+    padding: 10px 12px;
     &:first-child {
         padding-left: 30px;
     }
@@ -177,4 +177,15 @@
   .event-item-table thead {
     display: none;
   }
+}
+.logo-organization img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.edit-organization {
+  padding: 40px;
+}
+.edit-organization .input-text {
+  padding: 8px 20px;
 }

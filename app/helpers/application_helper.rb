@@ -62,4 +62,8 @@ module ApplicationHelper
   def format_date date
     date.strftime(Settings.date_format)
   end
+
+  def correctmanager organization
+    is_manager = current_user.user_organizations.load_user_organization(organization.id).are_admin
+  end
 end
