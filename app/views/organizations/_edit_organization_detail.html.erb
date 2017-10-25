@@ -1,0 +1,64 @@
+<div class="col-md-12 col-md-offset-2">
+  <div class="modal-dialog edit-club modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="block">
+          <div class="row edit-organization">
+            <h2 class="text-center col-md-12"><%= @organization.name %></h2>
+            <div class="col-md-12 col-md-offset-1">
+              <%= form_for [:dashboard, @organization], html: {multipart: true} do |f| %>
+                <%= render "shared/error_messages", object: f.object %>
+                <div class="form-group col-md-12">
+                  <%= f.label(:name, class: "control-label") do %>
+                    <%= t("name") %>
+                  <% end %>
+                  <%= f.text_field :name, class: "form-control input-text", required: true %>
+                  </div>
+                </div>
+                <div class="form-group col-md-12">
+                  <%= f.label(:email, class: "control-label") do %>
+                    <%= t("email") %>
+                  <% end %>
+                  <%= f.text_field :email, class: "form-control input-text", required: true %>
+                </div>
+                <div class="form-group col-md-12">
+                  <%= f.label(:phone, class: "control-label") do %>
+                    <%= t("phone") %>
+                  <% end %>
+                  <%= f.text_field :phone, class: "form-control input-text", required: true %>
+                </div>
+                <div class="form-group col-md-12">
+                  <%= f.label(:location, class: "control-label") do %>
+                    <%= t("location") %>
+                  <% end %>
+                  <%= f.text_field :location, class: "form-control input-text", required: true %>
+                </div>
+                <div class="form-group col-md-12">
+                  <%= f.label(:description, class: "control-label") do %>
+                    <%= t("description") %>
+                  <% end %>
+                  <%= f.text_area :description, class: "form-control input-text", required: true %>
+                </div>
+                <div class="col-md-12">
+                  <%= f.label t("status") %></br>
+                  <%= f.select :status, options_for_select(
+                    Organization.statuses.map{|k, v| [t("#{k}"), v]},
+                    {selected: Organization.statuses["#{@organization.status}"]}),{},
+                    class: "form-control select_custom" %>
+                </div>
+                <div class="form-group col-md-12 logo-organization">
+                  <%= f.label :background %>
+                  <%= f.file_field :logo, id: "file-upload" %>
+                  <%= image_tag @organization.logo, class: "img-responsive" %><hr/>
+                </div>
+                <div class="text-center col-md-12">
+                  <%= f.submit t("update"), class: "btn btn-primary button-margin-bottom col-md-3" %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

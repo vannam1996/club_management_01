@@ -38,14 +38,14 @@
               </td>
               <td class="location">
                 <div class="place inline-items">
-                  <svg class="olymp-add-a-place-icon"><use xlink:href="<%= url_to_asset("icons/icons.svg#olymp-share-icon") %>"></use></svg>
-                  <span><strong><%= @organization.users.size %></strong><%= t "members" %></span>
+                  <i class="fa fa-cubes"></i>
+                  <span><strong><%= @organization.clubs.size %></strong> <%= t "clubs" %></span>
                 </div>
               </td>
               <td class="location">
                 <div class="place inline-items">
-                  <svg class="olymp-add-a-place-icon"><use xlink:href="<%= url_to_asset("icons/icons.svg#olymp-block-from-chat") %>"></use></svg>
-                  <span><strong><%= @organization.clubs.size %></strong> <%= t "clubs" %></span>
+                  <i class="fa fa-user-circle-o"></i>
+                  <span><strong><%= @organization.users.size %></strong><%= t "members" %></span>
                 </div>
               </td>
               <td class="add-event">
@@ -96,7 +96,15 @@
       <div class="ui-block">
         <div class="ui-block-title">
           <h6 class="title"><%= t "organization_details.organization_info" %></h6>
-          <a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="icons/icons.svg#olymp-three-dots-icon"></use></svg></a>
+          <h4>
+            <% if correctmanager(@organization).present?%>
+              <%= link_to "#modal-club-edit",
+                data: {toggle: "modal"}, title: t("edit"),
+                class: "btton-edit-organization animation-fadeIn360 pull-right" do %>
+                <i class="fa fa-pencil-square-o"></i>
+              <% end %>
+            <% end %>
+          </h4>
         </div>
         <div class="ui-block-content">
           <ul class="widget w-personal-info item-block">
@@ -127,4 +135,7 @@
     </div>
   </div>
 </div>
-
+<div id="modal-club-edit" class="modal fade" tabindex="-1"
+  role="dialog" aria-hidden="true">
+  <%= render "edit_organization_detail" %>
+</div>

@@ -14,7 +14,7 @@ class Dashboard::OrganizationsController < BaseDashboardController
   def update
     if @organization.update_attributes organization_parmas
       flash[:success] = t("update_organization_success")
-      redirect_to dashboard_organization_path(id: @organization.id)
+      redirect_to organization_path(id: @organization.id)
     else
       flash[:danger] = t "error_update"
       render :edit
