@@ -779,3 +779,7 @@ en:
   total: "Total"
   total_member: "members"
   stt: "Order"
+  detail: "Detail & Goal"
+  rules: "Rules"
+  member_detail: "Membership details"
+  plan_active: "Plan & Active"

@@ -101,6 +101,7 @@
   display: flex;
   align-items: flex-end;
   justify-content: center;
+  padding: 10px 25px;
   .item_club{
     width: 100%;
   }
@@ -109,7 +110,14 @@
 .tab_detail_club{
   .ui-block{
     .content_tab{
-      padding: 30px 20px;
+      padding: 15px 52px;
+    }
+    .title-detail{
+      padding-left: 25px;
+      padding-top: 15px;
+    }
+    .title-detail i{
+      padding-right: 10px;
     }
   }
 }
@@ -493,9 +501,9 @@ body{
   margin-left: 6px;
 }
 .member-club-view {
-  width: 42px;
-  height: 42px;
-  border-radius: 42px;
+  width: 35px;
+  height: 35px;
+  border-radius: 35px;
 }
 .view-member {
   padding: 0px 10px;
@@ -508,17 +516,29 @@ body{
 }
 .view-user-member {
   border: 1px solid;
+  background-color: #0ac5ad;
+  border-radius: 50%;
+  color: white;
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+}
+.add-member{
+  border: 1px solid;
   background-color: #ff5e3a;
   color: white;
   border-radius: 50%;
   display: inline-block;
-  width: 42px;
-  height: 42px;
-  line-height: 42px;
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
   text-align: center;
+  font-size: 35px;
 }
 .view-icon-memeber {
-  margin-left: -10px;
+  margin-left: 5px;
 }
 .logo_sigin img {
   height: 40px;
@@ -563,4 +583,9 @@ body{
   border-bottom: 1px solid;
   margin-bottom: 15px;
   padding-bottom: 20px;
+}
+.title-modal-member {
+  padding-top: 20px;
+  border-bottom: 1px solid #e0d5d5;
+  padding-bottom: 18px;
 }

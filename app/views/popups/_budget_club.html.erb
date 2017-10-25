@@ -6,10 +6,10 @@
     <div class="ui-block-title ui-block-title-small">
       <h6 class="title col-md-9"><%= t("history_budget") %></h6>
       <div class="pull-right" id="export-budget">
-        <% if @support.history_budget.any? %>
+        <% if @infor_club.history_budget.any? %>
           <%= link_to t("export_budget"), dashboard_export_history_budgets_path( format: :xlsx, id: @club,
-            first_date: format_date(@support.history_budget.last.created_at), second_date:
-            format_date(@support.history_budget.first.created_at)),
+            first_date: format_date(@infor_club.history_budget.last.created_at), second_date:
+            format_date(@infor_club.history_budget.first.created_at)),
             class: "btn btn-sm btn-danger" %>
         <% end %>
       </div>
@@ -22,7 +22,7 @@
       <%= hidden_field :club_id, value: @club.id %>
     </div>
     <div id="data-event">
-      <%= render partial: "list_budget", locals: {events: @support.history_budget} %>
+      <%= render partial: "list_budget", locals: {events: @infor_club.history_budget} %>
     </div>
   </div>
   <div class="modal-footer">

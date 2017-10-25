@@ -32,8 +32,10 @@ class ClubsController < ApplicationController
     @time_line_events = @events.by_current_year.group_by_quarter
     @message = Message.new
     @user_club = UserClub.new
-    @support = Support::ClubSupport.new(@club, params[:page], nil)
+    @infor_club = Support::ClubSupport.new(@club, params[:page], nil)
     @albums = @club.albums.newest.includes(:images)
+    @members_not_manager = @infor_club.members_not_manager.page(params[:page])
+      .per Settings.page_member_not_manager
     respond_to do |format|
       format.html
       format.js
