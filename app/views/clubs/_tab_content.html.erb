@@ -19,15 +19,22 @@
       </div>
       <div class="ui-block" id="content_club">
         <div class="ui-block-title ui-block-title-small">
-          <h6 class="title"><%= t "content_club" %></h6>
+          <h6 class="title"><%= t "detail" %></h6>
+        </div>
+        <div class="title-detail ui-block-title-small">
+          <h6 class="title">
+            <i class="fa fa-codepen" aria-hidden="true"></i>
+            <%= t "content_club" %>
+          </h6>
         </div>
         <div class="content_tab">
           <%= view_detail_club(@club.content) %>
         </div>
-      </div>
-      <div class="ui-block" id="goal">
-        <div class="ui-block-title ui-block-title-small">
-          <h6 class="title"><%= t "goal" %></h6>
+        <div class="title-detail ui-block-title-small">
+          <h6 class="title">
+            <i class="fa fa-codepen" aria-hidden="true"></i>
+            <%= t "goal" %>
+          </h6>
         </div>
         <div class="content_tab">
           <%= view_detail_club(@club.goal) %>
@@ -35,15 +42,22 @@
       </div>
       <div class="ui-block" id="plan">
         <div class="ui-block-title ui-block-title-small">
-          <h6 class="title"><%= t "plan" %></h6>
+          <h6 class="title"><%= t "plan_active" %></h6>
+        </div>
+        <div class="title-detail ui-block-title-small">
+          <h6 class="title">
+            <i class="fa fa-codepen" aria-hidden="true"></i>
+            <%= t "plan" %>
+          </h6>
         </div>
         <div class="content_tab">
           <%= view_detail_club(@club.plan) %>
         </div>
-      </div>
-      <div class="ui-block" id="local_club">
-        <div class="ui-block-title ui-block-title-small">
-          <h6 class="title"><%= t "local_club" %></h6>
+        <div class="title-detail ui-block-title-small">
+          <h6 class="title">
+            <i class="fa fa-codepen" aria-hidden="true"></i>
+            <%= t "local_club" %>
+          </h6>
         </div>
         <div class="content_tab">
           <p><%= view_detail_club(@club.local) %></p>
@@ -51,23 +65,31 @@
       </div>
       <div class="ui-block" id="rules_club">
         <div class="ui-block-title ui-block-title-small">
-          <h6 class="title"><%= t "rules_club" %></h6>
+          <h6 class="title"><%= t "rules" %></h6>
+        </div>
+        <div class="title-detail ui-block-title-small">
+          <h6 class="title">
+            <i class="fa fa-codepen" aria-hidden="true"></i>
+            <%= t "rules_club" %>
+          </h6>
         </div>
         <div class="content_tab">
           <%= view_detail_club(@club.rules) %>
         </div>
-      </div>
-      <div class="ui-block" id="rule_finance">
-        <div class="ui-block-title ui-block-title-small">
-          <h6 class="title"><%= t "rule_finance" %></h6>
+        <div class="title-detail ui-block-title-small">
+          <h6 class="title">
+            <i class="fa fa-codepen" aria-hidden="true"></i>
+            <%= t "rule_finance" %>
+          </h6>
         </div>
         <div class="content_tab">
           <%= view_detail_club(@club.rule_finance) %>
         </div>
-      </div>
-      <div class="ui-block" id="time_member_join">
-        <div class="ui-block-title ui-block-title-small">
-          <h6 class="title"><%= t "time_member_join" %></h6>
+        <div class="title-detail ui-block-title-small">
+          <h6 class="title">
+            <i class="fa fa-codepen" aria-hidden="true"></i>
+            <%= t "time_member_join" %>
+          </h6>
         </div>
         <div class="content_tab">
           <%= view_detail_club(@club.time_join) %>

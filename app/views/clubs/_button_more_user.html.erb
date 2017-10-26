@@ -1,37 +1,45 @@
-<div class="modal-dialog">
+<div class="modal-dialog modal-lg">
   <div class="modal-content">
+    <h5 class="title-modal-member">
+      <%= t "member_detail" %>
+    </h5>
     <div class="modal-body row">
       <strong><%= t "modal_manager" %></strong>
     </div>
     <div class="modal-body row">
-      <% @support.members_joined.each do |member| %>
-        <% if member.is_manager? %>
-          <div class="col-md-2 col-sm-2 col-xs-3">
-            <div class="text-center">
-              <%= link_to user_path(member.user_id), title: member.full_name do %>
-                <%= image_tag member.avatar,
-                  class: "member-club-view" %>
-              <% end %>
-            </div>
+      <% @infor_club.members_manager.each do |member| %>
+        <div class="col-md-1 col-sm-2 col-xs-3">
+          <div class="text-center">
+            <%= link_to user_path(member.user_id), title: member.full_name do %>
+              <%= image_tag member.avatar,
+                class: "member-club-view" %>
+            <% end %>
           </div>
-        <% end %>
+        </div>
       <% end %>
     </div>
     <div class="modal-body row">
       <strong><%= t "modal_member" %></strong>
     </div>
-    <div class="modal-body row">
-      <% @support.members_joined.each do |member| %>
-        <% if !member.is_manager? %>
-          <div class="col-md-2 col-sm-2 col-xs-3">
-            <div class="text-center">
-              <%= link_to user_path(member.user_id), title: member.full_name do %>
-                <%= image_tag member.avatar,
-                  class: "member-club-view" %>
-              <% end %>
-            </div>
+    <div class="modal-body row load-member">
+      <% @members_not_manager.each do |member| %>
+        <div class="col-md-1 col-sm-2 col-xs-3">
+          <div class="text-center">
+            <%= link_to user_path(member.user_id), title: member.full_name do %>
+              <%= image_tag member.avatar,
+                class: "member-club-view" %>
+            <% end %>
           </div>
-        <% end %>
+        </div>
+      <% end %>
+      <% unless @members_not_manager.current_page == @members_not_manager.total_pages %>
+        <div class="col-md-1 col-sm-2 col-xs-3" id="view-more">
+          <div>
+            <%= link_to url_for(page: @members_not_manager.next_page, user: "true"), remote: true, title: t("more") do %>
+              <span class = "view-user-member">+<%= @infor_club.members_not_manager.size - Settings.page_member_not_manager %></span>
+            <% end %>
+          </div>
+        </div>
       <% end %>
     </div>
     <div class="modal-footer">

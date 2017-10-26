@@ -1,1 +1,10 @@
-$("#list-event-show").html('<%= j render "events/event", locals: {event: @events} %>');
+<% if params[:user].nil? %>
+  $("#list-event-show").html('<%= j render "events/event", locals: {event: @events} %>');
+<% else %>
+  $('.load-member').append('<%= escape_javascript(render partial: 'load_member',
+    locals: {members: @members_not_manager, members_not_manager: @members_not_manager}) %>')
+  $('#view-more').remove();
+  <% if @members_not_manager.current_page == @members_not_manager.total_pages %>
+    $('#view-more').remove();
+  <% end %>
+<% end %>

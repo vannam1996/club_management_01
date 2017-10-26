@@ -42,6 +42,14 @@ class Support::ClubSupport
     @club_value.user_clubs.joined.newest
   end
 
+  def members_manager
+    @club_value.user_clubs.joined.manager.newest
+  end
+
+  def members_not_manager
+    @club_value.user_clubs.joined.are_member.newest
+  end
+
   def messages
     @club_value.messages
   end

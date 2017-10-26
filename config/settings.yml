@@ -180,3 +180,4 @@ notifications:
   read: "readed"
   un_read: "un_read"
   notification_read: 1
+page_member_not_manager: 26
