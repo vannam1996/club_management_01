@@ -224,6 +224,7 @@
       text-transform: uppercase;
       font-size: 13px;
       border-top: 1px solid #edf2f6;
+      background-color: #a5f3e9;
     }
   }
 
@@ -262,9 +263,9 @@
 
   .notification-list {
 
-    .author-thumb {
-      height: 34px;
-      width: 34px;
+    .author-thumb img{
+      height: 41px;
+      width: 41px;
       margin-right: 0;
       overflow: hidden;
     }

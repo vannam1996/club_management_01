@@ -7,7 +7,7 @@
         <%= option_image(notification) %>
       </div>
       <div class="notification-event">
-        <div>
+        <div class="notification-value">
           <a href="#" class="h6 notification-friend"><%= notification.owner_full_name %></a>
           <%= t "has_been" %><%= t notification.key.try(:downcase) %>
           <%= t notification.trackable_type.try(:downcase) %>:
