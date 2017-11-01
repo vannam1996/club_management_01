@@ -5,7 +5,7 @@
     .custom_notifications{
       padding: 0;
       .notifyBody{
-        padding: 25px;
+        padding: 15px;
         .author-thumb{
           float: left;
           margin-right: 10px;
@@ -588,4 +588,7 @@ body{
   padding-top: 20px;
   border-bottom: 1px solid #e0d5d5;
   padding-bottom: 18px;
+}
+.notification-event .notification-value:hover {
+  background-color: #ffffff;
 }
