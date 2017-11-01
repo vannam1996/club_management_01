@@ -1,0 +1,24 @@
+<div class="header-spacer header-spacer_custom"></div>
+<div class="container">
+  <div class="row">
+    <div class="col-xl-12 push-xl-0 col-lg-12 push-lg-0 col-md-12 col-sm-12 col-xs-12">
+      <div class="ui-block">
+        <article class="hentry post has-post-thumbnail thumb-full-width private-event">
+          <div class="row">
+            <div class="col-md-2">
+              <%= link_to t("back"), club_path(@club.id),
+                class: "btn btn-primary btn-sm" %>
+            </div>
+            <div class="col-md-8">
+              <div class="block-title">
+                <h3 class="text-center"><strong><%= @club.name %></strong></h3>
+              </div>
+              <%= render "form_club_event" %>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</div>
+<%= javascript_include_tag "event" %>

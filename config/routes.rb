@@ -90,7 +90,7 @@ Rails.application.routes.draw do
   end
 
   resources :clubs, only: [:show, :index] do
-    resources :events, only: :show
+    resources :events
     resources :albums
     resources :budgets
   end
