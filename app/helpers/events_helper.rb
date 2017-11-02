@@ -70,4 +70,11 @@ module EventsHelper
   def get_money_expense event, club
     event.expense * event.budgets.size
   end
+
+  def category_event
+    [[t("notification"), Event.event_categories[:notification]],
+    [t("get_money"), Event.event_categories[:get_money]],
+    [t("subsidy"), Event.event_categories[:subsidy]],
+    [t("pay_money"), Event.event_categories[:pay_money]]]
+  end
 end

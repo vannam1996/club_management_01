@@ -3,7 +3,11 @@
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 tab_detail_club">
       <div class="ui-block" id="event">
         <div class="ui-block-title ui-block-title-small">
-          <h6 class="title"><%= t "events" %></h6>
+          <h6 class="title col-md-1"><%= t "events" %></h6>
+          <%= link_to new_club_event_path(
+            club_id: @club.id), class: "btn btn-sm btn-breez" do %>
+            <i class="fa fa-plus-circle"> </i><%= t "club_manager.album.create" %>
+          <% end %>
         </div>
         <div class="content_tab" id="list-event-show">
           <%= render partial: "events/event", locals: {event: @club.events} %>
