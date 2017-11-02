@@ -4,3 +4,6 @@ $('.sort-bubget').dataTable( {
     { type: 'date-dd-mmm-yyyy', targets: 0 }
    ]
 });
+$('#checkAll').change(function(){
+  $('.checkbox').prop('checked', $(this).prop('checked'))
+});

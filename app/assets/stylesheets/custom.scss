@@ -121,6 +121,10 @@
     }
   }
 }
+.post-thumb{
+  max-width: 75%;
+  margin: 0px auto;
+}
 .full_image{
   width: 100%;
   margin-bottom: 20px;
@@ -255,7 +259,7 @@
           padding: 10px;
           label{
             select{
-              padding: 10px 15px;
+              padding: 6px 0px;
               margin-top: 5px
             }
           }
@@ -264,7 +268,7 @@
           float: right;
           padding: 10px;
           input{
-            padding: 10px 15px;
+            padding: 6px 0px;
             display: block;
             margin-top: 5px;
           }

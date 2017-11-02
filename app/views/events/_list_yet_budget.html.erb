@@ -1,34 +1,54 @@
-<div class="modal-dialog ui-block window-popup event-private-public private-event custom_budget_popup">
-  <div class="ui-block">
-    <div class="ui-block-title ui-block-title-small">
-      <h6 class="title text-center"><%= t("no_budget") %></h6>
-    </div>
-    <div class="table-responsive">
-      <table class="event-item-table table table-vcenter datatable-public table-condensed table-bordered sort-bubget">
-        <thead>
-          <tr>
-            <th><%= t "name" %></th>
-            <th><%= t "email" %></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% if @members_yet.any? %>
-            <% @members_yet.each do |user| %>
+<%= form_tag club_manager_club_club_budgets_path(
+  club_id: @club.id), class: "col-md-12", method: :get do %>
+  <div class="modal-dialog ui-block window-popup event-private-public private-event custom_budget_popup">
+    <div class="ui-block">
+      <div class="ui-block-title ui-block-title-small">
+        <h6 class="title text-center">
+          <i class="fa fa-window-close-o" aria-hidden="true"></i>
+          <%= t("no_budget") %>
+        </h6>
+      </div>
+      <div class="table-responsive">
+        <table class="event-item-table table table-vcenter datatable-public table-condensed table-bordered sort-bubget">
+          <thead>
+            <tr>
+              <th><%= t "name" %></th>
+              <th><%= t "email" %></th>
+              <% if is_admin_club(@club).present? %>
+                <th class="text-center">
+                  <%= button_tag(type: "submit", class: "btn btn-sm btn-primary", title: t("confirm")) do %>
+                    <i class="fa fa-check-square" aria-hidden="true"></i>
+                  <% end %>
+                  <%= check_box_tag("checkAll", {}, false) %>
+                </th>
+              <% end %>
+            </tr>
+          </thead>
+          <tbody>
+            <% if @members_yet.any? %>
+              <% @members_yet.each do |user| %>
+                <tr>
+                  <td><%= link_to user.full_name, user_path(user.id), target: :blank %></td>
+                  <td><%= user.email %></td>
+                  <% if is_admin_club(@club).present? %>
+                    <td class="center">
+                      <%= check_box_tag("users[]", user.id, false, class: "checkbox") %>
+                    </td>
+                    <%= hidden_field_tag :event_id, @event.id %>
+                  <% end %>
+                </tr>
+              <% end %>
+            <% else %>
               <tr>
-                <td><%= link_to user.full_name, user_path(user.id), target: :blank %></td>
-                <td><%= user.email %></td>
+                <td colspan="3">
+                  <h6 class="text-center notifi-empty"><%= t "empty" %></h6>
+                </td>
               </tr>
             <% end %>
-          <% else %>
-            <tr>
-              <td colspan="3">
-                <h6 class="text-center notifi-empty"><%= t "empty" %></h6>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
-</div>
+<% end %>
 <%= javascript_include_tag "sort_by_date" %>
