@@ -12,6 +12,11 @@
                 <time class="published" datetime="<%= l @event.created_at, format: :short %>">
                   <%= l @event.created_at, format: :short %>
                 </time>
+                <% if @event.notification? %>
+                  <i class="fa fa-bell icon-event"></i>
+                <% else %>
+                  <i class="fa fa-money icon-event"></i>
+                <% end %>
               </div>
             </div>
           </div>
@@ -19,7 +24,7 @@
             <%= image_tag @event.image, class: "img-responsive full_image" %>
           </div>
           <div class="row">
-            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 offset-md-1">
               <div class="post__author author vcard inline-items">
                 <div class="author-date">
                   <a class="h6 post__author-name fn" href="#"><%= @event.user.full_name %></a>
@@ -38,7 +43,7 @@
                 <p><%= @event.description.html_safe %></p>
               <% end %>
             </div>
-            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
               <div class="event-description">
                 <h6 class="event-description-title"><%= t "info_event" %></h6>
                 <div class="place inline-items">
@@ -47,11 +52,11 @@
                 </div>
                 <div class="place inline-items">
                   <svg class="olymp-small-calendar-icon"><use xlink:href="<%= url_to_asset("icons/icons.svg#olymp-small-calendar-icon") %>"></use></svg>
-                  <span><%= @event.date_start %></span>
+                  <span><%= l @event.date_start, format: :short %></span> --> <span><%= l @event.date_end, format: :short %></span>
                 </div>
                 <div class="place inline-items">
                   <svg class="olymp-small-calendar-icon"><use xlink:href="<%= url_to_asset("icons/icons.svg#olymp-small-calendar-icon") %>"></use></svg>
-                  <span><%= @event.date_end %></span>
+                  <span></span>
                 </div>
                 <% if @event.notification? %>
                   <%= render "user_events/join_event_toggle" %>

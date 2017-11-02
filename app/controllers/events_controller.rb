@@ -1,7 +1,8 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!
-  before_action :load_club, only:[:show, :new, :create]
+  before_action :load_club, only:[:show, :new, :create, :check_is_admin]
   before_action :load_event, only: :show
+  before_action :check_is_admin, only: :new
 
   def new
     @event = Event.new
@@ -62,5 +63,13 @@ class EventsController < ApplicationController
     params.require(:event).permit(:club_id, :name, :date_start, :status,
       :expense, :date_end, :location, :description, :image, :user_id)
       .merge! event_category: event_category
+  end
+
+  def check_is_admin
+    is_manager = current_user.user_clubs.load_is_admin(@club.id).manager
+    if is_manager.blank?
+      flash[:danger] = t "not_correct_manager"
+      redirect_to root_url
+    end
   end
 end

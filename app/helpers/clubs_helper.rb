@@ -32,4 +32,8 @@ module ClubsHelper
       link_to t("view_more"), "javascript:void(0)", title: t("club_is_lock"), class: "btn btn-default"
     end
   end
+
+  def is_admin_club club
+    is_manager = current_user.user_clubs.load_is_admin(club.id).manager
+  end
 end
