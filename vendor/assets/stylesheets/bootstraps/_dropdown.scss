@@ -154,8 +154,8 @@
 .dropup {
   // Different positioning for bottom up menu
   .dropdown-menu {
-    top: auto;
-    bottom: 100%;
+    left: auto;
+    right: 100%;
     margin-bottom: $dropdown-margin-top;
   }
 }

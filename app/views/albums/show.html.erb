@@ -1,0 +1,36 @@
+<%= javascript_include_tag "images", "data-turbolinks-track" => true  %>
+<div class="header-spacer header-spacer_custom"></div>
+<div class="container">
+  <div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div id="page-container">
+        <section class="site-content site-section">
+          <div class="container">
+            <div class="row portfolio">
+              <div class="container gallery-container">
+                <div class="ui-block-title ui-block-title-small row">
+                  <%= link_to t("back"), organization_club_path(@club.id, @club.organization_id),
+                    class: "pull-left btn btn-primary btn-sm" %>
+                  <h6 class="title col-md-8 text-center"><%= @album.name %></h6>
+                </div>
+                <div class="tz-gallery">
+                  <div class="row">
+                    <% @album.images.each do |image| %>
+                      <div class="col-sm-6 col-md-3 portfolio-item"
+                        data-category="">
+                        <%= link_to "#{image.url}", class: "lightbox" do  %>
+                          <%= image_tag image.url %>
+                        <% end %>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+                <%= render "other_album" %>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>

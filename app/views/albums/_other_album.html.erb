@@ -1,0 +1,49 @@
+<div class="orther-album text-center">
+  <h3 class="title"><%= t "albums_club.other_album" %></h3>
+</div>
+<div class="tz-gallery">
+  <div class="row">
+    <% @album_other.each do |album| %>
+      <div class="col-sm-6 col-md-3 portfolio-item">
+        <div class="thumbnail">
+          <% if album.images.blank? %>
+            <%= image_tag "fram.jpg", class: "col-md-12" %>
+          <% else %>
+            <%= link_to club_album_path(@club.id, album.id) do %>
+              <%= image_tag albums_club(album), class: "col-md-12" %>
+            <% end %>
+          <% end %>
+          <div class="caption row">
+            <p class="col-md-11">
+              <%= truncate(album.name, length: Settings.truncate.album_name) %></br>
+              <%= album.images.size %> <%= t "albums_club.image" %>
+            </p>
+            <div class="pull-right col-md-1">
+              <div class="dropup">
+                <% if is_admin_club(@club).present? %>
+                  <span class="dropdown-toggle" data-toggle="dropdown">
+                    <span class="fa fa-cog"></span>
+                  </span>
+                <% end %>
+                <ul class="dropdown-menu drop_form" role="menu" aria-labelledby="menu1">
+                  <li class="row text-center">
+                    <%= link_to "#modal-album-edit-#{album.id}",
+                      data: {toggle: "modal"}, class: "", title: t("edit") do %>
+                      <i class="fa fa-pencil"></i>
+                    <% end %>
+                    <%= link_to dashboard_club_album_path(id: album.id,
+                      club_id: @club.id), class: "",
+                      title: t("delete"), method: :delete,
+                      data: {confirm: t("confirm_delete_album")} do %>
+                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                    <% end %>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

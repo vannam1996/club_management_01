@@ -783,3 +783,6 @@ en:
   rules: "Rules"
   member_detail: "Membership details"
   plan_active: "Plan & Active"
+  albums_club:
+    image: "image"
+    other_album: "Other albums"
