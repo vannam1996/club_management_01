@@ -1125,4 +1125,34 @@
   }
 
 }
+.thumbnail img {
+  height: 200px;
+}
+.thumbnail {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 3px;
+}
+.thumbnail a:hover {
+  opacity: 0.5;
+}
+.caption {
+  padding-top: 10px;
+}
+.portfolio-item {
+  padding: 0px 5px 0px 5px;
+}
+.dropdown-toggle::after {
+  display: none;
+}
+.caption p {
+  margin-bottom: 1px;
+}
+.drop_form li a {
+  padding: 0px 5px;
+}
+.caption .dropdown-menu {
+  min-width: 65px;
+  padding: 0px;
+}
 

@@ -1026,3 +1026,6 @@ vi:
   rules: "Quy định"
   member_detail: "Chi tiết thành viên"
   plan_active: "Kế hoạch & Hoạt động"
+  albums_club:
+    image: "ảnh"
+    other_album: "Album khác"

@@ -52,7 +52,17 @@
                 </div>
                 <div class="place inline-items">
                   <svg class="olymp-small-calendar-icon"><use xlink:href="<%= url_to_asset("icons/icons.svg#olymp-small-calendar-icon") %>"></use></svg>
-                  <span><%= l @event.date_start, format: :short %></span> --> <span><%= l @event.date_end, format: :short %></span>
+                  <span>
+                    <% if !@event.date_start.nil? %>
+                      <%= l @event.date_start, format: :short %>
+                    <% end %>
+                  </span>
+                  <span>
+                    <% if @event.date_end.present? %>
+                      <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                      <%= l @event.date_end, format: :short %>
+                    <% end %>
+                  </span>
                 </div>
                 <div class="place inline-items">
                   <svg class="olymp-small-calendar-icon"><use xlink:href="<%= url_to_asset("icons/icons.svg#olymp-small-calendar-icon") %>"></use></svg>

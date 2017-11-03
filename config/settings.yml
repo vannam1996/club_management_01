@@ -64,7 +64,7 @@ japanese: "japanese"
 payment_budget: "Payment For Club Of Month:"
 periodic_category: 4
 payment_budget: "Payment For Club Of Month:"
-max_display_member_club: 6
+max_display_member_club: 5
 club_member: 18
 notification: 3
 get_money: 2
@@ -88,7 +88,7 @@ user:
 truncate:
   club:
     description: 100
-  album_name: 20
+  album_name: 30
 messages_load_more: 30
 subsidy: "subsidy"
 pay_money: "pay_money"
