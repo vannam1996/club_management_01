@@ -1,6 +1,7 @@
-class AlbumsController < ApplicationController
+class AlbumsController < ClubsController
   before_action :authenticate_user!
   before_action :load_club
+  before_action :verify_club
   before_action :load_album, only:[:show, :edit, :update, :destroy]
 
   def index
@@ -19,6 +20,7 @@ class AlbumsController < ApplicationController
   end
 
   def show
+    @image = Image.new
     @album_other = @club.albums.newest.other params[:id]
   end
 

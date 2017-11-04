@@ -6,16 +6,19 @@
     <% @album_other.each do |album| %>
       <div class="col-sm-6 col-md-3 portfolio-item">
         <div class="thumbnail">
-          <% if album.images.blank? %>
-            <%= image_tag "fram.jpg", class: "col-md-12" %>
-          <% else %>
-            <%= link_to club_album_path(@club.id, album.id) do %>
+          <%= link_to club_album_path(@club.id, album.id) do %>
+            <% if album.images.blank? %>
+              <%= image_tag "fram.jpg", class: "col-md-12" %>
+            <% else %>
               <%= image_tag albums_club(album), class: "col-md-12" %>
             <% end %>
           <% end %>
           <div class="caption row">
             <p class="col-md-11">
-              <%= truncate(album.name, length: Settings.truncate.album_name) %></br>
+              <%= link_to club_album_path(@club.id, album.id) do %>
+                <%= truncate(album.name, length: Settings.truncate.album_name) %>
+              <% end %>
+              </br>
               <%= album.images.size %> <%= t "albums_club.image" %>
             </p>
             <div class="pull-right col-md-1">

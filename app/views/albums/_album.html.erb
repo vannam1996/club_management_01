@@ -9,10 +9,10 @@
               <% @infor_club.albums.each do |album| %>
                 <div class="col-sm-6 col-md-3 portfolio-item">
                   <div class="thumbnail">
-                    <% if album.images.blank? %>
-                      <%= image_tag "fram.jpg", class: "col-md-12" %>
-                    <% else %>
-                      <%= link_to club_album_path(@club.id, album.id) do %>
+                    <%= link_to club_album_path(@club.id, album.id) do %>
+                      <% if album.images.blank? %>
+                        <%= image_tag "fram.jpg", class: "col-md-12" %>
+                      <% else %>
                         <%= image_tag albums_club(album), class: "col-md-12" %>
                       <% end %>
                     <% end %>

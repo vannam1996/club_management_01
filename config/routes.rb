@@ -91,7 +91,9 @@ Rails.application.routes.draw do
 
   resources :clubs, only: [:show, :index, :edit] do
     resources :events
-    resources :albums
+    resources :albums do
+      resources :images
+    end
     resources :budgets
   end
 
