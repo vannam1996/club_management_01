@@ -1140,7 +1140,7 @@
   padding-top: 10px;
 }
 .portfolio-item {
-  padding: 0px 5px 0px 5px;
+  padding: 5px 5px;
 }
 .dropdown-toggle::after {
   display: none;
@@ -1155,4 +1155,11 @@
   min-width: 65px;
   padding: 0px;
 }
-
+.create-album .input-name {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.edit-album input {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
