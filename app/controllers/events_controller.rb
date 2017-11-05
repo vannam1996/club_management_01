@@ -66,8 +66,7 @@ class EventsController < ApplicationController
   end
 
   def check_is_admin
-    is_manager = current_user.user_clubs.load_is_admin(@club.id).manager
-    if is_manager.blank?
+    unless @club.is_admin? current_user
       flash[:danger] = t "not_correct_manager"
       redirect_to root_url
     end

@@ -20,7 +20,7 @@
             </p>
             <div class="pull-right col-md-1">
               <div class="dropup">
-                <% if is_admin_club(@club).present? %>
+                <% if @club.is_admin? current_user %>
                   <span class="dropdown-toggle" data-toggle="dropdown">
                     <span class="fa fa-cog"></span>
                   </span>

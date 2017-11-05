@@ -4,7 +4,7 @@
       <div class="ui-block" id="event">
         <div class="ui-block-title ui-block-title-small">
           <h6 class="title col-md-1"><%= t "events" %></h6>
-          <% if is_admin_club(@club).present? %>
+          <% if @club.is_admin? current_user %>
             <%= link_to new_club_event_path(
               club_id: @club.id), class: "btn btn-sm btn-breez" do %>
               <i class="fa fa-plus-circle"> </i><%= t "club_manager.album.create" %>
@@ -18,7 +18,7 @@
       <div class="ui-block" id="image">
         <div class="ui-block-title ui-block-title-small">
           <h6 class="title col-md-1"><%= t "albums" %></h6>
-          <% if is_admin_club(@club).present? %>
+          <% if @club.is_admin? current_user %>
             <%= link_to "#modal-new-album", data: {toggle: "modal"}, class: "btn btn-sm btn-breez" do %>
               <i class="fa fa-camera"></i><%= t "club_manager.album.create" %>
             <% end %>
@@ -31,6 +31,12 @@
       <div class="ui-block" id="content_club">
         <div class="ui-block-title ui-block-title-small">
           <h6 class="title"><%= t "detail" %></h6>
+          <% if @club.is_admin? current_user %>
+            <%= link_to edit_club_path(id: @club.id, tab: "content"), title: t("edit"), remote: :true,
+              class: "btton-edit-organization animation-fadeIn360 pull-right" do %>
+              <i class="fa fa-pencil-square-o"></i>
+            <% end %>
+          <% end %>
         </div>
         <div class="title-detail ui-block-title-small">
           <h6 class="title">
@@ -39,7 +45,7 @@
           </h6>
         </div>
         <div class="content_tab">
-          <%= view_detail_club(@club.content) %>
+          <%= view_detail_club @club.content %>
         </div>
         <div class="title-detail ui-block-title-small">
           <h6 class="title">
@@ -48,12 +54,18 @@
           </h6>
         </div>
         <div class="content_tab">
-          <%= view_detail_club(@club.goal) %>
+          <%= view_detail_club @club.goal %>
         </div>
       </div>
       <div class="ui-block" id="plan">
         <div class="ui-block-title ui-block-title-small">
           <h6 class="title"><%= t "plan_active" %></h6>
+          <% if @club.is_admin? current_user %>
+            <%= link_to edit_club_path(id: @club.id, tab: "plan"), title: t("edit"), remote: :true,
+              class: "btton-edit-organization animation-fadeIn360 pull-right" do %>
+              <i class="fa fa-pencil-square-o"></i>
+            <% end %>
+          <% end %>
         </div>
         <div class="title-detail ui-block-title-small">
           <h6 class="title">
@@ -73,10 +85,34 @@
         <div class="content_tab">
           <p><%= view_detail_club(@club.local) %></p>
         </div>
+        <div class="title-detail ui-block-title-small">
+          <h6 class="title">
+            <i class="fa fa-codepen" aria-hidden="true"></i>
+            <%= t "time_club" %>
+          </h6>
+        </div>
+        <div class="content_tab">
+          <p>
+            <% if @club.time_activity.present? %>
+              <% @club.time_activity.each do |time| %>
+                <%= time %>,
+              <% end %>
+            <% else %>
+              <h5 class="text-center"><strong><i>#{t("content_empty")}</i></strong></h5>
+            <% end %>
+          </p>
+
+        </div>
       </div>
       <div class="ui-block" id="rules_club">
         <div class="ui-block-title ui-block-title-small">
           <h6 class="title"><%= t "rules" %></h6>
+          <% if @club.is_admin? current_user %>
+            <%= link_to edit_club_path(id: @club.id, tab: "rules"), title: t("edit"), remote: :true,
+              class: "btton-edit-organization animation-fadeIn360 pull-right" do %>
+              <i class="fa fa-pencil-square-o"></i>
+            <% end %>
+          <% end %>
         </div>
         <div class="title-detail ui-block-title-small">
           <h6 class="title">
@@ -108,4 +144,13 @@
       </div>
     </div>
   </div>
+</div>
+<div id="modal-edit-content" class="modal fade" tabindex="-1"
+  role="dialog" aria-hidden="true">
+</div>
+<div id="modal-edit-plan" class="modal fade" tabindex="-1"
+  role="dialog" aria-hidden="true">
+</div>
+<div id="modal-edit-rules" class="modal fade" tabindex="-1"
+  role="dialog" aria-hidden="true">
 </div>

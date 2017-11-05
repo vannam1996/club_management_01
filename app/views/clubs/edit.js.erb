@@ -1,0 +1,11 @@
+<% case params[:tab] %>
+<% when "content" %>
+  $("#modal-edit-content").html('<%= j render "edit_content_goad" %>');
+  $("#modal-edit-content").modal('show');
+<% when "plan" %>
+  $("#modal-edit-plan").html('<%= j render "edit_plan" %>');
+  $("#modal-edit-plan").modal('show');
+<% when "rules" %>
+  $("#modal-edit-rules").html('<%= j render "edit_rules" %>');
+  $("#modal-edit-rules").modal('show');
+<% end %>

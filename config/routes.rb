@@ -89,7 +89,7 @@ Rails.application.routes.draw do
     resources :user_organizations, except: [:new, :update]
   end
 
-  resources :clubs, only: [:show, :index] do
+  resources :clubs, only: [:show, :index, :edit] do
     resources :events
     resources :albums
     resources :budgets

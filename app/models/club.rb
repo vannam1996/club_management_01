@@ -76,6 +76,11 @@ class Club < ApplicationRecord
     end
   end
 
+  def is_admin? user
+    user_club = self.user_clubs.manager.find_by(user_id: user.id)
+    return user_club.present?
+  end
+
   def money_pay money
     self.update_attribute :money, self.money - money
   end
