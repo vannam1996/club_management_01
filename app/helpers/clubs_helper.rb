@@ -36,4 +36,17 @@ module ClubsHelper
   def albums_club album
     img = album.images.first.url
   end
+
+  def user_role_club
+    [[t("manager"), Settings.user_club.manager],
+    [t("members"), Settings.user_club.member]]
+  end
+
+  def check_role_club user_club
+    if user_club.is_manager?
+      Settings.user_club.manager
+    else
+      Settings.user_club.member
+    end
+  end
 end
