@@ -1,0 +1,3 @@
+$(".edit-album-club").html('<%= j render "albums/edit_album" %>');
+$('#modal-edit-album').modal('show');
+$('.edit-album input').val('<%= @album.name %>')

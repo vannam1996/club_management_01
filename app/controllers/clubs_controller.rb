@@ -26,6 +26,7 @@ class ClubsController < ApplicationController
   end
 
   def show
+    @album = Album.new
     list_events = @club.events
     @q = list_events.search(params[:q])
     @events = @q.result.newest.includes(:budgets).page(params[:page]).per Settings.per_page

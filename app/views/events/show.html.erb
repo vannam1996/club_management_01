@@ -53,7 +53,7 @@
                 <div class="place inline-items">
                   <svg class="olymp-small-calendar-icon"><use xlink:href="<%= url_to_asset("icons/icons.svg#olymp-small-calendar-icon") %>"></use></svg>
                   <span>
-                    <% if !@event.date_start.nil? %>
+                    <% if @event.date_start.present? %>
                       <%= l @event.date_start, format: :short %>
                     <% end %>
                   </span>

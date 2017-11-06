@@ -17,7 +17,12 @@
       </div>
       <div class="ui-block" id="image">
         <div class="ui-block-title ui-block-title-small">
-          <h6 class="title"><%= t "images" %></h6>
+          <h6 class="title col-md-1"><%= t "albums" %></h6>
+          <% if is_admin_club(@club).present? %>
+            <%= link_to "#modal-new-album", data: {toggle: "modal"}, class: "btn btn-sm btn-breez" do %>
+              <i class="fa fa-camera"></i><%= t "club_manager.album.create" %>
+            <% end %>
+          <% end %>
         </div>
         <div class="content_tab">
           <%= render partial: "albums/album" %>
