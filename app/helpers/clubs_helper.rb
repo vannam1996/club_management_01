@@ -33,10 +33,6 @@ module ClubsHelper
     end
   end
 
-  def is_admin_club club
-    is_manager = current_user.user_clubs.load_is_admin(club.id).manager
-  end
-
   def albums_club album
     img = album.images.first.url
   end

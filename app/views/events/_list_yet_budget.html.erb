@@ -14,7 +14,7 @@
             <tr>
               <th><%= t "name" %></th>
               <th><%= t "email" %></th>
-              <% if is_admin_club(@club).present? %>
+              <% if @club.is_admin? current_user %>
                 <th class="text-center">
                   <%= button_tag(type: "submit", class: "btn btn-sm btn-primary", title: t("confirm")) do %>
                     <i class="fa fa-check-square" aria-hidden="true"></i>
@@ -30,7 +30,7 @@
                 <tr>
                   <td><%= link_to user.full_name, user_path(user.id), target: :blank %></td>
                   <td><%= user.email %></td>
-                  <% if is_admin_club(@club).present? %>
+                  <% if @club.is_admin? current_user %>
                     <td class="center">
                       <%= check_box_tag("users[]", user.id, false, class: "checkbox") %>
                     </td>

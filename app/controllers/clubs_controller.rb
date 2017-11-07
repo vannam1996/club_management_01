@@ -1,6 +1,6 @@
 class ClubsController < ApplicationController
   before_action :authenticate_user!
-  before_action :load_club, only: [:show, :verify_club]
+  before_action :load_club, only: [:show, :edit, :verify_club]
   before_action :verify_club, only: :show
 
   def index
@@ -37,6 +37,13 @@ class ClubsController < ApplicationController
     @albums = @club.albums.newest.includes(:images)
     @members_not_manager = @infor_club.members_not_manager.page(params[:page])
       .per Settings.page_member_not_manager
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
+  def edit
     respond_to do |format|
       format.html
       format.js

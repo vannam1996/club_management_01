@@ -16,7 +16,7 @@ class UserClub < ApplicationRecord
     find_by user_id: user_id, club_id: club_id
   end
   scope :newest, ->{order created_at: :desc}
-  scope :load_is_admin, ->club_id{where club_id: club_id}
+  scope :by_club, ->club_id{where club_id: club_id}
 
   class << self
     def of_club club
