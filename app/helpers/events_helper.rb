@@ -72,9 +72,9 @@ module EventsHelper
   end
 
   def category_event
-    [[t("notification"), Event.event_categories[:notification]],
+    [[t("subsidy"), Event.event_categories[:subsidy]],
     [t("get_money"), Event.event_categories[:get_money]],
-    [t("subsidy"), Event.event_categories[:subsidy]],
+    [t("notification"), Event.event_categories[:notification]],
     [t("pay_money"), Event.event_categories[:pay_money]]]
   end
 end
