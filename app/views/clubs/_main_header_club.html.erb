@@ -41,6 +41,14 @@
                   </li>
                 </ul>
               </div>
+              <div class="col-md-3">
+                <% if @club.is_admin? current_user %>
+                  <%= link_to edit_club_path(id: @club.id, tab: "infor"), title: t("edit_infor_club"),
+                    remote: :true, class: "edit-infor-club pull-right" do %>
+                    <i class="fa fa-cog"></i>
+                  <% end %>
+                <% end %>
+              </div>
             </div>
           </div>
         </div>
