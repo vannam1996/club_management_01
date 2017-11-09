@@ -48,4 +48,12 @@ class Event < ApplicationRecord
   def cost_expense total
     self.update_attributes expense: self.expense.to_i + self.amount.to_i * total
   end
+
+  def by_user? user
+    user.id == self.user_id
+  end
+
+  def notification?
+    self.event_category == Settings.event_notification
+  end
 end

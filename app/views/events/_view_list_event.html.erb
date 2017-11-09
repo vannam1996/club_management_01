@@ -44,7 +44,11 @@
         class: "btn btn-breez btn-sm load_event" %>
     </td>
     <td>
-      <i class="fa fa-pencil-square-o"></i>
+      <% if @club.is_admin?(current_user) && event.by_user?(current_user) %>
+        <%= link_to edit_club_event_path(@club.id, event.id), title: t("edit") do %>
+          <i class="fa fa-pencil-square-o"></i>
+        <% end %>
+      <% end %>
     </td>
   </tr>
 <% end %>

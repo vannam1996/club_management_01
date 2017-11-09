@@ -1,8 +1,8 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!
-  before_action :load_club, only:[:show, :new, :create, :check_is_admin]
-  before_action :load_event, only: :show
-  before_action :check_is_admin, only: :new
+  before_action :load_club, only: [:show, :new, :create, :check_is_admin, :edit]
+  before_action :load_event, only: [:show, :edit]
+  before_action :check_is_admin, only: [:new, :edit]
 
   def new
     @event = Event.new
