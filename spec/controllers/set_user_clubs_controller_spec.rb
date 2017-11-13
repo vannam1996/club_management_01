@@ -33,4 +33,28 @@ RSpec.describe SetUserClubsController, type: :controller do
       it {expect(flash[:success]).to eq "Bạn đã xử lý thành công"}
     end
   end
+
+  describe "POST #create" do
+    context "with valid attributes" do
+      it "create new user club" do
+        request_params = FactoryGirl.attributes_for(:user_club)
+        expect do
+          post :create, params: {user_id: [user.id], id: club.id}
+        end.to change(UserClub, :count).by 1
+        expect(flash[:success]).to be_present
+      end
+
+      it "create fail with user_id nil" do
+        request_params = FactoryGirl.attributes_for :user_club, user_id: nil
+        expect do
+          post :create, params: {id: club.id}
+        end.to change(UserClub, :count).by 0
+        expect(flash[:danger]).to be_present
+      end
+    end
+    context "when params[:id] not present" do
+      before {get :update, params: {id: 0}}
+      it {expect(flash[:danger]).to eq "Câu lạc bộ này không tồn tại"}
+    end
+  end
 end
