@@ -1030,3 +1030,6 @@ vi:
     image: "ảnh"
     other_album: "Album khác"
   edit_infor_club: "Chỉnh sửa thông tin CLB"
+  edit_member:
+    editmember: "Chỉnh sửa thành viên"
+    search_member: "Tìm kiếm theo tên hoặc email"

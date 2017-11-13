@@ -787,3 +787,6 @@ en:
     image: "image"
     other_album: "Other albums"
   edit_infor_club: "Edit club's info"
+  edit_member:
+    editmember: "Edit members"
+    search_member: "Search by name or email"

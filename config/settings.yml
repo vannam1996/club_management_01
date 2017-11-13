@@ -182,3 +182,7 @@ notifications:
   notification_read: 1
 page_member_not_manager: 26
 event_notification: "notification"
+user_club:
+  number: 0
+  manager: 1
+  member: 0

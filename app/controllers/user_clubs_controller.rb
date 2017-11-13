@@ -1,5 +1,6 @@
 class UserClubsController < ApplicationController
   before_action :authenticate_user!
+  before_action :load_club, only: [:update, :show]
   before_action :load_user_club, only: :destroy
 
   def create
@@ -11,7 +12,14 @@ class UserClubsController < ApplicationController
     end
     @club = user_club.club
     flash[:success] = t("join_and_wait")
-    redirect_to :back
+    redirect_back fallback_location: club_path
+  end
+
+  def show
+    @user_clubs = @club.user_clubs.joined
+    respond_to do |format|
+      format.js
+    end
   end
 
   def destroy
@@ -23,7 +31,7 @@ class UserClubsController < ApplicationController
     end
     @user_club = UserClub.new
     flash[:success] = t("see_you_next_time")
-    redirect_to :back
+    redirect_back fallback_location: club_path
   end
 
   private
@@ -35,7 +43,14 @@ class UserClubsController < ApplicationController
     @user_club = current_user.user_clubs.find_by club_id: params[:club_id]
     unless @user_club
       flash[:danger] = t("not_found_user_club")
-      redirect_to :back
+      redirect_back fallback_location: club_path
     end
+  end
+
+  def load_club
+    @club = Club.friendly.find params[:id]
+    return if @club
+    flash[:danger] = t("not_found_club")
+    redirect_back fallback_location: root_path
   end
 end

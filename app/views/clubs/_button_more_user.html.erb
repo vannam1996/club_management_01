@@ -1,4 +1,4 @@
-<div class="modal-dialog modal-lg">
+<div class="modal-dialog modal-lg load-user">
   <div class="modal-content">
     <h5 class="title-modal-member">
       <%= t "member_detail" %>
@@ -24,7 +24,7 @@
     <div class="modal-body row load-member">
       <% @members_not_manager.each do |member| %>
         <div class="col-md-1 col-sm-2 col-xs-3">
-          <div class="text-center">
+          <div class="text-center user-member">
             <%= link_to user_path(member.user_id), title: member.full_name do %>
               <%= image_tag member.avatar,
                 class: "member-club-view" %>
@@ -40,6 +40,16 @@
             <% end %>
           </div>
         </div>
+      <% end %>
+    </div>
+    <div class="modal-body row">
+      <% if @club.is_admin? current_user %>
+        <strong>
+          <%= link_to user_club_path(@club), remote: :true,
+            class: "animation-fadeIn360 pull-left", title: t("more") do %>
+            <i class="fa fa-pencil-square-o"></i><%= t "edit_member.editmember" %>
+          <% end %>
+        </strong>
       <% end %>
     </div>
     <div class="modal-footer">

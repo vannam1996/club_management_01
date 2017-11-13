@@ -109,7 +109,8 @@ Rails.application.routes.draw do
   resources :set_language, only: :update
   resources :reason_leaves, only: [:index, :show, :create]
   resources :activities, only: :create
-  resources :user_clubs, only: [:create, :destroy]
+  resources :user_clubs
   resources :user_organizations, only: [:create, :destroy]
   resources :notifications
+  resources :set_user_clubs
 end
