@@ -25,6 +25,16 @@
       </table>
     </div>
   </div>
+  <div class="modal-body row ui-block">
+    <% if @club.is_admin? current_user %>
+      <strong>
+        <%= link_to "#modal-add-user", data: {toggle: "modal", dismiss: "modal"},
+          class: "animation-fadeIn360 pull-left" do %>
+          <i class="fa fa-plus" aria-hidden="true"></i><%= t "add_member" %>
+        <% end %>
+      </strong>
+    <% end %>
+  </div>
   <div class="modal-footer text-center">
     <%= submit_tag t("save"), class: "btn btn-sm btn-primary col-md-2" %>
     <button type="button" class="btn btn-sm button-more" data-dismiss="modal">

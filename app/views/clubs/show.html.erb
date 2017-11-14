@@ -33,23 +33,26 @@
             <% end %>
             <% if @infor_club.members_joined.size > Settings.max_display_member_club %>
               <div class="col-md-1 pull-left view-icon-memeber">
-                <%= link_to "#modal-user", data: {toggle: "modal"},
+                <%= link_to user_request_club_path(@club), remote: :true,
                   class: "animation-fadeIn360", title: t("more") do %>
                   <span class = "view-user-member">+<%= @infor_club.members_joined.size - Settings.max_display_member_club %></span>
                 <% end %>
               </div>
             <% end %>
-            <div class="col-md-1 pull-left add-user-member">
-              <%= link_to "#modal-add-user", data: {toggle: "modal"},
-                class: "animation-fadeIn360", title: t("add_member") do %>
-                <span class = "add-member">+</span>
-              <% end %>
-            </div>
+            <% if @club.is_admin? current_user %>
+              <div class="col-md-1 pull-left add-user-member">
+                <%= link_to "#modal-add-user", data: {toggle: "modal"},
+                  class: "animation-fadeIn360", title: t("add_member") do %>
+                  <span class = "add-member"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                <% end %>
+              </div>
+            <% end %>
           </div>
-          <div class="text-center">
+          <div class="">
             <div id="modal-user" class="modal fade" tabindex="-1"
               role="dialog" aria-hidden="true">
-              <%= render "button_more_user" %>
+                <%= render partial: "button_more_user",
+                  locals: {members_pending: @infor_club.user_requests} %>
             </div>
           </div>
         </div>
