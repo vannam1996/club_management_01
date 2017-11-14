@@ -38,8 +38,8 @@ module ClubsHelper
   end
 
   def user_role_club
-    [[t("manager"), Settings.user_club.manager],
-    [t("members"), Settings.user_club.member]]
+    [[t("members"), Settings.user_club.member],
+    [t("manager"), Settings.user_club.manager]]
   end
 
   def check_role_club user_club

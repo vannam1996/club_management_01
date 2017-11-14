@@ -1,0 +1,62 @@
+<div class="modal-dialog ui-block window-popup private-event user-club-join">
+  <div class="text-center">
+    <h6 class="title col-md-12"><%= t "add_member" %></h6>
+  </div>
+  <div id="data-event">
+    <%= form_tag set_user_clubs_path, method: :post do %>
+      <%=hidden_field_tag "id", @club.id %>
+      <div class="form-search">
+        <div class="col-md-12">
+          <span class="input-group-addon" id="basic-addon1">
+            <i class="fa fa-search" aria-hidden="true"></i>
+          </span>
+          <%= text_field_tag :search_user, "", class: "form-control input-search",
+            placeholder: t("edit_member.search_member") %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 pull-left ui-block row add-all">
+          <%= check_box_tag("checkall", false, false,class: "select-all") %>
+          <%= t "checkall" %>
+        </div>
+      </div>
+      <div class="widget-simple list-scroll">
+        <div class="table-responsive">
+          <table class="table ui-block table-pricing">
+            <tbody>
+              <% if user_clubs.any? %>
+                <% user_clubs.each do |user_club| %>
+                  <tr class="add-user-member">
+                    <td class="check-user">
+                      <%= check_box_tag("user_id[]", user_club.user_id, false,
+                      class: "checkbox") %>
+                    </td>
+                    <td>
+                      <%= user_club.user.full_name %>
+                    </td>
+                    <td>
+                      <%= user_club.user.email %>
+                    </td>
+                  </tr>
+                <% end %>
+              <% else %>
+                <tr class="text-center">
+                  <td colspan="4">
+                    <h3 class="center notifi-empty"><%= t "empty" %></h3>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer text-center">
+        <%= submit_tag t("save"), class: "btn btn-sm btn-primary col-md-2" %>
+        <button type="button" class="btn btn-sm button-more" data-dismiss="modal">
+          <%= t "close" %>
+        </button>
+      </div>
+    <% end %>
+  </div>
+</div>
+<%= javascript_include_tag "add_user_club" %>

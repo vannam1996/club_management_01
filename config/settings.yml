@@ -186,3 +186,4 @@ user_club:
   number: 0
   manager: 1
   member: 0
+  join: 1

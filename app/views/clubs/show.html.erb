@@ -22,7 +22,7 @@
           <div class="item_club col-md-4 text-center">
             <%= render "clubs/budget" %>
           </div>
-          <div class="col-md-3 offset-md-1 view-member" id="view_user">
+          <div class="row col-md-3 offset-md-1 view-member" id="view_user">
             <% @infor_club.members_joined.take(Settings.max_display_member_club).each do |member| %>
               <div class="col-md-1 pull-left view-icon-memeber">
                 <%= link_to user_path(member.user_id) do %>
@@ -39,8 +39,8 @@
                 <% end %>
               </div>
             <% end %>
-            <div class="col-md-2 pull-right">
-              <%= link_to "#modal-user",
+            <div class="col-md-1 pull-left add-user-member">
+              <%= link_to "#modal-add-user", data: {toggle: "modal"},
                 class: "animation-fadeIn360", title: t("add_member") do %>
                 <span class = "add-member">+</span>
               <% end %>
@@ -56,6 +56,10 @@
       </div>
     </div>
   </div>
+</div>
+<div id="modal-add-user" class="modal fade" tabindex="-1"
+  role="dialog" aria-hidden="true">
+  <%= render partial: "add_user_club", locals: {user_clubs: @add_user_club} %>
 </div>
 <%= render "tab_content" %>
 <%= render "messages/chat_box" if current_user.user_clubs.joined.of_club @club %>

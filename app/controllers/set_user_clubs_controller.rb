@@ -3,6 +3,23 @@ class SetUserClubsController < ApplicationController
   before_action :load_club
   before_action :load_users, only: :update
 
+  def create
+    ActiveRecord::Base.transaction do
+      user_club_create = []
+      user_ids = params[:user_id]
+      user_ids.each do |user_id|
+        user_club_create << UserClub.new(user_id: user_id, club_id: params[:id],
+          is_manager: Settings.user_club.member, status: Settings.user_club.join)
+      end
+      UserClub.import user_club_create
+      flash[:success] = t "success_process"
+      redirect_to club_path @club
+    end
+  rescue
+    flash[:danger] = t "error_in_process"
+    redirect_to club_path @club
+  end
+
   def update
     ActiveRecord::Base.transaction do
       user_club_update = []

@@ -35,6 +35,7 @@ class ClubsController < ApplicationController
     @user_club = UserClub.new
     @infor_club = Support::ClubSupport.new(@club, params[:page], nil)
     @albums = @club.albums.newest.includes(:images)
+    @add_user_club = UserOrganization.without_user_ids(@club.user_clubs.joined.map(&:user_id))
     @members_not_manager = @infor_club.members_not_manager.page(params[:page])
       .per Settings.page_member_not_manager
     respond_to do |format|
