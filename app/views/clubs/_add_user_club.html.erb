@@ -22,7 +22,7 @@
       </div>
       <div class="widget-simple list-scroll">
         <div class="table-responsive">
-          <table class="table ui-block table-pricing">
+          <table class="table ui-block table-pricing results">
             <tbody>
               <% if user_clubs.any? %>
                 <% user_clubs.each do |user_club| %>
@@ -60,3 +60,4 @@
   </div>
 </div>
 <%= javascript_include_tag "add_user_club" %>
+<%= javascript_include_tag "search_member" %>
