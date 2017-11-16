@@ -1033,4 +1033,6 @@ vi:
   edit_member:
     editmember: "Chỉnh sửa thành viên"
     search_member: "Tìm kiếm theo tên hoặc email"
+    userrequest: "Yêu cầu tham gia"
+    no_request: "Không có yêu cầu nào"
   checkall: "Chọn tấc cả"

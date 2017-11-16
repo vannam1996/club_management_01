@@ -1,0 +1,6 @@
+<% if @request %>
+  $('#request_<%= params[:id] %>').fadeOut();
+<% else %>
+  $('#page-container').append('<%= j render "mesage_error" %>');
+  $('#modal-user').modal('hide');
+<% end %>

@@ -46,6 +46,10 @@ class Support::ClubSupport
     @club_value.user_clubs.joined.manager.newest
   end
 
+  def user_requests
+    @club_value.user_clubs.pending.newest
+  end
+
   def members_not_manager
     @club_value.user_clubs.joined.are_member.newest
   end

@@ -4,6 +4,8 @@ class UserClub < ApplicationRecord
 
   has_many :activities, as: :trackable, dependent: :destroy
 
+  after_update :send_mail_after_update
+
   enum status: {pending: 0, joined: 1, reject: 2}
 
   scope :manager, ->{where is_manager: true}
@@ -28,6 +30,16 @@ class UserClub < ApplicationRecord
       return user.is_manager if user
       false
     end
+  end
+
+  def send_mail_after_update
+    if self.joined?
+      send_email_join_club self
+    end
+  end
+
+  def send_email_join_club user
+    ClubMailer.mail_to_user_join_club(user, user.club).deliver_later if user.club.present?
   end
 
   delegate :name, :logo, :notification, :money, to: :club, allow_nil: :true
