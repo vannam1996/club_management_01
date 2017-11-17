@@ -25,7 +25,7 @@ module NotificationsHelper
     when Settings.notification_club
       club_path(id: notification.trackable_id)
     else
-      club_albums_path(club_id: notification.container_id)
+      club_album_path(club_id: notification.container_id, id: notification.trackable_id)
     end
   end
 
