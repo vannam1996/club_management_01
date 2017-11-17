@@ -1129,6 +1129,7 @@
   height: 200px;
 }
 .thumbnail {
+  background-color: $quamarine;
   border: 1px solid #ddd;
   border-radius: 4px;
   padding: 3px;
@@ -1167,6 +1168,25 @@
   margin-right: -15px;
   margin-top: 3px;
   width: 60px;
+}
+/*------------- delete img --------------*/
+.delete-img a {
+  padding: 5px;
+  background-color: $darkorange;
+  color: white;
+  border-radius: 5px;
+}
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 7%;
+  right: 7%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%)
+}
+.tz-gallery .portfolio-item:hover .middle {
+  opacity: 1;
 }
 .organization-title {
   z-index: 1000;

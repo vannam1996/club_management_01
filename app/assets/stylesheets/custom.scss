@@ -582,9 +582,10 @@ body{
   color: #829baf;
 }
 .show-all {
-  margin: 10px 90px;
-  border: 1px solid #edf2f6;
-  border-radius: 5px
+  margin: 10px auto;
+  border: 1px solid $azure-white;
+  border-radius: 5px;
+  max-width: 65%;
 }
 .notification-title {
   border-bottom: 1px solid;
@@ -593,9 +594,9 @@ body{
 }
 .title-modal-member {
   padding-top: 20px;
-  border-bottom: 1px solid #e0d5d5;
+  border-bottom: 1px solid $beige;
   padding-bottom: 18px;
 }
 .notification-event .notification-value:hover {
-  background-color: #ffffff;
+  background-color: $white;
 }

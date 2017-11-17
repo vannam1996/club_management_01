@@ -11,16 +11,40 @@
                 <div class="ui-block-title ui-block-title-small row">
                   <%= link_to t("back"), organization_club_path(@club.id, @club.organization_id),
                     class: "pull-left btn btn-primary btn-sm" %>
-                  <h6 class="title col-md-8 text-center"><%= @album.name %></h6>
+                  <h4 class=" col-md-8 text-center"><%= @album.name %></h4>
+                  <% if @club.is_admin? current_user %>
+                    <%= link_to "#modal-new-image", data: {toggle: "modal"},
+                      class: "btn btn-sm btn-breez pull-right" do %>
+                      <i class="fa fa-camera"></i><%= t "club_manager.image.create" %>
+                    <% end %>
+                  <% end %>
                 </div>
                 <div class="tz-gallery">
                   <div class="row">
-                    <% @album.images.each do |image| %>
-                      <div class="col-sm-6 col-md-3 portfolio-item"
-                        data-category="">
-                        <%= link_to "#{image.url}", class: "lightbox" do  %>
-                          <%= image_tag image.url %>
-                        <% end %>
+                    <% if @album.images.present? %>
+                      <% @album.images.each do |image| %>
+                        <div class="col-sm-6 col-md-3 portfolio-item img-<%= image.id %>"
+                          data-category="">
+                          <%= link_to "#{image.url}", class: "lightbox" do  %>
+                            <%= image_tag image.url %>
+                          <% end %>
+                          <% if @club.is_admin? current_user %>
+                            <div class="middle">
+                              <div class="delete-img">
+                                <%= link_to club_album_image_path(id: image.id,
+                                  club_id: @club.id, album_id: @album.id), title: t("delete"),
+                                  method: :delete, remote: :true,
+                                  data: {confirm: t("club_manager.image.confirm_delete")} do %>
+                                   <i class="fa fa-window-close"></i>
+                                  <% end %>
+                              </div>
+                            </div>
+                          <% end %>
+                        </div>
+                      <% end %>
+                    <% else %>
+                      <div class="text-center col-md-12">
+                        <h5><%= t "club_manager.image.no_image" %></h5>
                       </div>
                     <% end %>
                   </div>
@@ -33,4 +57,7 @@
       </div>
     </div>
   </div>
+</div>
+<div id="modal-new-image" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <%= render "new_club_image" %>
 </div>
