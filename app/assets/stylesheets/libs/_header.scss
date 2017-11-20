@@ -1191,9 +1191,21 @@
 .organization-title {
   z-index: 1000;
 }
+.title-header {
+  left: 50%;
+  transform: translate(-50%, 0);
+  text-align: center;
+  bottom: 0px;
+  z-index: 5;
+  position: absolute;
+}
+.description-organization {
+  color: $white;
+}
 .main-header-content {
-  background-color: $cyan;
-  color: $coral;
+  text-align: center;
+  color: #fff;
+  margin-top: 5px;
 }
 .label-info {
   background-color: $dodger-blue;
@@ -1267,4 +1279,11 @@
   width: 25px;
   height: 25px;
   border-radius: 35px;
+}
+.list-club {
+  padding-left: 3px;
+  padding-right: 3px;
+}
+.event-name {
+  max-width: 67%;
 }

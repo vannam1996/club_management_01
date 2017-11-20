@@ -14,7 +14,7 @@
             <%= image_tag event.image, class: "img-responsive" %>
           <% end %>
         </div>
-        <div class="author-date">
+        <div class="author-date event-name">
           <%= link_to event.name, club_event_url(event.club, event), class: "author-name h6" %>
           <% if event.notification? %>
             <i class="fa fa-bell icon-event"></i>

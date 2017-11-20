@@ -1,0 +1,29 @@
+<div class="col-md-12 col-md-offset-2">
+  <div class="modal-dialog edit-club modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="block">
+          <div class="row edit-organization">
+            <h2 class="text-center col-md-12"><%= @organization.name %></h2>
+            <div class="col-md-12 col-md-offset-1">
+              <%= form_for [:dashboard, @organization], html: {multipart: true} do |f| %>
+                <%= render "shared/error_messages", object: f.object %>
+                <div class="form-group col-md-12 logo-organization text-center" id="myfileupload">
+                  <%= f.hidden_field :status, value: Organization.statuses["#{@organization.status}"] %>
+                  <img height="100" width="100" alt="Thumb image" id="thumbimage" style="display: none" />
+                  <%= f.file_field :logo, id: "file-upload" %>
+                  <%= image_tag @organization.logo, class: "img-responsive" %><hr/>
+                </div>
+                <div class="text-center col-md-12">
+                  <%= f.submit t("update"), class: "btn btn-primary col-md-2 btn-sm" %>
+                  <%= f.button t("close"), class: "btn btn-sm btn-warning",
+                    "data-dismiss": "modal" %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

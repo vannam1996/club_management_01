@@ -1,6 +1,6 @@
 class OrganizationsController < ApplicationController
   before_action :authenticate_user!
-  before_action :load_organization, only: :show
+  before_action :load_organization, only: [:show, :edit]
 
   def index
     @q = Organization.search(params[:q])
@@ -18,9 +18,15 @@ class OrganizationsController < ApplicationController
     end
   end
 
+  def edit
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
   def load_organization
-    @organization = Organization.friendly.find params[:id]
+    @organization = Organization.friendly.find_by slug: params[:id]
     return if @organization
     flash[:danger] = t("organization_not_found")
     redirect_to root_url

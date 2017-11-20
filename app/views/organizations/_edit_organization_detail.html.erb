@@ -13,7 +13,6 @@
                     <%= t("name") %>
                   <% end %>
                   <%= f.text_field :name, class: "form-control input-text", required: true %>
-                  </div>
                 </div>
                 <div class="form-group col-md-12">
                   <%= f.label(:email, class: "control-label") do %>
@@ -46,13 +45,10 @@
                     {selected: Organization.statuses["#{@organization.status}"]}),{},
                     class: "form-control select_custom" %>
                 </div>
-                <div class="form-group col-md-12 logo-organization">
-                  <%= f.label :background %>
-                  <%= f.file_field :logo, id: "file-upload" %>
-                  <%= image_tag @organization.logo, class: "img-responsive" %><hr/>
-                </div>
                 <div class="text-center col-md-12">
-                  <%= f.submit t("update"), class: "btn btn-primary button-margin-bottom col-md-3" %>
+                  <%= f.submit t("update"), class: "btn btn-primary col-md-2 btn-sm" %>
+                  <%= f.button t("close"), class: "btn btn-sm btn-warning",
+                    "data-dismiss": "modal" %>
                 </div>
               <% end %>
             </div>

@@ -1,18 +1,25 @@
 <div class="header-spacer header-spacer-small"></div>
 <!-- Main Header Badges -->
-
-<div class="main-header bg-group">
-  <div class="container organization-title">
-    <div class="row">
-      <div class="col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-12 col-xs-12">
-        <div class="main-header-content">
-          <h1><%= @organization.name %></h1>
-          <p><%= @organization.description %></p>
+<div class="container">
+  <div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="ui-block">
+        <div class="top-header top-header-favorit">
+          <section class="top-header-thumb">
+            <%= image_tag @organization.logo, class: "img-cover", title: t("image_cover") %>
+            <div class="title-header col-md-9">
+              <div class="main-header-content text-center">
+                <a href="#" class="h1 author-name"><%= @organization.name %></a>
+                <span class="animation-slideUp hidden-xs rating-container">
+                  <p class="description-organization h3"><%= @organization.description %></p>
+                </span>
+              </div>
+            </div>
+          </section>
         </div>
       </div>
     </div>
   </div>
-  <%= image_tag @organization.logo, class: "img-responsive img-bottom" %>
 </div>
 <!-- ... end Main Header Group -->
 
@@ -20,16 +27,20 @@
   <div class="row">
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <div class="ui-block">
-        <div class="ui-block-title ui-block-title-small">
-          <h6 class="title"><%= @organization.name %></h6>
-        </div>
         <table class="event-item-table">
           <tbody>
             <tr class="event-item">
               <td class="author">
                 <div class="event-author inline-items">
                   <div class="author-thumb img_small">
-                    <%= image_tag @organization.logo, class: "img-circle org-img-details" %>
+                    <% if correctmanager(@organization).present?%>
+                      <%= link_to edit_organization_path(@organization, edit: :image),
+                        remote: :true, title: t("edit_logo") do %>
+                        <%= image_tag @organization.logo, class: "img-circle org-img-details" %>
+                      <% end %>
+                    <% else %>
+                      <%= image_tag @organization.logo, class: "img-circle org-img-details" %>
+                    <% end %>
                   </div>
                   <div class="author-date">
                     <a href="#" class="author-name h6"><%= @organization.name %></a>
@@ -98,8 +109,8 @@
           <h6 class="title"><%= t "organization_details.organization_info" %></h6>
           <h4>
             <% if correctmanager(@organization).present?%>
-              <%= link_to "#modal-club-edit",
-                data: {toggle: "modal"}, title: t("edit"),
+              <%= link_to edit_organization_path(@organization, edit: :infor),
+                remote: :true, title: t("edit"),
                 class: "btton-edit-organization animation-fadeIn360 pull-right" do %>
                 <i class="fa fa-pencil-square-o"></i>
               <% end %>
@@ -135,7 +146,9 @@
     </div>
   </div>
 </div>
-<div id="modal-club-edit" class="modal fade" tabindex="-1"
+<div id="edit_organization" class="modal fade" tabindex="-1"
   role="dialog" aria-hidden="true">
-  <%= render "edit_organization_detail" %>
+</div>
+<div id="edit_image" class="modal fade" tabindex="-1"
+  role="dialog" aria-hidden="true">
 </div>
