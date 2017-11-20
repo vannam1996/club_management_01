@@ -8,10 +8,18 @@
   <% end %>
 <% else %>
   <% case when @user_organization.joined? %>
-    <%= link_to user_organization_path(id: @organization.id),
-      class: "btn btn-breez btn-sm", method: :delete, data: {confirm: t("leave_organization")} do  %>
-      <i class="fa fa-sign-out"></i> <%= t "leave" %>
+    <%= link_to "", data: {toggle: "dropdown"},
+      class: "btn btn-breez btn-sm" do  %>
+      <%= t "joined" %> <i class="fa fa-caret-down"></i>
     <% end %>
+    <ul class="drop-organization dropdown-menu" role="menu" aria-labelledby="menu1">
+      <li>
+        <%= link_to user_organization_path(id: @organization.id),
+          class: "", method: :delete, data: {confirm: t("leave_organization")} do  %>
+          <i class="fa fa-sign-out"></i> <%= t "leave" %>
+        <% end %>
+      </li>
+    </ul>
   <% when @user_organization.pending? %>
     <%= link_to user_organization_path(id: @organization.id),
       class: "btn btn-breez btn-sm", method: :delete do  %>

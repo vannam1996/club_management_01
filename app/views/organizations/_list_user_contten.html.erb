@@ -1,0 +1,34 @@
+<div class="infor-title ui-block-title">
+  <h6 class="title">
+    <div class="row">
+      <div class="col-md-10">
+        <span class="title"><%= t "organizations.index.member" %>:</span>
+      </div>
+      <div class="col-md-2">
+        <strong class="organization-club pull-right"><%= @organization.users.size %></strong>
+      </div>
+    </div>
+  </h6>
+</div>
+<div class="list-infor ui-block-content">
+  <ul class="organization-list-infor widget w-personal-info item-block">
+    <li>
+      <div class="row">
+        <% @organization.users.take(Settings.max_display_member_organization).each do |member| %>
+          <div class="col-md-2 avarta-memeber">
+            <%= link_to user_path(member.id) do %>
+              <%= image_tag member.avatar, class: "member-organization-view",
+                title: "#{member.full_name}" %>
+            <% end %>
+          </div>
+        <% end %>
+        <div class="col-md-4">
+          <%= link_to "#modal-load-user", data: {toggle: "modal"},
+            class: "organization-load-user" do %>
+            <%= t "read_more" %>
+          <% end %>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>

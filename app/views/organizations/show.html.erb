@@ -48,19 +48,36 @@
                 </div>
               </td>
               <td class="location">
-                <div class="place inline-items">
-                  <i class="fa fa-cubes"></i>
-                  <span><strong><%= @organization.clubs.size %></strong> <%= t "clubs" %></span>
+                <div class="ui-block-title">
+                  <%= search_form_for @q,  url: organization_path(@organization), class: "w-search", id: "organization_club_form" do |f| %>
+                    <div class="form-group with-button" >
+                      <%= f.text_field :name_cont,
+                        placeholder: t("organization_details.search_name"),
+                        class: "form-control", id: "organization_club_search" %>
+                      <span class="input-group-addon" id="basic-addon1">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                      </span>
+                    </div>
+                  <% end %>
                 </div>
               </td>
-              <td class="location">
-                <div class="place inline-items">
-                  <i class="fa fa-user-circle-o"></i>
-                  <span><strong><%= @organization.users.size %></strong><%= t "members" %></span>
+              <td class="location pull-right">
+                <div class="row organization-funtion">
+                  <div>
+                    <%= render "organizations/toggle" %>
+                  </div>
+                  <div class="">
+                    <%= link_to "", data: {toggle: "dropdown"},
+                      class: "btn btn-breez btn-sm other-funtion" do  %>
+                      <%= t "club_type.other" %><i class="fa fa-caret-down"></i>
+                    <% end %>
+                    <ul class="drop-organization dropdown-menu" role="menu" aria-labelledby="menu1">
+                      <li><%= t "add_member" %></li>
+                      <li><%= t "request_member" %></li>
+                      <li><%= t "request_club" %></li>
+                    </ul>
+                  </div>
                 </div>
-              </td>
-              <td class="add-event">
-                <%= render "organizations/toggle" %>
               </td>
             </tr>
           </tbody>
@@ -73,24 +90,6 @@
 <div class="container">
   <div class="row">
     <div class="col-xl-9 push-xl-3 col-lg-12 push-lg-0 col-sm-12 col-xs-12">
-      <div class="row">
-        <div class="ui-block responsive-flex">
-          <div class="ui-block-title">
-            <%= search_form_for @q,  url: organization_path(@organization), class: "w-search", id: "organization_club_form" do |f| %>
-              <div class="form-group with-button" >
-                <%= f.text_field :name_cont,
-                  placeholder: t("organization_details.search_name"),
-                  class: "form-control", id: "organization_club_search" %>
-                <button>
-                  <svg class="olymp-magnifying-glass-icon">
-                    <use xlink:href="<%= url_to_asset("icons/icons.svg#olymp-magnifying-glass-icon")%>"></use>
-                  </svg>
-                </button>
-              </div>
-            <% end %>
-          </div>
-        </div>
-      </div>
       <div class="row" id="organization_club">
         <% if @clubs.present? %>
           <% unless current_user.user_organizations.joined.join?(@organization) %>
@@ -105,9 +104,11 @@
     </div>
     <div class="col-xl-3 pull-xl-9 col-lg-6 pull-lg-0 col-md-6 col-sm-12 col-xs-12">
       <div class="ui-block">
-        <div class="ui-block-title">
+        <%= render "list_clubs_contten" %>
+        <%= render "list_user_contten" %>
+        <div class="infor-title ui-block-title">
           <h6 class="title"><%= t "organization_details.organization_info" %></h6>
-          <h4>
+          <h6>
             <% if correctmanager(@organization).present?%>
               <%= link_to edit_organization_path(@organization, edit: :infor),
                 remote: :true, title: t("edit"),
@@ -115,10 +116,14 @@
                 <i class="fa fa-pencil-square-o"></i>
               <% end %>
             <% end %>
-          </h4>
+          </h6>
         </div>
-        <div class="ui-block-content">
-          <ul class="widget w-personal-info item-block">
+        <div class="list-infor ui-block-content">
+          <ul class="organization-list-infor widget w-personal-info item-block">
+            <li>
+              <span class="title"><%= t "organization_details.name" %></span>
+              <span class="text"><%= @organization.name %></span>
+            </li>
             <li>
               <span class="title"><%= t "organization_details.name" %></span>
               <span class="text"><%= @organization.name %></span>

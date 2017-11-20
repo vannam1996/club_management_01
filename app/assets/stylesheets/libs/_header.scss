@@ -1287,3 +1287,57 @@
 .event-name {
   max-width: 67%;
 }
+.other-funtion {
+  margin-left: 2px;
+  margin-bottom: 2px;
+}
+.drop-organization {
+  left: auto;
+  margin-bottom: 0.125rem;
+  min-width: 145px;
+  padding-left: 10px;
+}
+.infor-title {
+  padding: 6px 10px 6px !important;
+  border-bottom: 1px solid $white !important;
+}
+.list-infor {
+  padding: 0px 15px 10px !important;
+}
+.organization-list-infor li {
+  padding: 6px !important;
+}
+.member-organization-view {
+  width: 25px;
+  height: 25px;
+  border-radius: 20px;
+}
+.organization-load-user {
+  margin-top: 10px;
+  display: inline-block;
+}.organization-club {
+  padding: 0px 6px;
+  background-color: $blue-white;
+  color: $white;
+  border-radius: 9px;
+  margin-bottom: 5px;
+}
+.show-club-avatar {
+  padding: 5px 0 !important;
+}
+.show-rating {
+  padding: 0px 0 !important;
+}
+.tag-name {
+  background-color: $blue-white;
+  color: $white;
+  border-radius: 3px;
+  padding: 1px 5px;
+  margin: 2px 3px;
+}
+.tag-name a {
+  color: $white;
+}
+.organization-funtion {
+  margin-top: 5px;
+}
