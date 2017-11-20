@@ -17,6 +17,6 @@
           {comment_select: comment} if current_user == comment.user %>
       </div>
     </div>
-    <p class="edit-comment-<%= comment.id %>"><%= comment.content %></p>
+    <p class="list-comment edit-comment-<%= comment.id %>"><%= comment.content %></p>
   </li>
 <% end %>

@@ -1037,3 +1037,7 @@ vi:
     no_request: "Không có yêu cầu nào"
   checkall: "Chọn tấc cả"
   edit_logo: "Thay đổi logo"
+  user_events:
+    un_join_event:
+      status:
+        joined: "Đã tham gia"

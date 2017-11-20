@@ -19,31 +19,19 @@
                 <% end %>
               </div>
             </div>
-          </div>
-          <div class="post-thumb">
-            <%= image_tag @event.image, class: "img-responsive full_image" %>
-          </div>
-          <div class="row">
-            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 offset-md-1">
-              <div class="post__author author vcard inline-items">
-                <div class="author-date">
-                  <a class="h6 post__author-name fn" href="#"><%= @event.user.full_name %></a>
-                  <div class="post__date">
-                    <time class="published" datetime="<%= l @event.created_at, format: :short %>">
-                      <%= l @event.created_at, format: :short %>
-                    </time>
-                  </div>
-                </div>
-              </div>
-              <% if @event.description.blank? %>
-                <h5 class="text-center">
-                  <strong><%= t "no_description" %></strong>
-                </h5>
-              <% else %>
-                <p><%= @event.description.html_safe %></p>
+            <div class="pull-right">
+              <% case when @event.notification? %>
+                <%= render "user_events/join_event_toggle" %>
+              <% when @event.get_money? %>
+                <%= link_to t("get_money"), "#collapse1", data: {toggle: "collapse"}, class: "btn btn-blue btn-sm" %>
               <% end %>
             </div>
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          </div>
+          <div class="row">
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              <%= image_tag @event.image, class: "img-responsive full_image event-image" %>
+            </div>
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
               <div class="event-description">
                 <h6 class="event-description-title"><%= t "info_event" %></h6>
                 <div class="place inline-items">
@@ -66,23 +54,57 @@
                 </div>
                 <div class="place inline-items">
                   <svg class="olymp-small-calendar-icon"><use xlink:href="<%= url_to_asset("icons/icons.svg#olymp-small-calendar-icon") %>"></use></svg>
-                  <span></span>
+                  <span>
+                    <% if @event.inprocess? %>
+                      <%= t("inprocess") %>
+                    <% else %>
+                      <%= t("finished") %>
+                    <% end %>
+                  </span>
                 </div>
                 <% if @event.notification? %>
-                  <%= render "user_events/join_event_toggle" %>
+                  <h6 class="event-description-title"><%= t "club_manager.event.joined" %></h6>
+                  <% @event.user_events.each do |user_event| %>
+                    <div class="col-md-2 avarta-memeber">
+                      <%= link_to user_path(user_event.user_id) do %>
+                        <%= image_tag user_event.user.avatar, class: "member-organization-view",
+                          title: "#{user_event.user.full_name}" %>
+                      <% end %>
+                    </div>
+                  <% end %>
                 <% end %>
               </div>
             </div>
           </div>
+          <div class="row">
+            <div class="post__author author vcard inline-items col-md-12">
+              <div class="author-date">
+                <a class="h6 post__author-name fn" href="#"><%= @event.user.full_name %></a>
+                <div class="post__date">
+                  <time class="published" datetime="<%= l @event.created_at, format: :short %>">
+                    <%= l @event.created_at, format: :short %>
+                  </time>
+                </div>
+              </div>
+            </div>
+            <% if @event.description.blank? %>
+              <h5 class="text-center">
+                <strong><%= t "no_description" %></strong>
+              </h5>
+            <% else %>
+              <p><%= @event.description.html_safe %></p>
+            <% end %>
+          </div>
           <% if @event.get_money? %>
-            <div class="content-event col-md-12 site-block border">
+            <div class="content-event col-md-12 site-block border panel-collapse collapse"
+              id="collapse1">
               <%= render partial: "view_get_money" %>
             </div>
           <% end %>
+          <div class="mCustomScrollbar list-comment-event" data-mcs-theme="dark">
+            <%= render partial: "events/comment", locals: {comments: @comments, event: @event} %>
+          </div>
         </article>
-        <div class="mCustomScrollbar list-comment-event" data-mcs-theme="dark">
-          <%= render partial: "events/comment", locals: {comments: @comments, event: @event} %>
-        </div>
       </div>
     </div>
   </div>

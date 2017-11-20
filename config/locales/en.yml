@@ -794,3 +794,7 @@ en:
     no_request: "Not requests"
   checkall: "Select all"
   edit_logo: "Change logo"
+  user_events:
+    un_join_event:
+      status:
+        joined: "Joined"
