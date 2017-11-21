@@ -1311,6 +1311,7 @@
   width: 25px;
   height: 25px;
   border-radius: 20px;
+  margin-bottom: 5px;
 }
 .organization-load-user {
   margin-top: 10px;
@@ -1340,4 +1341,24 @@
 }
 .organization-funtion {
   margin-top: 5px;
+}
+.event-description-title {
+  margin-bottom: 10px !important;
+}
+.event-description .place {
+  margin-bottom: 15px !important;
+}
+.commen {
+  padding-right: 20px !important;
+  margin-top: 10px;
+}
+.event-image {
+  height: 220px;
+}
+.event-description {
+  border-left: 1px solid $white !important;
+  margin-bottom: 10px !important;
+}
+.list-comment {
+  margin-bottom: 0px !important;
 }
