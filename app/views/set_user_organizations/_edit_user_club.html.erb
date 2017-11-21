@@ -1,0 +1,9 @@
+<div class="modal-dialog ui-block window-popup event-private-public private-event custom_budget_popup">
+  <div class="">
+    <h6 class="title col-md-12"><%= t "edit_member.editmember" %></h6>
+  </div>
+  <div id="data-event">
+    <%= render partial: "list_user_member", locals: {user_admins: @user_admins, user_members: @user_members} %>
+  </div>
+</div>
+<%= javascript_include_tag "search_member" %>

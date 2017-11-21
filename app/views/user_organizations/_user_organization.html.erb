@@ -1,0 +1,19 @@
+<tr class="add-user-member" id="request_<%= user_organization.id %>">
+  <td>
+    <%= user_organization.user_full_name %>
+  </td>
+  <td>
+    <%= user_organization.user_email %>
+  </td>
+  <td>
+    <%= select_tag "roles[]", options_for_select(user_role, selected_role(user_organization)),
+      class: "role_user" %>
+  </td>
+  <td>
+    <%= link_to set_user_organization_path(id: user_organization.id), method: :delete,
+      title: t("delete_member"), remote: :true,
+      data: {confirm: t("answer_delete_member")} do %>
+      <i class="fa fa-remove"></i>
+    <% end %>
+  </td>
+</tr>

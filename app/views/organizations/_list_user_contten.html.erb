@@ -22,12 +22,14 @@
             <% end %>
           </div>
         <% end %>
-        <div class="col-md-4">
-          <%= link_to "#modal-load-user", data: {toggle: "modal"},
-            class: "organization-load-user" do %>
-            <%= t "read_more" %>
-          <% end %>
-        </div>
+        <% if @organization.users.size > Settings.max_display_member_organization %>
+          <div class="col-md-4">
+            <%= link_to set_user_organization_path(@organization), data: {toggle: "modal"}, remote: :true,
+              class: "organization-load-user" do %>
+              <%= t "read_more" %>
+            <% end %>
+          </div>
+        <% end %>
       </div>
     </li>
   </ul>

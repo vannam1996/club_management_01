@@ -292,7 +292,7 @@
 /*---------- Custom default themes---------*/
 
 .header-spacer_custom{
-  height: 85px;
+  height: 60px;
 }
 
 .top-header-thumb{
@@ -549,7 +549,7 @@ body{
   margin-left: 5px;
 }
 .logo_sigin img {
-  height: 40px;
+  height: 25px;
 }
 .logo-page {
   height: 100px;
@@ -598,6 +598,7 @@ body{
   border-bottom: 1px solid $beige;
   padding-bottom: 18px;
 }
-.notification-event .notification-value:hover {
-  background-color: $white;
+.notification-list li:hover {
+  display: inline-block;
+  background-color: $white !important;
 }

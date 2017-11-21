@@ -1,0 +1,60 @@
+<h5 class="title-modal-member text-center">
+  <%= t "member_detail" %>
+</h5>
+<div class="content-list modal-body">
+  <strong><%= t "modal_manager" %></strong>
+</div>
+<div class="content-list modal-body row">
+  <% admins.each do |member| %>
+    <div class="col-md-1 col-sm-2 col-xs-3">
+      <div class="text-center">
+        <%= link_to user_path(member.user_id), title: member.user_full_name do %>
+          <%= image_tag member.user_avatar,
+            class: "member-club-view" %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+<div class="content-list modal-body">
+  <strong><%= t "modal_member" %></strong>
+</div>
+<div class="content-list modal-body row load-member">
+  <% members.each do |member| %>
+    <div class="col-md-1 col-sm-2 col-xs-3">
+      <div class="text-center user-member">
+        <%= link_to user_path(member.user_id), title: member.user_full_name do %>
+          <%= image_tag member.user_avatar,
+            class: "member-club-view" %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+  <% unless members.current_page == members.total_pages %>
+    <div class="col-md-1 col-sm-2 col-xs-3" id="view-more">
+      <div class="text-center">
+        <%= link_to url_for(page: members.next_page, user: "true"),
+          remote: true, title: t("more") do %>
+          <span class = "view-user-member">
+            +<%= @user_organizations.are_member.size - Settings.page_member_not_manager%>
+          </span>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+<div class="modal-body">
+  <% if @organization.is_admin? current_user %>
+    <strong>
+      <%= link_to edit_set_user_organization_path(@organization), remote: :true,
+        class: "animation-fadeIn360 pull-left", title: t("more") do %>
+        <i class="fa fa-pencil-square-o"></i><%= t "edit_member.editmember" %>
+      <% end %>
+    </strong>
+  <% end %>
+</div>
+<div class="form-group text-center">
+  <button type="button" class="btn btn-breez button-more" data-dismiss="modal">
+    <%= t "close" %>
+  </button>
+</div>

@@ -14,11 +14,9 @@
             placeholder: t("edit_member.search_member") %>
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-3 pull-left ui-block row add-all">
-          <%= check_box_tag("checkall", false, false,class: "select-all") %>
-          <%= t "checkall" %>
-        </div>
+      <div class="col-md-3 pull-left checkbox add-all-funtion ui-block">
+        <label><%= check_box_tag("checkall", false, false,class: "select-all") %>
+          <%= t "checkall" %></label>
       </div>
       <div class="widget-simple list-scroll">
         <div class="table-responsive">

@@ -1,0 +1,19 @@
+<% members.each do |member| %>
+  <div class="col-md-1 col-sm-2 col-xs-3">
+    <div class="text-center">
+      <%= link_to user_path(member.user_id), title: member.user_full_name do %>
+        <%= image_tag member.user_avatar,
+          class: "member-club-view" %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+<div class="col-md-1 col-sm-2 col-xs-3 text-center" id="view-more">
+  <div>
+    <%= link_to url_for(page: members.next_page, user: "true"), remote: true, title: t("more") do %>
+      <span class = "view-user-member">
+        +<%= @user_organizations.are_member.size - members.current_page*Settings.page_member_not_manager %>
+      </span>
+    <% end %>
+  </div>
+</div>
