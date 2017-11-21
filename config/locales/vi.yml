@@ -1041,3 +1041,5 @@ vi:
     un_join_event:
       status:
         joined: "Đã tham gia"
+  browse_all: "Duyệt tất cả"
+  decline_all: "Từ chối tất cả"

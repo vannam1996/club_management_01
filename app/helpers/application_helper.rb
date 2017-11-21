@@ -66,4 +66,14 @@ module ApplicationHelper
   def correctmanager organization
     is_manager = current_user.user_organizations.load_user_organization(organization.id).are_admin
   end
+
+  def url_approve_user_organization id, status
+      if status == :joined
+        link_to t("accept"), user_request_organization_path(id: id, status: status),
+          method: :put, remote: true, data: {confirm: t("answer_active")}
+      else
+        link_to t("reject"), user_request_organization_path(id: id, status: status),
+          method: :put, remote: true, data: {confirm: t("answer_reject")}
+      end
+  end
 end

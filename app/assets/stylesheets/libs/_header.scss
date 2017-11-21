@@ -1295,7 +1295,16 @@
   left: auto;
   margin-bottom: 0.125rem;
   min-width: 145px;
-  padding-left: 10px;
+}
+.drop-organization li {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  &:hover {
+    background-color: $blue-white;
+  }
+}
+.drop-organization li a {
+  margin: 10px;
 }
 .infor-title {
   padding: 6px 10px 6px !important;
@@ -1361,4 +1370,17 @@
 }
 .list-comment {
   margin-bottom: 0px !important;
+}
+.list-user-request {
+  padding: 20px;
+}
+.funtion-request a {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+.infor-request {
+  padding: 6px 10px 6px !important;
+}
+.drop-organization li a {
+  color: $brown-silver !important;
 }

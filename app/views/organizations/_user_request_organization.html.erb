@@ -1,0 +1,56 @@
+<div class="ui-block col-md-12">
+  <div class="infor-request ui-block-title">
+    <h6 class="title"><%= t "request_member" %></h6>
+  </div>
+  <div class="table-responsive list-user-request">
+    <div class="pull-left funtion-request">
+      <%= link_to organization_path(@organization, page: 1), remote: :true,
+        class: "btn btn-primary btn-sm" do %>
+        <i class="fa fa-undo" aria-hidden="true"></i>
+        <%= t "back" %>
+      <% end %>
+      <%= link_to edit_user_request_organization_path(@organization, status: :joined),
+        class: "btn btn-primary btn-sm" do %>
+        <i class="fa fa-check-square-o" aria-hidden="true"></i>
+        <%= t "browse_all" %>
+      <% end %>
+      <%= link_to edit_user_request_organization_path(@organization, status: :reject),
+        class: "btn btn-primary btn-sm" do %>
+        <i class="fa fa-ban" aria-hidden="true"></i>
+        <%= t "decline_all" %>
+      <% end %>
+    </div>
+    <table class="table ui-block table-pricing">
+      <tbody>
+        <% if members_pending.any? %>
+          <% members_pending.each do |member| %>
+            <tr class="add-user-member" id = "request_<%= member.id%>">
+              <td>
+                <%= link_to user_path(member.user_id) do %>
+                  <%= image_tag member.user_avatar,
+                    class: "member-avatar-request" %>
+                <% end %>
+              </td>
+              <td>
+                <%= member.user_full_name %>
+              </td>
+              <td>
+                <%= member.user_email %>
+              </td>
+              <td>
+                <%= url_approve_user_organization(member.id, :joined) %> /
+                <%= url_approve_user_organization(member.id, :reject) %>
+              </td>
+            </tr>
+          <% end %>
+        <% else %>
+          <tr class="text-center">
+            <td colspan="4">
+              <h5 class="center notifi-empty"><%= t "edit_member.no_request" %></h5>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

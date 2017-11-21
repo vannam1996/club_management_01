@@ -31,6 +31,7 @@ class User < ApplicationRecord
   scope :yet_by_ids, ->ids{where.not id: ids}
   scope :done_by_ids, ->ids{where id: ids}
   scope :done_by_emails, ->emails{where email: emails}
+  scope :without_user_ids, ->user_ids{where.not id: user_ids}
 
   validates :full_name, presence: true, length: {maximum: Settings.max_name}
   validates :password, presence: true, length: {minimum: Settings.min_password}, on: :create
