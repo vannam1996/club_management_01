@@ -798,3 +798,5 @@ en:
     un_join_event:
       status:
         joined: "Joined"
+  browse_all: "Browse all"
+  decline_all: "Decline all"

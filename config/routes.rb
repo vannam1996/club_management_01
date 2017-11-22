@@ -116,5 +116,7 @@ Rails.application.routes.draw do
   resources :notifications
   resources :set_user_clubs
   resources :user_request_clubs
+  resources :set_user_organizations
+  resources :user_request_organizations
 
 end
