@@ -1,0 +1,97 @@
+<div class="col-md-12 col-md-offset-2">
+  <div class="modal-dialog edit-club modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="block">
+          <div class="row club-request-organization">
+              <h4 class="col-md-9"><%= t "detail_request" %></h4>
+              <%= url_approve_club_organization(id: @request.id,
+                status: ClubRequest.statuses[:joined], organization_id: @request.organization.id,
+                name: t("active"), button: :breez, confirm: t("answer_active_club")) %>
+              <%= url_approve_club_organization(id: @request.id,
+                status: ClubRequest.statuses[:reject], organization_id: @request.organization.id,
+                name: t("reject"), button: :danger, confirm: t("answer_reject_club")) %>
+            <div class="row">
+              <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <%= image_tag request.logo, class: "circle-profile logo-club" %>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="event-description">
+                  <div class="list-infor-club inline-items">
+                    <strong><%= t "club_request.name" %>:</strong>
+                    <span><%= request.name %></span>
+                  </div>
+                  <div class="list-infor-club inline-items">
+                    <strong><%= t "user_request" %>:</strong>
+                    <span>
+                      <%= request.full_name %>
+                    </span>
+                  </div>
+                  <div class="list-infor-club inline-items">
+                    <strong><%= t "date_request" %>:</strong>
+                    <span>
+                      <%= l request.created_at, format: :short %>
+                    </span>
+                  </div>
+                  <div class="list-infor-club inline-items">
+                    <strong><%= t "member_count" %>:</strong>
+                    <span>
+                      <%= request.member %>
+                    </span>
+                  </div>
+                  <div class="list-infor-club inline-items">
+                    <strong><%= t "time_club" %>:</strong><br/>
+                    <span>
+                      <% request.time_activity.each do |time|%>
+                        <%= time %>
+                      <% end %>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="inline-items">
+                  <strong><%= t "content_club" %>:</strong><br/>
+                  <span><%= request.content %></span>
+                </div>
+                <div class="inline-items">
+                  <strong><%= t "goal_club" %>:</strong><br/>
+                  <span>
+                    <%= request.goal %>
+                  </span>
+                </div>
+                <div class="inline-items">
+                  <strong><%= t "plan" %>:</strong><br/>
+                  <span>
+                    <%= request.plan %>
+                  </span>
+                </div>
+                <div class="inline-items">
+                  <strong><%= t "rules_club" %>:</strong><br/>
+                  <span>
+                    <%= request.rules %>
+                  </span>
+                </div><br/>
+                <div class="inline-items text-center">
+                  <%= url_approve_club_organization(id: @request.id,
+                    status: ClubRequest.statuses[:joined], organization_id: @request.organization.id,
+                    name: t("active"), button: :breez, confirm: t("answer_active_club")) %>
+                  <%= url_approve_club_organization(id: @request.id,
+                    status: ClubRequest.statuses[:reject], organization_id: @request.organization.id,
+                    name: t("reject"), button: :danger, confirm: t("answer_reject_club")) %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer text-center">
+        <button type="button" class="btn btn-sm button-more" data-dismiss="modal">
+          <%= t "close" %>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -84,7 +84,7 @@
                         <% end %>
                       </li>
                       <li>
-                        <%= link_to "#", data: {toggle: "modal"} do %>
+                        <%= link_to club_request_organization_path(@organization), remote: :true do %>
                           <%= t "request_club" %>
                         <% end %>
                       </li>
@@ -174,4 +174,8 @@
   role="dialog" aria-hidden="true">
   <%= render partial: "add_user_organization",
     locals: {user_organizations: @add_user_club} %>
+</div>
+<div id="modal-club-request" class="modal fade" tabindex="-1"
+  role="dialog" aria-hidden="true">
+  <%= render "infor_club" %>
 </div>
