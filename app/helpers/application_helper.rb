@@ -76,4 +76,10 @@ module ApplicationHelper
           method: :put, remote: true, data: {confirm: t("answer_reject")}
       end
   end
+
+  def url_approve_club_organization object
+    link_to object[:name], club_request_organization_path(id: object[:id],
+      status: object[:status], organization: object[:organization_id]),
+      method: :put, class: "btn btn-sm btn-#{object[:button]}", data: {confirm: object[:confirm]}
+  end
 end

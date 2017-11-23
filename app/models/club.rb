@@ -62,17 +62,23 @@ class Club < ApplicationRecord
 
   class << self
     def create_after_approve request
-    @club = self.create organization_id: request.organization_id, name: request.name,
+    club = self.create organization_id: request.organization_id, name: request.name,
       description: request.description, member: request.member, goal: request.goal,
       local: request.local, content: request.content, time_activity: request.time_activity,
       rules: request.rules, rule_finance: request.rule_finance, time_join: request.time_join,
       punishment: request.punishment, plan: request.plan, logo: request.logo, is_active: true,
       club_type: request.club_type
+      create_user_club club, request
     end
 
     def create_user_club club, request
-      UserClub.create user_id: request.user_id, club_id: club.id, is_manager: true,
+      user_club = UserClub.create user_id: request.user_id, club_id: club.id, is_manager: true,
         status: :joined
+      send_mail_club_request user_club, club
+    end
+
+    def send_mail_club_request user_club, club
+      OrganizationMailer.mail_to_club_request(user_club.user, club).deliver_later
     end
   end
 
