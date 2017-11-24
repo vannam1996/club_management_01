@@ -67,19 +67,20 @@ module ApplicationHelper
     is_manager = current_user.user_organizations.load_user_organization(organization.id).are_admin
   end
 
-  def url_approve_user_organization id, status
-      if status == :joined
-        link_to t("accept"), user_request_organization_path(id: id, status: status),
-          method: :put, remote: true, data: {confirm: t("answer_active")}
-      else
-        link_to t("reject"), user_request_organization_path(id: id, status: status),
-          method: :put, remote: true, data: {confirm: t("answer_reject")}
-      end
+  def url_approve_user_organization object
+    link_to user_request_organization_path(id: object[:id], status: object[:status]),
+      method: :put, remote: true, data: {confirm: object[:confirm]}, title: object[:name],
+      class: "btn btn-sm btn-#{object[:button]} aprove-user pull-right" do
+      html = <<-HTML
+        #{object[:icon]}
+      HTML
+      raw html
+    end
   end
 
   def url_approve_club_organization object
     link_to object[:name], club_request_organization_path(id: object[:id],
       status: object[:status], organization: object[:organization_id]),
-      method: :put, class: "btn btn-sm btn-#{object[:button]}", data: {confirm: object[:confirm]}
+      method: :put, class: "btn btn-sm btn-#{object[:button]} pull-right", data: {confirm: object[:confirm]}
   end
 end
