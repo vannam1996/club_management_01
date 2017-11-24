@@ -34,7 +34,7 @@
       </div>
     </td>
     <td class="description">
-      <p class="description"><%= event.description.truncate(Settings.event_truncate).html_safe unless event.description.nil? %></p>
+      <p class="description"><%= raw(event.description.truncate(Settings.event_truncate)) unless event.description.nil? %></p>
     </td>
     <td class="users">
 

@@ -10,12 +10,12 @@
         <%= t "back" %>
       <% end %>
       <%= link_to edit_user_request_organization_path(@organization, status: :joined),
-        class: "btn btn-primary btn-sm" do %>
+        class: "btn btn-breez btn-sm" do %>
         <i class="fa fa-check-square-o" aria-hidden="true"></i>
         <%= t "browse_all" %>
       <% end %>
       <%= link_to edit_user_request_organization_path(@organization, status: :reject),
-        class: "btn btn-primary btn-sm" do %>
+        class: "btn btn-danger btn-sm" do %>
         <i class="fa fa-ban" aria-hidden="true"></i>
         <%= t "decline_all" %>
       <% end %>
@@ -38,8 +38,12 @@
                 <%= member.user_email %>
               </td>
               <td>
-                <%= url_approve_user_organization(member.id, :joined) %> /
-                <%= url_approve_user_organization(member.id, :reject) %>
+                <%= url_approve_user_organization(id: member.id,
+                  status: :reject, icon: "<i class='fa fa-ban'></i>",
+                  name: t("reject"), button: :danger, confirm: t("answer_reject")) %>
+                <%= url_approve_user_organization(id: member.id,
+                  status: :joined, icon: "<i class='fa fa-check-square-o'></i>",
+                  name: t("accept"), button: :breez, confirm: t("answer_active")) %>
               </td>
             </tr>
           <% end %>

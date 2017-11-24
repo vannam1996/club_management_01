@@ -1035,7 +1035,7 @@ vi:
     search_member: "Tìm kiếm theo tên hoặc email"
     userrequest: "Yêu cầu tham gia"
     no_request: "Không có yêu cầu nào"
-  checkall: "Chọn tấc cả"
+  checkall: "Chọn tất cả"
   edit_logo: "Thay đổi logo"
   user_events:
     un_join_event:

@@ -5,18 +5,19 @@
       <div class="ui-block">
         <article class="hentry post has-post-thumbnail thumb-full-width private-event">
           <div class="private-event-head inline-items">
-            <%= image_tag "avatar77-sm.jpg" %>
             <div class="author-date">
-              <a class="h3 event-title" href="#"><%= @event.name %></a>
+              <a class="h3 event-title" href="#">
+                <% if @event.notification? %>
+                  <i class="fa fa-bell"></i>
+                <% else %>
+                  <i class="fa fa-money"></i>
+                <% end %>
+                <%= @event.name %>
+              </a>
               <div class="event__date">
                 <time class="published" datetime="<%= l @event.created_at, format: :short %>">
                   <%= l @event.created_at, format: :short %>
                 </time>
-                <% if @event.notification? %>
-                  <i class="fa fa-bell icon-event"></i>
-                <% else %>
-                  <i class="fa fa-money icon-event"></i>
-                <% end %>
               </div>
             </div>
             <div class="pull-right">
@@ -33,13 +34,21 @@
             </div>
             <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
               <div class="event-description">
+                <div class="place inline-items">
+                  <%= image_tag @event.user_avatar, class: "member-organization-view" %><span>
+                  <span class="author-event"><%= @event.user_full_name %></span>
+                </div>
                 <h6 class="event-description-title"><%= t "info_event" %></h6>
                 <div class="place inline-items">
-                  <svg class="olymp-add-a-place-icon"><use xlink:href="<%= url_to_asset("icons/icons.svg#olymp-add-a-place-icon") %>"></use></svg>
+                  <svg class="olymp-add-a-place-icon">
+                    <use xlink:href="<%= url_to_asset("icons/icons.svg#olymp-add-a-place-icon") %>"></use>
+                  </svg>
                   <span><%= @event.location %></span>
                 </div>
                 <div class="place inline-items">
-                  <svg class="olymp-small-calendar-icon"><use xlink:href="<%= url_to_asset("icons/icons.svg#olymp-small-calendar-icon") %>"></use></svg>
+                  <svg class="olymp-small-calendar-icon">
+                    <use xlink:href="<%= url_to_asset("icons/icons.svg#olymp-small-calendar-icon") %>"></use>
+                  </svg>
                   <span>
                     <% if @event.date_start.present? %>
                       <%= l @event.date_start, format: :short %>
@@ -53,7 +62,9 @@
                   </span>
                 </div>
                 <div class="place inline-items">
-                  <svg class="olymp-small-calendar-icon"><use xlink:href="<%= url_to_asset("icons/icons.svg#olymp-small-calendar-icon") %>"></use></svg>
+                  <svg class="olymp-small-calendar-icon">
+                    <use xlink:href="<%= url_to_asset("icons/icons.svg#olymp-small-calendar-icon") %>"></use>
+                  </svg>
                   <span>
                     <% if @event.inprocess? %>
                       <%= t("inprocess") %>
@@ -76,25 +87,13 @@
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="post__author author vcard inline-items col-md-12">
-              <div class="author-date">
-                <a class="h6 post__author-name fn" href="#"><%= @event.user.full_name %></a>
-                <div class="post__date">
-                  <time class="published" datetime="<%= l @event.created_at, format: :short %>">
-                    <%= l @event.created_at, format: :short %>
-                  </time>
-                </div>
-              </div>
-            </div>
-            <% if @event.description.blank? %>
-              <h5 class="text-center">
-                <strong><%= t "no_description" %></strong>
-              </h5>
-            <% else %>
-              <p><%= @event.description.html_safe %></p>
-            <% end %>
-          </div>
+          <% if @event.description.blank? %>
+            <h5 class="text-center">
+              <strong><%= t "no_description" %></strong>
+            </h5>
+          <% else %>
+            <p><%= raw(@event.description) %></p>
+          <% end %>
           <% if @event.get_money? %>
             <div class="content-event col-md-12 site-block border panel-collapse collapse"
               id="collapse1">

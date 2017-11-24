@@ -1,4 +1,7 @@
 class Event < ApplicationRecord
+
+  serialize :description
+
   has_many :news, dependent: :destroy
   has_many :user_events, dependent: :destroy
   has_many :users, through: :user_events
@@ -33,7 +36,7 @@ class Event < ApplicationRecord
   enum status: {inprocess: 0, finished: 1}
   enum event_category: {pay_money: 1, get_money: 2, notification: 3, subsidy: 0}
 
-  delegate :full_name, to: :user, prefix: :user
+  delegate :full_name, :avatar, to: :user, prefix: :user
 
   def self.group_by_quarter
     quarters = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]]
