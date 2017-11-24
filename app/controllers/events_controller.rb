@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!
-  before_action :load_club, only: [:show, :new, :create, :check_is_admin, :edit]
-  before_action :load_event, only: [:show, :edit]
+  before_action :load_club, only: [:show, :new, :create, :check_is_admin, :edit, :update]
+  before_action :load_event, only: [:show, :edit, :update]
   before_action :check_is_admin, only: [:new, :edit]
 
   def new
@@ -23,7 +23,7 @@ class EventsController < ApplicationController
       redirect_to club_path params[:club_id]
     else
       flash_error event
-      redirect_to :back
+      redirect_back fallback_location: new_club_event_path
     end
   end
 
@@ -39,6 +39,25 @@ class EventsController < ApplicationController
     else
       @comments = @event.comments.newest.take(Settings.limit_comments)
     end
+  end
+
+  def update
+    ActiveRecord::Base.transaction do
+      if params[:event][:event_category].to_i == Event.event_categories[:pay_money]
+        @club.pay_money_change(@event, params[:event][:expense])
+      elsif params[:event][:event_category].to_i == Event.event_categories[:subsidy]
+        @club.subsidy_money_change(@event, params[:event][:expense])
+      end
+      club_money = UpdateClubMoneyService.new @event, @club, event_params
+      club_money.update_event
+      club_money.update_money
+      create_acivity @event, Settings.update, @event.club, current_user
+      flash[:success] = t "club_manager.event.success_update"
+      redirect_to club_event_path(club_id: params["club_id"], id: @event.id)
+    end
+  rescue
+    flash[:danger] = t "error_in_process"
+    redirect_to :back
   end
 
   private
