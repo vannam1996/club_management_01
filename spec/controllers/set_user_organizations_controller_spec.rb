@@ -34,4 +34,68 @@ RSpec.describe SetUserOrganizationsController, type: :controller do
       it {expect(flash[:danger]).to eq I18n.t("organization_not_found")}
     end
   end
+  describe "PATCH #update" do
+    let!(:user_organization) do
+      create :user_organization, user: user, organization: organization, status: "joined"
+    end
+    context "when params[:id] not present" do
+      before {get :update, params: {id: 0}}
+      it {expect(flash[:danger]).to eq I18n.t("organization_not_found")}
+    end
+    context "when params[:organization_id] present" do
+      before {get :update, params: {id: organization, roles: ["1","0"]}}
+      it {expect(flash[:success]).to eq I18n.t "success_process"}
+    end
+    context "when params[:organization_id] present" do
+      before {get :update, params: {id: organization, roles: nil}}
+      it {expect(flash[:danger]).to eq I18n.t "cant_not_update"}
+    end
+  end
+
+  describe "GET #show" do
+    context "when params present" do
+      before {get :show, xhr: true, params: {id: organization}}
+      it {expect(response).to be_ok}
+    end
+    context "when params present" do
+      before {get :show, xhr: true, params: {id: organization, page: 2}}
+      it {expect(response).to be_ok}
+    end
+    context "when params not present" do
+      before {get :show, xhr: true, params: {id: 0}}
+      it {expect(flash[:danger]).to eq I18n.t("organization_not_found")}
+    end
+  end
+
+  describe "GET #edit" do
+    context "when params present" do
+      before {get :edit, xhr: true, params: {id: organization}}
+      it {expect(response).to be_ok}
+    end
+    context "when params not present" do
+      before {get :edit, xhr: true, params: {id: 0}}
+      it {expect(flash[:danger]).to eq I18n.t("organization_not_found")}
+    end
+  end
+  describe "DELETE #destroy" do
+    let!(:user_organization) do
+      create :user_organization, user: user, organization: organization, status: "joined"
+    end
+    context "when params present" do
+      before {get :destroy, xhr: true, params: {id: user_organization}}
+      it {expect(response).to be_ok}
+    end
+    context "delete faild" do
+      it do
+        allow_any_instance_of(UserOrganization).to receive(:destroy).and_return false
+        expect do
+          delete :destroy, xhr: true, params: {id: user_organization.id}
+        end.to change(UserOrganization,:count).by 0
+      end
+    end
+    context "when params not present" do
+      before {get :destroy, xhr: true, params: {id: 0}}
+      it {expect(flash[:danger]).to eq I18n.t("organization_not_found")}
+    end
+  end
 end

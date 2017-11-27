@@ -67,9 +67,11 @@
                     <%= render "organizations/toggle" %>
                   </div>
                   <div class="">
-                    <%= link_to "", data: {toggle: "dropdown"},
-                      class: "btn btn-breez btn-sm other-funtion" do  %>
-                      <%= t "club_type.other" %><i class="fa fa-caret-down"></i>
+                    <% if @organization.is_admin? current_user %>
+                      <%= link_to "#", data: {toggle: "dropdown"},
+                        class: "btn btn-breez btn-sm other-funtion" do  %>
+                        <%= t "club_type.other" %><i class="fa fa-caret-down"></i>
+                      <% end %>
                     <% end %>
                     <ul class="drop-organization dropdown-menu" role="menu" aria-labelledby="menu1">
                       <li>
@@ -178,4 +180,16 @@
 <div id="modal-club-request" class="modal fade" tabindex="-1"
   role="dialog" aria-hidden="true">
   <%= render "infor_club" %>
+</div>
+<div id="user_organization_show" class="modal fade" tabindex="-1"
+  role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content load-user">
+      <div class="form-group text-center">
+        <button type="button" class="btn btn-breez button-more" data-dismiss="modal">
+          <%= t "close" %>
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

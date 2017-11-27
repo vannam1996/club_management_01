@@ -26,6 +26,10 @@ class Organization < ApplicationRecord
     where id: user_organizations.map(&:organization_id)
   end
 
+  def is_admin? user
+    user_organization = self.user_organizations.are_admin.find_by(user_id: user.id)
+  end
+
   private
   def should_generate_new_friendly_id?
     slug.blank? || name_changed?

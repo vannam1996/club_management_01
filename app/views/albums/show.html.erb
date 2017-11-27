@@ -23,9 +23,9 @@
                   <div class="row">
                     <% if @album.images.present? %>
                       <% @album.images.each do |image| %>
-                        <div class="col-sm-6 col-md-3 portfolio-item img-<%= image.id %>"
+                        <div class="col-sm-12 col-md-2 portfolio-item img-<%= image.id %>"
                           data-category="">
-                          <%= link_to "#{image.url}", class: "lightbox" do  %>
+                          <%= link_to "#{image.url}", class: "list-image lightbox" do  %>
                             <%= image_tag image.url %>
                           <% end %>
                           <% if @club.is_admin? current_user %>
