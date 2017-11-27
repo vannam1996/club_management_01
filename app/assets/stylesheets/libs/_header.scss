@@ -1425,3 +1425,62 @@
 .add-all-funtion {
   padding: 6px 5px 3px 10px;
 }
+.edit-logo-organization {
+  padding: 10px;
+}
+.edit-logo-organization:hover {
+  background-color: $blue-white;
+  font-weight: bold;
+  border-radius: 4px;
+  color: $white;
+}
+.logo-contten {
+  margin-bottom: 10px;
+}
+.video-content {
+  position: absolute;
+  bottom: 45px;
+  color: $white;
+  z-index: 1000;
+}
+.edit-images-club {
+  transform: translate(0);
+  padding: 10px;
+  z-index: 5;
+  position: absolute;
+}
+.edit-images-club .edit-logo-organization:hover {
+  background-color: $blue-white;
+  font-weight: bold;
+  border-radius: 4px;
+  color: $white;
+}
+.drop-image {
+  left: auto;
+  margin-bottom: 0.125rem;
+  min-width: 145px;
+  margin-top: 10px;
+  li {
+    padding: 5px;
+  }
+  li:hover {
+    background-color: $blue-white;
+  }
+}
+.background-club {
+  width: 100%;
+}
+.background-images {
+  height: 105px;
+  width: 100%;
+}
+.set-image-club {
+  padding: 5px;
+  color: $dimgrey;
+}
+.top-header-thumb:hover .edit-logo-organization {
+  background-color: $blue-white;
+  font-weight: bold;
+  border-radius: 4px;
+  color: $white;
+}

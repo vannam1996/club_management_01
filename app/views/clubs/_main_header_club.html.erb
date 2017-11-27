@@ -4,6 +4,30 @@
       <div class="ui-block">
         <div class="top-header top-header-favorit">
           <section class="top-header-thumb">
+            <% if @club.is_admin? current_user %>
+              <div class="edit-images-club">
+                <%= link_to "#", data: {toggle: "dropdown"}, class: "edit-logo-organization" do %>
+                  <i class="fa fa-camera" aria-hidden="true"></i>
+                  <span class="animation-slideUp hidden-xs rating-container">
+                    <%= t "update_background" %>
+                  </span>
+                <% end %>
+                <ul class="drop-image dropdown-menu" role="menu" aria-labelledby="menu1">
+                  <li>
+                    <%= link_to edit_club_path(id: @club.id, tab: "image"), class: "set-image-club",
+                      remote: :true do %>
+                      <%= t "upload_photo" %>
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to set_image_club_path(club_id: @club.id), class: "set-image-club",
+                      remote: :true do %>
+                      <%= t "choose_album" %>
+                    <% end %>
+                  </li>
+                </ul>
+              </div>
+            <% end %>
             <%= image_tag @club.image, class: "img-cover", title: t("image_cover") %>
             <div class="top-header-author col-md-9">
               <div class="author-thumb">
