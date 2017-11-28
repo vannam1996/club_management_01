@@ -19,7 +19,7 @@
         </li><br>
       <% end %>
       <ul class="notification-list chat-message chat-message-field" id="list-messages">
-        <%= render @infor_club.messages %>
+        <%= render @infor_club.messages.includes :user %>
       </ul>
     </div>
     <%= form_for @message, remote: true, html: {class: "row row-chat"} do |f| %>

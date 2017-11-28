@@ -1,6 +1,7 @@
 module NotificationsHelper
   def notifications_result
-    Activity.of_user_clubs(current_user.user_clubs.joined.map(&:club_id)).oder_by_read
+    Activity.includes(:trackable, [owner: :user_clubs], :container)
+      .of_user_clubs(current_user.user_clubs.joined.map(&:club_id)).oder_by_read
   end
 
   def option_image notification

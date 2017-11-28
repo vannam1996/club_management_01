@@ -51,8 +51,10 @@
           <div class="">
             <div id="modal-user" class="modal fade" tabindex="-1"
               role="dialog" aria-hidden="true">
-                <%= render partial: "button_more_user",
-                  locals: {members_pending: @infor_club.user_requests} %>
+                <div class="modal-dialog modal-lg load-user">
+                  <div class="modal-content modal-user">
+                  </div>
+                </div>
             </div>
           </div>
         </div>

@@ -2,6 +2,7 @@ class UserOrganization < ApplicationRecord
   belongs_to :user
   belongs_to :organization
 
+  has_many :clubs, through: :organization
   has_many :activities, as: :trackable, dependent: :destroy
 
   enum status: {pending: 0, joined: 1, reject: 2}
@@ -33,6 +34,10 @@ class UserOrganization < ApplicationRecord
 
     def find_with_user_of_company user_id, organization_id
       find_by user_id: user_id, organization_id: organization_id
+    end
+
+    def user_not_joined user_clubs
+      self.without_user_ids user_clubs
     end
   end
 end
