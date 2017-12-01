@@ -1047,3 +1047,4 @@ vi:
   upload_photo: "Tải ảnh lên"
   choose_album: "Chọn từ bộ sưu tập"
   params_image_blank: "Chưa có hình ảnh nào được chọn, vui lòng chọn hình ảnh!"
+  delete_event: "Bạn có chắc chắn xóa sự kiện này?"
