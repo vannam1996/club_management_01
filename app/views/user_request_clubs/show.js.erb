@@ -1,9 +1,9 @@
 <% if params[:page].nil? %>
   $('#modal-user').modal('show');
-  $('#modal-user').html('<%= j render partial: 'clubs/button_more_user',
+  $('.modal-user').html('<%= j render partial: "clubs/button_more_user",
     locals: {members_pending: @infor_club.user_requests} %>');
 <% else %>
-  $('.load-member').append('<%= escape_javascript(render partial: 'clubs/load_member',
+  $('.load-member').append('<%= escape_javascript(render partial: "clubs/load_member",
     locals: {members: @members_not_manager, members_not_manager: @members_not_manager}) %>')
   $('#view-more').remove();
   <% if @members_not_manager.current_page == @members_not_manager.total_pages %>

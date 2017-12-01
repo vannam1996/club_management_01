@@ -2,6 +2,7 @@ class ClubsController < ApplicationController
   before_action :authenticate_user!
   before_action :load_club, only: [:show, :edit, :verify_club]
   before_action :verify_club, only: :show
+  before_action :load_user_organizations, only: :show
 
   def index
     organizations_joined = Organization.by_user_organizations(
@@ -35,7 +36,7 @@ class ClubsController < ApplicationController
     @user_club = UserClub.new
     @infor_club = Support::ClubSupport.new(@club, params[:page], nil)
     @albums = @club.albums.newest.includes(:images)
-    @add_user_club = UserOrganization.without_user_ids(@club.user_clubs.joined.map(&:user_id))
+    @add_user_club = @user_organizations.user_not_joined(@club.user_clubs.joined.map(&:user_id))
     @members_not_manager = @infor_club.members_not_manager.page(params[:page])
       .per Settings.page_member_not_manager
     respond_to do |format|
@@ -61,6 +62,13 @@ class ClubsController < ApplicationController
   def load_club
     @club = Club.friendly.find params[:id]
     return if @club
+    flash[:danger] = t("not_found")
+    redirect_to clubs_url
+  end
+
+  def load_user_organizations
+    @user_organizations = @club.organization.user_organizations.joined.includes :user
+    return if @user_organizations
     flash[:danger] = t("not_found")
     redirect_to clubs_url
   end

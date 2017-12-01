@@ -22,7 +22,7 @@
       <%= hidden_field :club_id, value: @club.id %>
     </div>
     <div id="data-event">
-      <%= render partial: "list_budget", locals: {events: @infor_club.history_budget} %>
+      <%= render partial: "list_budget", locals: {events: @infor_club.history_budget.includes(:budgets)} %>
     </div>
   </div>
   <div class="modal-footer">

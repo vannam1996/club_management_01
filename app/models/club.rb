@@ -15,6 +15,7 @@ class Club < ApplicationRecord
   has_many :notifications, as: :target, dependent: :destroy
   has_many :activities, as: :trackable, dependent: :destroy
   has_many :activities, as: :container, dependent: :destroy
+  has_many :user_organizations, through: :organization
 
   belongs_to :organization
 
