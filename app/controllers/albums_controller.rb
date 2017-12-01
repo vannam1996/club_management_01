@@ -8,14 +8,16 @@ class AlbumsController < ApplicationController
   end
 
   def create
-    album = Album.new album_params
-    if album.save
-      create_acivity album, Settings.create, album.club, current_user
+    @album = Album.new album_params
+    if @album.save
+      create_acivity @album, Settings.create, @album.club, current_user
       flash[:success] = t "club_manager.album.success_create"
     else
-      flash_error album
+      flash_error @album
     end
-    redirect_to club_album_path album.club_id, album
+    respond_to do |format|
+      format.js
+    end
   end
 
   def show
