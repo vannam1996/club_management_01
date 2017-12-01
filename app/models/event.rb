@@ -7,7 +7,7 @@ class Event < ApplicationRecord
   has_many :users, through: :user_events
   has_many :comments, as: :target, dependent: :destroy
   has_many :budgets, dependent: :destroy
-  has_many :notifications, as: :target, dependent: :destroy
+  has_many :notifications, as: :target
   has_many :activities, as: :trackable, dependent: :destroy
 
   belongs_to :club

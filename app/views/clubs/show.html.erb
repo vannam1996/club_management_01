@@ -38,6 +38,13 @@
                   <span class = "view-user-member">+<%= @infor_club.members_joined.size - Settings.max_display_member_club %></span>
                 <% end %>
               </div>
+            <% else %>
+              <div class="col-md-1 pull-left view-icon-memeber">
+                <%= link_to user_request_club_path(@club), remote: :true,
+                  class: "animation-fadeIn360", title: t("more") do %>
+                  <span class = "view-user-member"><i class="fa fa-user"></i></span>
+                <% end %>
+              </div>
             <% end %>
             <% if @club.is_admin? current_user %>
               <div class="col-md-1 pull-left add-user-member">

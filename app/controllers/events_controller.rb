@@ -1,8 +1,8 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!
-  before_action :load_club, only: [:show, :new, :create, :check_is_admin, :edit, :update]
-  before_action :load_event, only: [:show, :edit, :update]
-  before_action :check_is_admin, only: [:new, :edit]
+  before_action :load_club
+  before_action :load_event, only: [:show, :edit, :update, :destroy]
+  before_action :check_is_admin, only: [:new, :edit, :destroy]
 
   def new
     @event = Event.new
@@ -58,6 +58,16 @@ class EventsController < ApplicationController
   rescue
     flash[:danger] = t "error_in_process"
     redirect_to :back
+  end
+
+  def destroy
+    unless @event.destroy
+      flash[:danger] = t "error_process"
+    end
+    flash[:success] = t "success_process"
+    respond_to do |format|
+      format.js
+    end
   end
 
   private

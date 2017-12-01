@@ -75,14 +75,16 @@
                 </div>
                 <% if @event.notification? %>
                   <h6 class="event-description-title"><%= t "club_manager.event.joined" %></h6>
-                  <% @event.user_events.each do |user_event| %>
-                    <div class="col-md-2 avarta-memeber">
-                      <%= link_to user_path(user_event.user_id) do %>
-                        <%= image_tag user_event.user.avatar, class: "member-organization-view",
-                          title: "#{user_event.user.full_name}" %>
-                      <% end %>
-                    </div>
-                  <% end %>
+                  <div class="row">
+                    <% @event.user_events.each do |user_event| %>
+                      <div class="col-md-1 avarta-memeber">
+                        <%= link_to user_path(user_event.user_id) do %>
+                          <%= image_tag user_event.user.avatar, class: "member-organization-view",
+                            title: "#{user_event.user.full_name}" %>
+                        <% end %>
+                      </div>
+                    <% end %>
+                  </div>
                 <% end %>
               </div>
             </div>

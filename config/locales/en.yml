@@ -804,3 +804,4 @@ en:
   upload_photo: "Upload photos"
   choose_album: "Choose from the album"
   select_image: "No image selected, please choose image!"
+  delete_event: "Are you sure you want to delete this event?"

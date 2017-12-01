@@ -1,5 +1,5 @@
 <% events.each do |event| %>
-  <tr class="event-item">
+  <tr class="event-item list-event-<%= event.id %>">
     <td class="upcoming">
       <div class="date-event">
         <svg class="olymp-small-calendar-icon"><use xlink:href="<%= url_to_asset("icons/icons.svg#olymp-small-calendar-icon") %>"></use></svg>
@@ -39,16 +39,18 @@
     <td class="users">
 
     </td>
-    <td class="add-event">
-      <%= link_to t("read_more"), club_event_url(event.club, event),
-        class: "btn btn-breez btn-sm load_event" %>
-    </td>
-    <td>
-      <% if @club.is_admin?(current_user) && event.by_user?(current_user) %>
-        <%= link_to edit_club_event_path(@club.id, event.id), title: t("edit") do %>
+    <% if @club.is_admin?(current_user) && event.by_user?(current_user) %>
+      <td class="funtion-event">
+        <%= link_to edit_club_event_path(@club.id, event.id), title: t("edit"),
+          class: "btn btn-sm btn-primary" do %>
           <i class="fa fa-pencil-square-o"></i>
         <% end %>
-      <% end %>
-    </td>
+        <%= link_to club_event_path(@club.id, event.id), title: t("delete"),
+          class: "btn btn-sm btn-danger", remote: :true, method: :delete,
+          data: {confirm: t("delete_event")} do %>
+          <i class="fa fa-remove"></i>
+        <% end %>
+      </td>
+    <% end %>
   </tr>
 <% end %>
