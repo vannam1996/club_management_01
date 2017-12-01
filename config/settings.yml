@@ -137,7 +137,7 @@ club:
   image:
     min_width_image_club: 1024
     min_height_image_club: 400
-    max_height_image_club: 700
+    max_height_image_club: 2000
 feed_back:
   min_content: 20
   max_content: 255

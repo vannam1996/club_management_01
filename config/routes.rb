@@ -119,5 +119,6 @@ Rails.application.routes.draw do
   resources :set_user_organizations
   resources :user_request_organizations
   resources :club_request_organizations
+  resources :set_image_clubs
 
 end

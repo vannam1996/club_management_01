@@ -1,0 +1,39 @@
+<div class="col-md-12 col-md-offset-2">
+  <div class="modal-dialog edit-club modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="block">
+          <div class="row">
+            <div class="col-md-12 col-md-offset-1">
+              <div class="title">
+                <h6 class="title"><%= t "choose_album" %></h6>
+              </div>
+              <%= form_for @club, url: set_image_club_path, html: {multipart: true} do |f| %>
+                <div class="row list-scroll">
+                  <% @list_images.each do |album| %>
+                    <% album.images.each do |image| %>
+                    <div class="choose-photo-item col-md-2" data-mh="choose-item">
+                      <div class="radio">
+                        <label class="custom-radio">
+                          <%= image_tag image.url , class: "background-images" %>
+                          <%= f.radio_button :image, image.url %>
+                          <span class="circle"></span><span class="check"></span>
+                        </label>
+                      </div>
+                    </div>
+                   <% end %>
+                  <% end %>
+                </div>
+                <div class="text-center col-md-12">
+                  <%= f.submit t("update"), class: "btn btn-breez col-md-2 btn-sm" %>
+                  <%= f.button t("close"), class: "btn btn-sm btn-warning",
+                    "data-dismiss": "modal" %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

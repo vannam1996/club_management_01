@@ -1,14 +1,17 @@
 <% case params[:tab] %>
 <% when "content" %>
-  $("#modal-edit-content").html('<%= j render "edit_content_goad" %>');
-  $("#modal-edit-content").modal('show');
+  $('#modal-edit-content').html('<%= j render "edit_content_goad" %>');
+  $('#modal-edit-content').modal('show');
 <% when "plan" %>
-  $("#modal-edit-plan").html('<%= j render "edit_plan" %>');
-  $("#modal-edit-plan").modal('show');
+  $('#modal-edit-plan').html('<%= j render "edit_plan" %>');
+  $('#modal-edit-plan').modal('show');
 <% when "rules" %>
-  $("#modal-edit-rules").html('<%= j render "edit_rules" %>');
-  $("#modal-edit-rules").modal('show');
+  $('#modal-edit-rules').html('<%= j render "edit_rules" %>');
+  $('#modal-edit-rules').modal('show');
 <% when "infor" %>
-  $("#modal-edit-infor").html('<%= j render "edit_infor" %>');
-  $("#modal-edit-infor").modal('show');
+  $('#modal-edit-infor').html('<%= j render "edit_infor" %>');
+  $('#modal-edit-infor').modal('show');
+<% when "image" %>
+  $('#modal-edit-infor').html('<%= j render "edit_image_background" %>');
+  $('#modal-edit-infor').modal('show');
 <% end %>
