@@ -8,7 +8,7 @@ class NotificationBroadcastJob < ApplicationJob
 
   private
   def render_notify notification
-    ApplicationController.renderer.render(partial: "notifications/notification",
+    ApplicationController.renderer.render(partial: "notifications/notification_update",
       locals: {notification: notification})
   end
 end
