@@ -1,7 +1,6 @@
-class AlbumsController < ClubsController
+class AlbumsController < ApplicationController
   before_action :authenticate_user!
   before_action :load_club
-  before_action :verify_club
   before_action :load_album, only:[:show, :edit, :update, :destroy]
 
   def index
@@ -16,7 +15,7 @@ class AlbumsController < ClubsController
     else
       flash_error album
     end
-    redirect_to :back
+    redirect_to club_album_path album.club_id, album
   end
 
   def show
@@ -29,7 +28,9 @@ class AlbumsController < ClubsController
       flash[:danger] = t "error_process"
     end
     flash[:success] = t "success_process"
-    redirect_to :back
+    respond_to do |format|
+      format.js
+    end
   end
 
   def edit
@@ -45,7 +46,7 @@ class AlbumsController < ClubsController
     else
       flash_error @album
     end
-    redirect_to :back
+    redirect_to club_album_path @album.club_id, @album
   end
 
   private

@@ -1,6 +1,6 @@
 <%= form_for UserEvent.new do |f| %>
   <%= f.hidden_field :event_id, value: @event.id %>
   <div class="tip join">
-    <%= f.submit t("join_this_event"), class: "btn btn-blue btn-sm col-md-5 text-center"%>
+    <%= f.submit t("join_this_event"), class: "btn btn-blue btn-sm text-center"%>
   </div>
 <% end %>

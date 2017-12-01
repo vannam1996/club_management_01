@@ -7,7 +7,7 @@
           <div class="tz-gallery">
             <div class="row">
               <% @infor_club.albums.each do |album| %>
-                <div class="col-sm-6 col-md-3 portfolio-item">
+                <div class="col-sm-6 col-md-3 portfolio-item show-album-<%= album.id %>">
                   <div class="thumbnail">
                     <%= link_to club_album_path(@club.id, album.id) do %>
                       <% if album.images.blank? %>
@@ -38,7 +38,7 @@
                               <% end %>
                               <%= link_to club_album_path(id: album.id,
                                 club_id: @club.id), class: "",
-                                title: t("delete"), method: :delete,
+                                title: t("delete"), method: :delete, remote: :true,
                                 data: {confirm: t("confirm_delete_album")} do %>
                                   <i class="fa fa-trash-o" aria-hidden="true"></i>
                               <% end %>
