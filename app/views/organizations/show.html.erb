@@ -9,9 +9,9 @@
             <%= image_tag @organization.logo, class: "img-cover", title: t("image_cover") %>
             <% if @organization.is_admin? current_user %>
               <div class="title-header col-md-12">
-                <div class="logo-contten main-header-content pull-left">
+                <div class="pull-left">
                   <%= link_to edit_organization_path(@organization, edit: :image),
-                    remote: :true, class: "edit-logo-organization" do %>
+                    remote: :true, class: "h6 edit-logo-organization" do %>
                     <i class="fa fa-camera" aria-hidden="true"></i>
                     <span class="animation-slideUp hidden-xs rating-container">
                       <%= t "edit_logo" %>

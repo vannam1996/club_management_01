@@ -120,5 +120,6 @@ Rails.application.routes.draw do
   resources :user_request_organizations
   resources :club_request_organizations
   resources :set_image_clubs
+  resources :set_logo_clubs
 
 end

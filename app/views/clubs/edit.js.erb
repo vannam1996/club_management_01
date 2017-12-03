@@ -14,4 +14,7 @@
 <% when "image" %>
   $('#modal-edit-infor').html('<%= j render "edit_image_background" %>');
   $('#modal-edit-infor').modal('show');
+<% when "logo" %>
+  $('#modal-edit-infor').html('<%= j render "edit_logo" %>');
+  $('#modal-edit-infor').modal('show');
 <% end %>

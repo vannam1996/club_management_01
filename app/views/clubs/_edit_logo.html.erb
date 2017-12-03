@@ -1,0 +1,40 @@
+<div class="col-md-12 col-md-offset-2">
+  <div class="modal-dialog edit-club modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="block">
+          <div class="row edit-organization">
+            <h2 class="text-center col-md-12"><%= @club.name %></h2>
+            <div class="col-md-12 col-md-offset-1">
+              <%= form_for [:dashboard, @club], html: {multipart: true} do |f| %>
+                <%= render "shared/error_messages", object: f.object %>
+                <div class="form-group">
+                  <label class="h6 col-md-3 control-label">
+                    <i class="fa fa-cloud-upload"></i>
+                    <%= t "upload_photo" %>
+                  </label>
+                  <div>
+                    <%= f.file_field :logo%>
+                  </div>
+                  <div class="col-md-12 text-center">
+                    <%= image_tag @club.logo, class: "update-club-logo" %><hr/>
+                  </div>
+                  <%= link_to set_logo_club_path(@club), class: "h6 set-image-club",
+                    remote: :true do %>
+                    <i class="fa fa-picture-o"></i>
+                    <%= t "choose_album" %>
+                  <% end %>
+                </div>
+                <div class="text-center col-md-12">
+                  <%= f.submit t("update"), class: "btn btn-primary col-md-2 btn-sm" %>
+                  <%= f.button t("close"), class: "btn btn-sm btn-warning",
+                    "data-dismiss": "modal" %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

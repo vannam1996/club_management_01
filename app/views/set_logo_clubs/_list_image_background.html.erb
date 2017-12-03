@@ -8,7 +8,7 @@
               <div class="title text-center">
                 <h6 class="title"><%= t "choose_album" %></h6>
               </div>
-              <%= form_for @club, url: set_image_club_path, html: {multipart: true} do |f| %>
+              <%= form_for @club, url: set_logo_club_path, html: {multipart: true} do |f| %>
                 <div class="row list-scroll">
                   <% @list_images.each do |album| %>
                     <% album.images.each do |image| %>
@@ -24,7 +24,7 @@
                    <% end %>
                   <% end %>
                 </div>
-                <div class="text-center col-md-12 modal-footer">
+                <div class="modal-footer text-center col-md-12">
                   <%= f.submit t("update"), class: "btn btn-breez col-md-2 btn-sm" %>
                   <%= f.button t("close"), class: "btn btn-sm btn-warning",
                     "data-dismiss": "modal" %>
