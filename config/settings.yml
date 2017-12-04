@@ -156,7 +156,7 @@ hide: "hide"
 name_office: " Office"
 date_format: "%Y-%m-%d"
 date_format_vi: "%d-%m-%Y"
-notification_per_page: 15
+notification_per_page: 20
 export_budget:
   bg_title: "F7abce7"
   fg_title: "#FF000000"

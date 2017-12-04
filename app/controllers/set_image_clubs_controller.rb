@@ -34,7 +34,7 @@ class SetImageClubsController < ApplicationController
     if params[:club].present?
       @url_upload = ENV["DOMAIN"] + params[:club][:image]
     else
-      flash[:danger] = t "select_image"
+      flash[:danger] = t "params_image_blank"
       redirect_to organization_club_path(@club.organization.slug, @club)
     end
   end

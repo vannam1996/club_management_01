@@ -1,0 +1,5 @@
+<% if @album.save %>
+  window.location.replace('<%= club_album_path @album.club_id, @album %>')
+<% else %>
+  $('.album-errors').html('<%= j render "album_errors" %>');
+<% end %>
