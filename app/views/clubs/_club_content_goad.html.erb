@@ -1,0 +1,27 @@
+<div class="ui-block-title ui-block-title-small">
+  <h6 class="title"><%= t "detail" %></h6>
+  <% if @club.is_admin? current_user %>
+    <%= link_to edit_club_path(id: @club, tab: "content"), title: t("edit"), remote: :true,
+      class: "btton-edit-organization animation-fadeIn360 pull-right" do %>
+      <i class="fa fa-pencil-square-o"></i>
+    <% end %>
+  <% end %>
+</div>
+<div class="title-detail ui-block-title-small">
+  <h6 class="title">
+    <i class="fa fa-codepen" aria-hidden="true"></i>
+    <%= t "content_club" %>
+  </h6>
+</div>
+<div class="content_tab">
+  <%= view_detail_club @club.content %>
+</div>
+<div class="title-detail ui-block-title-small">
+  <h6 class="title">
+    <i class="fa fa-codepen" aria-hidden="true"></i>
+    <%= t "goal" %>
+  </h6>
+</div>
+<div class="content_tab">
+  <%= view_detail_club @club.goal %>
+</div>

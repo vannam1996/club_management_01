@@ -6,7 +6,8 @@
           <div class="row edit-organization">
             <h2 class="text-center col-md-12"><%= @club.name %></h2>
             <div class="col-md-12 col-md-offset-1">
-              <%= form_for [:dashboard, @club], html: {multipart: true} do |f| %>
+              <%= form_for @club, url: organization_club_path(@club.organization_id, @club),
+                html: {multipart: true} do |f| %>
                 <%= render "shared/error_messages", object: f.object %>
                 <div class="form-group">
                   <label class="h6 col-md-3 control-label">

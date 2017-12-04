@@ -7,7 +7,7 @@
             <div class="col-md-12 edit-images-club">
               <% if @club.is_admin? current_user %>
                 <div class="pull-right">
-                  <%= link_to "#", data: {toggle: "dropdown"}, class: "h6 edit-logo-organization" do %>
+                  <%= link_to "#", data: {toggle: "dropdown"}, class: "edit-logo-organization" do %>
                     <i class="fa fa-camera" aria-hidden="true"></i>
                     <span class="animation-slideUp hidden-xs rating-container">
                       <%= t "update_background" %>
@@ -15,7 +15,7 @@
                   <% end %>
                   <ul class="drop-image dropdown-menu" role="menu" aria-labelledby="menu1">
                     <li>
-                      <%= link_to edit_club_path(id: @club.id, tab: "image"), class: "set-image-club",
+                      <%= link_to edit_club_path(id: @club, tab: "image"), class: "set-image-club",
                         remote: :true do %>
                         <i class="fa fa-cloud-upload"></i>
                         <%= t "upload_photo" %>
@@ -38,7 +38,7 @@
                 <%= image_tag @club.logo, class: "img-cover img_small" %>
                 <% if @club.is_admin? current_user %>
                   <div class="edit-logo-club">
-                    <%= link_to edit_club_path(id: @club.id, tab: "logo"), remote: :true,
+                    <%= link_to edit_club_path(id: @club, tab: "logo"), remote: :true,
                       class: "edit-logo" do %>
                       <i class="fa fa-camera" aria-hidden="true"></i>
                       <span class="animation-slideUp hidden-xs rating-container">
@@ -82,7 +82,7 @@
               </div>
               <div class="col-md-3">
                 <% if @club.is_admin? current_user %>
-                  <%= link_to edit_club_path(id: @club.id, tab: "infor"), title: t("edit_infor_club"),
+                  <%= link_to edit_club_path(id: @club, tab: "infor"), title: t("edit_infor_club"),
                     remote: :true, class: "edit-infor-club pull-right" do %>
                     <i class="fa fa-cog"></i>
                   <% end %>

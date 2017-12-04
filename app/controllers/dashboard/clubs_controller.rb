@@ -11,13 +11,16 @@ class Dashboard::ClubsController < BaseDashboardController
 
   def update
     @organizations = current_user.user_organizations.joined
-    if @club.update_attributes club_params
+    @club_update = @club.update_attributes club_params
+    if @club_update
       create_acivity @club, Settings.update, @club, current_user
       flash[:success] = t "club_manager.club.success_update"
     else
       flash_error @club
     end
-    redirect_to organization_club_path @organization, @club
+    respond_to do |format|
+      format.js
+    end
   end
 
   private

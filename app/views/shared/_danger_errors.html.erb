@@ -1,0 +1,22 @@
+<% if flash.any? %>
+  <% flash.each do |key, values| %>
+    <%= content_tag :div, values do %>
+      <% if values.class == Array %>
+        <ul class="alert errors-danger">
+          <% values.each do |value| %>
+            <li><%= value %></li>
+          <% end %>
+          <% if params[:tab] != "content"%>
+            <li>
+              <%= link_to edit_club_path(id: @club, tab: "content"),data: {dismiss: "modal"},
+                remote: :true, class: "btn btn-sm btn-breez" do %>
+                <%= t "update_here" %>
+                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

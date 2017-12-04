@@ -1,8 +1,9 @@
 class ClubsController < ApplicationController
   before_action :authenticate_user!
-  before_action :load_club, only: [:show, :edit, :verify_club]
+  before_action :load_club, only: [:show, :edit, :verify_club, :update]
   before_action :verify_club, only: :show
   before_action :load_user_organizations, only: :show
+  before_action :load_organization, only: [:update]
 
   def index
     organizations_joined = Organization.by_user_organizations(
@@ -52,6 +53,17 @@ class ClubsController < ApplicationController
     end
   end
 
+  def update
+    @organizations = current_user.user_organizations.joined
+    if @club.update_attributes club_params
+      create_acivity @club, Settings.update, @club, current_user
+      flash[:success] = t "club_manager.club.success_update"
+    else
+      flash_error @club
+    end
+    redirect_to organization_club_path @organization, @club
+  end
+
   protected
   def verify_club
     return if @club.is_active?
@@ -60,10 +72,10 @@ class ClubsController < ApplicationController
   end
 
   def load_club
-    @club = Club.friendly.find params[:id]
+    @club = Club.find_by slug: params[:id]
     return if @club
     flash[:danger] = t("not_found")
-    redirect_to clubs_url
+    redirect_to root_path
   end
 
   def load_user_organizations
@@ -71,5 +83,19 @@ class ClubsController < ApplicationController
     return if @user_organizations
     flash[:danger] = t("not_found")
     redirect_to clubs_url
+  end
+
+  def load_organization
+    @organization = Organization.find_by id: @club.organization_id
+    unless @organization
+      flash[:danger] = t("not_found_organization")
+      redirect_to request.referer
+    end
+  end
+
+  def club_params
+    params.require(:club).permit :name, :content, :goal, :logo, :rules,
+      :rule_finance, :time_join, :image, :tag_list, :plan, :punishment, :member,
+      :local, time_activity: []
   end
 end

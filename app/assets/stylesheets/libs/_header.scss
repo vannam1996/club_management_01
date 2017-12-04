@@ -1427,6 +1427,7 @@
 }
 .edit-logo-organization {
   padding: 5px;
+  color: $grey;
 }
 .video-content {
   position: absolute;
@@ -1442,7 +1443,6 @@
 }
 .edit-images-club .edit-logo-organization:hover {
   background-color: $blue-white;
-  font-weight: bold;
   border-radius: 4px;
   color: $white;
 }
@@ -1471,7 +1471,6 @@
 }
 .top-header-thumb:hover .edit-logo-organization {
   background-color: $blue-white;
-  font-weight: bold;
   border-radius: 4px;
   color: $white;
   display: block;
@@ -1514,10 +1513,18 @@
 }
 .edit-logo-organization:hover {
   background-color: $blue-white;
-  font-weight: bold;
   border-radius: 4px;
   color: $white;
 }
 .modal-footer .btn {
   margin-bottom: 0px !important;
+}
+.errors-danger {
+  background-color: $brown-blue;
+  border-color: $darkseagreen;
+  color: $red;
+  .btn {
+    margin-bottom: 0px;
+    padding: 5px;
+  }
 }
