@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :set_locale
+  before_action :current_user_clubs, :if => :user_signed_in?
   include ApplicationHelper
 
   def user_signed_in
@@ -47,6 +48,10 @@ class ApplicationController < ActionController::Base
     return if @club
     flash[:danger] = t("not_found_club")
     redirect_to :back
+  end
+
+  def current_user_clubs
+    @current_user_clubs = current_user.user_clubs
   end
 
   private

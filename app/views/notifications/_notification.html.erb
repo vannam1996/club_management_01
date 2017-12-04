@@ -1,5 +1,5 @@
 <% notifications.each do |notification| %>
-  <% if current_user.user_clubs.of_club(notification.container_id).joined? %>
+  <% if check_user_club_joined?(notification) %>
     <% if notification.trackable.present? %>
       <li class="custom_notifications">
         <div class="notifyBody notification-<%= option_class(notification.user_read) %>"

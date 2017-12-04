@@ -12,7 +12,7 @@ class UserClubsController < ApplicationController
     end
     @club = user_club.club
     flash[:success] = t("join_and_wait")
-    redirect_back fallback_location: club_path
+    redirect_to club_path @club
   end
 
   def show

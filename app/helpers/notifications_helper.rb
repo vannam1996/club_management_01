@@ -43,4 +43,12 @@ module NotificationsHelper
     end
     un_read
   end
+
+  def check_user_club_joined? notification
+    if @current_user_clubs.of_club(notification.container_id).present?
+      @current_user_clubs.of_club(notification.container_id).joined?
+    else
+      @current_user_clubs.of_club(notification.trackable_id).joined?
+    end
+  end
 end
