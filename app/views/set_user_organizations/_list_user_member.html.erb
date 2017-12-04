@@ -28,7 +28,7 @@
   <div class="modal-body row ui-block">
     <% if @organization.is_admin? current_user %>
       <strong>
-        <%= link_to "#modal-add-user", data: {toggle: "modal", dismiss: "modal"},
+        <%= link_to "#add_member", data: {toggle: "modal", dismiss: "modal"},
           class: "animation-fadeIn360 pull-left" do %>
           <i class="fa fa-plus" aria-hidden="true"></i><%= t "add_member" %>
         <% end %>

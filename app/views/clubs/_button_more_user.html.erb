@@ -1,5 +1,11 @@
 <h5 class="title-modal-member text-center">
   <%= t "member_detail" %>
+  <%= link_to dashboard_club_export_members_path(format: :xlsx, id: @club),
+    class: "pull-right", title: t("export_member") do %>
+    <span class = "export-member primary">
+      <i class="fa fa-download"></i>
+    </span>
+  <% end %>
 </h5>
 <div class="content-list modal-body row">
   <strong><%= t "modal_manager" %></strong>
@@ -15,32 +21,34 @@
     </div>
   <% end %>
 </div>
-<div class="content-list modal-body row">
-  <strong><%= t "modal_member" %></strong>
-</div>
-<div class="content-list modal-body row load-member">
-  <% @members_not_manager.each do |member| %>
-    <div class="col-md-1 col-sm-2 col-xs-3">
-      <div class="text-center user-member">
-        <%= link_to user_path(member.user_id), title: member.full_name do %>
-          <%= image_tag member.avatar,
-            class: "member-club-view" %>
-        <% end %>
+<% if @members_not_manager.present? %>
+  <div class="content-list modal-body row">
+    <strong><%= t "modal_member" %></strong>
+  </div>
+  <div class="content-list modal-body row load-member">
+    <% @members_not_manager.each do |member| %>
+      <div class="col-md-1 col-sm-2 col-xs-3">
+        <div class="text-center user-member">
+          <%= link_to user_path(member.user_id), title: member.full_name do %>
+            <%= image_tag member.avatar,
+              class: "member-club-view" %>
+          <% end %>
+        </div>
       </div>
-    </div>
-  <% end %>
-  <% unless @members_not_manager.current_page == @members_not_manager.total_pages %>
-    <div class="col-md-1 col-sm-2 col-xs-3" id="view-more">
-      <div class="text-center">
-        <%= link_to url_for(page: @members_not_manager.next_page, user: "true"), remote: true, title: t("more") do %>
-          <span class = "view-user-member">
-            +<%= @infor_club.members_not_manager.size - Settings.page_member_not_manager %>
-          </span>
-        <% end %>
+    <% end %>
+    <% unless @members_not_manager.current_page == @members_not_manager.total_pages %>
+      <div class="col-md-1 col-sm-2 col-xs-3" id="view-more">
+        <div class="text-center">
+          <%= link_to url_for(page: @members_not_manager.next_page, user: "true"), remote: true, title: t("more") do %>
+            <span class = "view-user-member">
+              +<%= @infor_club.members_not_manager.size - Settings.page_member_not_manager %>
+            </span>
+          <% end %>
+        </div>
       </div>
-    </div>
-  <% end %>
-</div>
+    <% end %>
+  </div>
+<% end %>
 <div class="modal-body row">
   <% if @club.is_admin? current_user %>
     <strong>
@@ -100,7 +108,7 @@
   </div>
 <% end %>
 <div class="form-group text-center">
-  <button type="button" class="btn btn-breez button-more" data-dismiss="modal">
+  <button type="button" class="btn btn-warning button-more" data-dismiss="modal">
     <%= t "close" %>
   </button>
 </div>

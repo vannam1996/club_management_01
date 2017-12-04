@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe SetImageClubsController, type: :controller do
+RSpec.describe SetLogoClubsController, type: :controller do
 
   let!(:user){create :user}
   let!(:organization){create :organization}
@@ -36,7 +36,7 @@ RSpec.describe SetImageClubsController, type: :controller do
     context "when params blank" do
       before {get :update, params: {id: club,
         club:{image: nil}}}
-      it {expect(flash[:danger]).to eq ["Ảnh bìa Lỗi định dạng"]}
+      it {expect(flash[:danger]).to eq ["Logo Lỗi định dạng"]}
     end
     context "when params blank" do
       before {get :update, params: {id: club,
