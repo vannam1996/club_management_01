@@ -3,17 +3,17 @@ class RatingsController < ApplicationController
 
   def create
     if @club.ratings.find_by(user: current_user)
-      flash[:danger] = t("you_rated")
-      redirect_to :back
+      flash[:danger] = t "you_rated"
     else
       ActiveRecord::Base.transaction do
         @club.ratings.build(user: current_user, star: params[:rating]).save
         rating_executed
         create_acivity @club, Settings.ratings, @club.organization, current_user
-        respond_to do |format|
-          format.js
-        end
       end
+      flash[:success] = t "you_raiting_club"
+    end
+    respond_to do |format|
+      format.js
     end
   end
 
