@@ -106,7 +106,7 @@ class User < ApplicationRecord
       if user.present?
         user.full_name = auth.info.name
         user.password = User.generate_unique_secure_token if user.new_record?
-        user.remote_avatar_url = auth.info.avatar if auth.info.avatar.present?
+        user.remote_avatar_url = auth.info.avatar.gsub("http://", "https://") if auth.info.avatar.present?
         user.save
         add_to_organization user, auth.info.workspaces
         user

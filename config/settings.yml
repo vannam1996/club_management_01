@@ -88,7 +88,7 @@ user:
 truncate:
   club:
     description: 100
-  album_name: 30
+  album_name: 28
 messages_load_more: 30
 subsidy: "subsidy"
 pay_money: "pay_money"
