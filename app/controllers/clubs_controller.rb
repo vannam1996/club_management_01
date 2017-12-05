@@ -54,14 +54,19 @@ class ClubsController < ApplicationController
   end
 
   def update
-    @organizations = current_user.user_organizations.joined
-    if @club.update_attributes club_params
-      create_acivity @club, Settings.update, @club, current_user
-      flash[:success] = t "club_manager.club.success_update"
+    if club_params
+      @organizations = current_user.user_organizations.joined
+      if @club.update_attributes club_params
+        create_acivity @club, Settings.update, @club, current_user
+        flash[:success] = t "club_manager.club.success_update"
+      else
+        flash_error @club
+      end
+      redirect_to organization_club_path @organization, @club
     else
-      flash_error @club
+      flash[:danger] = t("params_image_blank")
+      redirect_to organization_club_path @organization, @club
     end
-    redirect_to organization_club_path @organization, @club
   end
 
   protected
@@ -94,8 +99,10 @@ class ClubsController < ApplicationController
   end
 
   def club_params
-    params.require(:club).permit :name, :content, :goal, :logo, :rules,
-      :rule_finance, :time_join, :image, :tag_list, :plan, :punishment, :member,
-      :local, time_activity: []
+    if params[:club].present?
+      params.require(:club).permit :name, :content, :goal, :logo, :rules,
+        :rule_finance, :time_join, :image, :tag_list, :plan, :punishment, :member,
+        :local, time_activity: []
+    end
   end
 end

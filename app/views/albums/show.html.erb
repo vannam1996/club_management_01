@@ -9,7 +9,7 @@
             <div class="row portfolio">
               <div class="container gallery-container">
                 <div class="ui-block-title ui-block-title-small row">
-                  <%= link_to t("back"), organization_club_path(@club.organization_id, @club.id),
+                  <%= link_to t("back"), organization_club_path(@club.organization.slug, @club),
                     class: "pull-left btn btn-primary btn-sm" %>
                   <h4 class=" col-md-8 text-center"><%= @album.name %></h4>
                   <% if @club.is_admin? current_user %>
