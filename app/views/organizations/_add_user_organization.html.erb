@@ -6,12 +6,14 @@
     <%= form_tag set_user_organizations_path, method: :post do %>
       <%=hidden_field_tag "id", @organization.slug %>
       <div class="form-search">
-        <div class="col-md-12">
-          <span class="input-group-addon" id="basic-addon1">
-            <i class="fa fa-search" aria-hidden="true"></i>
-          </span>
-          <%= text_field_tag :search_user, "", class: "form-control input-search",
-            placeholder: t("edit_member.search_member") %>
+        <div class="row">
+          <div class="col-md-12">
+            <span class="input-group-addon" id="basic-addon1">
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </span>
+            <%= text_field_tag :search_user, "", class: "form-control input-search",
+              placeholder: t("edit_member.search_member") %>
+          </div>
         </div>
       </div>
       <div class="col-md-3 pull-left checkbox add-all-funtion ui-block">

@@ -13,35 +13,37 @@
               <%= image_tag albums_club(album), class: "col-md-12" %>
             <% end %>
           <% end %>
-          <div class="caption row">
-            <p class="col-md-11">
-              <%= link_to club_album_path(@club.id, album.id) do %>
-                <%= truncate(album.name, length: Settings.truncate.album_name) %>
-              <% end %>
-              </br>
-              <%= album.images.size %> <%= t "albums_club.image" %>
-            </p>
-            <div class="pull-right col-md-1">
-              <div class="dropup">
-                <% if @club.is_admin? current_user %>
-                  <span class="dropdown-toggle" data-toggle="dropdown">
-                    <span class="fa fa-cog"></span>
-                  </span>
+          <div class="col-md-12">
+            <div class="caption row">
+              <p class="col-md-10">
+                <%= link_to club_album_path(@club.id, album.id) do %>
+                  <%= truncate(album.name, length: Settings.truncate.album_name) %>
                 <% end %>
-                <ul class="dropdown-menu drop_form" role="menu" aria-labelledby="menu1">
-                  <li class="row text-center">
-                    <%= link_to edit_club_album_path(@club.id, album.id),
-                      class: "", title: t("edit"), remote: :true do %>
-                      <i class="fa fa-pencil"></i>
-                    <% end %>
-                    <%= link_to club_album_path(id: album.id,
-                      club_id: @club.id), class: "",
-                      title: t("delete"), method: :delete, remote: :true,
-                      data: {confirm: t("confirm_delete_album")} do %>
-                        <i class="fa fa-trash-o" aria-hidden="true"></i>
-                    <% end %>
-                  </li>
-                </ul>
+                </br>
+                <%= album.images.size %> <%= t "albums_club.image" %>
+              </p>
+              <div class="pull-right col-md-1">
+                <div class="dropup">
+                  <% if @club.is_admin? current_user %>
+                    <span class="dropdown-toggle" data-toggle="dropdown">
+                      <span class="fa fa-cog"></span>
+                    </span>
+                  <% end %>
+                  <ul class="dropdown-menu drop_form" role="menu" aria-labelledby="menu1">
+                    <li class="text-center">
+                      <%= link_to edit_club_album_path(@club.id, album.id),
+                        class: "", title: t("edit"), remote: :true do %>
+                        <i class="fa fa-pencil"></i>
+                      <% end %>
+                      <%= link_to club_album_path(id: album.id,
+                        club_id: @club.id), class: "",
+                        title: t("delete"), method: :delete, remote: :true,
+                        data: {confirm: t("confirm_delete_album")} do %>
+                          <i class="fa fa-trash-o" aria-hidden="true"></i>
+                      <% end %>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
