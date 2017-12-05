@@ -1,0 +1,20 @@
+<% if @club_update %>
+  <% case params[:tab] %>
+  <% when "content" %>
+    $('#modal-edit-content').modal('hide');
+    $('#content_club').html('<%= j render "clubs/club_content_goad" %>');
+    $('#page-container').append('<%= j render "shared/flash_warning" %>');
+  <% when "plan" %>
+    $('#modal-edit-plan').modal('hide');
+    $('#plan').html('<%= j render "clubs/club_plan" %>');
+    $('#page-container').append('<%= j render "shared/flash_warning" %>');
+  <% when "rules" %>
+    $('#modal-edit-rules').modal('hide');
+    $('#rules_club').html('<%= j render "clubs/club_rules" %>');
+    $('#page-container').append('<%= j render "shared/flash_warning" %>');
+  <% when "infor" %>
+    window.location.replace('<%= organization_club_path @organization, @club %>')
+  <% end %>
+<% else %>
+  $('.album-errors').html('<%= j render "shared/danger_errors" %>');
+<% end %>

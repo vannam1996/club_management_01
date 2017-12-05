@@ -102,7 +102,7 @@ Rails.application.routes.draw do
   resources :user_events, only: :create
   resources :ratings, only: :create
   resources :organizations do
-    resources :clubs, only: [:show, :index]
+    resources :clubs, only: [:show, :index, :update]
   end
   resources :time_line_homes
   resources :time_line_homes

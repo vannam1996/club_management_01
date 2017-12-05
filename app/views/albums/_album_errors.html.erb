@@ -2,7 +2,7 @@
   <% flash.each do |key, values| %>
     <%= content_tag :div, values do %>
       <% if values.class == Array %>
-        <ul class="alert alert-success">
+        <ul class="alert errors-danger">
           <% values.each do |value| %>
             <li><%= value %></li>
           <% end %>
