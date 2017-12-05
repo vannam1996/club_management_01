@@ -94,7 +94,7 @@ subsidy: "subsidy"
 pay_money: "pay_money"
 get_money: "get_money"
 max_exspene: 9
-tools_url: "http://education.framgia.vn/tools"
+tools_url: "https://wsm.framgia.vn/all-tools"
 club_description: 200
 organization_request:
   max_phone_number_length: 12

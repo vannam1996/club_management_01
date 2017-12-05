@@ -32,7 +32,7 @@
                   <ul class="dropdown-menu drop_form" role="menu" aria-labelledby="menu1">
                     <li class="text-center">
                       <%= link_to edit_club_album_path(@club.id, album.id),
-                        class: "", title: t("edit"), remote: :true do %>
+                        title: t("edit"), remote: :true do %>
                         <i class="fa fa-pencil"></i>
                       <% end %>
                       <%= link_to club_album_path(id: album.id,
