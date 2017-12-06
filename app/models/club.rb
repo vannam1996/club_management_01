@@ -102,8 +102,8 @@ class Club < ApplicationRecord
 
   def check_dimensions
     if !image_cache.nil? && (image.width < Settings.club.image.min_width_image_club ||
-      (image.height < Settings.club.image.min_height_image_club ||
-      image.height > Settings.club.image.max_height_image_club))
+      image.height < Settings.club.image.min_height_image_club ||
+      image.height > Settings.club.image.max_height_image_club)
       errors.add :image, I18n.t("errors_size_image",
       min_width_image_club: Settings.club.image.min_width_image_club,
       min_height_image_club: Settings.club.image.min_height_image_club,

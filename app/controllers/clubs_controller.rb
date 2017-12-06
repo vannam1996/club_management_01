@@ -37,7 +37,7 @@ class ClubsController < ApplicationController
     @user_club = UserClub.new
     @infor_club = Support::ClubSupport.new(@club, params[:page], nil)
     @albums = @club.albums.newest.includes(:images)
-    @add_user_club = @user_organizations.user_not_joined(@club.user_clubs.joined.map(&:user_id))
+    @add_user_club = @user_organizations.user_not_joined(@club.user_clubs.map(&:user_id))
     @members_not_manager = @infor_club.members_not_manager.page(params[:page])
       .per Settings.page_member_not_manager
     respond_to do |format|
@@ -100,9 +100,7 @@ class ClubsController < ApplicationController
 
   def club_params
     if params[:club].present?
-      params.require(:club).permit :name, :content, :goal, :logo, :rules,
-        :rule_finance, :time_join, :image, :tag_list, :plan, :punishment, :member,
-        :local, time_activity: []
+      params.require(:club).permit :logo, :image
     end
   end
 end
