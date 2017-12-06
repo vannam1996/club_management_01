@@ -18,13 +18,30 @@
                 <time class="published" datetime="<%= l @event.created_at, format: :short %>">
                   <%= l @event.created_at, format: :short %>
                 </time>
+                <div class="confirm-donate">
+                  <%= link_to club_path(@club), title: t("back"), class: "btn btn-sm btn-primary" do %>
+                    <i class="fa fa-undo"></i>
+                  <% end %>
+                  <%= link_to edit_club_event_path(@club, @event),
+                    title: t("edit"), class: "btn btn-sm btn-breez" do %>
+                    <i class="fa fa-pencil"></i>
+                  <% end %>
+                </div>
               </div>
             </div>
             <div class="pull-right">
               <% case when @event.notification? %>
                 <%= render "user_events/join_event_toggle" %>
               <% when @event.get_money? %>
-                <%= link_to t("get_money"), "#collapse1", data: {toggle: "collapse"}, class: "btn btn-blue btn-sm" %>
+                <%= link_to t("get_money"), "#collapse1", data: {toggle: "collapse"},
+                  class: "btn btn-blue btn-sm" %>
+              <% when @event.donate? %>
+                <%= link_to t("donate.donate"), new_club_event_donate_path(@club, @event),
+                  remote: :true, class: "btn btn-blue btn-sm" %>
+                <div id="modal-add-user" class="modal fade" tabindex="-1"
+                  role="dialog" aria-hidden="true">
+                  <%= render "donates/form_donate_event" %>
+                </div>
               <% end %>
             </div>
           </div>
@@ -73,6 +90,12 @@
                     <% end %>
                   </span>
                 </div>
+                <div class="place inline-items">
+                  <svg class="olymp-small-calendar-icon">
+                    <use xlink:href="<%= url_to_asset("icons/icons.svg#olymp-small-calendar-icon") %>"></use>
+                  </svg>
+                  <span class="total_money"><%= number_to_currency(@event.expense, locals: :vi) %></span>
+                </div>
                 <% if @event.notification? %>
                   <h6 class="event-description-title"><%= t "club_manager.event.joined" %></h6>
                   <div class="row">
@@ -96,11 +119,13 @@
           <% else %>
             <p><%= raw(@event.description) %></p>
           <% end %>
-          <% if @event.get_money? %>
+          <% case when @event.get_money? %>
             <div class="content-event col-md-12 site-block border panel-collapse collapse"
               id="collapse1">
               <%= render partial: "view_get_money" %>
             </div>
+          <% when @event.donate? %>
+            <%= render partial: "view_donate", locals: {donates: @event.donate.newest} %>
           <% end %>
           <div class="mCustomScrollbar list-comment-event" data-mcs-theme="dark">
             <%= render partial: "events/comment", locals: {comments: @comments, event: @event} %>

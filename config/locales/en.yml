@@ -808,3 +808,11 @@ en:
   update_logo: "Update logo"
   you_raiting_club: "Thank you very much!"
   update_here: "Update here"
+  donate:
+    donate: "Donate"
+    list_donate: "List donate"
+    confirmed: "Confirmed"
+    wait_confirmation: "Wait for confirmation"
+    errors_update: "Your request has been confirmed. Can not update. Please make new request!"
+    update_success: "Successfully updated!"
+    total_money: "Total money"

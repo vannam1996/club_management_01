@@ -1,0 +1,29 @@
+<div class="modal-dialog edit-club">
+  <div class="modal-content">
+    <div class="modal-body">
+      <div class="block">
+        <div class="row edit-organization">
+          <div class="col-md-12 col-md-offset-1">
+            <%= form_for [@club, @event, @donate], html: {multipart: true} do |f| %>
+              <div class="album-errors"></div>
+              <%= f.hidden_field :user_id, value: current_user.id %>
+              <%= f.hidden_field :event_id, value: @event.id %>
+              <div class="form-group">
+                <label class="col-md-3 control-label"><%= t "expense" %></label>
+                <div class="col-md-12 edit-album">
+                  <%= f.number_field :expense, placeholder: t("expense"),
+                    class: "form-control input-edit", required: true %>
+                </div>
+              </div>
+              <div class="modal-footer text-center col-md-12">
+                <%= f.submit t("update"), class: "btn btn-primary col-md-3 btn-sm" %>
+                <%= f.button t("close"), class: "btn btn-sm btn-warning",
+                  "data-dismiss": "modal" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
