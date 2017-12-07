@@ -9,6 +9,7 @@ class Event < ApplicationRecord
   has_many :budgets, dependent: :destroy
   has_many :notifications, as: :target
   has_many :activities, as: :trackable, dependent: :destroy
+  has_many :donate, dependent: :destroy
 
   belongs_to :club
   belongs_to :user
@@ -34,7 +35,7 @@ class Event < ApplicationRecord
   end
 
   enum status: {inprocess: 0, finished: 1}
-  enum event_category: {pay_money: 1, get_money: 2, notification: 3, subsidy: 0}
+  enum event_category: {pay_money: 1, get_money: 2, notification: 3, subsidy: 0, donate: 4}
 
   delegate :full_name, :avatar, to: :user, prefix: :user
 
@@ -58,5 +59,11 @@ class Event < ApplicationRecord
 
   def notification?
     self.event_category == Settings.event_notification
+  end
+
+  class << self
+    def calculate_get_donate donate
+      donate.club.update_attributes money: donate.expense.to_i + donate.club.money.to_i
+    end
   end
 end

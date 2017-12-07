@@ -1051,3 +1051,17 @@ vi:
   update_logo: "Cập nhật logo"
   you_raiting_club: "Cảm ơn bạn rất nhiều!"
   update_here: "Cập nhật tại đây"
+  donate:
+    donate: "Ủng hộ"
+    list_donate: "Danh sách ủng hộ"
+    confirmed: "Đã xác nhận"
+    wait_confirmation: "Chờ xác nhận"
+    errors_update: "Yêu cầu của bạn đã được xác nhận. Không thể cập nhật. Vui lòng tạo mới yêu cầu!"
+    update_success: "Cập nhật thông tin thành công!"
+    total_money: "Tổng tiền"
+  event_category:
+    donate: "Ủng hộ"
+    get_money: "Thu tiền (Theo thành viên)"
+    pay_money: "Chi tiền"
+    subsidy: "Tiền trợ cấp"
+    notifications: "Thông báo"

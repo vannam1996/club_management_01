@@ -28,6 +28,7 @@ class EventsController < ApplicationController
   end
 
   def show
+    @donate = Donate.new
     @members = @event.users
     @members_done = @club.users.done_by_ids(@event.budgets.map(&:user_id))
     @members_yet = @club.users.yet_by_ids(@event.budgets.map(&:user_id))

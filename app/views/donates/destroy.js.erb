@@ -1,0 +1,5 @@
+<% if @donate.destroy %>
+  $('#request_<%= params[:id] %>').fadeOut();
+<% else %>
+  $('#page-container').append('<%= j render "shared/flash_warning" %>');
+<% end %>

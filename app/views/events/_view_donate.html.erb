@@ -1,0 +1,50 @@
+<div class="text-center">
+  <h6><%= t "donate.list_donate" %></h6>
+  <h5 class="pull-right">
+    <%= t "donate.total_money" %>:
+    <span class="total_money"><%= number_to_currency(@event.expense, locale: :vi) %></span>
+  </h5>
+</div>
+<table class="table ui-block table-pricing results">
+  <thead>
+    <tr>
+      <th><%= t "name" %></th>
+      <th><%= t "email" %></th>
+      <th><%= t "expense" %></th>
+      <th class="text-center funtion-donate"><%= t "status" %></th>
+      <th class="text-center funtion-donate"><%= t "my" %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% donates.each do |user_donate| %>
+      <tr class="add-user-member" id="request_<%= user_donate.id %>">
+        <td>
+          <%= user_donate.full_name %>
+        </td>
+        <td>
+          <%= user_donate.email %>
+        </td>
+        <td><%= number_to_currency(user_donate.expense, locale: :vi) %></td>
+        <td class="text-center confirm-donate" id="cofirm-<%=user_donate.id%>">
+          <%= confirm_donate(user_donate, @club) %>
+        </td>
+        <% unless user_donate.accept? %>
+          <% if current_user.id == user_donate.user_id %>
+            <td class="text-center confirm-donate">
+              <%= link_to club_event_donate_path(@club, @event, user_donate.id),
+                remote: :true, class: "btn btn-blue", title: t("edit") do %>
+                <i class="fa fa-pencil"></i>
+              <% end %>
+              <%= link_to club_event_donate_path(@club, @event, user_donate.id), method: :delete,
+                remote: :true, class: "btn btn-danger", title: t("delete") do %>
+                <i class="fa fa-trash"></i>
+              <% end %>
+            </td>
+          <% end %>
+        <% else %>
+          <td></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

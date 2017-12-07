@@ -28,12 +28,13 @@ module EventsHelper
 
   def view_case_money_event_after event, club
     members_done = club.users.done_by_ids(event.budgets.map(&:user_id))
-    case event.event_category
-    when Settings.get_money
+    case when event.get_money?
       after_money = event.amount.to_i + (members_done.size.to_i * event.expense.to_i)
-    when Settings.pay_money
+    when event.pay_money?
       after_money = event.amount.to_i - event.expense.to_i
-    when Settings.subsidy
+    when event.subsidy?
+      after_money = event.amount.to_i + event.expense.to_i
+    when event.donate?
       after_money = event.amount.to_i + event.expense.to_i
     else
       after_money = nil
@@ -75,6 +76,25 @@ module EventsHelper
     [[t("subsidy"), Event.event_categories[:subsidy]],
     [t("get_money"), Event.event_categories[:get_money]],
     [t("notification"), Event.event_categories[:notification]],
-    [t("pay_money"), Event.event_categories[:pay_money]]]
+    [t("pay_money"), Event.event_categories[:pay_money]],
+    [t("donate.donate"), Event.event_categories[:donate]]]
+  end
+
+  def confirm_donate donate, club
+    if donate.accept?
+      html = <<-HTML
+        <span class="btn btn-success">#{t("donate.confirmed")}</span>
+      HTML
+      raw html
+    elsif club.is_admin? current_user
+      link_to t("donate.wait_confirmation"),
+        edit_club_event_donate_path(club, donate.event_id, donate, status: :accept),
+        remote: :true, class: "btn btn-breez", title: t("confirm")
+    else
+      html = <<-HTML
+        <span class="btn btn-breez">#{t("donate.wait_confirmation")}</span>
+      HTML
+      raw html
+    end
   end
 end
