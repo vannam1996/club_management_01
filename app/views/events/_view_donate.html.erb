@@ -1,13 +1,16 @@
 <div class="text-center">
   <h6><%= t "donate.list_donate" %></h6>
-  <h5 class="pull-right">
-    <%= t "donate.total_money" %>:
-    <span class="total_money"><%= number_to_currency(@event.expense, locale: :vi) %></span>
-  </h5>
 </div>
+<h5 class="pull-right">
+  <%= t "donate.total_money" %>:
+  <span class="total_money"><%= number_to_currency(@event.expense, locale: :vi) %></span><br/>
+  <%= t "donate.wait_confirmation" %>:
+  <span class="pending_money"><%= number_to_currency(@expense_pending, locale: :vi) %></span>
+</h5>
 <table class="table ui-block table-pricing results">
   <thead>
     <tr>
+      <th><%= t "stt" %></th>
       <th><%= t "name" %></th>
       <th><%= t "email" %></th>
       <th><%= t "expense" %></th>
@@ -15,9 +18,44 @@
       <th class="text-center funtion-donate"><%= t "my" %></th>
     </tr>
   </thead>
+  <tbody class="create-errors"></tbody>
+  <%= form_tag remote: :true, method: :post do %>
+    <%= hidden_field_tag :club_id, @club.slug, class: "club_id" %>
+    <%= hidden_field_tag :event_id, @event.id, class: "event_id" %>
+    <tr>
+      <td colspan="2">
+        <%= text_field_tag :search_name, "", class: "form-control input-search search",
+          placeholder: t("donate.search") %>
+      </td>
+      <td>
+        <%= text_field_tag :name, "", class: "form-control input-search user-name",
+          placeholder: t("name"), disabled: true %>
+      </td>
+      <td>
+        <%= text_field_tag :email, "", class: "form-control input-search user-email",
+          placeholder: t("email"), disabled: true %>
+      </td>
+      <td>
+        <%= number_field_tag :expense, "", class: "form-control input-search user-expense",
+          placeholder: t("expense"), disabled: true %>
+      </td>
+      <td class="confirm-add-donate">
+        <%= link_to "javascript:void(0)", class: "btn btn-breez submit-form", title: t("confirm") do %>
+          <i class="fa fa-check"></i>
+        <% end %>
+        <%= link_to "javascript:void(0)", class: "btn btn-danger reset", title: t("cancel") do %>
+          <i class="fa fa-ban"></i>
+        <% end %>
+      </td>
+    </tr>
+    <tbody class="load-user-donate"></tbody>
+  <% end %>
   <tbody>
-    <% donates.each do |user_donate| %>
+    <% donates.each.with_index(Settings.export_member.number) do |user_donate, index| %>
       <tr class="add-user-member" id="request_<%= user_donate.id %>">
+        <td>
+          <%= index %>
+        </td>
         <td>
           <%= user_donate.full_name %>
         </td>
@@ -48,3 +86,4 @@
     <% end %>
   </tbody>
 </table>
+<%= javascript_include_tag "donate" %>

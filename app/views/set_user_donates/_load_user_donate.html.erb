@@ -1,0 +1,13 @@
+<% if @users.present? %>
+  <% @users.each do |user| %>
+    <tr class="list-user-donate" data-id="<%= user.id %>">
+      <td>
+        <%= image_tag user.avatar, class: "member-avatar-request" %>
+      </td>
+      <td>
+        <%= user.full_name %>
+      </td>
+      <td><%= user.email %></td>
+    </tr>
+  <% end %>
+<% end %>

@@ -156,7 +156,7 @@ hide: "hide"
 name_office: " Office"
 date_format: "%Y-%m-%d"
 date_format_vi: "%d-%m-%Y"
-notification_per_page: 20
+notification_per_page: 25
 export_budget:
   bg_title: "F7abce7"
   fg_title: "#FF000000"
@@ -188,3 +188,6 @@ user_club:
   member: 0
   join: 1
 max_display_member_organization: 10
+set_user_donates:
+  params_length: 2
+  colspan: 5

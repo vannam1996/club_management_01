@@ -92,6 +92,7 @@ Rails.application.routes.draw do
   resources :clubs, only: [:show, :index, :edit] do
     resources :events do
       resources :donates
+      resources :set_user_donates
     end
     resources :albums do
       resources :images
