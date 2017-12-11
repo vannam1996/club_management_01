@@ -55,7 +55,7 @@
               </td>
               <td class="location">
                 <div class="ui-block-title">
-                  <%= search_form_for @q,  url: organization_path(@organization), class: "w-search", id: "organization_club_form" do |f| %>
+                  <%= search_form_for @q, url: organization_path(@organization), class: "w-search", id: "organization_club_form" do |f| %>
                     <div class="form-group with-button" >
                       <%= f.text_field :name_cont,
                         placeholder: t("organization_details.search_name"),

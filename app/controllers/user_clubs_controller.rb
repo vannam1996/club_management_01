@@ -1,7 +1,8 @@
 class UserClubsController < ApplicationController
   before_action :authenticate_user!
-  before_action :load_club, only: [:update, :show]
+  before_action :load_club, only: [:update, :show, :destroy]
   before_action :load_user_club, only: :destroy
+  before_action :check_user_is_manager, only: :destroy
 
   def create
     user_club = UserClub.new request_params
@@ -44,6 +45,13 @@ class UserClubsController < ApplicationController
     unless @user_club
       flash[:danger] = t("not_found_user_club")
       redirect_back fallback_location: club_path
+    end
+  end
+
+  def check_user_is_manager
+    if @user_club.is_manager && @club.user_clubs.manager.size == Settings.user_club.manager
+      flash[:danger] = t("user_club_not_remove")
+      redirect_to organization_club_path @club.organization.slug, @club
     end
   end
 

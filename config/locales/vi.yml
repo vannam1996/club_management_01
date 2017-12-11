@@ -1067,3 +1067,5 @@ vi:
     pay_money: "Chi tiền"
     subsidy: "Tiền trợ cấp"
     notifications: "Thông báo"
+  user_organization_not_remove: "Bạn là quản lý duy nhất của tổ chức. Vui lòng chọn một thành viên khác làm quản lý để được rời khỏi tổ chức."
+  user_club_not_remove: "Bạn là quản lý duy nhất của câu lạc bộ. Vui lòng chọn một thành viên khác làm quản lý để được rời khỏi câu lạc bộ."
