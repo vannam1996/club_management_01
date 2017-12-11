@@ -1,6 +1,7 @@
 class UserOrganizationsController < ApplicationController
   before_action :authenticate_user!
   before_action :load_organization, only: [:show, :destroy]
+  before_action :load_user_organiation, only: :destroy
 
   def index
     @organizations = Organization.page(params[:page]).per(Settings.organization_per_page)
@@ -23,9 +24,7 @@ class UserOrganizationsController < ApplicationController
   end
 
   def destroy
-    user_organization = @organization.user_organizations
-      .find_by user_id: current_user.id
-    if user_organization.destroy
+    if @user_organization.destroy
       flash[:success] = t("cancel_success")
     else
       flash[:danger] = t("cancel_error")
@@ -43,5 +42,14 @@ class UserOrganizationsController < ApplicationController
 
   def organization_params
     params.require(:user_organization).permit(:organization_id).merge! user_id: current_user.id
+  end
+
+  def load_user_organiation
+    @user_organization = @organization.user_organizations
+      .find_by user_id: current_user.id
+    if @user_organization.is_admin && @organization.user_organizations.are_admin.size == Settings.user_club.manager
+      flash[:danger] = t("user_organization_not_remove")
+      redirect_to organization_path(@organization)
+    end
   end
 end

@@ -824,3 +824,4 @@ en:
     pay_money: "Pay money"
     subsidy: "Subsidy"
     notifications: "Notification"
+  user_organization_not_remove: "You are only management of the organization. Please choose a another member to handle to be removed from organization."
