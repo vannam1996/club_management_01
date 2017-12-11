@@ -13,19 +13,19 @@
                   <%= f.label(:rules, class: "control-label") do %>
                     <%= t "rules_club" %>
                   <% end %>
-                  <%= f.text_area :rules, class: "form-control input-text" %>
+                  <%= f.cktext_area :rules, class: "form-control input-text" %>
                 </div>
                 <div class="form-group col-md-12">
                   <%= f.label(:rule_finance, class: "control-label") do %>
                     <%= t "rule_finance" %>
                   <% end %>
-                  <%= f.text_area :rule_finance, class: "form-control input-text" %>
+                  <%= f.cktext_area :rule_finance, class: "form-control input-text" %>
                 </div>
                 <div class="form-group col-md-12">
                   <%= f.label(:time_join, class: "control-label") do %>
                     <%= t "time_member_join" %>
                   <% end %>
-                  <%= f.text_area :time_join, class: "form-control input-text" %>
+                  <%= f.cktext_area :time_join, class: "form-control input-text" %>
                 </div>
                 <div class="text-center col-md-12">
                   <%= f.submit t("update"), class: "btn btn-primary col-md-2 btn-sm" %>

@@ -108,5 +108,8 @@ var turbolink_app = function(){
     $('.notificationsBody').slimScroll({
       wheelStep: 20
     });
+    $(document).ready(function(){
+      CKEDITOR.config.height = 100;
+    });
   });
 };
