@@ -1,0 +1,17 @@
+<% if flash.any? %>
+  <% flash.each do |key, values| %>
+    <%= content_tag :div, values do %>
+      <% if values.class == Array %>
+        <tr class="alert errors-danger">
+          <% values.each do |value| %>
+            <td colspan="<%= Settings.set_user_donates.colspan %>"><%= value %></td>
+          <% end %>
+        </tr>
+      <% else %>
+        <tr class="alert errors-danger">
+          <td colspan="<%= Settings.set_user_donates.colspan %>"><%= values %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

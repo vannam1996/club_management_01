@@ -89,10 +89,10 @@ module EventsHelper
     elsif club.is_admin? current_user
       link_to t("donate.wait_confirmation"),
         edit_club_event_donate_path(club, donate.event_id, donate, status: :accept),
-        remote: :true, class: "btn btn-breez", title: t("confirm")
+        remote: :true, class: "btn btn-warning", title: t("confirm")
     else
       html = <<-HTML
-        <span class="btn btn-breez">#{t("donate.wait_confirmation")}</span>
+        <span class="btn btn-warning">#{t("donate.wait_confirmation")}</span>
       HTML
       raw html
     end

@@ -1,0 +1,6 @@
+<% if @donate %>
+  $('.content-donate').html('<%= j render partial: "events/view_donate", locals: {donates: @event.donate.newest} %>');
+  $('.total_money').html('<%= number_to_currency(@donate.event.expense, locale: :vi) %>');
+<% else %>
+  $('.create-errors').html('<%= j render "donate_errors" %>');
+<% end %>

@@ -4,7 +4,7 @@ class CreateDonates < ActiveRecord::Migration[5.0]
       t.references :event, foreign_key: true
       t.references :user, foreign_key: true
       t.float :expense
-      t.integer :status
+      t.integer :status, default: 0
 
       t.timestamps
     end

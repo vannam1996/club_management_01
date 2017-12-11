@@ -1538,3 +1538,14 @@
 .modal-user {
   padding: 10px;
 }
+.load-user-donate {
+  position: absolute;
+  z-index: 1000;
+  background-color: $darkseagreen;
+  max-height: 253px;
+  overflow-y: scroll;
+}
+.confirm-add-donate .btn{
+  padding: 10px;
+  margin-bottom: 0px !important;
+}

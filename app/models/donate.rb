@@ -2,13 +2,17 @@ class Donate < ApplicationRecord
   belongs_to :event
   belongs_to :user
 
-  after_update :update_event, if: ->{self.accept?}
+  after_save :update_event, if: ->{self.accept?}
 
   enum status: {pending: 0, accept: 1, reject: 2}
 
   scope :newest, ->{order created_at: :desc}
 
   delegate :full_name, :email, to: :user, allow_nil: :true
+
+  def self.expense_pending
+    sum("expense")
+  end
 
   private
   def update_event

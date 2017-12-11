@@ -1058,7 +1058,9 @@ vi:
     wait_confirmation: "Chờ xác nhận"
     errors_update: "Yêu cầu của bạn đã được xác nhận. Không thể cập nhật. Vui lòng tạo mới yêu cầu!"
     update_success: "Cập nhật thông tin thành công!"
-    total_money: "Tổng tiền"
+    total_money: "Tổng tiền hiện có"
+    unregistered: "Có lỗi trong quá trình xử lý. Không tìm thấy người dùng. Số tiền không được bỏ trống vui lòng kiểm tra lại!"
+    search: "Nhập tên hoặc email"
   event_category:
     donate: "Ủng hộ"
     get_money: "Thu tiền (Theo thành viên)"

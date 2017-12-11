@@ -1,0 +1,5 @@
+<% if params[:user].length > Settings.set_user_donates.params_length %>
+  $('.load-user-donate').html('<%= j render "load_user_donate" %>');
+<% else %>
+  $('.list-user-donate').fadeOut();
+<% end %>
