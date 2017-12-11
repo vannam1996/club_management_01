@@ -1,7 +1,7 @@
 class SetUserDonatesController < ApplicationController
   before_action :authenticate_user!
   before_action :load_club
-  before_action :load_event, only: [:update, :edit, :new, :show]
+  before_action :load_event
   before_action :load_user, only: :show
 
   def index
