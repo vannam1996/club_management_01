@@ -59,7 +59,7 @@ RSpec.describe SetUserDonatesController, type: :controller do
         expect do
           post :create, xhr: true, params: {club_id: club, event_id: event, email: user.email}
         end.to change(UserClub, :count).by 0
-        expect(flash[:danger]).to eq I18n.t("error_process")
+        expect(flash[:danger]).to eq I18n.t("donate.unregistered")
       end
     end
     context "when params not present" do
