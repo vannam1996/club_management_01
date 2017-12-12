@@ -31,7 +31,7 @@ var turbolink_app = function(){
         });
       }, 4000);
     });
-    $('.close-message').click(function(){
+    $(document).on('click', '.close-message',function(){
       $('.notify').slideUp(300, function() {
         $('.notify').hide();
       });

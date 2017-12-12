@@ -124,5 +124,6 @@ Rails.application.routes.draw do
   resources :club_request_organizations
   resources :set_image_clubs
   resources :set_logo_clubs
+  resources :set_active_clubs, only: :edit
 
 end

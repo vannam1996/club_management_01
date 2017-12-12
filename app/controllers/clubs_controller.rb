@@ -1,6 +1,6 @@
 class ClubsController < ApplicationController
   before_action :authenticate_user!
-  before_action :load_club, only: [:show, :edit, :verify_club, :update]
+  load_and_authorize_resource find_by: :slug
   before_action :verify_club, only: :show
   before_action :load_user_organizations, only: :show
   before_action :load_organization, only: [:update]
@@ -71,17 +71,18 @@ class ClubsController < ApplicationController
 
   protected
   def verify_club
-    return if @club.is_active?
-    flash[:danger] = t("club_is_lock")
-    redirect_to clubs_url
+    if !@club.is_active? && !@club.is_admin?(current_user)
+      flash[:danger] = t "club_not_active"
+      redirect_to root_path
+    end
   end
 
-  def load_club
-    @club = Club.find_by slug: params[:id]
-    return if @club
-    flash[:danger] = t("not_found")
-    redirect_to root_path
-  end
+  # def load_club
+  #   @club = Club.find_by slug: params[:id]
+  #   return if @club
+  #   flash[:danger] = t("not_found")
+  #   redirect_to root_path
+  # end
 
   def load_user_organizations
     @user_organizations = @club.organization.user_organizations.joined.includes :user

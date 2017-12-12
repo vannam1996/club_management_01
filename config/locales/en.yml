@@ -825,3 +825,7 @@ en:
     subsidy: "Subsidy"
     notifications: "Notification"
   user_organization_not_remove: "You are only management of the organization. Please choose a another member to handle to be removed from organization."
+  pause_club: "Pause activity"
+  activated: "Activated"
+  club_not_active: "Sorry, the club is temporarily unavailable, you can not go to this club."
+  activated_success: "Successful activation"
