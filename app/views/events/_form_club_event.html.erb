@@ -12,7 +12,7 @@
         if @event.present?
           {selected: Event.event_categories[@event.event_category]}
         end), {},
-        class: "form-control") %>
+        class: "form-control", disabled: @event.id?) %>
     </div>
   </div>
   <div class="form-group col-md-12">
