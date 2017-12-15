@@ -19,36 +19,38 @@
     </tr>
   </thead>
   <tbody class="create-errors"></tbody>
-  <%= form_tag remote: :true, method: :post do %>
-    <%= hidden_field_tag :club_id, @club.slug, class: "club_id" %>
-    <%= hidden_field_tag :event_id, @event.id, class: "event_id" %>
-    <tr>
-      <td colspan="2">
-        <%= text_field_tag :search_name, "", class: "form-control input-search search",
-          placeholder: t("donate.search") %>
-      </td>
-      <td>
-        <%= text_field_tag :name, "", class: "form-control input-search user-name",
-          placeholder: t("name"), disabled: true %>
-      </td>
-      <td>
-        <%= text_field_tag :email, "", class: "form-control input-search user-email",
-          placeholder: t("email"), disabled: true %>
-      </td>
-      <td>
-        <%= number_field_tag :expense, "", class: "form-control input-search user-expense",
-          placeholder: t("expense"), disabled: true %>
-      </td>
-      <td class="confirm-add-donate">
-        <%= link_to "javascript:void(0)", class: "btn btn-breez submit-form", title: t("confirm") do %>
-          <i class="fa fa-check"></i>
-        <% end %>
-        <%= link_to "javascript:void(0)", class: "btn btn-danger reset", title: t("cancel") do %>
-          <i class="fa fa-ban"></i>
-        <% end %>
-      </td>
-    </tr>
-    <tbody class="load-user-donate"></tbody>
+  <% if can? :is_admin, @club %>
+    <%= form_tag remote: :true, method: :post do %>
+      <%= hidden_field_tag :club_id, @club.slug, id: "id_club" %>
+      <%= hidden_field_tag :event_id, @event.id, id: "id_event" %>
+      <tr>
+        <td colspan="2">
+          <%= text_field_tag :search_name, "", class: "form-control input-search search",
+            placeholder: t("donate.search") %>
+        </td>
+        <td>
+          <%= text_field_tag :name, "", class: "form-control input-search user-name",
+            placeholder: t("name"), disabled: true %>
+        </td>
+        <td>
+          <%= text_field_tag :email, "", class: "form-control input-search user-email",
+            placeholder: t("email"), disabled: true %>
+        </td>
+        <td>
+          <%= number_field_tag :expense, "", class: "form-control input-search user-expense",
+            placeholder: t("expense"), disabled: true %>
+        </td>
+        <td class="confirm-add-donate">
+          <%= link_to "javascript:void(0)", class: "btn btn-breez submit-form", title: t("confirm") do %>
+            <i class="fa fa-check"></i>
+          <% end %>
+          <%= link_to "javascript:void(0)", class: "btn btn-danger reset", title: t("cancel") do %>
+            <i class="fa fa-ban"></i>
+          <% end %>
+        </td>
+      </tr>
+      <tbody class="load-user-donate"></tbody>
+    <% end %>
   <% end %>
   <tbody>
     <% donates.each.with_index(Settings.export_member.number) do |user_donate, index| %>

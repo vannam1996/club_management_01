@@ -1211,7 +1211,8 @@
   background-color: $dodger-blue;
 }
 .edit-infor-club {
-  margin: 5px 10px;
+  margin-bottom: 0px !important;
+  padding: 3px 10px;
 }
 .role_user {
   padding-top: 2px;
@@ -1449,7 +1450,7 @@
 .drop-image {
   left: auto;
   margin-bottom: 0.125rem;
-  min-width: 145px;
+  min-width: 150px;
   margin-top: 10px;
   li {
     padding: 5px;
@@ -1551,4 +1552,26 @@
 }
 .funtion-organization {
   padding: 5px 15px 5px !important,
+}
+.not-active {
+  position: absolute;
+  z-index: 1000;
+  background-color: $quamarine;
+  position: fixed;
+}
+.not-active h5 {
+  color: $orange;
+  font-size: 25px;
+}
+.active-club {
+  left: auto;
+  margin-bottom: 0.125rem;
+  min-width: 150px;
+  margin-top: 30px;
+  >li {
+    padding: 5px;
+  }
+  >li:hover {
+    background-color: $blue-white;
+  }
 }
