@@ -146,10 +146,6 @@
               <span class="text"><%= @organization.name %></span>
             </li>
             <li>
-              <span class="title"><%= t "organization_details.name" %></span>
-              <span class="text"><%= @organization.name %></span>
-            </li>
-            <li>
               <span class="title"><%= t "organization_details.created" %></span>
               <span class="text"><%= (l @organization.created_at, format: :short) unless
                 @organization.created_at.nil? %></span>

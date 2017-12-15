@@ -109,7 +109,7 @@ var turbolink_app = function(){
       wheelStep: 20
     });
     $(document).ready(function(){
-      CKEDITOR.config.height = 100;
+      CKEDITOR.config.height = 150;
     });
   });
 };
