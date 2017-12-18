@@ -1576,3 +1576,23 @@
     background-color: $blue-white;
   }
 }
+.export-bugets {
+  border: 1px solid;
+  background-color: $orange;
+  border-radius: 50%;
+  color: white;
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+  margin-right: 10px;
+}
+.export-buget {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.search-buget {
+  position: absolute;
+  margin: 0px 125px;
+}

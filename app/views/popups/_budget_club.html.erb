@@ -7,18 +7,26 @@
       <h6 class="title col-md-9"><%= t("history_budget") %></h6>
       <div class="pull-right" id="export-budget">
         <% if @infor_club.history_budget.any? %>
-          <%= link_to t("export_budget"), dashboard_export_history_budgets_path( format: :xlsx, id: @club,
+          <%= link_to dashboard_export_history_budgets_path( format: :xlsx, id: @club,
             first_date: format_date(@infor_club.history_budget.last.created_at), second_date:
             format_date(@infor_club.history_budget.first.created_at)),
-            class: "btn btn-sm btn-danger" %>
+            title: t("export_budget") do %>
+            <span class="export-bugets primary">
+              <i class="fa fa-download"></i>
+            </span>
+          <% end %>
         <% end %>
       </div>
     </div>
-    <div class="input-group" data-date-format="dd/mm/yyyy" id="budget-filter">
-      <div class="col-md-2 span-date text-center"><span><strong><%= t("from") %></span></strong></div>
-      <%= date_field_tag :date_first, class: "form-control text-center" %>
-      <div class="col-md-2 span-date text-center"><span><strong><%= t("to") %></span></strong></span></div>
-      <%= date_field_tag :date_end, class: "form-control text-center" %>
+    <div class="input-group col-md-7 search-buget" data-date-format="dd/mm/yyyy" id="budget-filter">
+      <div class="col-md-6 row">
+        <div class="col-md-3 span-date text-center"><span><strong><%= t("from") %></strong></span></div>
+        <%= date_field_tag :date_first, {}, class: "export-buget text-center col-md-9" %>
+      </div>
+      <div class="col-md-6 row">
+        <div class="col-md-3 span-date text-center"><span><strong><%= t("to") %></span></strong></span></div>
+        <%= date_field_tag :date_end, {}, class: "export-buget text-center col-md-9" %>
+      </div>
       <%= hidden_field :club_id, value: @club.id %>
     </div>
     <div id="data-event">
