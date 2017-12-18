@@ -20,7 +20,7 @@
                 </time>
                 <div class="confirm-donate">
                   <%= link_to club_path(@club), title: t("back"), class: "btn btn-sm btn-primary" do %>
-                    <i class="fa fa-undo"></i>
+                    <i class="fa fa-arrow-left"></i>
                   <% end %>
                   <% if @club.is_admin?(current_user) && @event.by_user?(current_user) %>
                     <%= link_to edit_club_event_path(@club, @event),
@@ -47,16 +47,16 @@
               <% end %>
             </div>
           </div>
+          <div class="place inline-items">
+            <%= image_tag @event.user_avatar, class: "member-organization-view" %><span>
+            <span class="h6 author-event"><%= @event.user_full_name %></trong></span>
+          </div>
           <div class="row">
             <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
               <%= image_tag @event.image, class: "img-responsive full_image event-image" %>
             </div>
             <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
               <div class="event-description">
-                <div class="place inline-items">
-                  <%= image_tag @event.user_avatar, class: "member-organization-view" %><span>
-                  <span class="author-event"><%= @event.user_full_name %></span>
-                </div>
                 <h6 class="event-description-title"><%= t "info_event" %></h6>
                 <div class="place inline-items">
                   <i class="fa fa-map-marker" aria-hidden="true"></i>

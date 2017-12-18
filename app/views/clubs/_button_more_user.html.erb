@@ -1,10 +1,12 @@
 <h5 class="title-modal-member text-center">
   <%= t "member_detail" %>
-  <%= link_to dashboard_club_export_members_path(format: :xlsx, id: @club),
-    class: "pull-right", title: t("export_member") do %>
-    <span class = "export-member primary">
-      <i class="fa fa-download"></i>
-    </span>
+  <% if current_user.user_clubs.joined.of_club(@club) %>
+    <%= link_to dashboard_club_export_members_path(format: :xlsx, id: @club),
+      class: "pull-right", title: t("export_member") do %>
+      <span class = "export-member primary">
+        <i class="fa fa-download"></i>
+      </span>
+    <% end %>
   <% end %>
 </h5>
 <div class="content-list modal-body row">
