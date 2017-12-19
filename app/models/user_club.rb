@@ -30,6 +30,10 @@ class UserClub < ApplicationRecord
       return user.is_manager if user
       false
     end
+
+    def load_user user_id
+      find_by user_id: user_id
+    end
   end
 
   def send_mail_after_update

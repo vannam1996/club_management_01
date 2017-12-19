@@ -8,6 +8,7 @@
   <td>
     <%= select_tag "roles[]", options_for_select(user_role, selected_role(user_organization)),
       class: "role_user" %>
+    <%= hidden_field_tag "user_ids[]", user_organization.user_id %>
   </td>
   <td>
     <%= link_to set_user_organization_path(id: user_organization.id), method: :delete,

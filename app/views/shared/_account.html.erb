@@ -5,14 +5,6 @@
       <h6 class="title"><%= t "account" %></h6>
     </div>
     <ul class="account-settings">
-      <% if current_user.user_clubs.manager.any? || current_user.user_organizations.are_admin.any? %>
-        <li>
-          <%= link_to dashboard_path do %>
-            <svg class="olymp-menu-icon"><use xlink:href="<%= url_to_asset("icons/icons.svg#olymp-menu-icon") %>"></use></svg>
-            <%= t("dashboard") %>
-          <% end %>
-        </li>
-      <% end %>
       <li>
         <%= link_to user_path(current_user) do %>
           <svg class="olymp-menu-icon"><use xlink:href="<%= url_to_asset("icons/icons.svg#olymp-menu-icon") %>"></use></svg>

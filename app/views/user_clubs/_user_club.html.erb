@@ -7,6 +7,7 @@
   </td>
   <td>
     <%= select_tag "roles[]", options_for_select(user_role_club, check_role_club(user_club)), class: "role_user" %>
+    <%= hidden_field_tag "user_id[]", user_club.user_id %>
   </td>
   <td>
     <%= link_to dashboard_club_user_club_path(id: user_club.id,

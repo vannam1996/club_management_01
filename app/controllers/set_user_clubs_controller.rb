@@ -1,7 +1,6 @@
 class SetUserClubsController < ApplicationController
   before_action :authenticate_user!
   before_action :load_club
-  before_action :load_users, only: :update
 
   def create
     ActiveRecord::Base.transaction do
@@ -24,7 +23,9 @@ class SetUserClubsController < ApplicationController
     ActiveRecord::Base.transaction do
       user_club_update = []
       roles = params[:roles]
-      @users.each.with_index(Settings.user_club.number) do |member, index|
+      user_ids = params[:user_id]
+      user_ids.each.with_index(Settings.user_club.number) do |user_id, index|
+        member = UserClub.load_user(user_id)
         if member.is_manager != roles[index]
           member.is_manager = roles[index]
           user_club_update << member
@@ -45,9 +46,5 @@ class SetUserClubsController < ApplicationController
   rescue
     flash[:danger] = t "not_found_club"
     redirect_back fallback_location: club_path
-  end
-
-  def load_users
-    @users = @club.user_clubs.joined
   end
 end

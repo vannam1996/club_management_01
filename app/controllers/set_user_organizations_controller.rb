@@ -3,7 +3,7 @@ class SetUserOrganizationsController < ApplicationController
   before_action :load_organization, only: [:show, :edit, :update, :create]
   before_action :load_user_organization, only: :destroy
   before_action :load_user_admins, only: [:show, :edit]
-  before_action :user_joined_organizations, only: [:update, :show, :edit]
+  before_action :user_joined_organizations, only: [:show, :edit]
 
   def create
     ActiveRecord::Base.transaction do
@@ -39,7 +39,7 @@ class SetUserOrganizationsController < ApplicationController
 
   def update
     if params[:roles].present?
-      service = UpdateUserOrganizationService.new @user_organizations, params[:roles]
+      service = UpdateUserOrganizationService.new params[:user_ids], params[:roles]
       UserOrganization.import service.update_user, on_duplicate_key_update: [:is_admin]
       flash[:success] = t "success_process"
       redirect_to organization_path @organization
