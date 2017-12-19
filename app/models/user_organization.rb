@@ -39,5 +39,9 @@ class UserOrganization < ApplicationRecord
     def user_not_joined user_clubs
       self.without_user_ids user_clubs
     end
+
+    def load_user user_id
+      find_by user_id: user_id
+    end
   end
 end

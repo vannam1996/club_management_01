@@ -24,7 +24,7 @@
               <div class="main-header-content text-center">
                 <a href="#" class="h1 author-name"><%= @organization.name %></a>
                 <span class="animation-slideUp hidden-xs rating-container">
-                  <p class="description-organization h3"><%= @organization.description %></p>
+                  <p class="description-organization h3"><%= raw(@organization.description) %></p>
                 </span>
               </div>
             </div>
