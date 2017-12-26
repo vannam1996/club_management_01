@@ -1,0 +1,61 @@
+<div class="modal fade" id="add-user" role="dialog">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"><%= t"member_label" %></h4>
+        <%= button_tag type: "button", class: "close", data: {dismiss: "modal"} do %>
+          &times;
+        <% end %>
+      </div>
+      <div class="modal-body">
+        <div class="form-search">
+          <div class="row">
+            <div class="col-md-12">
+              <span class="input-group-addon" id="basic-addon1">
+                <i class="fa fa-search" aria-hidden="true"></i>
+              </span>
+              <%= text_field_tag :search_user, "", class: "form-control input-search", placeholder: t("edit_member.search_member") %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="widget-simple list-scroll">
+        <div class="table-responsive">
+          <table class="table ui-block table-pricing results">
+            <tbody>
+              <% if user_clubs.any? %>
+                <% user_clubs.each do |user_club| %>
+                  <tr class="add-user-member user-<%= user_club.user_id %>">
+                    <td class="check-user">
+                      <%= check_box_tag "user_club_request[user_ids][]",user_club.user_id %>
+                    </td>
+                    <td>
+                      <%= user_club.user_full_name %>
+                    </td>
+                    <td>
+                      <%= user_club.user_email %>
+                    </td>
+                  </tr>
+                <% end %>
+              <% else %>
+                <tr class="text-center">
+                  <td colspan="4">
+                    <h3 class="center notifi-empty"><%= t "empty" %></h3>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer text-center">
+        <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal">
+          <%= t "submit_member" %>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= javascript_include_tag "add_user_club" %>
+<%= javascript_include_tag "search_member" %>

@@ -831,3 +831,8 @@ en:
   activated: "Activated"
   club_not_active: "Sorry, the club is temporarily unavailable, you can not go to this club."
   activated_success: "Successful activation"
+  add_member: "Add member"
+  member_label: "Member"
+  submit_member: "Submit"
+  add_member_error: "Errors adding member %{msg}"
+  error_load_user_organization: "Error load user"

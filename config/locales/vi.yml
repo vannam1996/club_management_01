@@ -1075,3 +1075,8 @@ vi:
   activated: "Kích hoạt"
   club_not_active: "Xin lỗi! CLB tạm ngừng hoạt động bạn không thể vào CLB này."
   activated_success: "Xử lý thành công"
+  add_member: "Thêm thành viên"
+  member_label: "Thành viên"
+  submit_member: "Xác nhận"
+  add_member_error: "Lỗi thêm thành viên %{msg}"
+  error_load_user_organization: "Lỗi tải thành viên"

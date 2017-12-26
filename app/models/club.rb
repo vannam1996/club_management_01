@@ -70,12 +70,25 @@ class Club < ApplicationRecord
       punishment: request.punishment, plan: request.plan, logo: request.logo, is_active: true,
       club_type: request.club_type, activities_connect: request.activities_connect
       create_user_club club, request
+      add_member_club club, request
     end
 
     def create_user_club club, request
       user_club = UserClub.create user_id: request.user_id, club_id: club.id, is_manager: true,
         status: :joined
       send_mail_club_request user_club, club
+    end
+
+    def add_member_club club, request
+      user_ids = UserClubRequest.user_club_requests(request.id).pluck(:user_id)
+      if user_ids
+        userclubs = []
+        user_ids.each do |user_id|
+          userclubs << UserClub.new(user_id: user_id, club_id: club.id, is_manager: false,
+            status: :joined)
+        end
+        UserClub.import userclubs
+      end
     end
 
     def send_mail_club_request user_club, club

@@ -40,6 +40,17 @@
                 <%= f.number_field :member, class: "form-control", required: true %>
               </div>
             </div>
+            <div class = "col-md-12">
+              <%=hidden_field_tag "user_id", current_user.id %>
+              <%= f.label t"member_label" %>
+              <%= button_tag type: "button", class: "btn btn-info btn-sm btn_add_member",
+                data: {toggle: "modal", target: "#add-user"} do %>
+                <span class="text-center"><%= t "add_member" %></span>
+              <% end %>
+              <div id="user_club_request">
+                <%= render partial: "add_user", locals: {user_clubs: @user_organizations} %>
+              </div>
+            </div>
             <div class="col-md-12 logo-club">
               <div class="row">
                 <div class="col-md-4">
@@ -145,3 +156,5 @@
     </div>
   </div>
 </section>
+
+<%= javascript_include_tag "club_request" %>
