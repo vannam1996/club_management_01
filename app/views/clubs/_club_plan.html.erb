@@ -10,11 +10,20 @@
 <div class="title-detail ui-block-title-small">
   <h6 class="title">
     <i class="fa fa-codepen" aria-hidden="true"></i>
-    <%= t "plan" %>
+    <%= t "information_plan" %>
   </h6>
 </div>
 <div class="content_tab">
   <%= view_detail_club(@club.plan) %>
+</div>
+<div class="title-detail ui-block-title-small">
+  <h6 class="title">
+    <i class="fa fa-codepen" aria-hidden="true"></i>
+    <%= t "activities_connect" %>
+  </h6>
+</div>
+<div class="content_tab">
+  <%= view_detail_club @club.activities_connect %>
 </div>
 <div class="title-detail ui-block-title-small">
   <h6 class="title">
