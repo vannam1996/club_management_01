@@ -36,14 +36,14 @@
     <td class="description">
       <p class="description"><%= raw(event.description.truncate(Settings.event_truncate)) unless event.description.nil? %></p>
     </td>
-    <% if @club.is_admin?(current_user) && event.by_user?(current_user) %>
+    <% if @club.is_admin?(current_user) && event.by_user?(current_user) && event.inprocess? %>
       <td class="funtion-event">
         <%= link_to edit_club_event_path(@club.id, event.id), title: t("edit"),
           class: "btn btn-sm btn-primary" do %>
           <i class="fa fa-pencil-square-o"></i>
         <% end %>
         <%= link_to club_event_path(@club.id, event.id), title: t("delete"),
-          class: "btn btn-sm btn-danger", remote: :true, method: :delete,
+          class: "btn btn-sm btn-danger", method: :delete,
           data: {confirm: t("delete_event")} do %>
           <i class="fa fa-remove"></i>
         <% end %>

@@ -14,6 +14,7 @@ class Event < ApplicationRecord
   belongs_to :club
   belongs_to :user
 
+  after_destroy :update_money
   mount_uploader :image, ImageUploader
 
   validates :name, presence: true, length: {minimum: Settings.min_name}
@@ -64,6 +65,16 @@ class Event < ApplicationRecord
   class << self
     def calculate_get_donate donate
       donate.club.update_attributes money: donate.expense.to_i + donate.club.money.to_i
+    end
+  end
+
+  def update_money
+    case when self.pay_money?
+      self.club.update_attributes money: self.club.money + self.expense
+    when self.donate? || self.subsidy?
+      self.club.update_attributes money: self.club.money - self.expense
+    when self.get_money?
+      self.club.update_attributes money: self.club.money - (self.budgets.size * self.expense.to_i)
     end
   end
 end
