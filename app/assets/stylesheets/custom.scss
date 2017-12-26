@@ -598,3 +598,18 @@ body{
   border-bottom: 1px solid $beige;
   padding-bottom: 18px;
 }
+
+/* form club request */
+
+.select_custom.form-control {
+  border-color: $border-blue;
+}
+.form-control {
+  border-color: $border-blue;
+}
+.checkbox .checkbox-material .check {
+  border-color: $border-blue;
+}
+.form-group.with-button button {
+  background-color: $border-blue;
+}
