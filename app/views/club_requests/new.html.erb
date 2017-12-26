@@ -86,37 +86,51 @@
             <div class="col-md-12">
                <div class="form-group label-floating">
                 <%= f.label(:time_join, t("time_join"), class: "control-label") %>
-                <%= f.text_area :time_join, class: "form-control", row: 10 %>
+                <%= f.text_area :time_join, class: "form-control",
+                  row: Settings.club_request.row_text_area %>
               </div>
             </div>
             <div class="col-md-12">
               <div class="form-group label-floating">
                 <%= f.label(:time_join, t("local_club"), class: "control-label") %>
-                <%= f.text_area :time_join, class: "form-control", id: "contact-message", row: 10%>
+                <%= f.text_area :time_join, class: "form-control", id: "contact-message",
+                  row: Settings.club_request.row_text_area %>
               </div>
             </div>
             <div class="col-md-12">
               <div class="form-group label-floating">
                 <%= f.label(:rules, t("rules_club"), class: "control-label") %>
-                <%= f.text_area :rules, class: "form-control", id: "contact-message", row: 10%>
+                <%= f.text_area :rules, class: "form-control", id: "contact-message",
+                  row: Settings.club_request.row_text_area %>
               </div>
             </div>
             <div class="col-md-12">
               <div class="form-group label-floating">
                 <%= f.label(:rule_finance, t("rule_finance"), class: "control-label") %>
-                <%= f.text_area :rule_finance, class: "form-control", id: "contact-message", row: 10%>
+                <%= f.text_area :rule_finance, class: "form-control", id: "contact-message",
+                  row: Settings.club_request.row_text_area %>
               </div>
             </div>
             <div class="col-md-12">
               <div class="form-group label-floating">
                 <%= f.label(:punishment, t("punishment"), class: "control-label") %>
-                <%= f.text_area :punishment, class: "form-control", id: "contact-message", row: 10%>
+                <%= f.text_area :punishment, class: "form-control", id: "contact-message",
+                  row: Settings.club_request.row_text_area %>
               </div>
             </div>
             <div class="col-md-12">
               <div class="form-group label-floating">
-                <%= f.label(:plan, t("plan"), class: "control-label") %>
-                <%= f.text_area :plan, class: "form-control", id: "contact-message", row: 10%>
+                <%= f.label(:plan, t("information_plan"), class: "control-label") %>
+                <%= f.text_area :plan, class: "form-control", id: "contact-message",
+                  row: Settings.club_request.row_text_area %>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group label-floating">
+                <%= f.label(:activities_conect, t("activities_connect"),
+                  class: "control-label") %>
+                <%= f.text_area :activities_conect, class: "form-control",
+                  id: "contact-message", row: Settings.club_request.row_text_area %>
               </div>
             </div>
             <div class="form-group center">

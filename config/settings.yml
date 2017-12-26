@@ -118,6 +118,7 @@ club_request:
   max_plan_length: 1000
   max_name_length: 255
   max_member: 1000
+  rows_text_area: 10
 club:
   min_content_length: 10
   max_content_length: 1000
