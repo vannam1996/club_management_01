@@ -9,7 +9,7 @@
           </h3>
           <div class="hr-center-line-div"></div>
           <%= form_for [:user, @request], html: {id: "form-contact"} do |f|%>
-            <div class="form-group col-md-12 new-organization">
+            <div class="col-md-12 new-organization">
               <label for="contact-name"><%= t "organization_sign" %></label>
               <br>
               <%= f.select(:organization_id, @organizations.collect {|org| [ org.name, org.organization_id ]}, {}, {class: "form-control select_custom" }) %>
@@ -31,7 +31,7 @@
                 ClubRequest.club_types.map{|k, v| [t("#{k}"), v]}), {},
                 {class: "form-control select_custom"}) %>
             </div>
-            <div class="col-md-12">
+            <div class="form-group col-md-12">
               <div class="form-group label-floating">
                 <%= f.label(:member, class: "control-label") do %>
                   <%= t("member_count") %>
@@ -40,7 +40,7 @@
                 <%= f.number_field :member, class: "form-control", required: true %>
               </div>
             </div>
-            <div class="form-group col-md-12 logo-club">
+            <div class="col-md-12 logo-club">
               <div class="row">
                 <div class="col-md-4">
                   <label for="contact-email"><%= t "logo_club" %></label>
@@ -52,7 +52,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-12">
+            <div class="form-group col-md-12">
               <div class="form-group label-floating">
                 <%= f.label(:content, class: "control-label") do %>
                   <%= t("content_club") %>
@@ -61,7 +61,7 @@
                 <%= f.text_area :content, class: "form-control", required: true %>
               </div>
             </div>
-            <div class="col-md-12">
+            <div class="form-group col-md-12">
               <div class="form-group label-floating">
                 <%= f.label(:goal, class: "control-label") do %>
                   <%= t("goal_club") %>
@@ -70,41 +70,43 @@
                 <%= f.text_area :goal, class: "form-control", required: true %>
               </div>
             </div>
-            <div class="col-md-12">
-              <p><label for="contact-message"><%= t "time_club" %></label></p>
-              <div class="days-selector">
-                <% for day in I18n.t("date.day_names") %>
-                  <div class="checkbox">
-                    <label>
-                      <%= check_box_tag "club_request[time_activity][]", day %>
-                      <%= day %>
-                    </label>
-                  </div>
-                <% end %>
+            <div class="form-group col-md-12">
+              <label for="contact-message"><%= t "time_club" %></label>
+              <div class="days-selector col-md-12">
+                <div class="row">
+                  <% for day in I18n.t("date.day_names") %>
+                    <div class="checkbox time-active">
+                      <label>
+                        <%= check_box_tag "club_request[time_activity][]", day %>
+                        <%= day %>
+                      </label>
+                    </div>
+                  <% end %>
+                </div>
               </div>
             </div>
-            <div class="col-md-12">
+            <div class="form-group col-md-12">
                <div class="form-group label-floating">
                 <%= f.label(:time_join, t("time_join"), class: "control-label") %>
                 <%= f.text_area :time_join, class: "form-control",
                   row: Settings.club_request.row_text_area %>
               </div>
             </div>
-            <div class="col-md-12">
+            <div class="form-group col-md-12">
               <div class="form-group label-floating">
                 <%= f.label(:time_join, t("local_club"), class: "control-label") %>
                 <%= f.text_area :time_join, class: "form-control", id: "contact-message",
                   row: Settings.club_request.row_text_area %>
               </div>
             </div>
-            <div class="col-md-12">
+            <div class="form-group col-md-12">
               <div class="form-group label-floating">
                 <%= f.label(:rules, t("rules_club"), class: "control-label") %>
                 <%= f.text_area :rules, class: "form-control", id: "contact-message",
                   row: Settings.club_request.row_text_area %>
               </div>
             </div>
-            <div class="col-md-12">
+            <div class="form-group col-md-12">
               <div class="form-group label-floating">
                 <%= f.label(:rule_finance, t("rule_finance"), class: "control-label") %>
                 <%= f.text_area :rule_finance, class: "form-control", id: "contact-message",
@@ -118,14 +120,14 @@
                   row: Settings.club_request.row_text_area %>
               </div>
             </div>
-            <div class="col-md-12">
+            <div class="form-group col-md-12">
               <div class="form-group label-floating">
                 <%= f.label(:plan, t("information_plan"), class: "control-label") %>
                 <%= f.text_area :plan, class: "form-control", id: "contact-message",
                   row: Settings.club_request.row_text_area %>
               </div>
             </div>
-            <div class="col-md-12">
+            <div class="form-group col-md-12">
               <div class="form-group label-floating">
                 <%= f.label(:activities_conect, t("activities_connect"),
                   class: "control-label") %>
@@ -133,9 +135,9 @@
                   id: "contact-message", row: Settings.club_request.row_text_area %>
               </div>
             </div>
-            <div class="form-group center">
+            <div class="pull-right">
               <%= f.submit t("send_request"),
-                class: "btn btn-secondary full-width" %>
+                class: "btn btn-secondary" %>
             </div>
           <% end %>
         </div>
