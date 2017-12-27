@@ -1,6 +1,8 @@
 class ClubRequest < ApplicationRecord
   belongs_to :organization
   belongs_to :user
+  has_many :user_club_requests, dependent: :destroy
+  has_many :users, through: :user_club_requests
   has_many :activities, as: :target, dependent: :destroy
 
   after_update :create_club, if: ->{self.joined?}

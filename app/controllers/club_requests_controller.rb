@@ -14,11 +14,20 @@ class ClubRequestsController < ApplicationController
   def new
     @request = ClubRequest.new
     @organizations = current_user.user_organizations.joined
+    if params[:organization_id]
+      @user_organizations = UserOrganization.load_user_organization(params[:organization_id])
+        .except_me(current_user.id)
+      render partial: "add_user", locals: {user_clubs: @user_organizations}
+    else
+      @user_organizations = UserOrganization.load_user_organization(
+        current_user.organizations.first.id).except_me(current_user.id)
+    end
   end
 
   def create
     request = ClubRequest.new request_params
     if request.save
+      save_user_club_request request
       flash[:success] = t("success_create")
       redirect_to root_path
     else
@@ -34,5 +43,19 @@ class ClubRequestsController < ApplicationController
       :organization_id, :member, :goal, :local, :activities_connect,
       :content, :rules, :rule_finance, :time_join, :punishment,
       :plan, :goal, time_activity: []).merge! user_id: current_user.id, club_type: club_type
+  end
+
+  def save_user_club_request request
+    organizations = Organization.find_by id: request_params[:organization_id]
+    msg = ""
+    if params[:user_club_request] && params[:user_club_request][:user_ids]
+      params[:user_club_request][:user_ids].each do |user_id|
+        unless user_id && request.user_club_requests.create(user_id: user_id)
+          user = organizations.users.find_by id: user_id
+          msg +=  "#{user.full_name}, " if user
+        end
+      end
+      flash[:warning] = t "add_member_error", msg: msg if msg.present?
+    end
   end
 end
