@@ -68,7 +68,7 @@ class Club < ApplicationRecord
       local: request.local, content: request.content, time_activity: request.time_activity,
       rules: request.rules, rule_finance: request.rule_finance, time_join: request.time_join,
       punishment: request.punishment, plan: request.plan, logo: request.logo, is_active: true,
-      club_type: request.club_type
+      club_type: request.club_type, activities_connect: request.activities_connect
       create_user_club club, request
     end
 
