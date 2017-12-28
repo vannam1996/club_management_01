@@ -673,10 +673,20 @@ body{
 
 /* list report */
 
-.btn-info-report{
+.btn-info-report {
   margin-bottom: 0px;
 }
 
-.ui-block .hide-div {
+.ui-block.quarter-select.hide-div {
   display: none;
+}
+
+.btn-reject-report {
+  width: 100px;
+}
+
+.detail-report-logo {
+  width: 150px;
+  height: 150px;
+  -webkit-border-radius: 50%;
 }

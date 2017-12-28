@@ -1,29 +1,32 @@
-<td class= "text-center">
-  <%= t"#{report.style}" %>
+<td>
+  <%= link_to user_path report.user_id do %>
+    <%= image_tag report.user_avatar, class: "member-avatar-request" %>
+    <%= report.user_full_name %>
+  <% end %>
 </td>
-<td class="text-center">
+<td>
   <%= l report.created_at, format: :short %>
 </td>
 <% if report.monthly? %>
-  <td class = "text-center">
+  <td>
     <%= month_report report.time %>, <%= report.year %>
   </td>
 <% elsif report.quarterly? %>
-  <td class="text-center">
+  <td>
     <%= quarter_report report.time %>, <%= report.year %>
   </td>
 <% end %>
-<td class="text-center status">
+<td class="status">
   <%= t"#{report.status}" %>
 </td>
-<td class="text-center">
+<td>
   <%= link_to club_manager_club_statistic_report_path(@club, report), remote: true,
     title: t("info"), class: "btn btn-breez btn-info-report" do %>
     <i class="fa fa-info"></i>
   <% end %>
-  <% if can?(:edit, report) && report.pending? %>
-    <%= link_to edit_club_manager_club_statistic_report_path(@club, report),
-      remote: true,title: t("info"), class: "btn btn-primary btn-info-report" do %>
+  <% if can?(:edit, report) && (report.pending? || report.rejected?) %>
+    <%= link_to edit_club_manager_club_statistic_report_path(@club, report), remote: true,
+      title: t("edit"), class: "btn btn-primary btn-info-report" do %>
       <i class="fa fa-edit"></i>
     <% end %>
   <% end %>

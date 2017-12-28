@@ -2,7 +2,7 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h3><%= t "detail_report" %></h3>
+        <h5><%= t "detail_report" %></h5>
         <%= button_tag type: "submit", class: "close", data: {dismiss: "modal"} do %>
           &times;
         <% end %>
@@ -11,7 +11,7 @@
         <div class="row">
           <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <%= image_tag @statistic_report.club_logo,
-              class: "circle-profile logo-club col-md-12" %>
+              class: "circle-profile logo-club col-md-12 pull-right detail-report-logo" %>
           </div>
           <div class="event-description">
             <div class="list-infor-club inline-items">
@@ -23,14 +23,20 @@
               <span><%= @statistic_report.user_full_name %></span>
             </div>
             <div class="list-infor-club inline-items">
-              <strong><%= t "type_report" %>:</strong>
+              <strong><%= t "status_report" %>:</strong>
+              <span><%= t @statistic_report.status.to_s %></span>
+            </div>
+            <div class="list-infor-club inline-items">
+              <strong><%= t "time_report" %>:</strong>
               <% if @statistic_report.style == Settings.moth_statistic %>
                 <span>
-                  <%= t "month_num", time: @statistic_report.time %>
+                  <%= t "month_num", time: @statistic_report.time %>,
+                    <%=  @statistic_report.year %>
                 </span>
               <% else @statistic_report.style == Settings.quarter_statistic %>
                 <span>
-                  <%= t "quarter_num", time: @statistic_report.time %>
+                  <%= t "quarter_num", time: @statistic_report.time %>,
+                    <%=  @statistic_report.year %>
                 </span>
               <% end %>
             </div>
@@ -40,49 +46,69 @@
                 <%= l @statistic_report.created_at, format: :short %>
               </span>
             </div>
-            <div class="list-infor-club inline-items">
-              <strong><%= t "member_count" %>:</strong>
-              <span>
-                <%= @statistic_report.members %>
-              </span>
-            </div>
-            <div class="list-infor-club inline-items">
-              <strong><%= t "fund" %>:</strong>
-              <span>
-                <%= @statistic_report.fund %>
-              </span>
-            </div>
           </div>
         </div>
         <div class="col-md-12 col-sm-12 col-xs-12">
-          <div class="inline-items">
-            <strong><%= t "item_report" %>:</strong><br/>
-            <span><%= @statistic_report.item_report %></span>
+          <div class="inline-items report-detail">
+            <h6 class="title">
+              <i class="fa fa-codepen"></i>
+              <strong><%= t "item_report" %>:</strong>
+            </h6><br/>
+            <span><%= @statistic_report.item_report %></span><br/>
           </div>
-          <div class="inline-items">
-            <strong><%= t "detail_report" %>:</strong><br/>
+          <div class="inline-items report-detail">
+            <h6 class="title">
+              <i class="fa fa-codepen"></i>
+              <strong><%= t "detail_report" %>:</strong>
+            </h6><br/>
             <span>
               <%= @statistic_report.detail_report %>
-            </span>
+            </span><br/>
           </div>
-          <div class="inline-items">
-            <strong><%= t "plan_next_month" %>:</strong><br/>
+          <div class="inline-items report-detail">
+            <h6 class="title">
+              <i class="fa fa-codepen"></i>
+              <strong><%= t "plan_next_month" %>:</strong>
+            </h6><br/>
             <span>
               <%= @statistic_report.plan_next_month %>
-            </span>
+            </span><br/>
           </div>
-          <div class="inline-items">
-            <strong><%= t "others" %>:</strong><br/>
+          <div class="inline-items report-detail">
+            <h6 class="title">
+              <i class="fa fa-codepen"></i>
+              <strong><%= t "others" %>:</strong>
+            </h6><br/>
             <span>
               <%= @statistic_report.others %>
-            </span>
+            </span><br/>
           </div>
-          <div class="inline-items">
-            <strong><%= t "note" %>:</strong><br/>
+          <div class="inline-items report-detail">
+            <h6 class="title">
+              <i class="fa fa-codepen"></i>
+              <strong><%= t "note" %>:</strong>
+            </h6><br/>
             <span>
               <%= @statistic_report.note %>
             </span>
           </div><br/>
+          <% if @statistic_report.pending? %>
+            <div class="text-center">
+              <%= link_to statistic_report_path(@statistic_report,
+                organization_slug: @organization.slug,
+                status: StatisticReport.statuses[:approved]), method: :patch,
+                remote: true, class: "btn btn-sm btn-breez" do %>
+                <%= t "accept" %>
+              <% end %>
+              <%= link_to edit_statistic_report_path(@statistic_report,
+                organization_slug: @organization.slug),
+                remote: true, class: "btn btn-sm btn-primary" do %>
+                <%= t "reject" %>
+              <% end %>
+                <%= button_tag t("close"), class: "btn btn-sm btn-warning",
+                  "data-dismiss": "modal" %>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>

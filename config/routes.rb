@@ -128,5 +128,5 @@ Rails.application.routes.draw do
   resources :set_image_clubs
   resources :set_logo_clubs
   resources :set_active_clubs, only: :edit
-  resources :statistic_reports, except: %i(new edit destroy)
+  resources :statistic_reports, except: %i(new destroy)
 end

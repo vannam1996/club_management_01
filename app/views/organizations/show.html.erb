@@ -119,7 +119,7 @@
                         <% end %>
                       </li>
                       <li>
-                        <%= link_to statistic_reports_path(id: @organization.id),
+                        <%= link_to statistic_reports_path(organization_slug: @organization.slug),
                           remote: :true do %>
                           <%= t "list_statistic" %>
                         <% end %>

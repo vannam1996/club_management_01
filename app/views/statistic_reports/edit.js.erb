@@ -1,0 +1,7 @@
+<% if @statistic_report %>
+  $('#modal-reason-reject').html('<%= j render partial: "reason_reject" %>')
+  $('#modal-reason-reject').modal('show')
+<% else %>
+  $('#statistic-modal').modal('hide');
+  $('#container').append('<%= j render "shared/flash_warning" %>');
+<% end %>

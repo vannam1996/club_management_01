@@ -21,6 +21,7 @@ class ClubManager::StatisticReportsController < ApplicationController
 
   def update
     if @report && @report.update_attributes(params_with_check_style)
+      @report.pending! if @report.rejected?
       flash.now[:success] = t "update_report_success"
     elsif @report
       flash.now[:danger] = t "update_report_error"

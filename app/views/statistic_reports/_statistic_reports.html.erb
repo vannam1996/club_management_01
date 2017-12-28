@@ -1,6 +1,15 @@
 <table class="table ui-block table-pricing">
+  <thead>
+    <tr>
+      <th><%= t "person_report" %></th>
+      <th><%= t "club" %></th>
+      <th><%= t "date_report" %></th>
+      <th><%= t "time_report" %></th>
+      <th><%= t "action" %></th>
+    </tr>
+  </thead>
   <% statistic_reports.each do |statistic_report| %>
-    <tbody>
+    <tbody class="statistic_report-<%= statistic_report.id %>">
       <tr>
         <% if statistic_report.style == Settings.moth_statistic %>
           <td class="focus-organe">
@@ -24,22 +33,24 @@
         <td>
           <%= l statistic_report.created_at, format: :short %>
         </td>
+        <% if statistic_report.monthly? %>
+          <td>
+            <%= month_report statistic_report.time %>, <%= statistic_report.year %>
+          </td>
+        <% elsif statistic_report.quarterly? %>
+          <td>
+            <%= quarter_report statistic_report.time %>, <%= statistic_report.year %>
+          </td>
+        <% end %>
         <td>
-          <% if statistic_report.pending? %>
-            <%= link_to statistic_report_path(statistic_report),
-              method: :patch, title: t("reject"),
-              class: "btn btn-sm btn-danger aprove-user pull-right" do %>
-              <i class="fa fa-ban" aria-hidden="true"></i>
-            <% end %>
-            <%= link_to statistic_report_path(statistic_report),
-              method: :patch, title: t("accept"),
-              class: "btn btn-sm btn-breez aprove-user pull-right" do %>
-              <i class="fa fa-check-square-o" aria-hidden="true"></i>
-            <% end %>
-          <% end %>
-          <%= link_to statistic_report_path(statistic_report), remote: true,
-            class: "btn btn-warning btn-sm aprove-user pull-right" do %>
+          <%= link_to statistic_report_path(statistic_report,
+            organization_slug: @organization.slug), remote: true,
+            class: "btn btn-warning btn-sm aprove-user" do %>
             <%= t "detail" %>
+          <% end %>
+          <% if statistic_report.pending? %>
+            <%= link_approve_report @organization.slug, statistic_report %>
+            <%= link_reject_report @organization.slug, statistic_report %>
           <% end %>
         </td>
       </tr>
