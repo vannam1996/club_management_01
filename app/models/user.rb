@@ -24,6 +24,7 @@ class User < ApplicationRecord
   has_many :activities, as: :person_target, dependent: :destroy
   has_many :messages, dependent: :destroy
   has_many :donate, dependent: :destroy
+  has_many :statistic_reports, dependent: :destroy
 
   mount_uploader :avatar, AvatarUploader
 

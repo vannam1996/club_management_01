@@ -61,7 +61,7 @@
           </section>
           <div class="profile-section">
             <div class="row">
-              <div class="col-md-6 offset-md-3">
+              <div class="col-md-7 offset-md-3">
                 <ul class="profile-menu tab_list_detail_club">
                   <li>
                     <%= link_to t("events"), "#event", class: "active" %>
@@ -78,10 +78,14 @@
                   <li>
                     <%= link_to t("rules"), "#rules_club" %>
                   </li>
+                  <% if @club.is_admin? current_user %>
+                    <li>
+                      <%= link_to t("statistic_report"), "#statistic_report" %>
+                    </li>
+                  <% end %>
                 </ul>
               </div>
-              <div class="col-md-2"></div>
-              <div class="col-md-1">
+              <div class="col-md-1 offset-md-1">
                 <% if @club.is_admin? current_user %>
                   <%= link_to "#", data: {toggle: "dropdown"},
                     class: "btn-sm btn btn-breez edit-infor-club pull-right" do %>
