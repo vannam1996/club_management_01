@@ -1,0 +1,10 @@
+<% if  check_notification_reject_approve_report notification %>
+  <%= render partial: "notifications/notification_reject_approve_report",
+    locals: {notification: notification} %>
+<% elsif check_notification_create_update_report notification %>
+  <%= render partial: "notifications/notification_create_report",
+    locals: {notification: notification} %>
+<% elsif check_notification_remind_system notification %>
+  <%= render partial: "notifications/notification_system_remind",
+    locals: {notification: notification} %>
+<% end %>

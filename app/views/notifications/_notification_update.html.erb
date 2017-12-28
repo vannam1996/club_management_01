@@ -7,7 +7,7 @@
         <%= option_image(notification) %>
       </div>
       <% if notification.trackable_type == Settings.notification_report %>
-        <%= render partial: "notifications/notification_main",
+        <%= render partial: "notifications/notification_main_report",
           locals: {notification: notification} %>
       <% else %>
         <div class="notification-event">

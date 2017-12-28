@@ -15,7 +15,6 @@ module NotificationsHelper
   end
 
   def option_image notification
-    img =  notification.owner.avatar
     case notification.trackable_type
     when Club.name
       img =  notification.trackable.logo
@@ -26,7 +25,8 @@ module NotificationsHelper
     when Image.name
       img =  notification.trackable.url
     end
-    image_tag img, class: "img-responsive"
+    img = check_key_get_img(notification)
+    image_tag img, class: "img-responsive" if img
   end
 
   def url_notification notification
@@ -76,6 +76,10 @@ module NotificationsHelper
     notification.key == Settings.create_report || notification.key == Settings.update_report
   end
 
+  def check_notification_remind_system notification
+    notification.key == Settings.remind_report_month
+  end
+
   private
   def notification_club_manager
     Activity.notification_user(current_user.id)
@@ -94,10 +98,19 @@ module NotificationsHelper
   end
 
   def url_notification_report notification
-    if check_notification_reject_approve_report notification
+    if check_notification_reject_approve_report(notification) ||
+      check_notification_remind_system(notification)
       club_path(id: notification.container)
     elsif check_notification_create_update_report notification
       organization_path(id: notification.container)
+    end
+  end
+
+  def check_key_get_img notification
+    if notification.key == Settings.remind_report_month
+      notification.container.organization.logo
+    elsif notification.owner
+      notification.owner.avatar
     end
   end
 end

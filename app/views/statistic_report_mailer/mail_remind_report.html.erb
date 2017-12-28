@@ -1,0 +1,12 @@
+<strong><%= t "mail_remind_report_title" %></strong><br>
+<%= t "mail_remind_content", month: Date.current.month %><br>
+<%= t "mail_remind_notice" %><br>
+<%= t "mail_remind_club_list" %><br>
+<ul>
+  <% if @clubs.any? %>
+    <% @clubs.each do |club| %>
+      <li><%= club.name %> : <%= club.organization_name %></li>
+    <% end %>
+  <% end %>
+</ul>
+<%= link_to t("click_here"), @url %>
