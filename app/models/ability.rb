@@ -1,18 +1,28 @@
 class Ability
   include CanCan::Ability
 
-  def initialize user
-    can :read, :all
-    can :is_admin, Club do |club|
-      club.user_clubs.manager.map(&:user_id).include?(user.id)
-    end
-    can :manage, ClubType do |type|
-      type.organization.user_organizations.are_admin.pluck(:user_id)
-        .include?(user.id)
-    end
-    can [:edit, :update, :create], [Club]
-    can :manager, [Organization] do |organization|
-      organization.user_organizations.are_admin.map(&:user_id).include? user.id
+  def initialize user, controller_namespace
+    case controller_namespace
+    when Settings.namespace_club_manage
+      can :manage, StatisticReport do |report|
+        report.club.user_clubs.manager.pluck(:user_id).include? user.id
+      end
+      can :read, StatisticReport do |report|
+        report.club.user_clubs.pluck(:user_id).include? user.id
+      end
+    else
+      can :read, :all
+      can :is_admin, Club do |club|
+        club.user_clubs.manager.map(&:user_id).include?(user.id)
+      end
+      can :manage, ClubType do |type|
+        type.organization.user_organizations.are_admin.pluck(:user_id)
+          .include?(user.id)
+      end
+      can [:edit, :update, :create], [Club]
+      can :manage, [Organization] do |organization|
+        organization.user_organizations.are_admin.map(&:user_id).include? user.id
+      end
     end
     can :create, [StatisticReport] do |statistic|
       club = Club.find_by id: statistic.club_id

@@ -1,0 +1,11 @@
+<% if @report %>
+  $('#modal-info-report').modal('show');
+  $('#modal-info-report').html('<%= j render partial: "edit_report", locals: {report: @report} %>');
+  <% if @report.quarterly? %>
+    $('.month-style').hide();
+  <% elsif @report.monthly? %>
+    $('.quarter-style').hide();
+  <% end %>
+<% else %>
+  $('.container').append('<%= j render partial: "shared/flash_warning" %>');
+<% end %>

@@ -1,0 +1,51 @@
+<%= form_for [:club_manager, @club, report], remote: true do |f| %>
+  <div class="error-messages"></div>
+  <div class="row">
+    <div class="form-group col-md-3">
+      <%= f.label(:type, class: "control-label") do %>
+        <%= t("type_report") %>
+      <% end %>
+      <%= f.select(:style, options_for_select(option_select(
+        StatisticReport.styles), StatisticReport.styles[report.style]),
+        {}, {class: "form-control select_custom", id: "style-report"}) %>
+    </div>
+    <%= render partial: "option_report_style", locals: {report: report} %>
+    <div class="form-group col-md-3 push-md-2">
+      <%= f.label(:year, class: "control-label") do %>
+        <%= t("year") %>
+      <% end %>
+      <%= f.select :year, Settings.year_ago.years.ago.year..Date.current.year, {},
+        {class: "select_custom form-control"} %>
+    </div>
+  </div>
+  <div class="form-group col-md-12">
+    <%= f.label(:item_report, class: "control-label") do %>
+      <%= t("item_report") %>
+    <% end %>
+    <%= f.text_area :item_report, class: "form-control input-text", required: true %>
+  </div>
+  <div class="form-group col-md-12">
+    <%= f.label(:detail_report, class: "control-label") do %>
+      <%= t("detail_report") %>
+    <% end %>
+    <%= f.text_area :detail_report, class: "form-control input-text", required: true %>
+  </div>
+  <div class="form-group col-md-12">
+    <%= f.label(:plan_next_month, class: "control-label") do %>
+      <%= t("plan_next_month") %>
+    <% end %>
+    <%= f.text_area :plan_next_month, class: "form-control input-text", required: true %>
+  </div>
+  <div class="form-group col-md-12">
+    <%= f.label(:note, class: "control-label") do %>
+      <%= t("note") %>
+    <% end %>
+    <%= f.text_area :note, class: "form-control input-text" %>
+  </div>
+  <div class="error-messages"></div>
+  <div class="text-center col-md-12">
+    <%= f.submit t("update"), class: "btn btn-primary col-md-2 btn-sm" %>
+    <%= f.button t("close"), class: "btn btn-sm btn-warning",
+      "data-dismiss": "modal" %>
+  </div>
+<% end %>
