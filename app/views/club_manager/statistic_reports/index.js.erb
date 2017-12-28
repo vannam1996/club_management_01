@@ -1,0 +1,13 @@
+<% if params[:q] %>
+  $('#list-report').html('<%= j render partial: "list_report",
+    locals: {reports: @reports} %>');
+<% else %>
+  $('#history-report').html('<%= j render partial: "main_history_report",
+    locals: {reports: @reports} %>');
+  $('#event').hide();
+  $('#image').hide();
+  $('#content_club').hide();
+  $('#plan').hide();
+  $('#rules_club').hide();
+  $('#statistic_report').hide();
+<% end %>

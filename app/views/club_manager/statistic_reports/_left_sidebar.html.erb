@@ -1,0 +1,71 @@
+<div class="left_sidebar">
+  <%= search_form_for @q, url: club_manager_club_statistic_reports_path(@club),
+    class: "form-horizontal" do |f| %>
+    <%= hidden_field_tag "club-slug", @club.slug %>
+    <div class="ui-block">
+      <div class="ui-block-title">
+        <h6 class="title"><%= t "style_filter_report" %></h6>
+      </div>
+      <div class="ui-block-content">
+        <div class="w-select">
+          <fieldset class="form-group">
+            <%= select_tag :style_report,
+              options_for_select(StatisticReport.styles.map{|k,v|
+                [t("#{k}"), v]},
+                include_blank: true),
+              {class: "select_custom form-control stype-reports"} %>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+    <div class="ui-block">
+      <div class="ui-block-title">
+        <h6 class="title"><%= t "status_filter_report" %></h6>
+      </div>
+      <div class="ui-block-content">
+        <div class="w-select">
+          <fieldset class="form-group">
+            <%= select_tag :status,
+              options_for_select(StatisticReport.statuses.map{|k,v|
+                [t("status_filter.#{k}"), v]}
+              .unshift([t("status_filter_report"), nil]),
+               include_blank: true),
+              {class: "select_custom form-control month-reports"} %>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+    <div class="ui-block">
+      <div class="ui-block-title">
+        <h6 class="title"><%= t "month_filter_report" %></h6>
+      </div>
+      <div class="ui-block-content">
+        <div class="w-select">
+          <fieldset class="form-group">
+            <%= select_tag :time,
+              options_for_select(StatisticReport.months.map{|k,v|
+                [t("#{k}"), v]}
+              .unshift([t("month_filter_report"), nil]),
+               include_blank: true),
+              {class: "select_custom form-control month-reports"} %>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+    <div class="ui-block">
+      <div class="ui-block-title">
+        <h6 class="title"><%= t "year_filter_report" %></h6>
+      </div>
+      <div class="ui-block-content">
+        <div class="w-select">
+          <fieldset class="form-group">
+            <%= select_year(0, {prompt: t("year_filter_report"), start_year: Settings.year_ago.years.ago.year,
+              end_year: Date.today.year},
+              {class: "select_custom form-control", id: "year_report"}) %>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+<%= javascript_include_tag "filter_report" %>

@@ -1,0 +1,74 @@
+<div class="ui-block col-md-12">
+  <div class="infor-request ui-block-title">
+    <h6 class="title"><%= t "title_list_report" %></h6>
+  </div>
+  <% if reports.any? %>
+    <div class="table-reponsive">
+      <table class="table ui-block table-pricing">
+        <thead>
+          <tr>
+            <th class="text-center"><%= t "style_report" %></th>
+            <th class="text-center"><%= t "date_report" %></th>
+            <th class="text-center"><%= t "time_report" %></th>
+            <th class="text-center"><%= t "status_report" %></th>
+            <th class="text-center"><%= t "action" %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% reports.each do |report| %>
+            <tr class="add-user-member list-reports">
+              <td class= "text-center">
+                <%= t"#{report.style}" %>
+              </td>
+              <td class="text-center">
+                <%= l report.created_at, format: :short %>
+              </td>
+              <% if report.monthly? %>
+                <td class="text-center">
+                  <%= month_report report.time %>, <%= report.year %>
+                </td>
+              <% elsif report.quarterly? %>
+                <td class="text-center">
+                  <%= quarter_report report.time %>, <%= report.year %>
+                </td>
+              <% end %>
+              <td class="text-center status">
+                <%= t("#{report.status}") %>
+              </td>
+              <td class="text-center">
+                <%= link_to club_manager_club_statistic_report_path(@club, report), remote: true,
+                  title: t("info"), class: "btn btn-primary btn-info-report" do %>
+                  <i class="fa fa-info"></i>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-12">
+      <nav aria-label="Page navigation example">
+        <%= paginate reports, remote: true %>
+      </nav>
+    </div>
+  <% else %>
+    <tr class="text-center">
+      <td colspan="4">
+        <h5 class="center notifi-empty"><%= t "no_report" %></h5>
+      </td>
+    </tr>
+  <% end %>
+</div>
+<div id="modal-info-report" class="modal fade" tabindex="-1"
+  role="dialog" aria-hidden="true">
+  <div class="col-md-12 col-md-offset-2">
+    <div class="modal-dialog info-report modal-lg">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="block">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

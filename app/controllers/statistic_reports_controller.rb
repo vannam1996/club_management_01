@@ -40,8 +40,10 @@ class StatisticReportsController < ApplicationController
   private
 
   def statistic_report_params
-    params.require(:statistic_report).permit :style, :club_id, :time,
-      :item_report, :detail_report, :plan_next_month, :note, :others
+    params.require(:statistic_report).permit(:club_id, :time,
+      :item_report, :detail_report, :plan_next_month, :note, :others)
+      .merge! style: params[:statistic_report][:style].to_i,
+      year: params[:date][:year].to_i
   end
 
   def load_club
