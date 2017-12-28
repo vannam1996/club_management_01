@@ -27,7 +27,8 @@ class Dashboard::EventsController < BaseDashboardController
     event = Event.new event_params
     event.amount = @club.money
     if event.save
-      create_acivity event, Settings.create, event.club, current_user
+      create_acivity event, Settings.create, event.club, current_user,
+        Activity.type_receives[:club_member]
       if params[:event][:event_category].to_i == Event.event_categories[:pay_money]
         @club.money_pay(params[:event][:expense].to_i)
       elsif params[:event][:event_category].to_i == Event.event_categories[:subsidy]
@@ -51,7 +52,8 @@ class Dashboard::EventsController < BaseDashboardController
       service = UpdateClubMoneyService.new @event, @club, event_params
       service.update_event
       service.update_money
-      create_acivity @event, Settings.update, @event.club, current_user
+      create_acivity @event, Settings.update, @event.club, current_user,
+        Activity.type_receives[:club_member]
       flash[:success] = t "club_manager.event.success_update"
       redirect_to dashboard_club_event_path(club_id: params["club_id"], id: @event.id)
     end

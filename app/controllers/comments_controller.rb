@@ -7,7 +7,8 @@ class CommentsController < ApplicationController
     if comment.save
       @event = comment.target
       @comments = @event.comments.newest.take(Settings.limit_comments)
-      create_acivity comment.target, Settings.comment, comment.target.club, current_user
+      create_acivity comment.target, Settings.comment, comment.target.club, current_user,
+        Activity.type_receives[:club_member]
       respond_to do |format|
         format.js
       end

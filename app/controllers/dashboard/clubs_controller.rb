@@ -13,7 +13,8 @@ class Dashboard::ClubsController < BaseDashboardController
     @organizations = current_user.user_organizations.joined
     @club_update = @club.update_attributes club_params
     if @club_update
-      create_acivity @club, Settings.update, @club, current_user
+      create_acivity @club, Settings.update, @club, current_user,
+        Activity.type_receives[:club_member]
       flash[:success] = t "club_manager.club.success_update"
     else
       flash_error @club

@@ -94,7 +94,8 @@ class ClubsController < ApplicationController
     if club_params
       @organizations = current_user.user_organizations.joined
       if @club.update_attributes club_params
-        create_acivity @club, Settings.update, @club, current_user
+        create_acivity @club, Settings.update, @club, current_user,
+          Activity.type_receives[:club_member]
         flash[:success] = t "club_manager.club.success_update"
       else
         flash_error @club
