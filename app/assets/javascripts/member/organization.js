@@ -3,4 +3,8 @@ jQuery(document).ready(function($) {
     $.get($('#organization_club_form').attr('action'),
       $('#organization_club_form').serialize(), null, 'script');
    });
+  $(document).on('change', '#type_club_search', function() {
+    $.get($('#organization_club_form').attr('action'),
+      $('#organization_club_form').serialize(), null, 'script');
+   });
 });
