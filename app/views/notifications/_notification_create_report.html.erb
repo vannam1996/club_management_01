@@ -4,6 +4,7 @@
     <%= t "notification_report", status: t(notification.key.try(:downcase)) %>
     <a href="#" class="h6 notification-friend">
       <%= t notification.trackable_type.try(:downcase) %></a>
+    <%= set_content_by_trackable notification %>
     <% if notification.container %>
       <%= t "of_club_title" %>
       <a href="#" class="h6 notification-friend"><%= notification.trackable.club_name %></a>,

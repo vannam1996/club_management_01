@@ -3,7 +3,7 @@
     <% if notification.container %>
       <%= t notification.container_type.try(:downcase) %>
       <strong><%= notification.container_name %></strong>
-      <%= t "of_manager_not_report", month: Date.current.month %>
+      <%= set_content_notification_by_key notification %>
       </br><i class="fa fa-clock-o time_create" aria-hidden="true">
         <%= l notification.created_at, format: :short %></i>
     <% end %>

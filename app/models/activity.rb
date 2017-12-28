@@ -28,6 +28,22 @@ class Activity < ApplicationRecord
   delegate :name, to: :trackable, prefix: :trackable, allow_nil: :true
   delegate :full_name, to: :owner, prefix: :owner, allow_nil: :true
 
+  def report_month_key?
+    self.key == Settings.remind_report_month
+  end
+
+  def report_quarter_key?
+    self.key == Settings.remind_report_quarter
+  end
+
+  def report_month_trackable_style?
+    self.trackable.style == Settings.monthly
+  end
+
+  def report_quarter_trackable_style?
+    self.trackable.style == Settings.quarterly
+  end
+
   private
   def push_notify
     NotificationBroadcastJob.perform_now self, lists_received if lists_received.present?
