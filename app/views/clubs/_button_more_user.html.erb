@@ -62,6 +62,15 @@
   <% end %>
 </div>
 <% if @club.is_admin? current_user %>
+  <div class = "import_user_club">
+    <strong><%= t"import_member" %></strong>
+    <%= form_tag manager_import_user_clubs_path(club_id: @club.id), multipart: true,
+      method: :post do %>
+      <%= file_field_tag :file, class: "input-file" %>
+      <%= submit_tag t("import_user_club"), class: "btn btn-success btn_import",
+        title: t("title_import_club") %>
+    <% end %>
+  </div>
   <div class="text-center">
     <h5><%= t "edit_member.userrequest" %></h5>
   </div>

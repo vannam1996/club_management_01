@@ -37,6 +37,7 @@ Rails.application.routes.draw do
     resources :organizations
     resources :import_users, only: :create
     resources :request_members
+    resources :import_user_clubs, only: :create
   end
 
   namespace :club_manager do

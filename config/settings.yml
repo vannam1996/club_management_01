@@ -198,3 +198,5 @@ set_user_donates:
 style_statistic:
   month: "1"
   quarter: "2"
+row_email: "Email"
+row_name: "Họ và tên"
