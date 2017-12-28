@@ -1,0 +1,6 @@
+<% if @organization %>
+  $('#organization_club').html('<%= j render partial: "list_types",
+    locals: {club_types: @club_types} %>');
+<% else %>
+  $('.container').append('<%= j render partial: "shared/flash_warning" %>');
+<% end %>

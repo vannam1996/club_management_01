@@ -616,19 +616,29 @@ body{
 
 /* form add member(create club) */
 
-.btn_add_member{
+.btn_add_member {
   margin-top: 10px;
   margin-left: 20px;
 }
 
-.btn_import{
+.btn_import {
   width: auto;
 }
 
-.import_user_club{
+.import_user_club {
   margin-left:15px;
 }
 
-.input-file{
+.input-file {
   border: none;
+}
+
+.hidden {
+  display: none;
+}
+
+/* list-type */
+
+.ui-block-title .button-back {
+  margin-left: auto;
 }

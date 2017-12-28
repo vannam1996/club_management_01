@@ -21,6 +21,7 @@ class ClubsController < ApplicationController
     @organizations = Organization.by_user_organizations(
       current_user.user_organizations.joined
     )
+    @club_types = ClubType.includes(:organization)
     respond_to do |format|
       format.html
       format.js
@@ -65,7 +66,7 @@ class ClubsController < ApplicationController
       end
       redirect_to organization_club_path @organization, @club
     else
-      flash[:danger] = t("params_image_blank")
+      flash[:danger] = t "params_image_blank"
       redirect_to organization_club_path @organization, @club
     end
   end
@@ -88,14 +89,14 @@ class ClubsController < ApplicationController
   def load_user_organizations
     @user_organizations = @club.organization.user_organizations.joined.includes :user
     return if @user_organizations
-    flash[:danger] = t("not_found")
+    flash[:danger] = t "not_found"
     redirect_to clubs_url
   end
 
   def load_organization
     @organization = Organization.find_by id: @club.organization_id
     unless @organization
-      flash[:danger] = t("not_found_organization")
+      flash[:danger] = t "not_found_organization"
       redirect_to request.referer
     end
   end

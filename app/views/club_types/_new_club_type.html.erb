@@ -1,0 +1,24 @@
+<div class="col-md-12 col-md-offset-2">
+  <div class="modal-dialog new-type-club modal-sm">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h2 class="text-center col-md-12"><%= t "title_create_type" %></h2>
+        <div class="block">
+          <%= form_for [@organization, club_type], remote: true do |f| %>
+            <%= render "shared/error_messages", object: club_type %>
+            <div class="form-group col-md-12">
+              <%= f.label t "label_club_type" %>
+              <%= f.text_field :name, required: true,
+                class: "form-control input-text" %>
+            </div>
+            <div class="text-center">
+              <%= f.button t("btn_create_type"), type: :submit, class: "btn btn-sm btn-primary" %>
+              <%= button_tag t("close"), class: "btn btn-sm btn-warning",
+                "data-dismiss": "modal" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<div class="col-md-12 col-md-offset-2">
+  <div class="modal-dialog edit-club modal-sm">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h2 class="text-center col-md-12"><%= t "title_update_type" %></h2>
+        <div class="block">
+          <%= form_tag organization_club_type_path, method: :put, remote: true, class: "edit-type-club" do %>
+            <%= render "shared/error_messages", object: club_type %>
+            <div class="form-group col-md-12">
+              <%= label_tag t "label_club_type" %>
+              <%= text_field_tag :name, club_type.name, required: true,
+                class: "form-control input-text" %>
+            </div>
+            <div class="text-center">
+              <%= button_tag t("confirm"), class: "btn btn-sm btn-primary" %>
+              <%= button_tag t("close"), class: "btn btn-sm btn-warning",
+                "data-dismiss": "modal" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

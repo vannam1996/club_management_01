@@ -5,13 +5,15 @@ class ClubRequest < ApplicationRecord
   has_many :users, through: :user_club_requests
   has_many :activities, as: :target, dependent: :destroy
 
+  belongs_to :club_type
+
   after_update :create_club, if: ->{self.joined?}
 
   serialize :time_activity, Array
 
   enum status: {pending: 0, joined: 1, reject: 2}
-  enum club_type: {sport: 1, game: 2, education: 3, music: 4,
-    entertainment: 5, confidential: 6, junket: 7, other: 0}
+  # enum club_type: {sport: 1, game: 2, education: 3, music: 4,
+  #   entertainment: 5, confidential: 6, junket: 7, other: 0}
 
   validates :name, presence: true, uniqueness: true,
     length: {maximum: Settings.club_request.max_name_length}

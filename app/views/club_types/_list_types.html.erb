@@ -1,0 +1,65 @@
+<div class="ui-block col-md-12">
+  <div class="infor-request ui-block-title">
+    <h6 class="title"><%= t "title_club_type" %></h6>
+    <div class="pull-right funtion-request">
+      <%= link_to new_organization_club_type_path(@organization), remote: true,
+        class: "btn btn-breez btn-sm" do %>
+        <i class="fa fa-check-square-o" aria-hidden="true"></i>
+        <%= t "create_type" %>
+      <% end %>
+      <%= link_to organization_path(@organization), remote: :true,
+        class: "btn btn-primary btn-sm button-back" do %>
+        <i class="fa fa-undo" aria-hidden="true"></i>
+        <%= t "back" %>
+      <% end %>
+    </div>
+  </div>
+  <% if club_types.any? %>
+    <div class="table-responsive">
+      <table class="table ui-block table-pricing">
+        <thead>
+          <tr>
+            <th class="text-center"><%= t "name_club_type" %></th>
+            <th class="text-center"><%= t "date_club_type" %></th>
+            <th class="text-center"><%= t "sum_club" %></th>
+            <th class="text-center"><%= t "action" %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% club_types.each do |club_type| %>
+            <tr class="add-user-member">
+              <td class= "text-center">
+                <%= club_type.name %>
+              </td>
+              <td class="text-center">
+                <%= l club_type.created_at, format: :short %>
+              </td>
+              <td class="text-center">
+                <%= club_type.clubs.size %>
+              </td>
+              <td class="text-center">
+                <%= link_to edit_organization_club_type_path(@organization, club_type),
+                  title: t("edit"), remote: :true, class: "btn btn-primary" do %>
+                    <i class="fa fa-edit"></i>
+                  <% end %>
+                <%= link_to organization_club_type_path(@organization, club_type), method: :delete, title: t("delete"), data: {confirm: t("confirm_delete_type")}, remote: true,
+                  class: "btn btn-danger" do %>
+                    <i class="fa fa-remove"></i>
+                  <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-12">
+      <nav aria-label="Page navigation example">
+        <%= paginate club_types, remote: true %>
+      </nav>
+    </div>
+  <% else %>
+    <div class="row text-center">
+      <h5 class="center notifi-empty"><%= t "no_type" %></h5>
+    </tr>
+  <% end %>
+</div>

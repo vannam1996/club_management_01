@@ -41,7 +41,7 @@
         <div class="w-select">
           <fieldset class="form-group">
             <%= select_tag :stype_clubs, options_for_select(
-              Club.club_types.map{|k, v| [t("#{k}"), v]}
+              @club_types.map{|u| [t("#{u.name}")+" (#{u.organization.name})", u.id]}
                 .unshift([t("style_filter"), nil]),
               include_blank: true),
               {class: "select_custom form-control stype-clubs"} %>

@@ -107,6 +107,7 @@ Rails.application.routes.draw do
   resources :ratings, only: :create
   resources :organizations do
     resources :clubs, only: [:show, :index, :update]
+    resources :club_types, except: [:index]
   end
   resources :time_line_homes
   resources :time_line_homes
