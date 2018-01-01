@@ -1605,3 +1605,24 @@
   margin-left: 15px;
   border-color: $grey-lighter;
 }
+.background-user-profile {
+  height: 100px;
+}
+.top-header-avatar {
+  bottom: 0px !important;
+  left: 0px !important;
+  img {
+    width: 100%;
+    border-radius: 100%;
+  }
+}
+.avatar-user {
+  width: 180px !important;
+  height: 180px !important;
+}
+.infor-user {
+  margin-right: 0px !important;
+}
+.user-infor {
+  padding: 3px 0px;
+}

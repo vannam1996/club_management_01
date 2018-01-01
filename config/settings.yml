@@ -84,7 +84,7 @@ chat_messages_limit: 30
 min_content: 20
 ratings: "ratings"
 user:
-  club_per_page: 3
+  club_per_page: 6
 truncate:
   club:
     description: 100
