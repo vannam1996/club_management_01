@@ -15,6 +15,7 @@ class Activity < ApplicationRecord
       ar_club_id, Settings.notification_club, ar_club_id, Settings.notification_club
   end
   scope :oder_by_read, ->{order id: :desc}
+  scope :notification_user, ->user_id{where.not owner_id: user_id}
 
   delegate :name, to: :container, prefix: :container, allow_nil: :true
   delegate :name, to: :trackable, prefix: :trackable, allow_nil: :true
