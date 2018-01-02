@@ -3,7 +3,7 @@ class ClubsController < ApplicationController
   load_and_authorize_resource find_by: :slug
   before_action :verify_club, only: :show
   before_action :load_user_organizations, only: :show
-  before_action :load_organization, only: [:update]
+  before_action :load_organization, only: %i(new update create)
 
   def index
     organizations_joined = Organization.by_user_organizations(
@@ -33,19 +33,54 @@ class ClubsController < ApplicationController
     @album = Album.new
     list_events = @club.events
     @q = list_events.search(params[:q])
-    @events = @q.result.newest.includes(:budgets).page(params[:page]).per Settings.per_page
+    @events = @q.result.newest.includes(:budgets)
+      .page(params[:page]).per Settings.per_page
     @time_line_events = @events.by_current_year.group_by_quarter
     @message = Message.new
     @user_club = UserClub.new
     @infor_club = Support::ClubSupport.new(@club, params[:page], nil)
     @albums = @club.albums.newest.includes(:images)
-    @add_user_club = @user_organizations.user_not_joined(@club.user_clubs.map(&:user_id))
+    @add_user_club = @user_organizations
+      .user_not_joined(@club.user_clubs.map(&:user_id))
     @members_not_manager = @infor_club.members_not_manager.page(params[:page])
       .per Settings.page_member_not_manager
     respond_to do |format|
       format.html
       format.js
     end
+  end
+
+  def new
+    if can? :manager, @organization
+      @club = Club.new
+      @user_organizations = UserOrganization
+        .load_user_organization(params[:organization_id])
+        .except_me current_user.id
+      @club_types = ClubType.load_club_type params[:organization_id]
+    else
+      flash[:danger] = t "not_authorities_to_access"
+    end
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def create
+    ActiveRecord::Base.transaction do
+      club = @organization.clubs.build create_club_params
+      club.is_active = true
+      if club.save
+        save_user_club club
+        UserClub.create_admin_club current_user.id, club.id
+        flash[:success] = t("success_create_club")
+      else
+        flash_error club
+      end
+      redirect_to request.referer || root_url
+    end
+  rescue
+    flash[:danger] = t "error_in_process"
+    redirect_to request.referer || root_url
   end
 
   def edit
@@ -86,14 +121,16 @@ class ClubsController < ApplicationController
   # end
 
   def load_user_organizations
-    @user_organizations = @club.organization.user_organizations.joined.includes :user
+    @user_organizations = @club.organization
+      .user_organizations.joined.includes :user
     return if @user_organizations
     flash[:danger] = t "not_found"
     redirect_to clubs_url
   end
 
   def load_organization
-    @organization = Organization.find_by id: @club.organization_id
+    @organization = Organization.find_by(id: params[:organization_id])
+    @organization ||= Organization.find_by(slug:params[:organization_id])
     unless @organization
       flash[:danger] = t "not_found_organization"
       redirect_to request.referer
@@ -102,5 +139,25 @@ class ClubsController < ApplicationController
 
   def club_params
     params.require(:club).permit :logo, :image if params[:club].present?
+  end
+
+  def create_club_params
+    params.require(:club).permit(:name, :logo, :action, :club_type_id,
+      :organization_id, :member, :goal, :local, :activities_connect,
+      :content, :rules, :rule_finance, :time_join, :punishment,
+      :plan, :goal, time_activity: [])
+  end
+
+  def save_user_club club
+    msg = ""
+    if params[:user_club] && params[:user_club][:user_ids]
+      params[:user_club][:user_ids].each do |user_id|
+        unless user_id && club.user_clubs.create(user_id: user_id, status: 1)
+          user = @organization.users.find_by id: user_id
+          msg += "#{user.full_name}, " if user
+        end
+      end
+    end
+    flash[:warning] = t "add_member_error", msg: msg if msg.present?
   end
 end

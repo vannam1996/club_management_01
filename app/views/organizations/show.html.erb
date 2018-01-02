@@ -97,6 +97,12 @@
                         <% end %>
                       </li>
                       <li>
+                        <%= link_to new_organization_club_path(@organization.id),
+                          remote: :true do %>
+                          <%= t "add_club" %>
+                        <% end %>
+                      </li>
+                      <li>
                         <%= link_to user_request_organization_path(@organization),
                           remote: :true do %>
                           <%= t "request_member" %>

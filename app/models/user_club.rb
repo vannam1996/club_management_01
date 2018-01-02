@@ -39,6 +39,11 @@ class UserClub < ApplicationRecord
     def load_user user_id
       find_by id: user_id
     end
+
+    def create_admin_club user_id, club_id
+      create user_id: user_id, status: :joined,
+        is_manager: true, club_id: club_id
+    end
   end
 
   def send_mail_after_update

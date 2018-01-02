@@ -54,6 +54,11 @@ class ApplicationController < ActionController::Base
     @current_user_clubs = current_user.user_clubs
   end
 
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:alert] = exception.message
+    redirect_to request.referer || root_url
+  end
+
   private
   def set_locale
     I18n.locale = session[:locale] || I18n.default_locale

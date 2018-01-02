@@ -895,3 +895,7 @@ en:
   title_club_type: "Club types"
   no_type: "No type"
   favorite_tags: "Favorite tags"
+  add_club: "Add club"
+  open_club: "Open club"
+  not_save_admin: "Can't add admin"
+  success_create_club: "Create club success"

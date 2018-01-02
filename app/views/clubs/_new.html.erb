@@ -1,0 +1,160 @@
+<div class="col-md-12 ui-block">
+  <div class="infor-request ui-block-title">
+    <h6 class="title"><%= t "open_club" %></h6>
+    <div class="pull-right funtion-request">
+      <%= link_to organization_path(@organization), remote: :true,
+        class: "btn btn-primary btn-sm" do %>
+        <i class="fa fa-undo" aria-hidden="true"></i>
+        <%= t "back" %>
+      <% end %>
+    </div>
+  </div>
+  </br>
+  <div class="col-sm-10 col-md-10 push-md-1">
+    <div class="hr-center-line-div"></div>
+    <%= form_for [@organization, @club], html: {id: "form-contact"} do |f|%>
+      <div class="form-group col-md-12">
+        <div class="form-group label-floating">
+          <%= f.label :name, class: "control-label" do %>
+            <%= t "club_name" %>
+            <span class="text-danger">*</span>
+          <% end %>
+          <%= f.text_field :name, class: "form-control", required: true %>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <label for="contact-name"><%= t "type_club" %></label></br>
+        <%= f.select(:club_type_id, @club_types.collect {|club_type| [
+          club_type.name, club_type.id ]}, {},
+          {class: "form-control select_custom", id: "select_club_type"}) %>
+      </div>
+      <div class="form-group col-md-12">
+        <div class="form-group label-floating">
+          <%= f.label(:member, class: "control-label") do %>
+            <%= t("member_count") %>
+            <span class="text-danger">*</span>
+          <% end %>
+          <%= f.number_field :member, class: "form-control", required: true %>
+        </div>
+      </div>
+      <div class = "col-md-12">
+        <%= hidden_field_tag "user_id", current_user.id %>
+        <%= f.label t"member_label" %>
+        <%= button_tag type: "button", class: "btn btn-info btn-sm btn_add_member",
+          data: {toggle: "modal", target: "#add-user"} do %>
+          <span class="text-center"><%= t "add_member" %></span>
+        <% end %>
+        <div id="user_club_request">
+          <%= render partial: "clubs/add_user_create_club", locals: {user_clubs: @user_organizations} %>
+        </div>
+      </div>
+      <div class = "col-md-12 list-member">
+        <%= label_tag t("list_label"), nil, {id: "members-label", class: "hidden"} %>
+        <%= label_tag nil, nil, {id: "members"} %>
+      </div>
+      <div class="col-md-12 logo-club">
+        <div class="row">
+          <div class="col-md-4">
+            <label for="contact-email"><%= t "logo_club" %></label>
+            <%= f.file_field :logo, id: "file-upload" %>
+          </div>
+          <div class="spacing"></div>
+          <div class="col-md-8">
+            <%= image_tag "flogo.png", class: "img-height-100", id: "img-upload" %>
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-md-12">
+        <div class="form-group label-floating">
+          <%= f.label :content, class: "control-label" do %>
+            <%= t "content_club" %>
+            <span class="text-danger">*</span>
+          <% end %>
+          <%= f.text_area :content, class: "form-control", required: true %>
+        </div>
+      </div>
+      <div class="form-group col-md-12">
+        <div class="form-group label-floating">
+          <%= f.label :goal, class: "control-label" do %>
+            <%= t "goal_club" %>
+            <span class="text-danger">*</span>
+          <% end %>
+          <%= f.text_area :goal, class: "form-control", required: true %>
+        </div>
+      </div>
+
+      <div class="form-group col-md-12">
+        <label for="contact-message"><%= t "time_club" %></label>
+        <div class="days-selector col-md-12">
+          <div class="row">
+            <% for day in I18n.t "date.day_names" %>
+              <div class="checkbox time-active">
+                <label>
+                  <input type="checkbox" name="club[time_activity][]"
+                    id="club_time_activity_" value="<%= day %>">
+                  <span class="checkbox-material">
+                    <span class="check"></span>
+                  </span>
+                  <%= day %>
+                </label>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-md-12">
+         <div class="form-group label-floating">
+          <%= f.label :time_join, t("time_join"), class: "control-label" %>
+          <%= f.text_area :time_join, class: "form-control",
+            row: Settings.club_request.row_text_area %>
+        </div>
+      </div>
+      <div class="form-group col-md-12">
+        <div class="form-group label-floating">
+          <%= f.label :time_join, t("local_club"), class: "control-label" %>
+          <%= f.text_area :time_join, class: "form-control", id: "contact-message",
+            row: Settings.club_request.row_text_area %>
+        </div>
+      </div>
+      <div class="form-group col-md-12">
+        <div class="form-group label-floating">
+          <%= f.label :rules, t("rules_club"), class: "control-label" %>
+          <%= f.text_area :rules, class: "form-control", id: "contact-message",
+            row: Settings.club_request.row_text_area %>
+        </div>
+      </div>
+      <div class="form-group col-md-12">
+        <div class="form-group label-floating">
+          <%= f.label :rule_finance, t("rule_finance"), class: "control-label" %>
+          <%= f.text_area :rule_finance, class: "form-control", id: "contact-message",
+            row: Settings.club_request.row_text_area %>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="form-group label-floating">
+          <%= f.label :punishment, t("punishment"), class: "control-label" %>
+          <%= f.text_area :punishment, class: "form-control", id: "contact-message",
+            row: Settings.club_request.row_text_area %>
+        </div>
+      </div>
+      <div class="form-group col-md-12">
+        <div class="form-group label-floating">
+          <%= f.label :plan, t("information_plan"), class: "control-label" %>
+          <%= f.text_area :plan, class: "form-control", id: "contact-message",
+            row: Settings.club_request.row_text_area %>
+        </div>
+      </div>
+      <div class="form-group col-md-12">
+        <div class="form-group label-floating">
+          <%= f.label :activities_connect, t("activities_connect"),
+            class: "control-label" %>
+          <%= f.text_area :activities_connect, class: "form-control",
+            id: "contact-message", row: Settings.club_request.row_text_area %>
+        </div>
+      </div>
+      <div class="col-md-12 push-md-5">
+        <%= f.submit t("open_club"), class: "btn btn-secondary center-block w125" %>
+      </div>
+    <% end %>
+  </div>
+</div>
