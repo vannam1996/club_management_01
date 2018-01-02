@@ -1,0 +1,73 @@
+<div class="ui-block-title ui-block-title-small">
+  <h3 class="h2 site-heading center title_custom">
+    <strong><%= t "statistic_report" %></strong> <%= @club.name %>
+  </h3>
+</div>
+<div class="col-sm-6 col-md-6 push-md-3">
+  <%= form_for @statistic_report, html: {id: "form-contact"} do |f|%>
+    <div class="col-md-12">
+      <label for="contact-name"><%= t "type_report" %></label></br>
+      <%= f.select(:style, options_for_select(option_select(
+        StatisticReport.style_statistics)),
+        {}, {class: "form-control select_custom"}) %>
+    </div>
+    <div class="col-md-12 month">
+      <label for="contact-name"><%= t "month" %></label></br>
+      <%= select_tag "month", options_for_select(option_select(
+        StatisticReport.months)), class: "form-control select_custom" %>
+    </div>
+    <div class="col-md-12 quarter", style="display: none;">
+      <label for="contact-name"><%= t "quarter" %></label></br>
+      <%= select_tag "quarter", options_for_select(
+        option_select(StatisticReport.quarters)),
+        class: "form-control select_custom" %>
+    </div>
+    <div class="form-group col-md-12">
+      <div class="form-group label-floating">
+        <%= f.label(:item_report, class: "control-label") do %>
+          <%= t("item_report") %>
+          <span class="text-danger">*</span>
+        <% end %>
+        <%= f.text_area :item_report, class: "form-control", required: true %>
+      </div>
+    </div>
+    <div class="form-group col-md-12">
+      <div class="form-group label-floating">
+        <%= f.label(:detail_report, class: "control-label") do %>
+          <%= t("detail_report") %>
+          <span class="text-danger">*</span>
+        <% end %>
+        <%= f.text_area :detail_report, class: "form-control", required: true %>
+      </div>
+    </div>
+    <div class="form-group col-md-12">
+      <div class="form-group label-floating">
+        <%= f.label(:plan_next_month, class: "control-label") do %>
+          <%= t("plan_next_month") %>
+          <span class="text-danger">*</span>
+        <% end %>
+        <%= f.text_area :plan_next_month, class: "form-control", required: true %>
+      </div>
+    </div>
+    <div class="form-group col-md-12">
+       <div class="form-group label-floating">
+        <%= f.label(:note, t("note"), class: "control-label") %>
+        <%= f.text_area :note, class: "form-control",
+          row: Settings.club_request.row_text_area %>
+      </div>
+    </div>
+    <div class="form-group col-md-12">
+      <div class="form-group label-floating">
+        <%= f.label(:others, t("others"), class: "control-label") %>
+        <%= f.text_area :others, class: "form-control", id: "contact-message",
+          row: Settings.club_request.row_text_area %>
+      </div>
+    </div>
+    <%= f.hidden_field :club_id %>
+    <div class="form-group center">
+      <%= f.submit t("report"),
+        class: "btn btn-secondary full-width" %>
+    </div>
+  <% end %>
+</div>
+<%= javascript_include_tag "statistic_report" %>

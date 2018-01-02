@@ -28,6 +28,7 @@ class ClubsController < ApplicationController
   end
 
   def show
+    @statistic_report = current_user.statistic_reports.build club_id: @club.id
     @album = Album.new
     list_events = @club.events
     @q = list_events.search(params[:q])

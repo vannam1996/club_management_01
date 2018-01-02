@@ -195,3 +195,6 @@ max_display_member_organization: 10
 set_user_donates:
   params_length: 2
   colspan: 5
+style_statistic:
+  month: "1"
+  quarter: "2"
