@@ -2,7 +2,8 @@ class NotificationsController < ApplicationController
   before_action :authenticate_user!
   before_action :load_user_club, only: [:index, :update]
   def index
-    @notifications = Activity.of_user_clubs(@user_club.map(&:club_id).uniq).oder_by_read
+    @notifications = Activity.includes(:trackable, [owner: :user_clubs], :container)
+      .notification_user(current_user.id).of_user_clubs(@user_club.map(&:club_id).uniq).oder_by_read
       .page(params[:page]).per Settings.notification_per_page
       respond_to do |format|
        format.html

@@ -1,6 +1,6 @@
 module NotificationsHelper
   def notifications_result
-    Activity.includes(:trackable, [owner: :user_clubs], :container)
+    Activity.includes(:trackable, [owner: :user_clubs], :container).notification_user(current_user.id)
       .of_user_clubs(current_user.user_clubs.joined.map(&:club_id)).oder_by_read
   end
 
