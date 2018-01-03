@@ -5,9 +5,10 @@ class Dashboard::ClubExportMembersController < BaseDashboardController
     @members = @club.user_clubs.are_member.newest
     respond_to do |format|
       format.html
-      format.xlsx {
-      response.headers["Content-Disposition"] = "filename='#{t("list_member")}: #{@club.name}.xlsx'"
-      }
+      format.xlsx do
+        response.headers["Content-Disposition"] =
+          "filename='#{t('list_member')}: #{@club.name}.xlsx'"
+      end
     end
   end
 

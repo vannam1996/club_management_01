@@ -11,8 +11,9 @@ class Activity < ApplicationRecord
   serialize :user_read, Array
 
   scope :of_user_clubs, ->(ar_club_id) do
-    where "container_id IN (?) AND container_type = ? OR trackable_id IN (?) AND trackable_type = ?" ,
-      ar_club_id, Settings.notification_club, ar_club_id, Settings.notification_club
+    where "container_id IN (?) AND container_type = ? OR trackable_id IN (?) AND
+      trackable_type = ?", ar_club_id, Settings.notification_club,
+      ar_club_id, Settings.notification_club
   end
   scope :oder_by_read, ->{order id: :desc}
   scope :notification_user, ->user_id{where.not owner_id: user_id}

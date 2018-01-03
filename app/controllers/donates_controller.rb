@@ -16,18 +16,15 @@ class DonatesController < ApplicationController
     donate = Donate.new donate_params
     if donate.save
       flash[:success] = t "you_raiting_club"
-      redirect_to club_event_path @club, @event
     else
       flash[:errors] = t("error_process")
-      redirect_back fallback_location: club_event_path
     end
+    redirect_to club_event_path @club, @event
   end
 
   def edit
     @request = @donate.update_attributes status: params[:status]
-    unless @request
-      flash[:errors] = t("error_process")
-    end
+    flash[:errors] = t("error_process") unless @request
     respond_to do |format|
       format.js
     end
@@ -42,17 +39,14 @@ class DonatesController < ApplicationController
   def update
     if @donate.update_attributes expense: params[:donate][:expense]
       flash[:success] = t "donate.update_success"
-      redirect_to club_event_path @club, @event
     else
       flash[:errors] = t("error_process")
-      redirect_to club_event_path @club, @event
     end
+    redirect_to club_event_path @club, @event
   end
 
   def destroy
-    unless @donate.destroy
-      flash[:danger] = t "error_process"
-    end
+    flash[:danger] = t "error_process" unless @donate.destroy
     respond_to do |format|
       format.js
     end

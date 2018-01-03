@@ -1,7 +1,6 @@
 require "rails_helper"
 
 RSpec.describe SetUserClubsController, type: :controller do
-
   let(:user){create :user}
   let(:user2){create :user}
   let(:organization){create :organization}
@@ -20,24 +19,23 @@ RSpec.describe SetUserClubsController, type: :controller do
 
   describe "PATCH #update" do
     context "when params[:club_id] present" do
-      before {get :update, params: {id: club.id}}
-      it {expect(flash[:success]).to eq "Bạn đã xử lý thành công"}
+      before{get :update, params: {id: club.id}}
+      it{expect(flash[:success]).to eq "Bạn đã xử lý thành công"}
     end
     context "when params[:id] not present" do
-      before {get :update, params: {id: 0}}
-      it {expect(flash[:danger]).to eq "Câu lạc bộ này không tồn tại"}
+      before{get :update, params: {id: 0}}
+      it{expect(flash[:danger]).to eq "Câu lạc bộ này không tồn tại"}
     end
     context "when params[:club_id] present" do
-      before {get :update, params: {id: club.id, roles: ["1","0"]}}
-      it {expect(assigns(:user_club)).to eq [user_club, user_club2]}
-      it {expect(flash[:success]).to eq "Bạn đã xử lý thành công"}
+      before{get :update, params: {id: club.id, roles: %w(1 0)}}
+      it{expect(assigns(:user_club)).to eq [user_club, user_club2]}
+      it{expect(flash[:success]).to eq "Bạn đã xử lý thành công"}
     end
   end
 
   describe "POST #create" do
     context "with valid attributes" do
       it "create new user club" do
-        request_params = FactoryGirl.attributes_for(:user_club)
         expect do
           post :create, params: {user_id: [user.id], id: club.id}
         end.to change(UserClub, :count).by 1
@@ -45,7 +43,6 @@ RSpec.describe SetUserClubsController, type: :controller do
       end
 
       it "create fail with user_id nil" do
-        request_params = FactoryGirl.attributes_for :user_club, user_id: nil
         expect do
           post :create, params: {id: club.id}
         end.to change(UserClub, :count).by 0
@@ -53,8 +50,8 @@ RSpec.describe SetUserClubsController, type: :controller do
       end
     end
     context "when params[:id] not present" do
-      before {get :update, params: {id: 0}}
-      it {expect(flash[:danger]).to eq "Câu lạc bộ này không tồn tại"}
+      before{get :update, params: {id: 0}}
+      it{expect(flash[:danger]).to eq "Câu lạc bộ này không tồn tại"}
     end
   end
 end

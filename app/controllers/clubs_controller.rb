@@ -64,11 +64,10 @@ class ClubsController < ApplicationController
       else
         flash_error @club
       end
-      redirect_to organization_club_path @organization, @club
     else
-      flash[:danger] = t "params_image_blank"
-      redirect_to organization_club_path @organization, @club
+      flash[:danger] = t("params_image_blank")
     end
+    redirect_to organization_club_path @organization, @club
   end
 
   protected
@@ -102,8 +101,6 @@ class ClubsController < ApplicationController
   end
 
   def club_params
-    if params[:club].present?
-      params.require(:club).permit :logo, :image
-    end
+    params.require(:club).permit :logo, :image if params[:club].present?
   end
 end

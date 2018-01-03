@@ -1,5 +1,4 @@
 class Event < ApplicationRecord
-
   serialize :description
 
   has_many :news, dependent: :destroy
@@ -69,11 +68,11 @@ class Event < ApplicationRecord
   end
 
   def update_money
-    case when self.pay_money?
+    if self.pay_money?
       self.club.update_attributes money: self.club.money + self.expense
-    when self.donate? || self.subsidy?
+    elsif self.donate? || self.subsidy?
       self.club.update_attributes money: self.club.money - self.expense
-    when self.get_money?
+    elsif self.get_money?
       self.club.update_attributes money: self.club.money - (self.budgets.size * self.expense.to_i)
     end
   end

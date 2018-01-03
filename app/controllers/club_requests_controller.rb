@@ -26,9 +26,8 @@ class ClubRequestsController < ApplicationController
       end
     else
       organization_id = current_user.organizations.first.id
-      @user_organizations = UserOrganization.load_user_organization(
-        organization_id
-      ).except_me(current_user.id).includes :user
+      @user_organizations = UserOrganization.load_user_organization(organization_id)
+        .except_me(current_user.id).includes :user
       @club_types = ClubType.load_club_type organization_id
     end
   end

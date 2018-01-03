@@ -13,9 +13,7 @@ class UserRequestClubsController < ApplicationController
 
   def update
     @request = @member.update_attributes status: params[:status]
-    unless @request
-      flash[:errors] = t("error_process")
-    end
+    flash[:errors] = t("error_process") unless @request
     respond_to do |format|
       format.js
     end

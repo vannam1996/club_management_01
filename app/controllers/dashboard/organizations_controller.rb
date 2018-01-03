@@ -37,7 +37,7 @@ class Dashboard::OrganizationsController < BaseDashboardController
   end
 
   def verify_manager_organization
-    @admin = (@organization.user_organizations.are_admin).find_by user_id: current_user
+    @admin = @organization.user_organizations.are_admin.find_by user_id: current_user
     unless @admin
       flash[:danger] = t "not_authorities_to_access"
       redirect_to dashboard_path

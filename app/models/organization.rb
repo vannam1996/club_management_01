@@ -28,7 +28,7 @@ class Organization < ApplicationRecord
   end
 
   def is_admin? user
-    user_organization = self.user_organizations.are_admin.find_by(user_id: user.id)
+    self.user_organizations.are_admin.find_by(user_id: user.id)
   end
 
   private

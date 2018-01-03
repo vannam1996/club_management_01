@@ -13,6 +13,6 @@ class UpdateUserOrganizationService
         @user_organization_update << member
       end
     end
-    return @user_organization_update
+    @user_organization_update
   end
 end

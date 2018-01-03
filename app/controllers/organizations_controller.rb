@@ -4,7 +4,8 @@ class OrganizationsController < ApplicationController
 
   def index
     @q = Organization.search(params[:q])
-    @organizations = @q.result.newest.includes(:users).page(params[:page]).per Settings.club_per_page
+    @organizations = @q.result.newest.includes(:users).page(params[:page])
+      .per Settings.club_per_page
   end
 
   def show

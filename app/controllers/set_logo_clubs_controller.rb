@@ -1,6 +1,6 @@
 class SetLogoClubsController < ApplicationController
   before_action :authenticate_user!
-  before_action :load_club, only:[:show, :update]
+  before_action :load_club, only: [:show, :update]
   before_action :set_params_img, only: :update
 
   def show
@@ -11,7 +11,7 @@ class SetLogoClubsController < ApplicationController
   end
 
   def update
-    if @club.update_attributes remote_logo_url: "#{@url_upload}"
+    if @club.update_attributes remote_logo_url: @url_upload.to_s
       create_acivity @club, Settings.update, @club, current_user
       flash[:success] = t "club_manager.club.success_update"
     else
