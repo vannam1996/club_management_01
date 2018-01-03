@@ -1,0 +1,70 @@
+<%= stylesheet_link_tag "tabs" %>
+<div class="ui-block col-md-12">
+  <div class="infor-request ui-block-title">
+    <h6><%= t "list_statistic" %></h6>
+    <ul class="tabs">
+      <li class="tab-link current" data-tab="pending">
+        <b><%= t "pending" %></b>
+      </li>
+      <li class="tab-link" data-tab="approved">
+        <b><%= t "approved" %></b>
+      </li>
+      <li class="tab-link" data-tab="rejected">
+        <b><%= t "rejected" %></b>
+      </li>
+    </ul>
+    <div class="pull-right funtion-request">
+      <%= link_to organization_path(@organization), remote: :true,
+        class: "btn btn-primary btn-sm" do %>
+        <i class="fa fa-undo" aria-hidden="true"></i>
+        <%= t "back" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="table-responsive list-user-request">
+      <div class="tab-content current" id="pending">
+        <% if @statistic_reports.report_pending.any? %>
+          <%= render partial: "statistic_reports",
+            locals: {statistic_reports: @statistic_reports.report_pending} %>
+          <%= paginate @statistic_reports.report_pending, remote: :true %>
+        <% else %>
+          <tr class="text-center">
+            <td colspan="<%= Settings.colspan_notice_empty %>">
+              <h5 class="center notifi-empty"><%= t "edit_member.no_request" %></h5>
+            </td>
+          </tr>
+        <% end %>
+      </div>
+      <div class="tab-content" id="approved">
+        <% if @statistic_reports.report_approved.any? %>
+          <%= render partial: "statistic_reports",
+            locals: {statistic_reports: @statistic_reports.report_approved} %>
+          <%= paginate @statistic_reports.report_approved, remote: :true %>
+        <% else %>
+          <tr class="text-center">
+            <td colspan="<%= Settings.colspan_notice_empty %>">
+              <h5 class="center notifi-empty"><%= t "edit_member.no_request" %></h5>
+            </td>
+          </tr>
+        <% end %>
+      </div>
+      <div class="tab-content" id="rejected">
+        <% if @statistic_reports.report_rejected.any? %>
+          <%= render partial: "statistic_reports",
+            locals: {statistic_reports: @statistic_reports.report_rejected} %>
+          <%= paginate @statistic_reports.report_rejected, remote: :true %>
+        <% else %>
+          <tr class="text-center">
+            <td colspan="<%= Settings.colspan_notice_empty %>">
+              <h5 class="center notifi-empty"><%= t "edit_member.no_request" %></h5>
+            </td>
+          </tr>
+        <% end %>
+      </div>
+  </div>
+</div>
+<div id="statistic-modal" class="modal fade" tabindex="-1"
+  role="dialog" aria-hidden="true">
+</div>
+<%= javascript_include_tag "tabs" %>

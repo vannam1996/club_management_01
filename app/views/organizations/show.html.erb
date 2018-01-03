@@ -118,6 +118,12 @@
                           <%= t "manager_club_type" %>
                         <% end %>
                       </li>
+                      <li>
+                        <%= link_to statistic_reports_path(id: @organization.id),
+                          remote: :true do %>
+                          <%= t "list_statistic" %>
+                        <% end %>
+                      </li>
                     </ul>
                   </div>
                 </div>

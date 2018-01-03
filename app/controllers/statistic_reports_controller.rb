@@ -1,8 +1,32 @@
 class StatisticReportsController < ApplicationController
   before_action :authenticate_user!
+  load_and_authorize_resource
   before_action :load_club, only: :create
-  before_action :check_user, only: :create
   before_action :new_statistic, only: :create
+  before_action :load_organization, only: :index
+  before_action :check_user_organization, only: :index
+  before_action :load_statistic, only: :show
+
+  def index
+    if @organization
+      club_ids = @organization.clubs.pluck :id
+      @statistic_reports = Support::StatisticReportSupport
+        .new club_ids, params[:page]
+    end
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
+  def show
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
+  def update; end
 
   def create
     if @statistic_report.save
@@ -27,10 +51,13 @@ class StatisticReportsController < ApplicationController
     redirect_to request.referer || root_url
   end
 
-  def check_user
-    return if can? :is_admin, @club
+  def check_user_organization
+    return if can? :manager, @organization
     flash[:warning] = t "manager_require"
-    redirect_to request.referer || root_url
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def new_statistic
@@ -43,5 +70,18 @@ class StatisticReportsController < ApplicationController
     end
     @statistic_report.fund = @club.money
     @statistic_report.members = @club.member
+    @statistic_report.status = :pending
+  end
+
+  def load_organization
+    @organization = Organization.find_by id: params[:id]
+    return if @organization
+    flash[:danger] = t "not_found_organization"
+  end
+
+  def load_statistic
+    @statistic_report = StatisticReport.find_by id: params[:id]
+    return if @statistic_report
+    flash[:danger] = t "not_found_statistic"
   end
 end
