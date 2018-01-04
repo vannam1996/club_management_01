@@ -1,7 +1,6 @@
 require "rails_helper"
 
-RSpec.describe  ImagesController, type: :controller do
-
+RSpec.describe ImagesController, type: :controller do
   let(:user){create :user}
   let(:organization){create :organization}
   let(:club) do
@@ -20,16 +19,16 @@ RSpec.describe  ImagesController, type: :controller do
   describe "POST #create" do
     context "with params present" do
       it "create new images" do
-        request_params = FactoryGirl.attributes_for(:image)
         expect do
-          post :create, params: {club_id: club.id, album_id: album.id, id: album.id, images: {urls: [1,2,3,4]}}
+          post :create, params: {club_id: club.id, album_id: album.id,
+            id: album.id, images: {urls: [1, 2, 3, 4]}}
         end.to change(Image, :count).from(0).to(4)
         expect(flash[:success]).to be_present
       end
       it "create fail with params[:images][:urls] nil" do
-        request_params = FactoryGirl.attributes_for :image
         expect do
-          post :create, params: {club_id: club.id, album_id: album.id, id: album.id, images: {urls: nil}}
+          post :create, params: {club_id: club.id, album_id: album.id,
+            id: album.id, images: {urls: nil}}
         end.to change(Image, :count).by 0
         expect(flash[:danger]).to eq I18n.t("error_in_process")
       end
@@ -37,16 +36,16 @@ RSpec.describe  ImagesController, type: :controller do
   end
   describe "DELETE #destroy" do
     context "when params[:id] present" do
-      before {delete :destroy, xhr: true, params: {club_id: club.id, album_id: album.id, id: image}}
-      it {expect(response).to be_ok}
+      before{delete :destroy, xhr: true, params: {club_id: club.id, album_id: album.id, id: image}}
+      it{expect(response).to be_ok}
     end
     context "when params[:id] not present" do
-      before {delete :destroy, xhr: true, params: {album_id: album.id, club_id: club.id, id: 1}}
-      it {expect(flash[:danger]).to eq I18n.t("not_found_image")}
+      before{delete :destroy, xhr: true, params: {album_id: album.id, club_id: club.id, id: 1}}
+      it{expect(flash[:danger]).to eq I18n.t("not_found_image")}
     end
     context "when params[:album_id] not present" do
-      before {delete :destroy, xhr: true, params: {album_id: 0, club_id: club.id, id: image}}
-      it {expect(flash[:danger]).to eq I18n.t("not_found_album")}
+      before{delete :destroy, xhr: true, params: {album_id: 0, club_id: club.id, id: image}}
+      it{expect(flash[:danger]).to eq I18n.t("not_found_album")}
     end
   end
 end

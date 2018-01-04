@@ -23,9 +23,7 @@ class SetUserDonatesController < ApplicationController
     if @user.present? && params[:expense].present?
       @donate = Donate.new(event_id: params[:event_id], user_id: @user.id,
         expense: params[:expense], status: Donate.statuses[:accept])
-      unless @donate.save
-        flash[:errors] = t("error_process")
-      end
+      flash[:errors] = t("error_process") unless @donate.save
     else
       flash[:danger] = t "donate.unregistered"
     end

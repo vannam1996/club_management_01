@@ -1,7 +1,8 @@
 module NotificationsHelper
   def notifications_result
-    Activity.includes(:trackable, [owner: :user_clubs], :container).notification_user(current_user.id)
-      .of_user_clubs(current_user.user_clubs.joined.map(&:club_id)).oder_by_read
+    Activity.includes(:trackable, [owner: :user_clubs], :container)
+      .notification_user(current_user.id).of_user_clubs(current_user.user_clubs
+      .joined.map(&:club_id)).oder_by_read
   end
 
   def option_image notification
@@ -31,14 +32,18 @@ module NotificationsHelper
   end
 
   def option_class read
-    class_read = read.present? && read.include?(current_user.id) ? Settings.notifications.read : Settings.notifications.un_read
+    if read.present? && read.include?(current_user.id)
+      Settings.notifications.read
+    else
+      Settings.notifications.un_read
+    end
   end
 
   def size_notification notifications
     un_read = notifications.size
     notifications.each do |notification|
       if notification.user_read.present? && notification.user_read.include?(current_user.id)
-        un_read = un_read - Settings.notifications.notification_read
+        un_read -= Settings.notifications.notification_read
       end
     end
     un_read

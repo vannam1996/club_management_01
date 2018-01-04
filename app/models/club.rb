@@ -65,12 +65,12 @@ class Club < ApplicationRecord
 
   class << self
     def create_after_approve request
-    club = self.create organization_id: request.organization_id, name: request.name,
-      description: request.description, member: request.member, goal: request.goal,
-      local: request.local, content: request.content, time_activity: request.time_activity,
-      rules: request.rules, rule_finance: request.rule_finance, time_join: request.time_join,
-      punishment: request.punishment, plan: request.plan, logo: request.logo, is_active: true,
-      club_type: request.club_type, activities_connect: request.activities_connect
+      club = self.create organization_id: request.organization_id, name: request.name,
+        description: request.description, member: request.member, goal: request.goal,
+        local: request.local, content: request.content, time_activity: request.time_activity,
+        rules: request.rules, rule_finance: request.rule_finance, time_join: request.time_join,
+        punishment: request.punishment, plan: request.plan, logo: request.logo, is_active: true,
+        club_type: request.club_type, activities_connect: request.activities_connect
       create_user_club club, request
       add_member_club club, request
     end
@@ -100,7 +100,7 @@ class Club < ApplicationRecord
 
   def is_admin? user
     user_club = self.user_clubs.manager.find_by(user_id: user.id)
-    return user_club.present?
+    user_club.present?
   end
 
   def money_pay money
@@ -120,9 +120,9 @@ class Club < ApplicationRecord
       image.height < Settings.club.image.min_height_image_club ||
       image.height > Settings.club.image.max_height_image_club)
       errors.add :image, I18n.t("errors_size_image",
-      min_width_image_club: Settings.club.image.min_width_image_club,
-      min_height_image_club: Settings.club.image.min_height_image_club,
-      max_height_image_club: Settings.club.image.max_height_image_club)
+        min_width_image_club: Settings.club.image.min_width_image_club,
+        min_height_image_club: Settings.club.image.min_height_image_club,
+        max_height_image_club: Settings.club.image.max_height_image_club)
     end
   end
 

@@ -1,7 +1,7 @@
 class AlbumsController < ApplicationController
   before_action :authenticate_user!
   before_action :load_club
-  before_action :load_album, only:[:show, :edit, :update, :destroy]
+  before_action :load_album, only: [:show, :edit, :update, :destroy]
 
   def index
     @albums = @club.albums.newest.includes(:images)
@@ -26,9 +26,7 @@ class AlbumsController < ApplicationController
   end
 
   def destroy
-    unless @album.destroy
-      flash[:danger] = t "error_process"
-    end
+    flash[:danger] = t "error_process" unless @album.destroy
     flash[:success] = t "success_process"
     respond_to do |format|
       format.js

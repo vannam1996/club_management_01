@@ -1,6 +1,6 @@
 module EventsHelper
   def number_to_vnd amount
-    raw "#{amount} <sup>vnđ</sup>"
+    html_safe? "#{amount} <sup>vnđ</sup>"
   end
 
   def view_case_money_after event
@@ -28,13 +28,13 @@ module EventsHelper
 
   def view_case_money_event_after event, club
     members_done = club.users.done_by_ids(event.budgets.map(&:user_id))
-    case when event.get_money?
+    if event.get_money?
       after_money = event.amount.to_i + (members_done.size.to_i * event.expense.to_i)
-    when event.pay_money?
+    elsif event.pay_money?
       after_money = event.amount.to_i - event.expense.to_i
-    when event.subsidy?
+    elsif event.subsidy?
       after_money = event.amount.to_i + event.expense.to_i
-    when event.donate?
+    elsif event.donate?
       after_money = event.amount.to_i + event.expense.to_i
     else
       after_money = nil
@@ -48,27 +48,18 @@ module EventsHelper
 
   def view_icon event
     if event.pay_money?
-      html = <<-HTML
-        <i class="fa fa-minus get-money-icon" aria-hidden="true"></i>
-      HTML
+      content_tag(:i, class: "fa fa-minus get-money-icon")
     else
-      html = <<-HTML
-        <i class="fa fa-plus pay-money-icon" aria-hidden="true"></i>
-      HTML
+      content_tag(:i, class: "fa fa-plus pay-money-icon")
     end
-    raw html
   end
 
   def count_member_done event, club
     members_done = club.users.done_by_ids(event.budgets.map(&:user_id))
-    html =
-      <<-HTML
-        (#{members_done.size} <i class="fa fa-user-o" aria-hidden="true"></i>)
-      HTML
-    raw html
+    content_tag(members_done.size, :i, class: "fa fa-user-o")
   end
 
-  def get_money_expense event, club
+  def get_money_expense event, _club
     event.expense * event.budgets.size
   end
 
@@ -82,19 +73,13 @@ module EventsHelper
 
   def confirm_donate donate, club
     if donate.accept?
-      html = <<-HTML
-        <span class="btn btn-success">#{t("donate.confirmed")}</span>
-      HTML
-      raw html
+      content_tag(:span, t("donate.confirmed"), class: "btn btn-success")
     elsif club.is_admin? current_user
       link_to t("donate.wait_confirmation"),
         edit_club_event_donate_path(club, donate.event_id, donate, status: :accept),
         remote: :true, class: "btn btn-warning", title: t("confirm")
     else
-      html = <<-HTML
-        <span class="btn btn-warning">#{t("donate.wait_confirmation")}</span>
-      HTML
-      raw html
+      content_tag(:span, t("donate.wait_confirmation"), class: "btn btn-warning")
     end
   end
 end

@@ -1,5 +1,4 @@
 module Dashboard::LayoutHelper
-
   def organization_manager_verify?
     current_user.user_organizations.are_admin.any?
   end
@@ -45,7 +44,7 @@ module Dashboard::LayoutHelper
 
   def set_link_item item, name_manager
     concat(content_tag(:li, nil) do
-      if(name_manager == "club")
+      if name_manager == "club"
         link_to item.name, dashboard_club_path(item.club_id)
       else
         link_to item.name, dashboard_organization_path(id: item.id)
@@ -58,6 +57,6 @@ module Dashboard::LayoutHelper
   end
 
   def time_join time
-    timejoin = time.split("*")
+    time.split("*")
   end
 end

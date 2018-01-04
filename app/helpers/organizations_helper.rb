@@ -9,8 +9,9 @@ module OrganizationsHelper
     end
   end
 
-  def view_organization?(organization, user)
-    organization.status == Settings.professed || (UserOrganization.find_with_user_of_company(user.id, organization.id)).present?
+  def view_organization? organization, user
+    organization.status == Settings.professed || UserOrganization
+      .find_with_user_of_company(user.id, organization.id).present?
   end
 
   def user_role

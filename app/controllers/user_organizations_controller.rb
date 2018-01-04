@@ -47,9 +47,11 @@ class UserOrganizationsController < ApplicationController
   def load_user_organiation
     @user_organization = @organization.user_organizations
       .find_by user_id: current_user.id
-    if @user_organization.is_admin && @organization.user_organizations.are_admin.size == Settings.user_club.manager
-      flash[:danger] = t("user_organization_not_remove")
-      redirect_to organization_path(@organization)
+    if @user_organization.is_admin
+      if @organization.user_organizations.are_admin.size == Settings.user_club.manager
+        flash[:danger] = t("user_organization_not_remove")
+        redirect_to organization_path @organization
+      end
     end
   end
 end

@@ -42,9 +42,7 @@ class UserClub < ApplicationRecord
   end
 
   def send_mail_after_update
-    if self.joined?
-      send_email_join_club self
-    end
+    send_email_join_club self if self.joined?
   end
 
   def send_email_join_club user

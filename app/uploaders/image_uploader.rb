@@ -5,7 +5,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   before :cache, :capture_size
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
-   include CarrierWave::MiniMagick
+  include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
   storage :file
@@ -17,17 +17,18 @@ class ImageUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-  def capture_size(file)
+  def capture_size file
     if version_name.blank? # Only do this once, to the original version
       if file.path.nil? # file sometimes is in memory
-        img = MiniMagick::Image::open(file.file)
+        img = MiniMagick::Image.open(file.file)
         @width = img[:width]
         @height = img[:height]
       else
-        @width, @height = `identify -format "%wx %h" #{file.path}`.split(/x/).map{|dim| dim.to_i }
+        @width, @height = `identify -format "%wx %h" #{file.path}`.split(/x/).map(&:to_i)
       end
     end
   end
+
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url
   #   # For Rails 3.1+ asset pipeline compatibility:
@@ -43,8 +44,6 @@ class ImageUploader < CarrierWave::Uploader::Base
   # def scale(width, height)
   #   # do something
   # end
-
-
 
   # Create different versions of your uploaded files:
   # version :thumb do

@@ -4,7 +4,6 @@ class UserRequestOrganizationsController < ApplicationController
   before_action :load_user_pendings, only: [:show, :edit]
   before_action :load_user_member, only: :update
 
-
   def show
     @members_pending = @user_pendings.includes(:user)
     respond_to do |format|
@@ -15,18 +14,15 @@ class UserRequestOrganizationsController < ApplicationController
   def edit
     if @user_pendings.update_all status: params[:status]
       flash[:success] = t "success_process"
-      redirect_to organization_path @organization
     else
       flash[:danger] = t "error_in_process"
-      redirect_to organization_path @organization
     end
+    redirect_to organization_path @organization
   end
 
   def update
     @request = @member.update_attributes status: params[:status]
-    unless @request
-      flash[:errors] = t("error_process")
-    end
+    flash[:errors] = t("error_process") unless @request
     respond_to do |format|
       format.js
     end

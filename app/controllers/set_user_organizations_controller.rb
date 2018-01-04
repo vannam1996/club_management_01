@@ -10,8 +10,9 @@ class SetUserOrganizationsController < ApplicationController
       user_organization_create = []
       user_ids = params[:user_id]
       user_ids.each do |user_id|
-        user_organization_create << UserOrganization.new(user_id: user_id, organization_id: @organization.id,
-          is_admin: Settings.user_club.member, status: Settings.user_club.join)
+        user_organization_create << UserOrganization.new(user_id: user_id,
+          organization_id: @organization.id, is_admin: Settings.user_club.member,
+          status: Settings.user_club.join)
       end
       UserOrganization.import user_organization_create
       flash[:success] = t "success_process"
@@ -50,9 +51,7 @@ class SetUserOrganizationsController < ApplicationController
   end
 
   def destroy
-    unless @user_organization.destroy
-      flash[:danger] = t("error_process")
-    end
+    flash[:danger] = t("error_process") unless @user_organization.destroy
     respond_to do |format|
       format.js
     end

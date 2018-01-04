@@ -21,8 +21,6 @@ class SetActiveClubsController < ApplicationController
   end
 
   def check_is_admin
-    unless can? :is_admin, @club
-      redirect_to root_path
-    end
+    redirect_to root_path unless can? :is_admin, @club
   end
 end

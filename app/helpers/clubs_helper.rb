@@ -4,7 +4,7 @@ module ClubsHelper
   end
 
   def get_field_club field
-    raw(field) if field.present?
+    html_safe?(field) if field.present?
   end
 
   def check_date days, day
@@ -13,15 +13,9 @@ module ClubsHelper
 
   def view_detail_club content_view
     if content_view.blank?
-      html = <<-HTML
-        <h5 class="text-center"><strong><i>#{t("content_empty")}</i></strong></h5>
-      HTML
-      raw html
+      content_tag(:h5, content_tag(:strong, t("content_empty")), class: "text-center")
     else
-      html = <<-HTML
-        #{content_view}
-      HTML
-      raw html
+      simple_format(content_view)
     end
   end
 
@@ -29,12 +23,13 @@ module ClubsHelper
     if current_user.user_clubs.manager.find_by(club_id: club.id).present?
       link_to t("view_more"), dashboard_club_path(club.id), class: "btn btn-success"
     else
-      link_to t("view_more"), "javascript:void(0)", title: t("club_is_lock"), class: "btn btn-default"
+      link_to t("view_more"), "javascript:void(0)", title: t("club_is_lock"),
+        class: "btn btn-default"
     end
   end
 
   def albums_club album
-    img = album.images.first.url
+    album.images.first.url
   end
 
   def user_role_club

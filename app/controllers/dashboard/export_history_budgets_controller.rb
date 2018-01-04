@@ -5,9 +5,10 @@ class Dashboard::ExportHistoryBudgetsController < ApplicationController
     @events = @event_clubs.by_created_at params[:first_date], params[:second_date]
     respond_to do |format|
       format.html
-      format.xlsx {
-        response.headers["Content-Disposition"] = "filename='#{t("history_budget")}: #{@club.name}.xlsx'"
-      }
+      format.xlsx do
+        response.headers["Content-Disposition"] =
+          "filename='#{t('history_budget')}:#{@club.name}.xlsx'"
+      end
     end
   end
 

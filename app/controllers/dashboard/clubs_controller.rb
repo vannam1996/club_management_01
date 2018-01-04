@@ -55,7 +55,7 @@ class Dashboard::ClubsController < BaseDashboardController
   end
 
   def verify_manager_club
-    @admin = (@club.user_clubs.manager).find_by user_id: current_user
+    @admin = @club.user_clubs.manager.find_by user_id: current_user
     unless @admin
       flash[:danger] = t "not_authorities_to_access"
       redirect_to dashboard_path

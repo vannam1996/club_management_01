@@ -5,10 +5,10 @@ class NotificationsController < ApplicationController
     @notifications = Activity.includes(:trackable, [owner: :user_clubs], :container)
       .notification_user(current_user.id).of_user_clubs(@user_club.map(&:club_id).uniq).oder_by_read
       .page(params[:page]).per Settings.notification_per_page
-      respond_to do |format|
-       format.html
-       format.js
-      end
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def update

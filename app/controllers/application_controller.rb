@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :set_locale
-  before_action :current_user_clubs, :if => :user_signed_in?
+  before_action :current_user_clubs, if: :user_signed_in?
   include ApplicationHelper
 
   def user_signed_in
@@ -61,6 +61,6 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_out_path_for _resource
-    request.referrer || my_clubs_path
+    request.referer || my_clubs_path
   end
 end
