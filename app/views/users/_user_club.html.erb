@@ -1,7 +1,7 @@
 <% @clubs.each do |club| %>
   <li>
     <div class="author-thumb">
-      <%= image_tag club.logo, class: "avatar" %>
+      <%= image_tag club.logo, class: "avatar-club" %>
     </div>
     <div class="notification-event">
       <%= link_to club.name, club, class: "h6 notification-friend" %>

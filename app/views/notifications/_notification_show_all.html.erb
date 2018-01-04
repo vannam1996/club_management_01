@@ -1,6 +1,6 @@
 <% @notifications.each do |notification| %>
   <% if notification.trackable.present? %>
-    <li class="row custom_notifications notification-<%= option_class(notification.user_read) %>" id ="notification-avata">
+    <li class="custom_notifications notification-<%= option_class(notification.user_read) %>" id ="notification-avata">
       <div class="notifyBody notification-show"  id="notify-id-<%= notification.id %>"
         data-link="<%= url_notification(notification) %>" data-link-target="new"
         id="notify-id-<%= notification.id %>"

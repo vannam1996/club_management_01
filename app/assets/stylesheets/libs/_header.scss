@@ -35,7 +35,7 @@
 }
 
 .header-spacer-small {
-  height: 70px;
+  height: 50px;
 }
 
 .search-bar {
@@ -1625,4 +1625,18 @@
 }
 .user-infor {
   padding: 3px 0px;
+}
+.search-field input{
+  padding-bottom: 45px !important;
+  padding-top: 16px !important;
+}
+.chosen-container {
+  border-color: $grey-lighter !important;
+}
+.pd-bottom {
+  margin-bottom: 1rem !important;
+}
+.avatar-club {
+  max-width: 80px;
+  height: 40px;
 }
