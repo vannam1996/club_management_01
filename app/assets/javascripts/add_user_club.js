@@ -1,3 +1,6 @@
-$('#checkall').change(function(){
-  $('.checkbox').prop('checked', $(this).prop('checked'));
+$(document).ready(function () {
+  $('#checkall').change(function(){
+    $('.checkbox').prop('checked', $(this).prop('checked'));
+  });
 });
+

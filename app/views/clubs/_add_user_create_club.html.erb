@@ -27,7 +27,7 @@
                 <% user_clubs.each do |user_club| %>
                   <tr class="add-user-member user-<%= user_club.user_id %>">
                     <td class="check-user">
-                      <%= check_box_tag "user_club_request[user_ids][]",user_club.user_id %>
+                      <%= check_box_tag "user_club[user_ids][]",user_club.user_id %>
                     </td>
                     <td>
                       <%= user_club.user_full_name %>
@@ -49,7 +49,8 @@
         </div>
       </div>
       <div class="modal-footer text-center">
-        <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal">
+        <button type="button" class="btn btn-sm btn-primary btn_choose_member"
+          data-dismiss="modal">
           <%= t "submit_member" %>
         </button>
       </div>
@@ -57,6 +58,6 @@
   </div>
 </div>
 
+<%= javascript_include_tag "choose_member_clubs" %>
 <%= javascript_include_tag "add_user_club" %>
-<%= javascript_include_tag "choose_member" %>
 <%= javascript_include_tag "search_member" %>

@@ -1,0 +1,6 @@
+<% if can? :manager, @organization %>
+  $('#organization_club').html('<%= j render "new" %>');
+<% else %>
+  $('#organization_club').apend('<%= j render "shared/flash_warning" %>');
+<% end %>
+

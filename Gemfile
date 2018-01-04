@@ -85,6 +85,7 @@ group :test do
   gem "scss_lint", require: false
   gem "pronto-scss", require: false
   gem "pronto-eslint", require: false
+  gem "rubocop", "~> 0.49.1", require: false
 end
 
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
