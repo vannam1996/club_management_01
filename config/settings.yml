@@ -200,3 +200,6 @@ style_statistic:
   quarter: "2"
 row_email: "Email"
 row_name: "Họ và tên"
+name_type: 50
+club_type_delete: 0
+per_page_type: 10

@@ -31,7 +31,7 @@ function SearchOtherClub() {
   var rate_lteq = rate[1];
   var stype_organizations = $('.stype-organizations-other-clubs').val();
   var data = {q: {s: [sort_params, sort_club], name_or_content_cont: search,
-    club_type_eq: stype_clubs,organization_id_eq: stype_organizations,
+    club_type_id_eq: stype_clubs,organization_id_eq: stype_organizations,
     rating_gteq: rate_gteq, rating_lteq: rate_lteq}}
   $.get('/clubs', data , null, 'script');
   return false;

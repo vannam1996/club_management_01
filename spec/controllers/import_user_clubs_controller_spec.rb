@@ -1,7 +1,6 @@
 require "rails_helper"
 
 RSpec.describe Manager::ImportUserClubsController, type: :controller do
-
   let!(:user){create :user}
   let!(:organization){create :organization}
   let!(:club) do
@@ -20,7 +19,6 @@ RSpec.describe Manager::ImportUserClubsController, type: :controller do
   end
 
   describe "POST #create" do
-
     context "with file" do
       it "create fail with no file" do
         post :create, params: {file: nil, club_id: club.id}

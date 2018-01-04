@@ -12,7 +12,8 @@
             <div class="col-md-12 new-organization">
               <label for="contact-name"><%= t "organization_sign" %></label>
               <br>
-              <%= f.select(:organization_id, @organizations.collect {|org| [ org.name, org.organization_id ]}, {}, {class: "form-control select_custom" }) %>
+              <%= f.select(:organization_id, @organizations.collect {|org| [org.name, org.organization_id ]},
+                {}, {class: "form-control select_custom", id: "select_orgzt"}) %>
               <label class="push-left"><%= t "organization_question" %></label>
               <%= link_to t("click_here"), new_user_organization_request_path(user_id: current_user.id) %>
             </div>
@@ -27,9 +28,9 @@
             </div>
             <div class="col-md-12">
               <label for="contact-name"><%= t "type_club" %></label></br>
-              <%= f.select(:club_type, options_for_select(
-                ClubRequest.club_types.map{|k, v| [t("#{k}"), v]}), {},
-                {class: "form-control select_custom"}) %>
+              <%= f.select(:club_type_id, @club_types.collect {|club_type| [
+                club_type.name, club_type.id ]}, {},
+                {class: "form-control select_custom", id: "select_club_type"}) %>
             </div>
             <div class="form-group col-md-12">
               <div class="form-group label-floating">
@@ -50,6 +51,10 @@
               <div id="user_club_request">
                 <%= render partial: "add_user", locals: {user_clubs: @user_organizations} %>
               </div>
+            </div>
+            <div class = "col-md-12 list-member">
+              <%= label_tag t("list_label"), nil, {id: "members-label", class: "hidden"} %>
+              <%= label_tag nil, nil, {id: "members"} %>
             </div>
             <div class="col-md-12 logo-club">
               <div class="row">

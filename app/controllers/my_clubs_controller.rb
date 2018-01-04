@@ -10,6 +10,7 @@ class MyClubsController < ApplicationController
     @organizations = Organization.by_user_organizations(
       current_user.user_organizations.joined
     )
+    @club_types = ClubType.includes(:organization)
     respond_to do |format|
       format.html
       format.js

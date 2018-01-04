@@ -19,6 +19,7 @@ class Club < ApplicationRecord
   has_many :statistic_reports, dependent: :destroy
 
   belongs_to :organization
+  belongs_to :club_type
 
   mount_uploader :image, ImageUploader
   mount_uploader :logo, ImageUploader
@@ -31,8 +32,8 @@ class Club < ApplicationRecord
   validates :goal, presence: true
   validate :check_dimensions, on: :update
 
-  enum club_type: {sport: 1, game: 2, education: 3, music: 4,
-    entertainment: 5, confidential: 6, junket: 7, other: 0}
+  # enum club_type: {sport: 1, game: 2, education: 3, music: 4,
+  #   entertainment: 5, confidential: 6, junket: 7, other: 0}
 
   # scope :actives, ->{where is_active: true}
   scope :of_user_clubs, ->user_clubs{where id: user_clubs.map(&:club_id)}
