@@ -2,16 +2,21 @@
   <div class="infor-request ui-block-title">
     <h6 class="title"><%= t "title_club_type" %></h6>
     <div class="pull-right funtion-request">
-      <%= link_to new_organization_club_type_path(@organization), remote: true,
+      <%= link_to "#new-list-type", data: {toggle: :collapse},
         class: "btn btn-breez btn-sm" do %>
         <i class="fa fa-check-square-o" aria-hidden="true"></i>
         <%= t "create_type" %>
       <% end %>
       <%= link_to organization_path(@organization), remote: :true,
         class: "btn btn-primary btn-sm button-back" do %>
-        <i class="fa fa-undo" aria-hidden="true"></i>
+        <i class="fa fa-arrow-left" aria-hidden="true"></i>
         <%= t "back" %>
       <% end %>
+    </div>
+  </div>
+  <div id="new-list-type" class="collapse">
+    <div class="infor-request ui-block-title">
+      <%= render partial: "form_new", locals: {club_type: @club_type} %>
     </div>
   </div>
   <% if club_types.any? %>
@@ -26,29 +31,7 @@
           </tr>
         </thead>
         <tbody>
-          <% club_types.each do |club_type| %>
-            <tr class="add-user-member">
-              <td class= "text-center">
-                <%= club_type.name %>
-              </td>
-              <td class="text-center">
-                <%= l club_type.created_at, format: :short %>
-              </td>
-              <td class="text-center">
-                <%= club_type.clubs.size %>
-              </td>
-              <td class="text-center">
-                <%= link_to edit_organization_club_type_path(@organization, club_type),
-                  title: t("edit"), remote: :true, class: "btn btn-primary" do %>
-                    <i class="fa fa-edit"></i>
-                  <% end %>
-                <%= link_to organization_club_type_path(@organization, club_type), method: :delete, title: t("delete"), data: {confirm: t("confirm_delete_type")}, remote: true,
-                  class: "btn btn-danger" do %>
-                    <i class="fa fa-remove"></i>
-                  <% end %>
-              </td>
-            </tr>
-          <% end %>
+          <%= render partial: "club_type", collection: club_types, as: :club_type %>
         </tbody>
       </table>
     </div>

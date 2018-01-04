@@ -5,10 +5,6 @@ class ClubTypesController < ApplicationController
   before_action :find_club_type, only: %i(edit destroy update)
   authorize_resource
 
-  def new
-    @club_type = @organization.club_types.build
-  end
-
   def create
     @club_type = @organization.club_types.new club_type_params
     respond_to do |format|
@@ -41,7 +37,7 @@ class ClubTypesController < ApplicationController
       if @club_type.update_attributes name: params[:name]
         flash.now[:success] = t "update_club_type"
       else
-        format.json{render json: @club_type}
+        flash.now[:success] = t "update_error"
       end
       format.js
     end
@@ -65,7 +61,7 @@ class ClubTypesController < ApplicationController
 
   def load_club_types
     if @organization
-      @club_types = @organization.club_types.page(params[:page])
+      @club_types = @organization.club_types.order_desc.page(params[:page])
         .per Settings.per_page_type
     end
   end

@@ -515,6 +515,8 @@ vi:
   save: "Lưu"
   activerecord:
     attributes:
+      club_type:
+        name: ""
       news:
         title: "Tiêu đề"
         content: "Nội dung"
@@ -637,6 +639,10 @@ vi:
             member:
               less_than_or_equal_to: " quá lớn (phải nhỏ hơn %{count})"
               not_a_number: " phải là một số"
+        club_type:
+          attributes:
+            name:
+              taken: "Đã có loại này !"
         club:
           attributes:
             name:
@@ -1136,7 +1142,7 @@ vi:
   confirm_delete_type: "Xóa loại câu lạc bộ này?"
   exist_club: "Không thể xóa, tồn tại câu lạc bộ thuộc loại này !"
   error_find_type: "Không tìm thấy loại câu lạc bộ này !"
-  create_type: "Tại mới loại"
+  create_type: "Tạo mới loại"
   title_club_type: "Loại câu lạc bộ"
   no_type: "Chưa có loại nào !"
   favorite_tags: "Tags yêu thích"
@@ -1144,3 +1150,6 @@ vi:
   open_club: "Tạo câu lạc bộ"
   not_save_admin: "Không thể thêm quản lí"
   success_create_club: "Tạo câu lạc bộ thành công"
+  save_chage_type: "Lưu thay đổi"
+  undo: "Hủy"
+  update_error: "Cập nhật thất bại !"

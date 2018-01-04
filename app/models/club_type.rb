@@ -3,7 +3,11 @@ class ClubType < ApplicationRecord
   has_many :clubs, dependent: :destroy
   has_many :club_requests, dependent: :destroy
 
-  scope :load_club_type, ->(organization_id) {where organization_id: organization_id}
+  scope :of_organization, ->(organization_id){where organization_id: organization_id}
+  scope :order_desc, ->{order created_at: :desc}
 
-  validates :name, presence: true, length: {maximum: Settings.name_type}
+  validates :name, presence: true, length: {maximum: Settings.name_type},
+    uniqueness: {scope: :organization_id}
+
+  delegate :name, to: :organization, prefix: :organization, allow_nil: :true
 end

@@ -68,7 +68,7 @@
                       <div class="w-select col-md-6">
                         <fieldset class="form-group club-type">
                           <%= f.select :club_type_id_eq, options_for_select(
-                            @organization.club_types.map{|t| [t("#{t.name}"), t.id]}
+                            @organization.club_types.map{|t| ["#{t.name}", t.id]}
                               .unshift([t("style_filter"), nil]),
                             include_blank: true),
                             {class: "select_custom form-control"}, id: "type_club_search" %>
@@ -204,10 +204,6 @@
 <div id="modal-club-request" class="modal fade" tabindex="-1"
   role="dialog" aria-hidden="true">
   <%= render "infor_club" %>
-</div>
-<div id="modal-club-type" class="modal fade" tabindex="-1"
-  role="dialog" aria-hidden="true">
-  <%= render "modal_club_type" %>
 </div>
 <div id="user_organization_show" class="modal fade" tabindex="-1"
   role="dialog" aria-hidden="true">

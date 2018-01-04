@@ -56,7 +56,7 @@ class ClubsController < ApplicationController
       @user_organizations = UserOrganization
         .load_user_organization(params[:organization_id])
         .except_me current_user.id
-      @club_types = ClubType.load_club_type params[:organization_id]
+      @club_types = ClubType.of_organization params[:organization_id]
     else
       flash[:danger] = t "not_authorities_to_access"
     end
