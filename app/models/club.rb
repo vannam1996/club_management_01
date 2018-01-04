@@ -128,7 +128,7 @@ class Club < ApplicationRecord
 
   def display_organization
     return "" if self.nil?
-    "#{self.organization_name} / #{I18n.t("club_type.#{self.club_type}")}"
+    "#{self.organization_name}"
   end
 
   private
