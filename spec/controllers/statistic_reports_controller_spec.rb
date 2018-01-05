@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe StatisticReportsController, type: :controller do
   let(:user){create :user}
   let(:organization){create :organization}
-  let(:club) do
+  let!(:club) do
     create :club, organization: organization
   end
   let!(:user_club) do
