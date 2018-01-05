@@ -44,7 +44,7 @@ RSpec.describe SetImageClubsController, type: :controller do
       before do
         get :update, params: {id: club, club: nil}
       end
-      it{expect(flash[:danger]).to eq I18n.t("select_image")}
+      it{expect(flash[:danger]).to eq "Chưa có hình ảnh nào được chọn, vui lòng chọn hình ảnh!"}
     end
   end
 end

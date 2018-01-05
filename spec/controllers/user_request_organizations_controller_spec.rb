@@ -17,7 +17,10 @@ RSpec.describe UserRequestOrganizationsController, type: :controller do
       it{expect(response).to be_ok}
     end
     context "when params present" do
-      before{get :update, xhr: true, params: {id: user_organization, status: "abc"}}
+      before do
+        allow_any_instance_of(UserOrganization).to receive(:save).and_return false
+        get :update, xhr: true, params: {id: user_organization, status: "joined"}
+      end
       it{expect(response).to be_ok}
     end
     context "when params status present" do
@@ -46,7 +49,7 @@ RSpec.describe UserRequestOrganizationsController, type: :controller do
   describe "GET #edit" do
     context "when params present" do
       before{get :edit, params: {id: organization}}
-      it{expect(flash[:danger]).to eq I18n.t("success_process")}
+      it{expect(flash[:success]).to eq I18n.t("success_process")}
     end
     context "when params not present" do
       before{get :edit, params: {id: 0}}

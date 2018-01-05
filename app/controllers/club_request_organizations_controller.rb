@@ -18,11 +18,10 @@ class ClubRequestOrganizationsController < ApplicationController
   def update
     if @request.update_attributes status: params[:status].to_i
       flash[:success] = t("success_process")
-      redirect_to organization_path @request.organization.slug
     else
       flash[:danger] = t("error_process")
-      redirect_to :back
     end
+    redirect_to organization_path @request.organization.slug
   end
 
   private
