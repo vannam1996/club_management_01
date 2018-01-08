@@ -85,33 +85,48 @@
                   <% end %>
                 </ul>
               </div>
-              <div class="col-md-1 offset-md-1">
-                <% if @club.is_admin? current_user %>
+              <div class="row pull-right setting-club">
+                <div class = "dropdown">
                   <%= link_to "#", data: {toggle: "dropdown"},
-                    class: "btn-sm btn btn-breez edit-infor-club pull-right" do %>
-                    <i class="fa fa-cog"></i> <i class="fa fa-caret-down"></i>
+                    class: "btn btn-breez btn-sm other-funtion" do  %>
+                    <%= t "club_type.other" %><i class="fa fa-caret-down"></i>
                   <% end %>
-                  <ul class="active-club dropdown-menu" role="menu" aria-labelledby="menu1">
+                  <ul class="drop-organization dropdown-menu" role="menu" aria-labelledby="menu1">
                     <li>
-                      <%= link_to edit_club_path(id: @club, tab: Settings.club.infor),
-                        remote: :true, class: "set-image-club" do %>
-                        <i class="fa fa-pencil-square-o"></i> <%= t "edit_infor_club" %>
-                      <% end %>
-                    </li>
-                    <li>
-                      <% if @club.is_active %>
-                        <%= link_to edit_set_active_club_path(@club, active: Settings.club.not_active), class: "set-image-club" do %>
-                          <i class="fa fa-pause-circle-o"></i>
-                          <%= t "pause_club" %>
-                        <% end %>
-                      <% else %>
-                        <%= link_to edit_set_active_club_path(@club, active: Settings.club.is_active), class: "set-image-club" do %>
-                          <i class="fa fa-play"></i>
-                          <%= t "activated" %>
-                        <% end %>
+                      <%= link_to club_manager_club_statistic_reports_path(@club), remote: :true do %>
+                        <%= t "title_list_report" %>
                       <% end %>
                     </li>
                   </ul>
+                </div>
+                <% if @club.is_admin? current_user %>
+                  <div class = "dropdown">
+                    <%= link_to "#", data: {toggle: "dropdown"},
+                      class: "btn-sm btn btn-breez edit-infor-club pull-right" do %>
+                      <i class="fa fa-cog"></i><i class="fa fa-caret-down"></i>
+                    <% end %>
+                    <ul class="active-club dropdown-menu" role="menu" aria-labelledby="menu1">
+                      <li>
+                        <%= link_to edit_club_path(id: @club, tab: Settings.club.infor),
+                          remote: :true, class: "set-image-club" do %>
+                          <i class="fa fa-pencil-square-o"></i> <%= t "edit_infor_club" %>
+                        <% end %>
+                      </li>
+                      <li>
+                        <% if @club.is_active %>
+                          <%= link_to edit_set_active_club_path(@club, active: Settings.club.not_active), class: "set-image-club" do %>
+                            <i class="fa fa-pause-circle-o"></i>
+                            <%= t "pause_club" %>
+                          <% end %>
+                        <% else %>
+                          <%= link_to edit_set_active_club_path(@club, active: Settings.club.is_active), class: "set-image-club" do %>
+                            <i class="fa fa-play"></i>
+                            <%= t "activated" %>
+                          <% end %>
+                        <% end %>
+                      </li>
+                    </ul>
+                  </div>
                 <% end %>
               </div>
             </div>

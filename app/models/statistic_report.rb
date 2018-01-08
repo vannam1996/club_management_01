@@ -7,9 +7,9 @@ class StatisticReport < ApplicationRecord
   validates :detail_report, presence: true
   validates :plan_next_month, presence: true
   validates :time, presence: true
-  validates :time, uniqueness: {scope: :club_id}
+  validates :time, uniqueness: {scope: [:club_id, :style, :year]}
 
-  enum style_statistic: {monthly: 1, quarterly: 2}
+  enum style: {monthly: 1, quarterly: 2}
   enum month: {january: 1, febuary: 2, march: 3, april: 4,
     may: 5, june: 6, july: 7, august: 8, september: 9,
     october: 10, november: 11, december: 12}

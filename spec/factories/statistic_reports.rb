@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :statistic_report do
     user_id user
-    style 3
+    style 2
     club_id club
     item_report{Faker::Lorem.sentence}
     detail_report{Faker::Lorem.sentence}

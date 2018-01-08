@@ -1,0 +1,90 @@
+<div class="col-md-12 col-md-offset-2">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <% if report.monthly? %>
+          <h3><%= t "detail_report_club", time: month_report(report.time),
+            year: report.year %></h3>
+        <% elsif report.quarterly? %>
+          <h3><%= t "detail_report_club", time: quarter_report(report.time),
+            year: report.year %></h3>
+        <% end %>
+        <%= button_tag type: "button", class: "close", data: {dismiss: "modal"} do %>
+          &times;
+        <% end %>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <%= image_tag report.club.logo,
+              class: "circle-profile logo-club col-md-12" %>
+          </div>
+          <div class="event-description">
+            <div class="list-infor-club inline-items">
+              <strong><%= t "club_name" %>:</strong>
+              <span><%= report.club.name %></span>
+            </div>
+            <div class="list-infor-club inline-items">
+              <strong><%= t "user_name" %>:</strong>
+              <span><%= report.user.full_name %></span>
+            </div>
+            <div class="list-infor-club inline-items">
+            </div>
+            <div class="list-infor-club inline-items">
+              <strong><%= t "date_request" %>:</strong>
+              <span>
+                <%= l report.created_at, format: :short %>
+              </span>
+            </div>
+            <div class="list-infor-club inline-items">
+              <strong><%= t "member_count" %>:</strong>
+              <span>
+                <%= report.members %>
+              </span>
+            </div>
+            <div class="list-infor-club inline-items">
+              <strong><%= t "fund" %>:</strong>
+              <span>
+                <%= report.fund %>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="inline-items">
+            <strong><%= t "item_report" %>:</strong><br/>
+            <span><%= report.item_report %></span>
+          </div>
+          <div class="inline-items">
+            <strong><%= t "detail_report" %>:</strong><br/>
+            <span>
+              <%= report.detail_report %>
+            </span>
+          </div>
+          <div class="inline-items">
+            <strong><%= t "plan_next_month" %>:</strong><br/>
+            <span>
+              <%= report.plan_next_month %>
+            </span>
+          </div>
+          <div class="inline-items">
+            <strong><%= t "others" %>:</strong><br/>
+            <span>
+              <%= report.others %>
+            </span>
+          </div>
+          <div class="inline-items">
+            <strong><%= t "note" %>:</strong><br/>
+            <span>
+              <%= report.note %>
+            </span>
+          </div><br/>
+        </div>
+      </div>
+      <div class="text-center">
+        <%= button_tag t("close"), class: "btn btn-sm btn-warning",
+          "data-dismiss": "modal" %>
+      </div>
+    </div>
+  </div>
+</div>

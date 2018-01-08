@@ -58,12 +58,15 @@
         class: "animation-fadeIn360 pull-left", title: t("more") do %>
         <i class="fa fa-pencil-square-o"></i><%= t "edit_member.editmember" %>
       <% end %>
+      <%= link_to ".import_user_club", data: { toggle: :collapse },
+        class: "import_user", title: t("import_member") do %>
+        <i class="fa fa-file-excel-o"></i><%= t "import_member" %>
+      <% end %>
     </strong>
   <% end %>
 </div>
 <% if @club.is_admin? current_user %>
-  <div class = "import_user_club">
-    <strong><%= t"import_member" %></strong>
+  <div class = "import_user_club collapse">
     <%= form_tag manager_import_user_clubs_path(club_id: @club.id), multipart: true,
       method: :post do %>
       <%= file_field_tag :file, class: "input-file" %>

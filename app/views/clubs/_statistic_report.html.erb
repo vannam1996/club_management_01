@@ -8,7 +8,7 @@
     <div class="col-md-12">
       <label for="contact-name"><%= t "type_report" %></label></br>
       <%= f.select(:style, options_for_select(option_select(
-        StatisticReport.style_statistics)),
+        StatisticReport.styles)),
         {}, {class: "form-control select_custom"}) %>
     </div>
     <div class="col-md-12 month">
@@ -21,6 +21,11 @@
       <%= select_tag "quarter", options_for_select(
         option_select(StatisticReport.quarters)),
         class: "form-control select_custom" %>
+    </div>
+    <div class="col-md-12 year">
+      <label for="contact-name"><%= t "year" %></label></br>
+      <%= select_year(Date.today, {start_year: Settings.year_ago.years.ago.year,
+        end_year: Date.today.year}, {class: "select_custom form-control stype-reports"}) %>
     </div>
     <div class="form-group col-md-12">
       <div class="form-group label-floating">
