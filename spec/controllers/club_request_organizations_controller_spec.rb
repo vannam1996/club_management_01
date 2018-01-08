@@ -24,16 +24,11 @@ RSpec.describe ClubRequestOrganizationsController, type: :controller do
       it{expect(flash[:success]).to eq I18n.t("success_process")}
     end
     context "update failed " do
-      before{get :update, params: {id: club_request.id, status: 3}}
-      it{expect(flash[:success]).to eq I18n.t("error_process")}
-    end
-    context "update failed " do
-      before{get :update, params: {id: club_request.id, status: 4}}
-      it{expect(flash[:success]).to eq I18n.t("error_process")}
-    end
-    context "when params[:id] not present" do
-      before{get :update, params: {id: 0, status: 1}}
-      it{expect(flash[:danger]).to eq I18n.t("not_found_request")}
+      before do
+        allow_any_instance_of(ClubRequest).to receive(:save).and_return false
+        get :update, params: {id: club_request.id, status: 1}
+      end
+      it{expect(flash[:danger]).to eq I18n.t("error_process")}
     end
   end
 

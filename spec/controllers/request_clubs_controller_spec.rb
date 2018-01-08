@@ -1,10 +1,10 @@
 require "rails_helper"
 
-RSpec.describe RequestClubsController, type: :controller do
-  let!(:user){FactoryGirl.create :user}
-  let!(:organization1){FactoryGirl.create :organization}
-  let!(:user_organization1) do
-    FactoryGirl.create :user_organization, user_id: user.id, organization_id: organization1.id
+RSpec.describe ClubRequestsController, type: :controller do
+  let(:user){FactoryGirl.create :user}
+  let(:organization){FactoryGirl.create :organization}
+  let!(:user_organization) do
+    FactoryGirl.create :user_organization, user_id: user.id, organization_id: organization.id
   end
 
   before do
@@ -35,7 +35,7 @@ RSpec.describe RequestClubsController, type: :controller do
   describe "POST #create" do
     context "with valid attributes" do
       it "create new club request" do
-        request_params = FactoryGirl.attributes_for(:club_request)
+        request_params = FactoryGirl.attributes_for(:club_request, organization_id: organization.id)
         expect do
           post :create, params: {club_request: request_params, user_id: user.id}
         end.to change(ClubRequest, :count).by 1
@@ -45,7 +45,7 @@ RSpec.describe RequestClubsController, type: :controller do
       it "create fail with name nil" do
         request_params = FactoryGirl.attributes_for :club_request, name: nil
         expect do
-          post :create, params: {club_request: request_params, user_id: user.id}
+          post :create, params: {club_request: request_params, user_id: user}
         end.to change(ClubRequest, :count).by 0
         expect(flash[:danger]).to be_present
       end

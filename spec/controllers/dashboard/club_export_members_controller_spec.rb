@@ -18,7 +18,7 @@ RSpec.describe Dashboard::ClubExportMembersController, type: :controller do
     end
     context "when params[:id] not present" do
       before{get :index, xhr: true, params: {id: 0}}
-      it{expect(flash[:danger]).to eq "Không thể tìm thấy câu lạc bộ!"}
+      it{expect(flash[:danger]).to eq "Bạn không có quyền truy cập trang này"}
     end
   end
 end

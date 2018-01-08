@@ -50,12 +50,6 @@ RSpec.describe EventsController, type: :controller do
         expect(flash[:danger]).to eq ["Tên sự kiện  quá ngắn (ít nhất 5 ký tự)"]
       end
     end
-    context "with params club_id blank" do
-      before{post :create, params: {club_id: 0}}
-      it "create new event" do
-        expect(flash[:danger]).to eq I18n.t("not_found")
-      end
-    end
   end
   describe "GET #show" do
     let!(:event) do
@@ -92,7 +86,7 @@ RSpec.describe EventsController, type: :controller do
     end
     context "when params[:id] not present" do
       before{post :update, params: {id: event, club_id: club, event: event_params}}
-      it{expect(flash[:danger]).to eq I18n.t("club_manager.event.success_update")}
+      it{expect(flash[:success]).to eq I18n.t("club_manager.event.success_update")}
     end
     context "when params[:id] not present" do
       before{post :update, params: {id: event, club_id: club, event: nil}}

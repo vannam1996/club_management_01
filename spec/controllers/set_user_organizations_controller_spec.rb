@@ -1,8 +1,8 @@
 require "rails_helper"
 
 RSpec.describe SetUserOrganizationsController, type: :controller do
-  let!(:user){create :user}
-  let!(:organization){create :organization}
+  let(:user){create :user}
+  let(:organization){create :organization}
   let(:user_organization) do
     create :user_organization, user: user, organization: organization, status: "joined"
   end
@@ -40,7 +40,7 @@ RSpec.describe SetUserOrganizationsController, type: :controller do
       it{expect(flash[:danger]).to eq I18n.t("organization_not_found")}
     end
     context "when params[:organization_id] present" do
-      before{get :update, params: {id: organization, roles: %w(1 0)}}
+      before{get :update, params: {id: organization, user_ids: [user_organization.id], roles: [0]}}
       it{expect(flash[:success]).to eq I18n.t "success_process"}
     end
     context "when params[:organization_id] present" do
