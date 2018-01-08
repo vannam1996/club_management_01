@@ -203,3 +203,7 @@ row_name: "Họ và tên"
 name_type: 50
 club_type_delete: 0
 per_page_type: 10
+per_page_statistic: 10
+moth_statistic: 1
+quarter_statistic: 2
+colspan_notice_empty: 4

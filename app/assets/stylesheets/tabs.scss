@@ -1,0 +1,35 @@
+@import 'libs/variables';
+/* tabs */
+
+ul.tabs {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+}
+
+ul.tabs li {
+  background: none;
+  color: $grey-bright;
+  display: inline-block;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+ul.tabs li :hover {
+  color: black
+}
+
+ul.tabs li.current {
+  background: $red-tab;
+  color: white;
+}
+
+.tab-content {
+  display: none;
+  background: white;
+  padding: 15px;
+}
+
+.tab-content.current {
+  display: inherit;
+}

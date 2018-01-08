@@ -1,0 +1,48 @@
+<table class="table ui-block table-pricing">
+  <% statistic_reports.each do |statistic_report| %>
+    <tbody>
+      <tr>
+        <% if statistic_report.style == Settings.moth_statistic %>
+          <td class="focus-organe">
+            <%= t "month_num", time: statistic_report.time %>
+          </td>
+        <% elsif statistic_report.style == Settings.quarter_statistic %>
+          <td class="focus-yellow">
+            <%= t "quarter_num", time: statistic_report.time %>
+          </td>
+        <% end %>
+        <td>
+          <%= link_to user_path(statistic_report.user_id) do %>
+            <%= image_tag statistic_report.user_avatar,
+              class: "member-avatar-request" %>
+            <%= statistic_report.user_full_name %>
+          <% end %>
+        </td>
+        <td>
+          <%= statistic_report.club_name %>
+        </td>
+        <td>
+          <%= l statistic_report.created_at, format: :short %>
+        </td>
+        <td>
+          <% if statistic_report.pending? %>
+            <%= link_to statistic_report_path(statistic_report),
+              method: :patch, title: t("reject"),
+              class: "btn btn-sm btn-danger aprove-user pull-right" do %>
+              <i class="fa fa-ban" aria-hidden="true"></i>
+            <% end %>
+            <%= link_to statistic_report_path(statistic_report),
+              method: :patch, title: t("accept"),
+              class: "btn btn-sm btn-breez aprove-user pull-right" do %>
+              <i class="fa fa-check-square-o" aria-hidden="true"></i>
+            <% end %>
+          <% end %>
+          <%= link_to statistic_report_path(statistic_report), remote: true,
+            class: "btn btn-warning btn-sm aprove-user pull-right" do %>
+            <%= t "detail" %>
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+  <% end %>
+</table>

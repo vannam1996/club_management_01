@@ -1,0 +1,6 @@
+<% if @statistic_report %>
+  $('#statistic-modal').html('<%= j render "show" %>');
+  $('#statistic-modal').modal('show');
+<% else %>
+  $('#statistic-detail').append('<%= j render "shared/flash_warning" %>');
+<% end %>

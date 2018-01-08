@@ -3,9 +3,9 @@ FactoryGirl.define do
     user_id user
     style 3
     club_id club
-    item_report {Faker::Lorem.sentence}
-    detail_report {Faker::Lorem.sentence}
-    plan_next_month {Faker::Lorem.sentence}
+    item_report{Faker::Lorem.sentence}
+    detail_report{Faker::Lorem.sentence}
+    plan_next_month{Faker::Lorem.sentence}
     time 2
   end
 end
