@@ -899,3 +899,6 @@ en:
   open_club: "Open club"
   not_save_admin: "Can't add admin"
   success_create_club: "Create club success"
+  save_chage_type: "Save"
+  undo: "Cancel"
+  update_error: "Error update type !"

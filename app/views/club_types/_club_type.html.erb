@@ -1,0 +1,22 @@
+<tr class="add-user-member type-<%= club_type.id %>">
+  <td class= "text-center type-name ">
+    <%= club_type.name %>
+  </td>
+  <td class="text-center">
+    <%= l club_type.created_at, format: :short %>
+  </td>
+  <td class="text-center">
+    <%= club_type.clubs.size %>
+  </td>
+  <td class="text-center">
+    <%= link_to edit_organization_club_type_path(@organization, club_type),
+      title: t("edit"), remote: :true, class: "btn btn-primary btn-bottom-0" do %>
+      <i class="fa fa-edit"></i>
+    <% end %>
+    <%= link_to organization_club_type_path(@organization, club_type), method: :delete, title: t("delete"),
+      data: {confirm: t("confirm_delete_type")}, remote: true,
+      class: "btn btn-danger btn-bottom-0" do %>
+      <i class="fa fa-remove"></i>
+    <% end %>
+  </td>
+</tr>

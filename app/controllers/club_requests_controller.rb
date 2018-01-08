@@ -18,7 +18,7 @@ class ClubRequestsController < ApplicationController
       @user_organizations = UserOrganization.load_user_organization(
         params[:organization_id]
       ).except_me(current_user.id).includes :user
-      @club_types = ClubType.load_club_type params[:organization_id]
+      @club_types = ClubType.of_organization params[:organization_id]
       html = render_to_string partial: "add_user",
         locals: {user_clubs: @user_organizations}
       respond_to do |format|
@@ -28,7 +28,7 @@ class ClubRequestsController < ApplicationController
       organization_id = current_user.organizations.first.id
       @user_organizations = UserOrganization.load_user_organization(organization_id)
         .except_me(current_user.id).includes :user
-      @club_types = ClubType.load_club_type organization_id
+      @club_types = ClubType.of_organization organization_id
     end
   end
 

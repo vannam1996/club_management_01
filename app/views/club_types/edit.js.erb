@@ -1,6 +1,7 @@
 <% if @club_type %>
-  $('#modal-club-type').modal('show');
-  $('#modal-club-type').html('<%= j render partial: "edit_club_type", locals: {club_type: @club_type} %>');
+  $('#organization_club').html('<%= j render partial: "list_types",
+    locals: {club_types: @club_types} %>');
+  $('.type-<%= @club_type.id %>').html('<%= j render partial: "edit_club_type", locals: {club_type: @club_type} %>')
 <% else %>
   $('.container').append('<%= j render partial: "shared/flash_warning" %>');
 <% end %>

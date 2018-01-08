@@ -106,7 +106,7 @@ Rails.application.routes.draw do
   resources :user_events, only: :create
   resources :ratings, only: :create
   resources :organizations do
-    resources :club_types, except: [:index]
+    resources :club_types, except: %(index new)
     resources :clubs, except: %i(destroy edit)
   end
   resources :time_line_homes
