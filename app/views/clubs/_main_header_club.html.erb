@@ -61,7 +61,7 @@
           </section>
           <div class="profile-section">
             <div class="row">
-              <div class="col-md-7 offset-md-3">
+              <div class="col-md-8 offset-md-2">
                 <ul class="profile-menu tab_list_detail_club">
                   <li>
                     <%= link_to t("events"), "#event", class: "active" %>
@@ -78,27 +78,14 @@
                   <li>
                     <%= link_to t("rules"), "#rules_club" %>
                   </li>
-                  <% if @club.is_admin? current_user %>
-                    <li>
-                      <%= link_to t("statistic_report"), "#statistic_report" %>
-                    </li>
-                  <% end %>
+                  <li>
+                    <%= link_to club_manager_club_statistic_reports_path(@club), remote: :true do %>
+                      <%= t "statistic_report" %>
+                    <% end %>
+                  </li>
                 </ul>
               </div>
-              <div class="row pull-right setting-club">
-                <div class = "dropdown">
-                  <%= link_to "#", data: {toggle: "dropdown"},
-                    class: "btn btn-breez btn-sm other-funtion" do  %>
-                    <%= t "club_type.other" %><i class="fa fa-caret-down"></i>
-                  <% end %>
-                  <ul class="drop-organization dropdown-menu" role="menu" aria-labelledby="menu1">
-                    <li>
-                      <%= link_to club_manager_club_statistic_reports_path(@club), remote: :true do %>
-                        <%= t "title_list_report" %>
-                      <% end %>
-                    </li>
-                  </ul>
-                </div>
+              <div class="col-md-1 offset-md-1 pull-right">
                 <% if @club.is_admin? current_user %>
                   <div class = "dropdown">
                     <%= link_to "#", data: {toggle: "dropdown"},

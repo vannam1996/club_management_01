@@ -1,6 +1,12 @@
 <div class="ui-block col-md-12">
-  <div class="infor-request ui-block-title">
+  <div class="list-report ui-block-title">
     <h6 class="title"><%= t "title_list_report" %></h6>
+    <% if @club.is_admin? current_user %>
+      <%= link_to "#modal-add-report", data: {toggle: "modal"},
+        class: "btn btn-sm btn-breez pull-right" do %>
+        <i class="fa fa-plus-circle"> </i><%= t "add_report" %>
+      <% end %>
+    <% end %>
   </div>
   <% if reports.any? %>
     <div class="table-reponsive">
@@ -77,4 +83,8 @@
       </div>
     </div>
   </div>
+</div>
+<div id="modal-add-report" class="modal fade" tabindex="-1"
+  role="dialog" aria-hidden="true">
+  <%= render "clubs/new_report" %>
 </div>
