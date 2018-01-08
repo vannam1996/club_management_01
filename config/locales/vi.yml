@@ -1178,3 +1178,4 @@ vi:
   error_find_report: "Không tìm thấy báo cáo"
   detail_report_club: "Chi tiết báo cáo %{time} năm %{year}."
   year: "Năm"
+  errors_size_avatar: "Hình ảnh phải nhỏ hơn: 5MB"

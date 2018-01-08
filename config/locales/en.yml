@@ -922,3 +922,4 @@ en:
   error_find_report: "Error find report"
   detail_report_club: "Detail report %{time} %{year}."
   year: "Year"
+  errors_size_avatar: "The avatar must be smaller: 5MB"

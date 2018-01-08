@@ -130,7 +130,7 @@ class ClubsController < ApplicationController
 
   def load_organization
     @organization = Organization.find_by(id: params[:organization_id])
-    @organization ||= Organization.find_by(slug:params[:organization_id])
+    @organization ||= Organization.find_by(slug: params[:organization_id])
     unless @organization
       flash[:danger] = t "not_found_organization"
       redirect_to request.referer

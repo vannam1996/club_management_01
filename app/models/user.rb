@@ -40,6 +40,7 @@ class User < ApplicationRecord
 
   validates :full_name, presence: true, length: {maximum: Settings.max_name}
   validates :password, presence: true, length: {minimum: Settings.min_password}, on: :create
+  validate :picture_size
   # validate :validate_tags
 
   def joined_organization? organization
@@ -137,5 +138,11 @@ class User < ApplicationRecord
 
   def password_required?
     encrypted_password.blank? || encrypted_password_changed?
+  end
+
+  private
+  def picture_size
+    return if avatar.size < Settings.user.avatar_size.megabytes
+    errors.add(:avatar, I18n.t("errors_size_avatar"))
   end
 end

@@ -48,9 +48,9 @@ module EventsHelper
 
   def view_icon event
     if event.pay_money?
-      content_tag(:i, class: "fa fa-minus get-money-icon")
+      content_tag(:i, "", class: "fa fa-minus get-money-icon")
     else
-      content_tag(:i, class: "fa fa-plus pay-money-icon")
+      content_tag(:i, "", class: "fa fa-plus pay-money-icon")
     end
   end
 

@@ -94,7 +94,8 @@
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                       <div class="form-group">
                         <label for="vatar"><%= t "avatar" %></label>
-                        <%= f.file_field :avatar, class: "form-control", id: "file-upload" %>
+                        <%= f.file_field :avatar, accept: Settings.user.avatar_upload,
+                          class: "form-control", id: "file-upload" %>
                       </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">

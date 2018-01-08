@@ -85,6 +85,8 @@ min_content: 20
 ratings: "ratings"
 user:
   club_per_page: 6
+  avatar_size: 5
+  avatar_upload: "image/jpeg,image/gif,image/png"
 truncate:
   club:
     description: 100
