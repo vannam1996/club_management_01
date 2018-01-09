@@ -1,0 +1,40 @@
+<%= search_form_for @q, url: statistic_reports_path, class: "w-search report-filter",
+  id: "club_report_form" do |f| %>
+  <%= hidden_field_tag "organization_id", @organization.slug %>
+  <div class="row">
+    <div class="form-group with-button col-md-4 w-select" >
+      <fieldset class="form-group">
+        <%= select_tag :style_report,
+          options_for_select(StatisticReport.styles.map{|k,v|
+          [t("#{k}"), v]}, include_blank: true),
+          {class: "select_custom form-control stype-reports", id: "style_reports"} %>
+      </fieldset>
+    </div>
+    <div class="w-select col-md-5">
+      <fieldset class="form-group club-type">
+        <fieldset class="form-group month-select">
+          <%= select_tag :time,
+            options_for_select(StatisticReport.months.map{|k,v|
+            [t("#{k}"), v]}, [Date.current.month]),
+            {class: "select_custom form-control month-reports", id: "month_reports"} %>
+        </fieldset>
+        <fieldset class="form-group quarter-select search-hide-div">
+          <%= select_tag :time,
+            options_for_select(option_select(StatisticReport.quarters), include_blank: true),
+            {class: "select_custom form-control", id: "quarter_report"} %>
+        </fieldset>
+      </fieldset>
+    </div>
+    <div class="col-md-3">
+      <fieldset class="form-group club-type">
+        <fieldset class="form-group">
+          <%= select_year(Date.current, {start_year: Settings.year_ago.years.ago.year,
+            end_year: Date.current.year},
+            {class: "select_custom form-control", id: "year_report"}) %>
+        </fieldset>
+      </fieldset>
+    </div>
+  </div>
+<% end %>
+<%= include_gon %>
+<%= javascript_include_tag "search_report" %>

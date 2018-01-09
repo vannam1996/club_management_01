@@ -1,5 +1,8 @@
 <% if @organization && can?(:manager, @organization) %>
   $('#organization_club').html('<%= j render "index" %>');
+  <% if params[:style_report] %>
+    $('#search-organization').html('<%= j render "search_report" %>');
+  <% end %>
 <% else %>
   $('#organization_club').append('<%= j render "shared/flash_warning" %>');
 <% end %>

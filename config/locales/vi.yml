@@ -1202,3 +1202,4 @@ vi:
   reject_report_mail: "Từ chối báo cáo"
   reject_mail_content: "Báo cáo của bạn đã bị từ chối."
   reason_mail_reject: "Lý do: "
+  not_report: "CLB Chưa báo cáo"
