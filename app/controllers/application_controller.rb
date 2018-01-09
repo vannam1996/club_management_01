@@ -68,4 +68,14 @@ class ApplicationController < ActionController::Base
   def after_sign_out_path_for _resource
     request.referer || my_clubs_path
   end
+
+  def namespace
+    controller_name_segments = params[:controller].split("/")
+    controller_name_segments.pop
+    controller_namespace = controller_name_segments.join("/").camelize
+  end
+
+  def current_ability
+    @current_ability ||= Ability.new current_user, namespace
+  end
 end

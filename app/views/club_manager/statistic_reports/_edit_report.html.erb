@@ -1,0 +1,24 @@
+<div class="col-md-12 col-md-offset-2">
+  <div class="modal-dialog edit-club modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="block">
+          <div class="row edit-organization">
+            <h2 class="text-center col-md-12">
+              <% if report.monthly? %>
+                <%= t "title_edit_report", time: month_report(report.time), year: report.year %>
+              <% elsif report.quarterly? %>
+                <%= t "title_edit_report", time: quarter_report(report.time), year: report.year %>
+              <% end %>
+            </h2>
+            <div class="col-md-12 col-md-offset-1">
+              <%= render partial: "form_edit_report", locals: {report: report} %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%= include_gon %>
+<%= javascript_include_tag "edit_statistic_report" %>

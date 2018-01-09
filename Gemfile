@@ -42,6 +42,7 @@ gem "activerecord-import"
 gem "cancancan"
 gem "omniauth-framgia", git: "https://github.com/framgia-education/omniauth-framgia.git"
 gem "rubocop", "~> 0.49.1", require: false
+gem "gon"
 
 source "https://rails-assets.org" do
   gem "rails-assets-chosen"

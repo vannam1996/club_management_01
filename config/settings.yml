@@ -211,3 +211,7 @@ quarter_statistic: 2
 colspan_notice_empty: 4
 per_page_report: 10
 year_ago: 5
+per_page_report: 10
+style_month: 1
+style_quater: 2
+namespace_club_manage: "ClubManager"

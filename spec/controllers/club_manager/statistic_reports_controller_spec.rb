@@ -27,6 +27,7 @@ RSpec.describe ClubManager::StatisticReportsController, type: :controller do
       it "get with params club fails" do
         get :index, xhr: true, params: {club_id: "abcd"}
         expect(response).to be_ok
+        expect(flash[:danger]).to eq I18n.t("error_load_club")
       end
     end
   end
@@ -43,11 +44,43 @@ RSpec.describe ClubManager::StatisticReportsController, type: :controller do
       it "get with params false" do
         get :show, xhr: true, params: {club_id: club.slug, id: statistic_report.id + 1}
         expect(response).to be_ok
-        expect(flash[:danger]).to be_present
+        expect(flash[:danger]).to eq I18n.t("error_find_report")
       end
       it "get with params club fails" do
         get :show, xhr: true, params: {club_id: "abcd", id: statistic_report.id}
         expect(response).to be_ok
+      end
+    end
+  end
+
+  describe "put #update" do
+    let(:statistic_report) do
+      create :statistic_report, club: club, user: user
+    end
+    context "with params" do
+      it "update with params month present" do
+        report_params = {item_report: "item_report", detail_report: "detail_report",
+          plan_next_month: "plan_next_month", style: "1"}
+        put :update, xhr: true, params: {statistic_report: report_params, month: "5",
+          club_id: club.slug, id: statistic_report.id}
+        expect(response).to be_ok
+        expect(flash[:success]).to eq I18n.t("update_report_success")
+      end
+      it "update with params quarter present" do
+        report_params = {item_report: "item_report", detail_report: "detail_report",
+          plan_next_month: "plan_next_month", style: "2"}
+        put :update, xhr: true, params: {statistic_report: report_params, quarter: "4",
+          club_id: club.slug, id: statistic_report.id}
+        expect(response).to be_ok
+        expect(flash[:success]).to eq I18n.t("update_report_success")
+      end
+      it "update with params invalid" do
+        report_params = {item_report: "", detail_report: "",
+          plan_next_month: "plan_next_month", style: "1"}
+        put :update, xhr: true, params: {statistic_report: report_params, month: "5",
+          club_id: club.slug, id: statistic_report.id}
+        expect(response).to be_ok
+        expect(flash[:danger]).to eq I18n.t("update_report_error")
       end
     end
   end

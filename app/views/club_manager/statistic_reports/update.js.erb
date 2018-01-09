@@ -1,0 +1,8 @@
+<% if @report.errors.any? %>
+  $('.error-messages').html('<%= j render partial: "shared/error_messages", locals: {object: @report} %>');
+<% else %>
+  $('#modal-info-report').modal('hide');
+  $('.container').append('<%= j render partial: "shared/flash_warning" %>');
+  $('.report-<%= @report.id %>').html('<%= j render partial: "report", locals: {report: @report} %>');
+  $('.modal-backdrop').remove();
+<% end %>

@@ -385,7 +385,7 @@ vi:
   requester: "Người yêu cầu"
   show_request: "Yêu cầu"
   request_to_open: "yêu cầu mở một tổ chức mới"
-  approved: "Đã được giải quyết"
+  approved: "Đã được chấp nhận"
   approve_fail: "Không thể duyệt yêu cầu!"
   confirm_delete: "Bạn muốn xóa dữ liệu này?"
   cant_create_admin: "Không thể tạo quản lý tổ chức"
@@ -517,6 +517,8 @@ vi:
     attributes:
       club_type:
         name: ""
+      statistic_report:
+        time: ""
       news:
         title: "Tiêu đề"
         content: "Nội dung"
@@ -742,6 +744,10 @@ vi:
               invalid: "Bạn chỉ được thêm tối đa 4 tags"
             reset_password_token:
               invalid: " không đúng,vui lòng kiểm tra lại email!"
+        statistic_report:
+          attributes:
+            time:
+              taken: "Đã có báo cáo của thời gian này !"
   not_found_user_event: "Không tìm thấy sự kiện mà bạn tham gia!"
   not_found_user_club: "Không tìm thấy câu lạc bộ mà bạn tham gia!"
   see_you_next_time: "Bạn đã hủy tham gia!!!"
@@ -1093,7 +1099,7 @@ vi:
   report: "Báo cáo"
   item_report: "Danh mục báo cáo"
   detail_report: "Chi tiết báo cáo"
-  plan_next_month: "kế hoạch tháng tới"
+  plan_next_month: "Kế hoạch tháng tới"
   note: "Ghi chú"
   others: "khác"
   month: "Tháng"
@@ -1114,8 +1120,8 @@ vi:
   quarter_2: "Quý 2"
   quarter_3: "Quý 3"
   quarter_4: "Quý 4"
-  monthly: "hàng tháng"
-  quarterly: "hàng quý"
+  monthly: "Hàng tháng"
+  quarterly: "Hàng quý"
   type_report: "Loại báo cáo"
   import_user_club: "Nhập thành viên"
   title_import_club: "Hãy chọn 1 file excel chứa người dùng của câu lạc bộ này!!!"
@@ -1169,13 +1175,18 @@ vi:
   style_filter_report: "Lọc theo loại"
   year_filter_report: "Lọc theo năm"
   month_filter_report: "Lọc theo tháng"
+  quarter_filter_report: "Lọc theo quý"
   status_filter_report: "Lọc theo trạng thái"
   status_filter:
     pending: "Chờ duyệt"
     approved: "Đã duyệt"
-    reject: "Từ chối"
+    rejected: "Từ chối"
   error_load_club: "Lỗi xác minh câu lạc bộ"
   error_find_report: "Không tìm thấy báo cáo"
   detail_report_club: "Chi tiết báo cáo %{time} năm %{year}."
   year: "Năm"
   errors_size_avatar: "Hình ảnh phải nhỏ hơn: 5MB"
+  detail_report_club: "Chi tiết báo cáo %{time} năm %{year}"
+  title_edit_report: "Báo cáo %{time} năm %{year}"
+  update_report_success: "Cập nhật báo cáo thành công"
+  update_report_error: "Cập nhật báo cáo thất bại"
