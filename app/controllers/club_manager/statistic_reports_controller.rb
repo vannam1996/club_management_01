@@ -6,6 +6,7 @@ class ClubManager::StatisticReportsController < ApplicationController
 
   def index
     gon_variable
+    @statistic_report = current_user.statistic_reports.build club_id: @club.id
     all_report if @club
     respond_to do |format|
       format.js

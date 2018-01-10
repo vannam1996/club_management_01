@@ -927,3 +927,4 @@ en:
   title_edit_report: "Report %{time}, %{year}"
   update_report_success: "Update report success"
   update_report_error: "Errors update report"
+  add_report: "New report"

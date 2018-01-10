@@ -1190,3 +1190,4 @@ vi:
   title_edit_report: "Báo cáo %{time} năm %{year}"
   update_report_success: "Cập nhật báo cáo thành công"
   update_report_error: "Cập nhật báo cáo thất bại"
+  add_report: "Tạo báo cáo"

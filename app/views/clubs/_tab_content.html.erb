@@ -37,11 +37,7 @@
       <div class="ui-block" id="rules_club">
         <%= render "club_rules" %>
       </div>
-      <% if @club.is_admin? current_user %>
-        <div class="ui-block" id="statistic_report">
-          <%= render "statistic_report" %>
-        </div>
-      <% end %>
+      <div class="ui-block" id="statistic_report"></div>
       <div id="history-report">
       </div>
     </div>
