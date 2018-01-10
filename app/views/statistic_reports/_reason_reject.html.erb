@@ -1,0 +1,30 @@
+<div class="col-md-12">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h3 class="text-center col-md-12">
+          <%= t "title_reason_reject" %>
+          <%= button_tag type: "submit", class: "close", data: {dismiss: "modal"} do %>
+            &times;
+          <% end %>
+        </h3>
+        <div class="block">
+          <%= form_for @statistic_report, method: :patch, remote: true, class: "reason-reject-report" do |f| %>
+            <%= hidden_field_tag :status, StatisticReport.statuses[:rejected] %>
+            <%= hidden_field_tag :organization_slug, @organization.slug %>
+            <div class="form-group col-md-12">
+              <%= f.label t "reason_reject" %>
+              <%= f.text_area :reason_reject, required: true,
+                class: "form-control input-text" %>
+            </div>
+            <div class="text-center">
+              <%= f.submit t("confirm"), class: "btn btn-sm btn-primary btn-reject-report" %>
+              <%= button_tag t("close"), class: "btn btn-sm btn-warning",
+                "data-dismiss": "modal" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

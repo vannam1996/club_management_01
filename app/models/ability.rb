@@ -23,10 +23,15 @@ class Ability
       can :manage, [Organization] do |organization|
         organization.user_organizations.are_admin.map(&:user_id).include? user.id
       end
-    end
-    can :create, [StatisticReport] do |statistic|
-      club = Club.find_by id: statistic.club_id
-      club.user_clubs.manager.map(&:user_id).include?(user.id)
+      can :update, [StatisticReport] do |statistic|
+        organization = Organization.find_by id: statistic.club.organization.id
+        organization.user_organizations.are_admin.pluck(:user_id)
+          .include?(user.id)
+      end
+      can [:create, :update], [StatisticReport] do |statistic|
+        club = Club.find_by id: statistic.club_id
+        club.user_clubs.manager.map(&:user_id).include?(user.id)
+      end
     end
   end
 end

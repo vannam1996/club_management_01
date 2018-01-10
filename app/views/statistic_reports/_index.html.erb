@@ -22,7 +22,7 @@
     </div>
   </div>
   <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-    <div class="table-responsive list-user-request">
+    <div class="table-responsive">
       <div class="tab-content current" id="pending">
         <% if @statistic_reports.report_pending.any? %>
           <%= render partial: "statistic_reports",
@@ -66,5 +66,10 @@
 </div>
 <div id="statistic-modal" class="modal fade" tabindex="-1"
   role="dialog" aria-hidden="true">
+  <%= render "modal" %>
+</div>
+<div id="modal-reason-reject" class="modal fade" tabindex="-1"
+  role="dialog" aria-hidden="true">
+  <%= render "modal" %>
 </div>
 <%= javascript_include_tag "tabs" %>

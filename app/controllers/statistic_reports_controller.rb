@@ -3,9 +3,9 @@ class StatisticReportsController < ApplicationController
   load_and_authorize_resource
   before_action :load_club, only: :create
   before_action :new_statistic, only: :create
-  before_action :load_organization, only: :index
+  before_action :load_organization, except: %i(new destroy create)
   before_action :check_user_organization, only: :index
-  before_action :load_statistic, only: :show
+  before_action :load_statistic, only: %i(show update edit)
 
   def index
     if @organization
@@ -26,7 +26,26 @@ class StatisticReportsController < ApplicationController
     end
   end
 
-  def update; end
+  def edit
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
+  def update
+    if params[:status].to_i == StatisticReport.statuses[:approved]
+      approve_report
+    elsif params[:status].to_i == StatisticReport.statuses[:rejected]
+      reject_report
+    end
+    club_ids = @organization.clubs.pluck :id
+    @statistic_reports = Support::StatisticReportSupport.new club_ids, params[:page]
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
 
   def create
     if @statistic_report.save
@@ -38,6 +57,10 @@ class StatisticReportsController < ApplicationController
   end
 
   private
+  def reject_report_params
+    params.require(:statistic_report).permit(:reason_reject)
+      .merge! status: params[:status].to_i
+  end
 
   def statistic_report_params
     params.require(:statistic_report).permit(:club_id, :time,
@@ -76,7 +99,7 @@ class StatisticReportsController < ApplicationController
   end
 
   def load_organization
-    @organization = Organization.find_by id: params[:id]
+    @organization = Organization.friendly.find_by slug: params[:organization_slug]
     return if @organization
     flash[:danger] = t "not_found_organization"
   end
@@ -84,6 +107,24 @@ class StatisticReportsController < ApplicationController
   def load_statistic
     @statistic_report = StatisticReport.find_by id: params[:id]
     return if @statistic_report
-    flash[:danger] = t "not_found_statistic"
+    flash.now[:danger] = t "not_found_statistic"
+  end
+
+  def approve_report
+    if @statistic_report.approved!
+      flash.now[:success] = t "approve_success"
+    else
+      flash.now[:danger] = t "approve_error"
+    end
+  end
+
+  def reject_report
+    if @statistic_report.update_attributes reject_report_params
+      SendEmailJob.perform_now @statistic_report.user, @statistic_report.club,
+        @statistic_report
+      flash.now[:success] = t "reject_success"
+    else
+      flash.now[:danger] = t "reject_error"
+    end
   end
 end
