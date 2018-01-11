@@ -22,4 +22,10 @@ module OrganizationsHelper
   def selected_role user_organization
     user_organization.is_admin? ? Settings.user_club.manager : Settings.user_club.member
   end
+
+  def params_reports
+    {style_eq: StatisticReport.styles[:monthly],
+    time_eq: Date.current.month,
+    year_eq: Date.current.year}
+  end
 end

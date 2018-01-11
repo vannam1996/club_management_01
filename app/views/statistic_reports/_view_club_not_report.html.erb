@@ -1,0 +1,38 @@
+<div class="col-md-12">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="ui-block-title ui-block-title-small">
+          <h5 class="col-md-12 text-center">
+            <strong><%= t "not_report" %></strong>:
+            <% if params[:q][:style_eq].to_i == StatisticReport.styles[:monthly] %>
+              <%= month_report params[:q][:time_eq].to_i %>, <%= params[:q][:year_eq] %>
+            <% elsif params[:q][:style_eq].to_i == StatisticReport.styles[:quarterly] %>
+              <%= quarter_report params[:q][:time_eq].to_i %>, <%= params[:q][:year_eq] %>
+            <% end %>
+          </h5>
+          <%= button_tag type: "button", class: "close", data: {dismiss: "modal"} do %>
+            &times;
+          <% end %>
+        </div>
+        <table class="table ui-block table-pricing">
+          <tbody>
+            <% @clubs_not_report.each do |statistic_report| %>
+              <tr>
+                <td>
+                  <%= link_to organization_club_path(@organization, statistic_report.slug) do %>
+                    <%= image_tag statistic_report.logo,
+                      class: "logo-club-report" %>
+                  <% end %>
+                </td>
+                <td class="text-center club-name-report">
+                  <%= statistic_report.name %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -8,18 +8,9 @@
       <th><%= t "action" %></th>
     </tr>
   </thead>
-  <% statistic_reports.each do |statistic_report| %>
-    <tbody class="statistic_report-<%= statistic_report.id %>">
-      <tr>
-        <% if statistic_report.style == Settings.moth_statistic %>
-          <td class="focus-organe">
-            <%= t "month_num", time: statistic_report.time %>
-          </td>
-        <% elsif statistic_report.style == Settings.quarter_statistic %>
-          <td class="focus-yellow">
-            <%= t "quarter_num", time: statistic_report.time %>
-          </td>
-        <% end %>
+  <tbody>
+    <% statistic_reports.each do |statistic_report| %>
+      <tr class="statistic_report-<%= statistic_report.id %>">
         <td>
           <%= link_to user_path(statistic_report.user_id) do %>
             <%= image_tag statistic_report.user_avatar,
@@ -30,6 +21,15 @@
         <td>
           <%= statistic_report.club_name %>
         </td>
+        <% if statistic_report.monthly? %>
+          <td class="focus-organe">
+            <%= t "month_num", time: statistic_report.time %>
+          </td>
+        <% elsif statistic_report.quarterly? %>
+          <td class="focus-yellow">
+            <%= t "quarter_num", time: statistic_report.time %>
+          </td>
+        <% end %>
         <td>
           <%= l statistic_report.created_at, format: :short %>
         </td>
@@ -54,6 +54,6 @@
           <% end %>
         </td>
       </tr>
-    </tbody>
-  <% end %>
+    <% end %>
+  </tbody>
 </table>

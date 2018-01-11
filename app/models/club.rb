@@ -42,6 +42,7 @@ class Club < ApplicationRecord
   scope :of_organizations, ->organizations do
     where(organization_id: organizations.ids)
   end
+  scope :not_report, ->ids{where id: ids}
 
   delegate :name, to: :organization, prefix: true, allow_nil: :true
 
