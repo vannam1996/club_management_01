@@ -11,6 +11,9 @@
       <li class="tab-link" data-tab="rejected">
         <b><%= t "rejected" %></b>
       </li>
+      <li class="tab-link" data-tab="not_report">
+        <b><%= t "not_report" %></b>
+      </li>
     </ul>
     <div class="pull-right funtion-request">
       <%= link_to organization_path(@organization), remote: :true,
@@ -23,8 +26,6 @@
   <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
      <div class="table-responsive">
       <div class="tab-content current" id="pending">
-        <%= link_to t("not_report"), "#club_not-report", data: {toggle: "modal"},
-          class: "btn btn-blue btn-sm pull-right" %>
         <% if @statistic_reports.report_pending.any? %>
           <%= render partial: "statistic_reports",
             locals: {statistic_reports: @statistic_reports.report_pending} %>
@@ -63,7 +64,18 @@
           </tr>
         <% end %>
       </div>
-  </div>
+      <div class="tab-content" id="not_report">
+        <% if @clubs_not_report.any? %>
+          <%= render partial: "view_club_not_report" %>
+        <% else %>
+          <tr class="text-center">
+            <td colspan="<%= Settings.colspan_notice_empty %>">
+              <h5 class="center notifi-empty"><%= t "edit_member.no_request" %></h5>
+            </td>
+          </tr>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
 <div id="statistic-modal" class="modal fade" tabindex="-1"
@@ -75,7 +87,3 @@
   <%= render "modal" %>
 </div>
 <%= javascript_include_tag "tabs" %>
-<div id="club_not-report" class="modal fade" tabindex="-1"
-  role="dialog" aria-hidden="true">
-  <%= render "view_club_not_report" %>
-</div>

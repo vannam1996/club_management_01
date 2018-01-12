@@ -1210,3 +1210,5 @@ vi:
   createreport: "tạo"
   of_club_title: "cho câu lạc bộ"
   updatereport: "Cập nhật"
+  send_notification: "Gửi thông báo nhắc nhở"
+  expiry_date_report: "Ngày hết hạn báo cáo"
