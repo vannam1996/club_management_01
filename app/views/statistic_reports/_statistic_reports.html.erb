@@ -1,8 +1,8 @@
 <table class="table ui-block table-pricing">
   <thead>
     <tr>
-      <th><%= t "person_report" %></th>
       <th><%= t "club" %></th>
+      <th><%= t "person_report" %></th>
       <th><%= t "date_report" %></th>
       <th><%= t "time_report" %></th>
       <th><%= t "action" %></th>
@@ -12,14 +12,12 @@
     <% statistic_reports.each do |statistic_report| %>
       <tr class="statistic_report-<%= statistic_report.id %>">
         <td>
-          <%= link_to user_path(statistic_report.user_id) do %>
-            <%= image_tag statistic_report.user_avatar,
-              class: "member-avatar-request" %>
-            <%= statistic_report.user_full_name %>
-          <% end %>
+          <%= image_tag statistic_report.club_logo,
+            class: "member-avatar-request" %>
+          <%= statistic_report.club_name %>
         </td>
         <td>
-          <%= statistic_report.club_name %>
+          <%= statistic_report.user_full_name %>
         </td>
         <td>
           <%= l statistic_report.created_at, format: :short %>
@@ -35,9 +33,9 @@
         <% end %>
         <td>
           <%= link_to statistic_report_path(statistic_report,
-            organization_slug: @organization.slug), remote: true,
+            organization_slug: @organization.slug), remote: true, title: t("detail"),
             class: "btn btn-warning btn-sm aprove-user" do %>
-            <%= t "detail" %>
+            <i class="fa fa-info"></i>
           <% end %>
           <% if statistic_report.pending? %>
             <%= link_approve_report @organization.slug, statistic_report %>

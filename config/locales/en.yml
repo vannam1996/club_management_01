@@ -947,3 +947,5 @@ en:
   createreport: "create"
   of_club_title: "for club"
   updatereport: "Update"
+  send_notifocation: "Send a reminder notification"
+  expiry_date_report: "Expiry date report"

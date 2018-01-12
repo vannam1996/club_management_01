@@ -2,17 +2,11 @@ class RatingsController < ApplicationController
   before_action :load_club, only: [:create, :rating_executed]
 
   def create
-    if @club.ratings.find_by(user: current_user)
-      flash[:danger] = t "you_rated"
-    else
-      ActiveRecord::Base.transaction do
-        @club.ratings.build(user: current_user, star: params[:rating]).save
-        rating_executed
-        create_acivity @club, Settings.ratings, @club, current_user,
-          Activity.type_receives[:club_member]
-      end
-      flash[:success] = t "you_raiting_club"
+    ActiveRecord::Base.transaction do
+      @club.ratings.build(user: current_user, star: params[:rating]).save!
+      rating_executed
     end
+    flash[:success] = t "you_raiting_club"
     respond_to do |format|
       format.js
     end
