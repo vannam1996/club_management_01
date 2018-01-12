@@ -2,9 +2,7 @@ class NotificationsController < ApplicationController
   before_action :authenticate_user!
   before_action :load_user_club, only: [:index, :update]
   def index
-    @notifications = Activity.includes(:trackable, [owner: :user_clubs], :container)
-      .notification_user(current_user.id).of_user_clubs(@user_club.map(&:club_id).uniq).oder_by_read
-      .page(params[:page]).per Settings.notification_per_page
+    @notifications = notifications_result.page(params[:page]).per Settings.notification_per_page
     respond_to do |format|
       format.html
       format.js
@@ -12,7 +10,7 @@ class NotificationsController < ApplicationController
   end
 
   def update
-    @notifications = Activity.of_user_clubs @user_club.map(&:club_id).uniq
+    @notifications = notifications_result
     @notifications.each do |notification|
       arr_read_all = notification.user_read
       if arr_read_all.blank?

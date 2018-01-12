@@ -1,13 +1,16 @@
 <% notifications.each do |notification| %>
-  <% if check_user_club_joined?(notification) %>
-    <% if notification.trackable.present? %>
-      <li class="custom_notifications">
-        <div class="notifyBody notification-<%= option_class(notification.user_read) %>"
-          data-link="<%= url_notification(notification) %>" data-link-target="new"
-          id="notify-id-<%= notification.id %>" data-id="<%= notification.id %>">
-          <div class="author-thumb">
-            <%= option_image(notification) %>
-          </div>
+  <% if notification.trackable.present? %>
+    <li class="custom_notifications">
+      <div class="notifyBody notification-<%= option_class(notification.user_read) %>"
+        data-link="<%= url_notification(notification) %>" data-link-target="new"
+        id="notify-id-<%= notification.id %>" data-id="<%= notification.id %>">
+        <div class="author-thumb">
+          <%= option_image(notification) %>
+        </div>
+        <% if notification.trackable_type == Settings.notification_report %>
+          <%= render partial: "notifications/notification_main",
+            locals: {notification: notification} %>
+        <% else %>
           <div class="notification-event">
             <div class="notification-value">
               <a href="#" class="h6 notification-friend"><%= notification.owner_full_name %></a>
@@ -21,8 +24,8 @@
               <% end %>
             </div>
           </div>
-        </div>
-      </li>
-    <% end %>
+        <% end %>
+      </div>
+    </li>
   <% end %>
 <% end %>

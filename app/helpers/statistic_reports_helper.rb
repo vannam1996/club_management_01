@@ -13,7 +13,8 @@ module StatisticReportsHelper
 
   def link_approve_report organization_slug, statistic_report
     link_to statistic_report_path(statistic_report, organization_slug: @organization.slug,
-      status: StatisticReport.statuses[:approved]), remote: :true, method: :patch,
+      status: StatisticReport.statuses[:approved], q: params_reports,
+      style_report: StatisticReport.styles[:monthly]), remote: :true, method: :patch,
       title: t("accept"), data: {confirm: t("confirm_approve")},
       class: "btn btn-sm btn-breez aprove-user" do
       content_tag(:i, "", class: "fa fa-check-square-o")
@@ -26,5 +27,12 @@ module StatisticReportsHelper
       class: "btn btn-sm btn-danger aprove-user" do
       content_tag(:i, "", class: "fa fa-ban")
     end
+  end
+
+  def url_reject_report organization_slug, statistic_report
+    statistic_report_path(statistic_report,
+      organization_slug: organization_slug,
+      status: StatisticReport.statuses[:rejected], q: params_reports,
+      style_report: StatisticReport.styles[:monthly])
   end
 end

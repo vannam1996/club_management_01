@@ -43,8 +43,7 @@ class StatisticReportsController < ApplicationController
     elsif params[:status].to_i == StatisticReport.statuses[:rejected]
       reject_report
     end
-    club_ids = @organization.clubs.pluck :id
-    @statistic_reports = Support::StatisticReportSupport.new club_ids, params[:page]
+    all_report
     respond_to do |format|
       format.html
       format.js
@@ -54,6 +53,8 @@ class StatisticReportsController < ApplicationController
   def create
     if @statistic_report.save
       flash[:success] = t "create_statistic_report_success"
+      create_acivity @statistic_report, Settings.create_report,
+        @club.organization, current_user, Activity.type_receives[:organization_manager]
     else
       flash[:danger] = t "create_statistic_report_fail"
     end
@@ -117,6 +118,8 @@ class StatisticReportsController < ApplicationController
   def approve_report
     if @statistic_report.approved!
       flash.now[:success] = t "approve_success"
+      create_acivity @statistic_report, Settings.approve_report,
+        @statistic_report.club, current_user, Activity.type_receives[:club_manager]
     else
       flash.now[:danger] = t "approve_error"
     end
@@ -127,8 +130,20 @@ class StatisticReportsController < ApplicationController
       SendEmailJob.perform_now @statistic_report.user, @statistic_report.club,
         @statistic_report
       flash.now[:success] = t "reject_success"
+      create_acivity @statistic_report, Settings.reject_report,
+        @statistic_report.club, current_user, Activity.type_receives[:club_manager]
     else
       flash.now[:danger] = t "reject_error"
     end
+  end
+
+  def all_report
+    @q = StatisticReport.search params[:q]
+    club_ids = @organization.clubs.pluck :id
+    @statistic_reports = Support::StatisticReportSupport
+      .new club_ids, params[:page], params[:q]
+    id_clubs_report = @statistic_reports.club_is_not_report.search(params[:q])
+      .result.map(&:club_id)
+    @clubs_not_report = Club.not_report(club_ids - id_clubs_report)
   end
 end

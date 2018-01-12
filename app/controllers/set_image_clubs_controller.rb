@@ -13,7 +13,8 @@ class SetImageClubsController < ApplicationController
 
   def update
     if @club.update_attributes remote_image_url: @url_upload.to_s
-      create_acivity @club, Settings.update, @club, current_user
+      create_acivity @club, Settings.update, @club, current_user,
+        Activity.type_receives[:club_member]
       flash[:success] = t "club_manager.club.success_update"
     else
       flash_error @club

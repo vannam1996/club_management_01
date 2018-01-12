@@ -6,8 +6,10 @@ class ClubManager::StatisticReportsController < ApplicationController
 
   def index
     gon_variable
-    @statistic_report = current_user.statistic_reports.build club_id: @club.id
-    all_report if @club
+    if @club
+      @statistic_report = current_user.statistic_reports.build club_id: @club.id
+      all_report
+    end
     respond_to do |format|
       format.js
     end
@@ -20,8 +22,8 @@ class ClubManager::StatisticReportsController < ApplicationController
   end
 
   def update
+    send_notification
     if @report && @report.update_attributes(params_with_check_style)
-      @report.pending! if @report.rejected?
       flash.now[:success] = t "update_report_success"
     elsif @report
       flash.now[:danger] = t "update_report_error"
@@ -34,7 +36,8 @@ class ClubManager::StatisticReportsController < ApplicationController
   private
   def report_params
     params.require(:statistic_report).permit(:item_report, :detail_report,
-      :plan_next_month, :note, :year).merge! style: params[:statistic_report][:style].to_i
+      :plan_next_month, :note, :year).merge!(style: params[:statistic_report][:style].to_i,
+      status: :pending, reason_reject: nil)
   end
 
   def params_with_check_style
@@ -74,5 +77,12 @@ class ClubManager::StatisticReportsController < ApplicationController
   def gon_variable
     gon.month = StatisticReport.styles[:monthly]
     gon.quarter = StatisticReport.styles[:quarterly]
+  end
+
+  def send_notification
+    if @report && @report.rejected?
+      create_acivity @report, Settings.update_report,
+        @club.organization, current_user, Activity.type_receives[:organization_manager]
+    end
   end
 end

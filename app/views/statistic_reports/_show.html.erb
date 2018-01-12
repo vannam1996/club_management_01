@@ -96,8 +96,9 @@
             <div class="text-center">
               <%= link_to statistic_report_path(@statistic_report,
                 organization_slug: @organization.slug,
-                status: StatisticReport.statuses[:approved]), method: :patch,
-                remote: true, class: "btn btn-sm btn-breez" do %>
+                status: StatisticReport.statuses[:approved], q: params_reports,
+                style_report: StatisticReport.styles[:monthly]),
+                method: :patch, remote: true, class: "btn btn-sm btn-breez" do %>
                 <%= t "accept" %>
               <% end %>
               <%= link_to edit_statistic_report_path(@statistic_report,

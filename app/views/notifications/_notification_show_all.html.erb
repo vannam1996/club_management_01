@@ -8,22 +8,27 @@
         <div class="col-md-12">
           <div class="row">
             <%= option_image(notification) %>
-            <div class="col-md-9">
-              <%= link_to "", class: "h6 notification-friend" do %>
-                <%= notification.owner_full_name %>
-              <% end %>
-              <%= t "has_been" %><%= t notification.key.try(:downcase) %>
-              <%= t notification.trackable_type.try(:downcase) %>:
-                <%= link_to "", class: "notification-link" do %>
-                  <%= notification.trackable_name %>
+              <% if notification.trackable_type == Settings.notification_report %>
+            <%= render partial: "notifications/notification_main",
+              locals: {notification: notification} %>
+            <% else %>
+              <div class="col-md-9">
+                <%= link_to "", class: "h6 notification-friend" do %>
+                  <%= notification.owner_full_name %>
                 <% end %>
-              <% if notification.container %>
-                <%= t "in_the" %>
-                <%= t notification.container_type.try(:downcase) %>
-                <strong><%= notification.container_name %></strong>
-              <% end %>
-              </br><i class="fa fa-clock-o time_create" aria-hidden="true">  <%= l notification.created_at, format: :short %></i>
-            </div>
+                <%= t "has_been" %><%= t notification.key.try(:downcase) %>
+                <%= t notification.trackable_type.try(:downcase) %>:
+                  <%= link_to "", class: "notification-link" do %>
+                    <%= notification.trackable_name %>
+                  <% end %>
+                <% if notification.container %>
+                  <%= t "in_the" %>
+                  <%= t notification.container_type.try(:downcase) %>
+                  <strong><%= notification.container_name %></strong>
+                <% end %>
+                </br><i class="fa fa-clock-o time_create" aria-hidden="true">  <%= l notification.created_at, format: :short %></i>
+              </div>
+            <% end %>
           </div>
         </div>
       </div>

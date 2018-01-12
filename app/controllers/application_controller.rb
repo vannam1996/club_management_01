@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
   before_action :current_user_clubs, if: :user_signed_in?
   include ApplicationHelper
+  include NotificationsHelper
 
   def user_signed_in
     unless user_signed_in?
@@ -38,9 +39,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def create_acivity trackable, key, container, owner
+  def create_acivity trackable, key, container, owner, type
     Activity.create! key: key, container: container,
-    trackable: trackable, owner: owner
+    trackable: trackable, owner: owner, type_receive: type
   end
 
   def load_club

@@ -20,11 +20,15 @@
             <span><%= report.user_full_name %></span>
           </div>
           <div class="list-infor-club inline-items">
-          </div>
-          <div class="list-infor-club inline-items">
             <strong><%= t "date_request" %>:</strong>
             <span>
               <%= l report.created_at, format: :short %>
+            </span>
+          </div>
+          <div class="list-infor-club inline-items">
+            <strong><%= t "status" %>:</strong>
+            <span>
+              <%= t"#{report.status}" %>
             </span>
           </div>
         </div>
@@ -71,7 +75,18 @@
             <span>
               <%= report.note %>
             </span>
-          </div><br/>
+          </div>
+          <% if report.reason_reject %>
+            <div class="inline-items report-detail">
+              <h6 class="title">
+                <i class="fa fa-codepen"></i>
+                <strong><%= t "reason_reject" %></strong>
+              </h6><br/>
+              <span>
+                <%= report.reason_reject %>
+              </span>
+            </div><br/>
+          <% end %>
         </div>
       </div>
       <div class="text-center">
