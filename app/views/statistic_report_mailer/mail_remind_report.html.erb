@@ -1,5 +1,9 @@
 <strong><%= t "mail_remind_report_title" %></strong><br>
-<%= t "mail_remind_content", month: Date.current.month %><br>
+<% if @style == StatisticReport.styles[:monthly] %>
+  <%= t "mail_remind_content_month", time: @time %><br>
+<% elsif @style == StatisticReport.styles[:quarterly] %>
+  <%= t "mail_remind_content_quarter", time: @time %><br>
+<% end %>
 <%= t "mail_remind_notice" %><br>
 <%= t "mail_remind_club_list" %><br>
 <ul>

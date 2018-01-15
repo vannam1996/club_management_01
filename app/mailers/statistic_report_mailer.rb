@@ -7,7 +7,9 @@ class StatisticReportMailer < ApplicationMailer
     mail to: @user.email, subject: t("reject_report_mail")
   end
 
-  def mail_remind_report club_ids
+  def mail_remind_report club_ids, style, time
+    @style = style
+    @time = time
     user_ids = UserClub.by_club_ids(club_ids).manager.pluck(:user_id).uniq
     @users = User.done_by_ids user_ids
     @url = Settings.my_url

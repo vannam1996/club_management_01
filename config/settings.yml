@@ -222,3 +222,8 @@ create_report: "CreateReport"
 notification_orgz: "Organization"
 update_report: "UpdateReport"
 remind_report_month: "RemindReportMonth"
+remind_report_quarter: "RemindReportQuarter"
+monthly: "monthly"
+quarterly: "quarterly"
+one: 1
+month_per_quarter: 3

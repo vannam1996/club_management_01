@@ -25,7 +25,7 @@ module NotificationsHelper
     when Image.name
       img =  notification.trackable.url
     end
-    img = check_key_get_img(notification)
+    img = set_img notification
     image_tag img, class: "img-responsive" if img
   end
 
@@ -77,7 +77,23 @@ module NotificationsHelper
   end
 
   def check_notification_remind_system notification
-    notification.key == Settings.remind_report_month
+    notification.report_month_key? || notification.report_quarter_key?
+  end
+
+  def set_content_by_trackable notification
+    if notification.report_month_trackable_style?
+      t("month") + " " + notification.trackable.time.to_s
+    elsif notification.report_quarter_trackable_style?
+      t("quarter") + " " + notification.trackable.time.to_s
+    end
+  end
+
+  def set_content_notification_by_key notification
+    if notification.report_month_key?
+      t "of_manager_not_report_month", time: Date.current.month
+    elsif notification.report_quarter_key?
+      t "of_manager_not_report_quarter", time: current_quarter
+    end
   end
 
   private
@@ -106,11 +122,16 @@ module NotificationsHelper
     end
   end
 
-  def check_key_get_img notification
-    if notification.key == Settings.remind_report_month
+  def set_img notification
+    if notification.report_month_key? || notification.report_quarter_key?
       notification.container.organization.logo
     elsif notification.owner
       notification.owner.avatar
     end
+  end
+
+  def current_quarter
+    month = Date.current.month
+    (month - Settings.one) / Settings.month_per_quarter + Settings.one
   end
 end
