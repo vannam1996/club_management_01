@@ -1,3 +1,6 @@
+<% if @warning.present? %>
+  <%= render "notifications/warning_report" %>
+<% end %>
 <% notifications.each do |notification| %>
   <% if notification.trackable_type.present? %>
     <li class="custom_notifications">

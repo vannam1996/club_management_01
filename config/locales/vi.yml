@@ -1218,3 +1218,7 @@ vi:
   mail_remind_notice: "Vui lòng kiểm tra trong danh sách và hoàn thành báo cáo!"
   remind_report_mail: "Nhắc nhở báo cáo cho câu lạc bộ"
   of_manager_not_report: "do bạn quản lý vẫn chưa có báo cáo tháng %{month}! "
+  warning_reports:
+    msg_not_report: " chưa hoàn thành báo cáo"
+    deadline: "thời gian hết hạn vào ngày"
+    messenger_report_success: "Gửi thông báo thành công "
