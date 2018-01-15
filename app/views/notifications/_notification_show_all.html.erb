@@ -1,5 +1,5 @@
 <% @notifications.each do |notification| %>
-  <% if notification.trackable.present? %>
+  <% if notification.trackable_type.present? %>
     <li class="custom_notifications notification-<%= option_class(notification.user_read) %>" id ="notification-avata">
       <div class="notifyBody notification-show"  id="notify-id-<%= notification.id %>"
         data-link="<%= url_notification(notification) %>" data-link-target="new"
@@ -8,9 +8,9 @@
         <div class="col-md-12">
           <div class="row">
             <%= option_image(notification) %>
-              <% if notification.trackable_type == Settings.notification_report %>
-            <%= render partial: "notifications/notification_main",
-              locals: {notification: notification} %>
+            <% if notification.trackable_type == Settings.notification_report %>
+              <%= render partial: "notifications/notification_main_report",
+                locals: {notification: notification} %>
             <% else %>
               <div class="col-md-9">
                 <%= link_to "", class: "h6 notification-friend" do %>

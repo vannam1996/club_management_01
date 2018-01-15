@@ -19,6 +19,7 @@ class UserClub < ApplicationRecord
   end
   scope :newest, ->{order created_at: :desc}
   scope :by_club, ->club_id{where club_id: club_id}
+  scope :by_club_ids, ->club_ids{where club_id: club_ids}
 
   class << self
     def of_club club

@@ -21,4 +21,6 @@ class StatisticReport < ApplicationRecord
 
   scope :search_club, ->club_ids{where "club_id IN (?)", club_ids}
   scope :order_by_created_at, ->{order created_at: :desc}
+  scope :search_time, ->time, year{where "time = ? and year = ?", time, year}
+  scope :style, ->style{where "style = ?", style}
 end

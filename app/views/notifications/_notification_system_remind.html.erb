@@ -1,14 +1,9 @@
 <div class="notification-event">
   <div class="notification-value">
-    <a href="#" class="h6 notification-friend"><%= notification.owner_full_name %></a>
-    <%= t "notification_report", status: t(notification.key.try(:downcase)) %>
-    <a href="#" class="h6 notification-friend">
-      <%= t notification.trackable_type.try(:downcase) %></a>
     <% if notification.container %>
-      <%= t "of_club" %>
       <%= t notification.container_type.try(:downcase) %>
       <strong><%= notification.container_name %></strong>
-      <%= t "of_manager" %>
+      <%= t "of_manager_not_report", month: Date.current.month %>
       </br><i class="fa fa-clock-o time_create" aria-hidden="true">
         <%= l notification.created_at, format: :short %></i>
     <% end %>
