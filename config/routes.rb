@@ -130,4 +130,5 @@ Rails.application.routes.draw do
   resources :set_active_clubs, only: :edit
   resources :statistic_reports, except: %i(new destroy)
   resources :warning_reports, except: %i(new destroy)
+  resources :report_categories, except: %i(show new)
 end

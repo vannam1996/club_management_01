@@ -1,0 +1,23 @@
+<tr class="add-user-member category-<%= report_category.id %>">
+  <td class= "text-center type-name ">
+    <%= report_category.name %>
+  </td>
+  <td class="text-center column-select">
+    <%= t ("status_category.#{report_category.status}") %>
+  </td>
+  <td class="text-center">
+    <%= report_category.report_details.size %>
+  </td>
+  <td class="text-center">
+    <%= link_to edit_report_category_path(report_category, organization_slug: @organization.slug),
+      title: t("edit"), remote: :true, class: "btn btn-primary btn-bottom-0" do %>
+      <i class="fa fa-edit"></i>
+    <% end %>
+    <%= link_to report_category_path(report_category, organization_slug: @organization.slug),
+      method: :delete, title: t("delete"),
+      data: {confirm: t("confirm_delete_type")}, remote: true,
+      class: "btn btn-danger btn-bottom-0" do %>
+      <i class="fa fa-remove"></i>
+    <% end %>
+  </td>
+</tr>

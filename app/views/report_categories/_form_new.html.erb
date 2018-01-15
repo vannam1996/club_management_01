@@ -1,0 +1,16 @@
+<div class="infor-request ui-block-title">
+  <%= form_for @organization.report_categories.build, remote: true do |f| %>
+    <%= hidden_field_tag :organization_slug, @organization.slug %>
+    <div id="error-explanation-category"></div>
+    <div class = "row">
+      <%= f.label t("name_club_type"), class: "control-label label-name-type" %>
+      <div class="pull-left">
+        <%= f.text_field :name, required: true,
+          class: "form-control input-text" %>
+      </div>
+      <div class="pull-right">
+        <%= f.button t("btn_create_type"), type: :submit, class: "btn btn-sm btn-primary btn-create-type" %>
+      </div>
+    </div>
+  <% end %>
+</div>

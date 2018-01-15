@@ -32,6 +32,10 @@ class Ability
         club = Club.find_by id: statistic.club_id
         club.user_clubs.manager.map(&:user_id).include?(user.id)
       end
+      can :manage, ReportCategory do |category|
+        category.organization.user_organizations.are_admin.pluck(:user_id)
+          .include?(user.id)
+      end
     end
   end
 end

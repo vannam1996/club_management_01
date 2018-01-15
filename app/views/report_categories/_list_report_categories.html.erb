@@ -1,0 +1,48 @@
+<div class="ui-block col-md-12">
+  <div class="infor-request ui-block-title">
+    <h6 class="title"><%= t ".title_category" %></h6>
+    <div class="pull-right funtion-request">
+      <%= link_to "#new-category", data: {toggle: :collapse},
+        class: "btn btn-breez btn-sm" do %>
+        <i class="fa fa-check-square-o" aria-hidden="true"></i>
+        <%= t ".create_category" %>
+      <% end %>
+      <%= link_to organization_path(@organization), remote: :true,
+        class: "btn btn-primary btn-sm button-back" do %>
+        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+        <%= t "back" %>
+      <% end %>
+    </div>
+  </div>
+  <div id="new-category" class="collapse">
+    <div class="infor-request ui-block-title">
+      <%= render "form_new" %>
+    </div>
+  </div>
+  <% if report_categories.any? %>
+    <div class="table-responsive">
+      <table class="table ui-block table-pricing">
+        <thead>
+          <tr>
+            <th class="text-center"><%= t ".name_category" %></th>
+            <th class="text-center"><%= t ".status" %></th>
+            <th class="text-center"><%= t ".report_count" %></th>
+            <th class="text-center"><%= t ".action" %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render partial: "report_category", collection: report_categories, as: :report_category %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-12">
+      <nav aria-label="Page navigation example">
+        <%= paginate report_categories, remote: true %>
+      </nav>
+    </div>
+  <% else %>
+    <div class="row text-center">
+      <h5 class="center notifi-empty"><%= t "no_category" %></h5>
+    </div>
+  <% end %>
+</div>

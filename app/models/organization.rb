@@ -10,6 +10,7 @@ class Organization < ApplicationRecord
   has_many :activities, as: :container, dependent: :destroy
   has_many :activities, as: :trackable, dependent: :destroy
   has_many :club_types, dependent: :destroy
+  has_many :report_categories, dependent: :destroy
 
   validates :name, uniqueness: true, presence: true,
     length: {maximum: Settings.max_name}

@@ -572,6 +572,8 @@ vi:
         password: "Mật khẩu"
         password_confirmation: "Xác nhận mật khẩu"
         reset_password_token: "Mã thay đổi mật khẩu"
+      report_category:
+        name: ""
     errors:
       messages:
         record_invalid: "Bản ghi không hợp lệ"
@@ -748,6 +750,10 @@ vi:
           attributes:
             time:
               taken: "Đã có báo cáo của thời gian này !"
+        report_category:
+          attributes:
+            name:
+              taken: "Đã tồn tại !"
   not_found_user_event: "Không tìm thấy sự kiện mà bạn tham gia!"
   not_found_user_club: "Không tìm thấy câu lạc bộ mà bạn tham gia!"
   see_you_next_time: "Bạn đã hủy tham gia!!!"
@@ -1134,7 +1140,7 @@ vi:
   update_club_type: "Cập nhật thành công"
   delete_club_type: "Xóa thành công"
   delete_club_type_error: "Xóa thất bại"
-  manager_club_type: "Quản lý loại câu lạc bộ"
+  manager_club_type: "Loại câu lạc bộ"
   btn_create_type: "Tạo mới"
   label_club_type: "Tên loại"
   title_create_type: "Tạo loại câu lạc bộ"
@@ -1227,3 +1233,25 @@ vi:
   of_manager_not_report_quarter: "do bạn quản lý vẫn chưa hoàn thành báo cáo quý %{time}! "
   errors_style_not_exist: "Không tìm thấy loại báo cáo"
   announcements: "THÔNG BÁO"
+  manager_report_category: "Danh mục báo cáo"
+  no_category: "Không có danh mục báo cáo nào"
+  status_category:
+    obligatory: "Bắt buộc"
+    optional: "Không bắt buộc"
+  report_categories:
+    create_success: "Thành công"
+    create_errors: "Thất bại"
+    update_success: "Thành công"
+    update_errors: "Thất bại"
+    exist_repor_details: "Không thể xóa danh mục đang chứa báo cáo!"
+    find_errors: "Không tìm thấy danh mục này"
+    organization_not_found: "Không tìm thấy tổ chức"
+    destroy_success: "Thành công"
+    destroy_errors: "Thất bại"
+    list_report_categories:
+      create_category: "Tạo mới"
+      name_category: "Tên danh mục"
+      status: "Trạng thái"
+      report_count: "Báo cáo"
+      action: "Hành động"
+      title_category: "Danh mục báo cáo"

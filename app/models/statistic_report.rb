@@ -23,5 +23,5 @@ class StatisticReport < ApplicationRecord
   scope :search_time, ->time, year{where "time = ? and year = ?", time, year}
   scope :style, ->style{where "style = ?", style}
 
-  accepts_nested_attributes_for :report_details
+  accepts_nested_attributes_for :report_details, allow_destroy: true
 end
