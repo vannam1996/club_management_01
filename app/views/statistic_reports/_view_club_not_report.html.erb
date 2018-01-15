@@ -1,7 +1,7 @@
 <%= form_tag warning_reports_path, remote: true do %>
   <div class="form-group">
     <%= submit_tag t("send_notification"),
-      class: "btn btn-blue btn-sm pull-left col-md-4" %>
+      class: "btn btn-blue btn-sm pull-left col-md-3" %>
     <div class="row">
       <label class="push-md-1 col-md-4 label-title"><%= t "expiry_date_report" %>:</label>
       <%= date_field_tag :date_deadline, {}, class: "form-control date-report col-md-4" %>

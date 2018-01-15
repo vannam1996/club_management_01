@@ -1,0 +1,21 @@
+<%= search_form_for @q, url: organization_path(@organization), class: "w-search", id: "organization_club_form" do |f| %>
+  <div class="row">
+    <div class="form-group with-button col-md-5" >
+      <%= f.text_field :name_cont,
+        placeholder: t("organization_details.search_name"),
+        class: "form-control", id: "organization_club_search" %>
+      <span class="input-group-addon" id="basic-addon1">
+        <i class="fa fa-search" aria-hidden="true"></i>
+      </span>
+    </div>
+    <div class="w-select col-md-6">
+      <fieldset class="form-group club-type">
+        <%= f.select :club_type_id_eq, options_for_select(
+          @organization.club_types.map{|t| ["#{t.name}", t.id]}
+            .unshift([t("style_filter"), nil]),
+          include_blank: true),
+          {class: "select_custom form-control"}, id: "type_club_search" %>
+      </fieldset>
+    </div>
+  </div>
+<% end %>

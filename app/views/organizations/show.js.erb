@@ -1,2 +1,4 @@
-$('#organization_club').html(
-  '<%= j render "clubs/clubs", collection: @clubs %>');
+$('#organization_club').html('<%= j render "clubs/clubs", collection: @clubs %>');
+<% if params[:q].blank? %>
+  $('#search-organization').html('<%= j render "search_club" %>');
+<% end %>
