@@ -81,4 +81,12 @@ module ApplicationHelper
       method: :put, class: "btn btn-sm btn-#{object[:button]} pull-right",
       data: {confirm: object[:confirm]}
   end
+
+  def type_report data
+    if data.style == StatisticReport.styles[:monthly]
+      t "#{StatisticReport.months.key data.time}"
+    else data.style == StatisticReport.styles[:quarterly]
+      t "#{StatisticReport.quarters.key data.time}"
+    end
+  end
 end

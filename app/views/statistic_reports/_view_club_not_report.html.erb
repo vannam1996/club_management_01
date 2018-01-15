@@ -1,22 +1,29 @@
-<div class="form-group">
-  <%= link_to t("send_notification"), "",class: "btn btn-blue btn-sm pull-left" %>
-  <div class="row">
-    <label class="push-md-1 col-md-4 label-title"><%= t "expiry_date_report" %>:</label>
-    <%= date_field_tag :date_start, {}, class: "form-control date-report col-md-4" %>
+<%= form_tag warning_reports_path, remote: true do %>
+  <div class="form-group">
+    <%= submit_tag t("send_notification"),
+      class: "btn btn-blue btn-sm pull-left col-md-4" %>
+    <div class="row">
+      <label class="push-md-1 col-md-4 label-title"><%= t "expiry_date_report" %>:</label>
+      <%= date_field_tag :date_deadline, {}, class: "form-control date-report col-md-4" %>
+      <%= hidden_field_tag :club_id, @clubs_not_report.map(&:id) %>
+      <%= hidden_field_tag :report_type, params[:q][:time_eq] %>
+      <%= hidden_field_tag :report_year, params[:q][:year_eq] %>
+      <%= hidden_field_tag :report_style, params[:q][:style_eq] %>
+    </div>
   </div>
-</div>
+<% end %>
 <table class="table ui-block table-pricing">
   <tbody>
-    <% @clubs_not_report.each do |statistic_report| %>
+    <% @clubs_not_report.each do |club| %>
       <tr>
         <td>
-          <%= link_to organization_club_path(@organization, statistic_report.slug) do %>
-            <%= image_tag statistic_report.logo,
+          <%= link_to organization_club_path(@organization, club.slug) do %>
+            <%= image_tag club.logo,
               class: "logo-club-report" %>
           <% end %>
         </td>
         <td class="text-center club-name-report">
-          <%= statistic_report.name %>
+          <%= club.name %>
         </td>
       </tr>
     <% end %>

@@ -17,6 +17,7 @@ class Club < ApplicationRecord
   has_many :activities, as: :container, dependent: :destroy
   has_many :user_organizations, through: :organization
   has_many :statistic_reports, dependent: :destroy
+  has_many :warning_reports, dependent: :destroy
 
   belongs_to :organization
   belongs_to :club_type

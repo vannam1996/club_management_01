@@ -1,0 +1,22 @@
+<% @warning.each do |warning| %>
+  <li class="custom_notifications">
+    <div class="notifyBody" data-link-target="new"
+      id="notify-id-<%= warning.id %>" data-id="<%= warning.id %>">
+      <div class="author-thumb">
+        <%= image_tag warning.club_logo %>
+      </div>
+      <div class="notification-event">
+        <div class="notification-value">
+          <a href="#" class="h6 notification-friend"><%= warning.club_name %></a>
+          <%= t("of_manager") + t("warning_reports.msg_not_report") %>
+          <a href="#" class="notification-link"><%= type_report warning %>-
+            <%= t "year" %> <%= warning.year %></a>
+            <% if warning.deadline.present? %>
+              <%= t "warning_reports.deadline" %>
+              <%= l warning.deadline, format: :short %>
+            <% end %>
+        </div>
+      </div>
+    </div>
+  </li>
+<% end %>

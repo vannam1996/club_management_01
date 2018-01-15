@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :set_locale
   before_action :current_user_clubs, if: :user_signed_in?
+  before_action :load_warnimg_report, if: :user_signed_in?
   include ApplicationHelper
   include NotificationsHelper
 
@@ -53,6 +54,11 @@ class ApplicationController < ActionController::Base
 
   def current_user_clubs
     @current_user_clubs = current_user.user_clubs
+  end
+
+  def load_warnimg_report
+    @warning = WarningReport.includes(:club)
+      .by_club_id(@current_user_clubs.manager.map(&:club_id)).newest
   end
 
   rescue_from CanCan::AccessDenied do |exception|
