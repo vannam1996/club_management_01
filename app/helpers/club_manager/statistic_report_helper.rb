@@ -10,4 +10,18 @@ module ClubManager::StatisticReportHelper
       t "title_edit_report", time: quarter_report(report.time), year: report.year
     end
   end
+
+  def option_select_with_status report_categories
+    report_categories.map{|category| [category.name + set_status(category), category.id]}
+  end
+
+  private
+  def set_status category
+    case category.status
+    when Settings.obligatory
+      t "statistic_report_helper.important"
+    else
+      ""
+    end
+  end
 end

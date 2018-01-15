@@ -33,9 +33,7 @@ $ ->
         lastLoadAt = new Date();
 
   $(window).scroll ->
-    if approachingBottomOfPage() && waitedLongEnoughBetweenPages()
+    scrollHeight = $(document).height();
+    scrollPosition = $(window).height() + $(window).scrollTop();
+    if (scrollHeight - scrollPosition) / scrollHeight == 0
       nextPage()
-
-  viewMore.find('a').click (e) ->
-    nextPage()
-    e.preventDefaults()
