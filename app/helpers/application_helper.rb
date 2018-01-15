@@ -83,10 +83,13 @@ module ApplicationHelper
   end
 
   def type_report data
-    if data.style == StatisticReport.styles[:monthly]
-      t "#{StatisticReport.months.key data.time}"
-    else data.style == StatisticReport.styles[:quarterly]
-      t "#{StatisticReport.quarters.key data.time}"
+    case data.style
+    when StatisticReport.styles[:monthly]
+      t StatisticReport.months.key(data.time).to_s
+    when StatisticReport.styles[:quarterly]
+      t StatisticReport.quarters.key(data.time).to_s
+    else
+      t "errors_style_not_exist"
     end
   end
 end

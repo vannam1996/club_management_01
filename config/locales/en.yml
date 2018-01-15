@@ -958,3 +958,4 @@ en:
     msg_not_report: "have not completed the report"
     deadline: "expiration date"
     messenger_report_success: "Submit successful message"
+  errors_style_not_exist: "Could not find style report"

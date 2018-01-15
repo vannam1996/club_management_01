@@ -1,6 +1,6 @@
 class StatisticReportsController < ApplicationController
   before_action :authenticate_user!
-  load_and_authorize_resource
+  authorize_resource
   before_action :load_club, only: :create
   before_action :new_statistic, only: :create
   before_action :load_organization, except: %i(new destroy create)
@@ -69,7 +69,8 @@ class StatisticReportsController < ApplicationController
 
   def statistic_report_params
     params.require(:statistic_report).permit(:club_id, :time,
-      :item_report, :detail_report, :plan_next_month, :note, :others)
+      :item_report, :detail_report, :plan_next_month, :note, :others,
+      report_details_attributes: [:report_category_id, :detail])
       .merge! style: params[:statistic_report][:style].to_i,
       year: params[:date][:year].to_i
   end

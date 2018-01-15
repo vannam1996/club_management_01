@@ -1,7 +1,8 @@
 module NotificationsHelper
   def notifications_result
     if current_user.user_organizations.are_admin
-      notification_ids = notification_club_manager + notification_member + notification_organization_manager
+      notification_ids = notification_club_manager + notification_member +
+        notification_organization_manager
       Activity.includes(:trackable, [owner: :user_clubs], :container)
         .activity_ids(notification_ids).oder_by_read
     elsif current_user.user_clubs.manager
@@ -15,16 +16,6 @@ module NotificationsHelper
   end
 
   def option_image notification
-    case notification.trackable_type
-    when Club.name
-      img =  notification.trackable.logo
-    when Event.name
-      img =  notification.trackable.image
-    when Organization.name
-      img =  notification.trackable.logo
-    when Image.name
-      img =  notification.trackable.url
-    end
     img = set_img notification
     image_tag img, class: "img-responsive" if img
   end
@@ -108,8 +99,8 @@ module NotificationsHelper
   end
 
   def notification_organization_manager
-    Activity.notification_user(current_user.id).
-      of_user_organizations(current_user.user_organizations.are_admin.pluck(:organization_id))
+    Activity.notification_user(current_user.id)
+      .of_user_organizations(current_user.user_organizations.are_admin.pluck(:organization_id))
       .type_receive(Activity.type_receives[:organization_manager]).pluck(:id)
   end
 
@@ -123,10 +114,21 @@ module NotificationsHelper
   end
 
   def set_img notification
-    if notification.report_month_key? || notification.report_quarter_key?
-      notification.container.organization.logo
-    elsif notification.owner
-      notification.owner.avatar
+    case notification.trackable_type
+    when Club.name
+      notification.trackable.logo
+    when Event.name
+      notification.trackable.image
+    when Organization.name
+      notification.trackable.logo
+    when Image.name
+      notification.trackable.url
+    else
+      if notification.report_month_key? || notification.report_quarter_key?
+        notification.container.organization.logo
+      elsif notification.owner
+        notification.owner.avatar
+      end
     end
   end
 

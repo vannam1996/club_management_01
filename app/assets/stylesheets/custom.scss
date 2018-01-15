@@ -677,7 +677,7 @@ body{
   margin-bottom: 0px;
 }
 
-.ui-block.quarter-select.hide-div {
+.hide-div {
   display: none;
 }
 
@@ -689,4 +689,8 @@ body{
   width: 150px;
   height: 150px;
   -webkit-border-radius: 50%;
+}
+
+a.pull-right.add_fields{
+  margin-top: -25px;
 }

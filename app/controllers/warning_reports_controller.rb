@@ -1,5 +1,4 @@
 class WarningReportsController < ApplicationController
-
   def create
     club_ids = params[:club_id].split(" ")
     warning_report = []

@@ -227,3 +227,6 @@ monthly: "monthly"
 quarterly: "quarterly"
 one: 1
 month_per_quarter: 3
+file_csv: ".csv"
+file_xls: ".xls"
+file_xlsx: ".xlsx"

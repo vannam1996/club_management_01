@@ -53,15 +53,13 @@ class Activity < ApplicationRecord
     if self.trackable_type == Settings.notification_report &&
       self.container_type == Settings.notification_club
       lists_received = self.container.user_clubs.manager.pluck(:user_id)
-      list_excep_me lists_received
     elsif self.trackable_type == Settings.notification_report &&
       self.container_type == Settings.notification_orgz
       lists_received = self.container.user_organizations.are_admin.pluck(:user_id)
-      list_excep_me lists_received
     else
       lists_received = self.container.users.try(:ids)
-      list_excep_me lists_received
     end
+    list_excep_me lists_received
   end
 
   def list_excep_me lists_received
