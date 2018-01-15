@@ -1,6 +1,6 @@
 <% @warning.each do |warning| %>
   <li class="custom_notifications">
-    <div class="notifyBody" data-link-target="new"
+    <div class="notifyReport report-<%= option_class(warning.user_read) %>"
       id="notify-id-<%= warning.id %>" data-id="<%= warning.id %>">
       <div class="author-thumb">
         <%= image_tag warning.club_logo %>

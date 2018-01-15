@@ -105,6 +105,17 @@ var turbolink_app = function(){
       window.open($(this).attr('data-link'), '_self');
     });
 
+    $('.notifyReport').click(function(){
+      var id = $(this).attr('data-id');
+      $.ajax({
+        url: '/warning_reports/' + id,
+        type: 'PATCH',
+        success: function(result) {
+          location.reload();
+        },
+      });
+    });
+
     $('.notificationsBody').slimScroll({
       wheelStep: 20
     });

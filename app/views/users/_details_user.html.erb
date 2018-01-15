@@ -40,9 +40,9 @@
       <div class="ui-block">
         <div class="ui-block-title">
           <ul class="tab_my_account">
-            <li><a href="#list_my_group"><%= t "profile_settings.list_club_joined" %></a></li>
+            <li><a href="#list_my_group" class="active"><%= t "profile_settings.list_club_joined" %></a></li>
             <% if current_user.is_user?@user %>
-              <li><a href="#my_settings" class="active"><%= t "profile_settings.settings" %></a></li>
+              <li><a href="#my_settings"><%= t "profile_settings.settings" %></a></li>
             <% end %>
           </ul>
         </div>
