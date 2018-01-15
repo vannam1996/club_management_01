@@ -14,80 +14,56 @@
         <% end %>
       </div>
       <div class="modal-body">
-        <div class="text-center">
-          <div class="list-infor-club inline-items">
-            <strong><%= t "user_name" %>:</strong>
-            <span><%= report.user_full_name %></span>
-          </div>
-          <div class="list-infor-club inline-items">
-            <strong><%= t "date_request" %>:</strong>
-            <span>
-              <%= l report.created_at, format: :short %>
-            </span>
-          </div>
-          <div class="list-infor-club inline-items">
-            <strong><%= t "status" %>:</strong>
-            <span>
-              <%= t"#{report.status}" %>
-            </span>
-          </div>
-        </div>
-        <div class="col-md-12 col-sm-12 col-xs-12">
-          <div class="inline-items report-detail">
-            <h6 class="title">
-              <i class="fa fa-codepen"></i>
-              <strong><%= t "item_report" %>:</strong>
-            </h6><br/>
-            <span><%= report.item_report %></span><br/>
-          </div>
-          <div class="inline-items report-detail">
-            <h6 class="title">
-              <i class="fa fa-codepen"></i>
-              <strong><%= t "detail_report" %>:</strong>
-            </h6><br/>
-            <span>
-              <%= report.detail_report %>
-            </span><br/>
-          </div>
-          <div class="inline-items report-detail">
-            <h6 class="title">
-              <i class="fa fa-codepen"></i>
-              <strong><%= t "plan_next_month" %>:</strong>
-            </h6><br/>
-            <span>
-              <%= report.plan_next_month %>
-            </span><br/>
-          </div>
-          <div class="inline-items report-detail">
-            <h6 class="title">
-              <i class="fa fa-codepen"></i>
-              <strong><%= t "others" %>:</strong>
-            </h6><br/>
-            <span>
-              <%= report.others %>
-            </span><br/>
-          </div>
-          <div class="inline-items report-detail">
-            <h6 class="title">
-              <i class="fa fa-codepen"></i>
-              <strong><%= t "note" %>:</strong>
-            </h6><br/>
-            <span>
-              <%= report.note %>
-            </span>
-          </div>
-          <% if report.reason_reject %>
-            <div class="inline-items report-detail">
-              <h6 class="title">
-                <i class="fa fa-codepen"></i>
-                <strong><%= t "reason_reject" %></strong>
-              </h6><br/>
+        <div class="text-center col-md-12">
+          <div class="row">
+            <div class="list-infor-club inline-items col-md-4">
+              <strong><%= t "user_name" %>:</strong>
+              <span><%= report.user_full_name %></span>
+            </div>
+            <div class="list-infor-club inline-items col-md-4">
+              <strong><%= t "date_request" %>:</strong>
               <span>
-                <%= report.reason_reject %>
+                <%= l report.created_at, format: :short %>
               </span>
-            </div><br/>
-          <% end %>
+            </div>
+            <div class="list-infor-club inline-items col-md-4">
+              <strong><%= t "status" %>:</strong>
+              <span class="status-report-<%= report.status %>">
+                <%= t"#{report.status}" %>
+              </span>
+            </div>
+          </div>
         </div>
+        <table class="table ui-block table-pricing results">
+          <thead>
+            <tr>
+              <th><%= t "item_report" %></th>
+              <th><%= t "detail_report" %></th>
+              <th><%= t "plan_next_month" %></th>
+              <th><%= t "others" %></th>
+              <th><%= t "note" %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="add-user-member">
+              <td>
+                <%= report.item_report %>
+              </td>
+              <td>
+                <%= report.detail_report %>
+              </td>
+              <td>
+                <%= report.plan_next_month %>
+              </td>
+              <td>
+                <%= report.others %>
+              </td>
+              <td>
+                <%= report.note %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
       <div class="text-center">
         <%= button_tag t("close"), class: "btn btn-sm btn-warning",
