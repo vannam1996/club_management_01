@@ -29,3 +29,4 @@
 //= require_tree ./libs/
 //= require_tree ./member/
 //= require ckeditor/init
+//= require cocoon

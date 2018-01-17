@@ -3,78 +3,79 @@
     class: "form-horizontal" do |f| %>
     <%= hidden_field_tag "club-slug", @club.slug %>
     <div class="ui-block">
-      <div class="ui-block-title">
-        <h6 class="title"><%= t "style_filter_report" %></h6>
-      </div>
-      <div class="ui-block-content">
-        <div class="w-select">
-          <fieldset class="form-group">
-            <%= select_tag :style_report,
-              options_for_select(option_select(StatisticReport.styles)
-              .unshift([t("style_filter_report"), nil]), include_blank: true),
-              {class: "select_custom form-control stype-reports"} %>
-          </fieldset>
+      <div>
+        <div class="ui-block-title">
+          <h6 class="title"><%= t "style_filter_report" %></h6>
+        </div>
+        <div class="ui-block-content">
+          <div class="w-select">
+            <fieldset class="form-group">
+              <%= select_tag :style_report,
+                options_for_select(option_select(StatisticReport.styles)
+                .unshift([t("style_filter_report"), nil]), include_blank: true),
+                {class: "select_custom form-control stype-reports"} %>
+            </fieldset>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="ui-block">
-      <div class="ui-block-title">
-        <h6 class="title"><%= t "status_filter_report" %></h6>
-      </div>
-      <div class="ui-block-content">
-        <div class="w-select">
-          <fieldset class="form-group">
-            <%= select_tag :status,
-              options_for_select(StatisticReport.statuses.map{|k,v|
+      <div>
+        <div class="ui-block-title">
+          <h6 class="title"><%= t "status_filter_report" %></h6>
+        </div>
+        <div class="ui-block-content">
+          <div class="w-select">
+            <fieldset class="form-group">
+              <%= select_tag :status,
+                options_for_select(StatisticReport.statuses.map{|k,v|
                 [t("status_filter.#{k}"), v]}
-              .unshift([t("status_filter_report"), nil]),
-               include_blank: true),
-              {class: "select_custom form-control month-reports"} %>
-          </fieldset>
+                .unshift([t("status_filter_report"), nil]), include_blank: true),
+                {class: "select_custom form-control month-reports"} %>
+            </fieldset>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="ui-block month-select">
-      <div class="ui-block-title">
-        <h6 class="title"><%= t "month_filter_report" %></h6>
-      </div>
-      <div class="ui-block-content">
-        <div class="w-select">
-          <fieldset class="form-group">
-            <%= select_tag :time,
-              options_for_select(option_select(StatisticReport.months)
-              .unshift([t("month_filter_report"), nil]), include_blank: true),
-              {class: "select_custom form-control month-reports", id: "month-time"} %>
-          </fieldset>
+      <div class = "month-select">
+        <div class="ui-block-title">
+          <h6 class="title"><%= t "month_filter_report" %></h6>
+        </div>
+        <div class="ui-block-content">
+          <div class="w-select">
+            <fieldset class="form-group">
+              <%= select_tag :time,
+                options_for_select(option_select(StatisticReport.months)
+                .unshift([t("month_filter_report"), nil]), include_blank: true),
+                {class: "select_custom form-control month-reports", id: "month-time"} %>
+            </fieldset>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="ui-block quarter-select hide-div">
-      <div class="ui-block-title">
-        <h6 class="title"><%= t "quarter_filter_report" %></h6>
-      </div>
-      <div class="ui-block-content">
-        <div class="w-select">
-          <fieldset class="form-group">
-            <%= select_tag :time,
-              options_for_select(option_select(StatisticReport.quarters)
-              .unshift([t("quarter_filter_report"), nil]), include_blank: true),
-              {class: "select_custom form-control", id: "quarter-time"} %>
-          </fieldset>
+      <div class="hide-div quarter-select">
+        <div class="ui-block-title">
+          <h6 class="title"><%= t "quarter_filter_report" %></h6>
+        </div>
+        <div class="ui-block-content">
+          <div class="w-select">
+            <fieldset class="form-group">
+              <%= select_tag :time,
+                options_for_select(option_select(StatisticReport.quarters)
+                .unshift([t("quarter_filter_report"), nil]), include_blank: true),
+                {class: "select_custom form-control", id: "quarter-time"} %>
+            </fieldset>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="ui-block">
-      <div class="ui-block-title">
-        <h6 class="title"><%= t "year_filter_report" %></h6>
-      </div>
-      <div class="ui-block-content">
-        <div class="w-select">
-          <fieldset class="form-group">
-            <%= select_year(0, {prompt: t("year_filter_report"), start_year: Date.current.year,
-              end_year: Settings.year_ago.years.ago.year},
-              {class: "select_custom form-control", id: "year_report"}) %>
-          </fieldset>
+      <div>
+        <div class="ui-block-title">
+          <h6 class="title"><%= t "year_filter_report" %></h6>
+        </div>
+        <div class="ui-block-content">
+          <div class="w-select">
+            <fieldset class="form-group">
+              <%= select_year(0, {prompt: t("year_filter_report"), start_year: Date.current.year,
+                end_year: Settings.year_ago.years.ago.year},
+                {class: "select_custom form-control", id: "year_report"}) %>
+            </fieldset>
+          </div>
         </div>
       </div>
     </div>

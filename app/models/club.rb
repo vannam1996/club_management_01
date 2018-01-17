@@ -130,7 +130,7 @@ class Club < ApplicationRecord
 
   def display_organization
     return "" if self.nil?
-    "#{self.organization_name}"
+    self.organization_name.to_s
   end
 
   private

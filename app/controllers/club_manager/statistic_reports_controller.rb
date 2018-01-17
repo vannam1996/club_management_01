@@ -8,7 +8,9 @@ class ClubManager::StatisticReportsController < ApplicationController
     gon_variable
     if @club
       @statistic_report = current_user.statistic_reports.build club_id: @club.id
+      @statistic_report.report_details.build
       all_report
+      @report_categories = ReportCategory.all
     end
     respond_to do |format|
       format.js

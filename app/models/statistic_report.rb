@@ -1,10 +1,9 @@
 class StatisticReport < ApplicationRecord
   belongs_to :club, required: true
   belongs_to :user, required: true
+  has_many :report_details, dependent: :destroy, inverse_of: :statistic_report
 
   validates :style, presence: true
-  validates :item_report, presence: true
-  validates :detail_report, presence: true
   validates :plan_next_month, presence: true
   validates :time, presence: true
   validates :time, uniqueness: {scope: [:club_id, :style, :year]}
@@ -23,4 +22,6 @@ class StatisticReport < ApplicationRecord
   scope :order_by_created_at, ->{order created_at: :desc}
   scope :search_time, ->time, year{where "time = ? and year = ?", time, year}
   scope :style, ->style{where "style = ?", style}
+
+  accepts_nested_attributes_for :report_details
 end

@@ -38,22 +38,15 @@
                 </div>
               </div>
             </div>
-            <div class="form-group col-md-12">
-              <div class="form-group label-floating">
-                <%= f.label(:item_report, class: "control-label") do %>
-                  <%= t("item_report") %>
-                  <span class="text-danger">*</span>
+            <div class="form-group" id="detail-report-field">
+              <div id="detail" class="col-md-12">
+                <%= f.fields_for :report_details do |detail| %>
+                  <%= render "report_detail_fields", f: detail %>
                 <% end %>
-                <%= f.text_area :item_report, class: "form-control", required: true %>
               </div>
-            </div>
-            <div class="form-group col-md-12">
-              <div class="form-group label-floating">
-                <%= f.label(:detail_report, class: "control-label") do %>
-                  <%= t("detail_report") %>
-                  <span class="text-danger">*</span>
-                <% end %>
-                <%= f.text_area :detail_report, class: "form-control", required: true %>
+              <div class="col-md-12">
+                <%= link_to_add_association t("add"), f, :report_details,
+                  class: "pull-right btn btn-breez" %>
               </div>
             </div>
             <div class="form-group col-md-12">

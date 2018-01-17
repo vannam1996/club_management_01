@@ -58,7 +58,7 @@ class ApplicationController < ActionController::Base
 
   def load_warnimg_report
     @warning = WarningReport.includes(:club)
-      .by_club_id(@current_user_clubs.manager.map(&:club_id)).newest
+      .by_club(@current_user_clubs.manager.map(&:club_id)).newest
   end
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -79,7 +79,7 @@ class ApplicationController < ActionController::Base
   def namespace
     controller_name_segments = params[:controller].split("/")
     controller_name_segments.pop
-    controller_namespace = controller_name_segments.join("/").camelize
+    controller_name_segments.join("/").camelize
   end
 
   def current_ability
