@@ -2,45 +2,41 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5><%= t "detail_report" %></h5>
+        <% if @statistic_report.monthly? %>
+          <h6 class="col-md-11 text-center">
+            <%= t "detail_report_club", time: month_report(@statistic_report.time),
+              year: @statistic_report.year %>,
+          </h6>
+        <% elsif @statistic_report.quarterly? %>
+          <h6 class="col-md-11 text-center">
+            <%= t "detail_report_club", time: quarter_report(@statistic_report.time),
+              year: @statistic_report.year %>,
+          </h6>
+        <% end %>
         <%= button_tag type: "submit", class: "close", data: {dismiss: "modal"} do %>
           &times;
         <% end %>
       </div>
       <div class="modal-body">
         <div class="row">
-          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
             <%= image_tag @statistic_report.club_logo,
               class: "circle-profile logo-club col-md-12 pull-right detail-report-logo" %>
           </div>
-          <div class="event-description">
-            <div class="list-infor-club inline-items">
+          <div class="event-description col-md-10 row">
+            <div class="list-infor-club inline-items col-md-5">
               <strong><%= t "club_name" %>:</strong>
               <span><%= @statistic_report.club_name %></span>
             </div>
-            <div class="list-infor-club inline-items">
+            <div class="list-infor-club inline-items col-md-5">
               <strong><%= t "user_name" %>:</strong>
               <span><%= @statistic_report.user_full_name %></span>
             </div>
-            <div class="list-infor-club inline-items">
+            <div class="list-infor-club inline-items col-md-5">
               <strong><%= t "status_report" %>:</strong>
               <span><%= t @statistic_report.status.to_s %></span>
             </div>
-            <div class="list-infor-club inline-items">
-              <strong><%= t "time_report" %>:</strong>
-              <% if @statistic_report.style == Settings.moth_statistic %>
-                <span>
-                  <%= t "month_num", time: @statistic_report.time %>,
-                    <%=  @statistic_report.year %>
-                </span>
-              <% else @statistic_report.style == Settings.quarter_statistic %>
-                <span>
-                  <%= t "quarter_num", time: @statistic_report.time %>,
-                    <%=  @statistic_report.year %>
-                </span>
-              <% end %>
-            </div>
-            <div class="list-infor-club inline-items">
+            <div class="list-infor-club inline-items col-md-5">
               <strong><%= t "date_request" %>:</strong>
               <span>
                 <%= l @statistic_report.created_at, format: :short %>
@@ -49,22 +45,30 @@
           </div>
         </div>
         <div class="col-md-12 col-sm-12 col-xs-12">
-          <div class="inline-items report-detail">
-            <h6 class="title">
-              <i class="fa fa-codepen"></i>
-              <strong><%= t "item_report" %>:</strong>
-            </h6><br/>
-            <span><%= @statistic_report.item_report %></span><br/>
-          </div>
-          <div class="inline-items report-detail">
-            <h6 class="title">
-              <i class="fa fa-codepen"></i>
-              <strong><%= t "detail_report" %>:</strong>
-            </h6><br/>
-            <span>
-              <%= @statistic_report.detail_report %>
-            </span><br/>
-          </div>
+          <table class="table table-pricing results show-detail-report">
+            <tr>
+              <td class="category-report">
+                <div class="inline-items">
+                  <h6 class="title">
+                    <strong><%= t "item_report" %></strong>
+                  </h6>
+                </div>
+              </td>
+              <td>
+                <div class="inline-items text-center">
+                  <h6 class="title">
+                    <strong><%= t "detail_report" %></strong>
+                  </h6>
+                </div>
+              </td>
+            </tr>
+            <% @statistic_report.report_details.each do |detail| %>
+              <tr>
+                <td><%= detail.report_category_name %></td>
+                <td><%= detail.detail %></td>
+              </tr>
+            <% end %>
+          </table>
           <div class="inline-items report-detail">
             <h6 class="title">
               <i class="fa fa-codepen"></i>
