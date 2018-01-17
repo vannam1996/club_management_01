@@ -1226,3 +1226,4 @@ vi:
   of_manager_not_report_month: "do bạn quản lý vẫn chưa hoàn thành báo cáo tháng %{time}! "
   of_manager_not_report_quarter: "do bạn quản lý vẫn chưa hoàn thành báo cáo quý %{time}! "
   errors_style_not_exist: "Không tìm thấy loại báo cáo"
+  announcements: "THÔNG BÁO"

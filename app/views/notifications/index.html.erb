@@ -15,12 +15,14 @@
               locals: {notification: @notification} %>
           </ul>
         </div>
-        <% unless @notifications.current_page == @notifications.total_pages %>
-          <h1 id="view-more" class="text-center">
-            <%= link_to url_for(page: @notifications.next_page), remote: true do %>
-              <i class="fa fa-spinner fa-spin"></i>
-            <% end %>
-          </h1>
+        <% if @notifications.present? %>
+          <% unless @notifications.current_page == @notifications.total_pages %>
+            <h1 id="view-more" class="text-center">
+              <%= link_to url_for(page: @notifications.next_page), remote: true do %>
+                <i class="fa fa-spinner fa-spin"></i>
+              <% end %>
+            </h1>
+          <% end %>
         <% end %>
       </div>
     </div>

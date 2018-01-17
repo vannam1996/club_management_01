@@ -1695,3 +1695,34 @@
   border-radius: 5px;
   color: $white;
 }
+
+/*----- Notification--------*/
+.notification_custom {
+  overflow-y: scroll !important;
+  .notification-list{
+    .custom_notifications {
+      padding: 0;
+      .notifyReport {
+        padding: 15px;
+        .author-thumb {
+          float: left;
+          margin-right: 10px;
+        }
+        .notification-event {
+          width: auto;
+        }
+      }
+      .notifyReport.report-un_read {
+        background-color: $body-bg;
+      }
+    }
+  }
+}
+.announcements-report {
+  height: 20px;
+  color: white;
+  font-size: 23px;
+}
+.size-report-unread {
+  right: -15px !important;
+}

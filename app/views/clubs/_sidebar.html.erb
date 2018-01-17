@@ -123,11 +123,16 @@
     </ul>
   </nav>
     <div class="control-block">
+      <% if @warning.present? %>
+        <div class="control-icon more has-items">
+          <i class="announcements-report fa fa-info" ></i>
+          <%= render "notifications/notification_report" %>
+        </div>
+      <% end %>
       <div class="control-icon more has-items">
         <svg class="olymp-thunder-icon"><use xlink:href="<%= url_to_asset("icons/icons.svg#olymp-thunder-icon") %>"></use></svg>
         <%= render "notifications/notification_container" %>
       </div>
-
       <div class="author-page author vcard inline-items more">
         <%= render "shared/account" %>
       </div>

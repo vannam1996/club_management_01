@@ -1,0 +1,24 @@
+<div class="label-avatar bg-warning size-report-unread">
+  <span class="size_unread_report">
+    <%= size_notification(@warning) if @warning %>
+  </span>
+</div>
+<div class="more-dropdown more-with-triangle triangle-top-center">
+  <div class="ui-block-title ui-block-title-small">
+    <h6 class="title"><%= t "announcements" %></h6>
+    <%= link_to edit_warning_report_path(current_user.id),
+      class: "tick", method: :get, remote: true do %>
+      <%= t("all_read") %>
+    <% end %>
+  </div>
+  <div class="mCustomScrollbar notification_custom" data-mcs-theme="dark">
+    <ul class="notification-list">
+      <% if @warning.present? %>
+        <%= render "notifications/warning_report" %>
+      <% end %>
+    </ul>
+  </div>
+  <div class="text-center show-all-title">
+    <%= link_to t("show_all"), "" %>
+  </div>
+</div>
