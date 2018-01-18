@@ -1,5 +1,4 @@
-$('.notification-list').append('<%= escape_javascript(render partial: 'notifications/notification_show_all',
-  locals: {notification: @notification}) %>')
+$('.notification-list').append('<%= j render partial: "notifications/notification_show_all" %>')
 <% if @notifications.current_page == @notifications.total_pages %>
   $('#view-more').remove();
 <% else %>

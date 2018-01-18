@@ -8,8 +8,8 @@ App.notification = App.cable.subscriptions.create 'NotificationChannel',
   received: (data) ->
     current_user = parseInt($(".current-user-id").val())
     if data.lists_received != null && data.lists_received.includes(current_user)
-      $('.notificationsBody').append data.notification
-      $('.notification_count').text($('.notification-un_read').length)
-      $('.notification_count').fadeIn('slow')
+      $('#notification-top').prepend data.notification
+      size_unread = parseInt($('.size_unread').text()) + 1
+      $('.size_unread').text(size_unread)
   push: ->
     @perform 'push'

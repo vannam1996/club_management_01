@@ -983,3 +983,5 @@ en:
       report_count: "Report"
       action: "Action"
       title_category: "Report category"
+  statistic_report_helper:
+    important: " *"

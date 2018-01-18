@@ -12,11 +12,14 @@
         <%= t("all_read") %>
       <% end %>
   </div>
+  <%= hidden_field_tag "", current_user.id, class: "current-user-id" %>
   <div class="mCustomScrollbar notification_custom" data-mcs-theme="dark">
-    <ul class="notification-list">
-      <%= render partial: "notifications/notification",
-        locals: {notifications: notifications} %>
-    </ul>
+    <div id="notificationsBody" class="notifications">
+      <ul class="notification-list" id="notification-top">
+        <%= render partial: "notifications/notification",
+          locals: {notifications: notifications} %>
+      </ul>
+    </div>
   </div>
   <div class="text-center show-all-title">
     <%= link_to t("show_all"), notifications_path %>
