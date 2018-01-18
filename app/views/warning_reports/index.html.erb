@@ -5,20 +5,20 @@
       <div class="col-md-12 ui-block">
         <div class="title_custom col-sm-6 col-md-6 push-md-3 notification-title">
           <h3>
-            <strong><%= t "your_notification" %></strong>
+            <strong><%= t ".your_notification" %></strong>
           </h3>
           <div class="hr-center-line-div"></div>
         </div>
         <div class="notifications show-all">
           <ul class="notification-list">
-            <%= render partial: "notifications/notification_show_all",
-              locals: {notification: @notification} %>
+            <%= render partial: "notification_show_all",
+              locals: {notifications: @warnings} %>
           </ul>
         </div>
-        <% if @notifications.present? %>
-          <% unless @notifications.current_page == @notifications.total_pages %>
+        <% if @warnings.present? %>
+          <% unless @warnings.current_page == @warnings.total_pages %>
             <h1 id="view-more" class="text-center">
-              <%= link_to url_for(page: @notifications.next_page),
+              <%= link_to warning_reports_path(page: @warnings.next_page),
                 title: t("read_more"), remote: true do %>
                 <i class="fa fa-spinner fa-spin"></i>
               <% end %>

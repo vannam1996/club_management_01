@@ -1229,6 +1229,8 @@ vi:
     msg_not_report: " chưa hoàn thành báo cáo"
     deadline: "thời gian hết hạn vào ngày"
     messenger_report_success: "Gửi thông báo thành công "
+    index:
+      your_notification: "Thông báo của bạn"
   of_manager_not_report_month: "do bạn quản lý vẫn chưa hoàn thành báo cáo tháng %{time}! "
   of_manager_not_report_quarter: "do bạn quản lý vẫn chưa hoàn thành báo cáo quý %{time}! "
   errors_style_not_exist: "Không tìm thấy loại báo cáo"

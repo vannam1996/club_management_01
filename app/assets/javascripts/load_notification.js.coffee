@@ -35,7 +35,3 @@ $ ->
   $(window).scroll ->
     if approachingBottomOfPage() && waitedLongEnoughBetweenPages()
       nextPage()
-
-  viewMore.find('a').click (e) ->
-    nextPage()
-    e.preventDefaults()

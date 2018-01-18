@@ -1,0 +1,30 @@
+<% notifications.each do |notification| %>
+  <li class="custom_notifications warning-report-<%= option_class(notification.user_read) %>" id ="notification-avata">
+    <div class="notifyReport notification-show" id="notify-id-<%= notification.id %>"
+      data-link-target="new"
+      id="notify-id-<%= notification.id %>"
+      data-id="<%= notification.id %>">
+      <div class="col-md-12">
+        <div class="row">
+          <%= image_tag notification.club_logo %>
+          <div class="col-md-10">
+            <div class="notification-event">
+              <div class="notification-value">
+                <a href="#" class="h6 notification-friend"><%= notification.club_name %></a>
+                  <%= t("of_manager") + t("warning_reports.msg_not_report") %>
+                <a href="#" class="notification-link"><%= type_report notification %>-
+                <%= t "year" %> <%= notification.year %></a>
+                <% if notification.deadline.present? %>
+                  <%= t "warning_reports.deadline" %>
+                  <%= l notification.deadline, format: :short %>
+                <% end %>
+                </br><i class="fa fa-clock-o time_create" aria-hidden="true">
+                  <%= l notification.created_at, format: :short %></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </li>
+<% end %>

@@ -15,6 +15,8 @@
               <%= t "warning_reports.deadline" %>
               <%= l warning.deadline, format: :short %>
             <% end %>
+            </br><i class="fa fa-clock-o time_create" aria-hidden="true">
+              <%= l warning.created_at, format: :short %></i>
         </div>
       </div>
     </div>
