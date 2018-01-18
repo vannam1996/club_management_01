@@ -10,7 +10,7 @@
           <div class="hr-center-line-div"></div>
         </div>
         <div class="notifications show-all">
-          <ul class="notification-list">
+          <ul class="notification-list" id="list-notifications">
             <%= render partial: "notifications/notification_show_all",
               locals: {notification: @notification} %>
           </ul>

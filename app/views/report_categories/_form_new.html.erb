@@ -3,7 +3,7 @@
     <%= hidden_field_tag :organization_slug, @organization.slug %>
     <div id="error-explanation-category"></div>
     <div class = "row">
-      <%= f.label t("name_club_type"), class: "control-label label-name-type" %>
+      <%= f.label t(".name_category"), class: "control-label label-name-type" %>
       <div class="pull-left">
         <%= f.text_field :name, required: true,
           class: "form-control input-text" %>
