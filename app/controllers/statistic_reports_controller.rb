@@ -52,13 +52,12 @@ class StatisticReportsController < ApplicationController
 
   def create
     if @statistic_report.save
-      flash[:success] = t "create_statistic_report_success"
+      flash.now[:success] = t "create_statistic_report_success"
       create_acivity @statistic_report, Settings.create_report,
         @club.organization, current_user, Activity.type_receives[:organization_manager]
     else
-      flash[:danger] = t "create_statistic_report_fail"
+      flash.now[:danger] = t "create_statistic_report_fail"
     end
-    redirect_to request.referer || root_url
   end
 
   private

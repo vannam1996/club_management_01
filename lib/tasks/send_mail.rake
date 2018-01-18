@@ -20,7 +20,7 @@ end
 
 task send_notification_remind_report_quarter: :environment do
   month = Date.current.month
-  quarter_current = (month - Settings.one) / Settings.three + Settings.one
+  quarter_current = (month - Settings.one) / Settings.month_per_quarter + Settings.one
   club_ids = Club.ids
   clubs_has_report_ids = StatisticReport.search_club(club_ids)
     .search_time(quarter_current, Date.current.year)

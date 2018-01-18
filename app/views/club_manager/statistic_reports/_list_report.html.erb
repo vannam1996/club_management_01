@@ -20,7 +20,7 @@
             <th><%= t "action" %></th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="table-list-report">
           <% reports.each do |report| %>
             <tr class="add-user-member report-<%= report.id %>">
               <%= render partial: "report", locals: {report: report} %>

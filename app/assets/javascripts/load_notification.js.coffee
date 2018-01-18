@@ -1,5 +1,5 @@
 $ ->
-  content = $('.notification-list')
+  content = $('#list-notifications')
   viewMore = $('#view-more')
 
   isLoadingNextPage = false
@@ -35,5 +35,6 @@ $ ->
   $(window).scroll ->
     scrollHeight = $(document).height();
     scrollPosition = $(window).height() + $(window).scrollTop();
-    if (scrollHeight - scrollPosition) / scrollHeight == 0
+    url = $('#view-more').find('a').attr('href')
+    if (scrollHeight - scrollPosition) / scrollHeight == 0 && url
       nextPage()

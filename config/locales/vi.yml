@@ -1257,5 +1257,7 @@ vi:
       report_count: "Báo cáo"
       action: "Hành động"
       title_category: "Danh mục báo cáo"
+    form_new:
+      name_category: "Tên danh mục"
   statistic_report_helper:
     important: " *"

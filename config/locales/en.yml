@@ -961,6 +961,8 @@ en:
     index:
       your_notification: "Your notification"
   errors_style_not_exist: "Could not find style report"
+  of_manager_not_report_month: "your manager has not completed the report month %{time}! "
+  of_manager_not_report_quarter: "your manager has not completed the report quarter %{time}! "
   announcements: "ANNOUNCEMENTS"
   organization: "organization"
   manager_report_category: "Report category"
@@ -985,5 +987,7 @@ en:
       report_count: "Report"
       action: "Action"
       title_category: "Report category"
+    form_new:
+      name_category: "Category name"
   statistic_report_helper:
     important: " *"
