@@ -3,6 +3,14 @@ class WarningReportsController < ApplicationController
   before_action :load_warning_report, only: :update
   before_action :load_user_club, only: :edit
 
+  def index
+    @warnings = @warning.page(params[:page]).per Settings.notification_per_page
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
   def create
     club_ids = params[:club_id].split(" ")
     warning_report = []

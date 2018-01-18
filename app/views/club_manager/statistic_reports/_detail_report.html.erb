@@ -87,7 +87,18 @@
             <span>
               <%= report.note %>
             </span>
-          </div><br/>
+          </div>
+          <% if report.reason_reject.present? %>
+            <div class="inline-items report-detail">
+              <h6 class="title">
+                <i class="fa fa-codepen"></i>
+                <strong><%= t "reason_reject" %>:</strong>
+              </h6><br/>
+              <span>
+                <%= report.reason_reject %>
+              </span>
+            </div><br/>
+          <% end %>
         </div>
       </div>
       <div class="text-center">

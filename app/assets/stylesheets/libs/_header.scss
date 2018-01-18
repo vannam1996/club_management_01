@@ -1690,7 +1690,7 @@
   border-radius: 5px;
   color: $white;
 }
-.status-report-reject {
+.status-report-rejected {
   background-color: $bk-reject;
   padding: 4px;
   border-radius: 5px;
@@ -1732,4 +1732,7 @@
 }
 .show-detail-report tr td {
   border-top: 1px solid $white !important;
+}
+.warning-report-un_read {
+  background-color: $body-bg;
 }
