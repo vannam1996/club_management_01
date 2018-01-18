@@ -44,7 +44,7 @@
                   <%= render "report_detail_fields", f: detail %>
                 <% end %>
               </div>
-              <div class="col-md-12">
+              <div class="row col-md-12 push-md-10">
                 <%= link_to_add_association t("add"), f, :report_details,
                   class: "pull-right btn btn-breez" %>
               </div>
@@ -74,7 +74,7 @@
             </div>
             <%= f.hidden_field :club_id %>
             <div class="form-group center">
-              <%= f.submit t("report"), class: "btn btn-secondary full-width col-md-2" %>
+              <%= f.submit t("report"), class: "btn btn-primary full-width col-md-2" %>
             </div>
           <% end %>
         </div>

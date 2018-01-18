@@ -691,6 +691,21 @@ body{
   -webkit-border-radius: 50%;
 }
 
-a.pull-right.add_fields{
-  margin-top: -25px;
+a.pull-right.add_fields {
+  margin-top: -20px;
+  margin-left: 40px;
+  margin-bottom: 0px;
+}
+
+.select-status-category {
+  width: auto;
+  margin: 0 auto;
+}
+
+.new_report_category .input-text {
+  padding: 8px 20px;
+}
+
+.column-select {
+  width: 25%;
 }

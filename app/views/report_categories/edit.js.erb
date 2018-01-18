@@ -1,0 +1,9 @@
+<% if @report_category %>
+  $('#organization_club').html('<%= j render partial: "list_report_categories",
+    locals: {report_categories: @report_categories} %>');
+  $('.category-<%= @report_category.id %>')
+    .html('<%= j render partial: "edit_report_category", locals: {report_category: @report_category} %>')
+<% else %>
+  $('.container').append('<%= j render partial: "shared/flash_warning" %>');
+  $('.notify').delay(4000).slideUp(300);
+<% end %>

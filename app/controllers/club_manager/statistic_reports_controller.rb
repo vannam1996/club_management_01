@@ -10,7 +10,7 @@ class ClubManager::StatisticReportsController < ApplicationController
       @statistic_report = current_user.statistic_reports.build club_id: @club.id
       @statistic_report.report_details.build
       all_report
-      @report_categories = ReportCategory.all
+      @report_categories = @club.organization.report_categories
     end
     respond_to do |format|
       format.js
@@ -21,6 +21,8 @@ class ClubManager::StatisticReportsController < ApplicationController
 
   def edit
     gon_variable
+    @report_categories = @club.organization.report_categories
+    @report_details = @report.report_details
   end
 
   def update
@@ -38,7 +40,9 @@ class ClubManager::StatisticReportsController < ApplicationController
   private
   def report_params
     params.require(:statistic_report).permit(:item_report, :detail_report,
-      :plan_next_month, :note, :year).merge!(style: params[:statistic_report][:style].to_i,
+      :plan_next_month, :note, :year, :others, report_details_attributes:
+      [:report_category_id, :detail, :id, :_destroy])
+      .merge!(style: params[:statistic_report][:style].to_i,
       status: :pending, reason_reject: nil)
   end
 

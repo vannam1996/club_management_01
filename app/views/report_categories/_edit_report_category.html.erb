@@ -1,0 +1,26 @@
+<td class= "text-center type-name category-<%= report_category.id %>">
+  <div class="form-group edit-type-club margin-bottom-0">
+    <%= hidden_field_tag :organization_slug, @organization.slug %>
+    <%= text_field_tag :name, report_category.name, required: true,
+      class: "form-control input-text text-center" %>
+  </div>
+</td>
+<td class="text-center column-select">
+  <%= select_tag :status, options_for_select(ReportCategory.statuses.map{|k ,v|
+    [t("status_category.#{k}"), v]}, ReportCategory.statuses[report_category.status]),
+    {class: "role_user form-control select-status-category", id: "status_report_category"} %>
+</td>
+<td class="text-center">
+  <%= report_category.report_details.size %>
+</td>
+<td class="text-center">
+  <%= button_tag "", title: t("save_chage_type"), value: report_category.id, id: "save-report-category",
+    class: "btn btn-breez btn-bottom-0" do %>
+    <i class="fa fa-save"></i>
+  <% end %>
+  <%= link_to report_categories_path(organization_slug: @organization.slug), title: t("undo"), remote: true,
+    class: "btn btn-danger btn-bottom-0" do %>
+    <i class="fa fa-undo"></i>
+  <% end %>
+</td>
+<%= javascript_include_tag "edit_report_category" %>
