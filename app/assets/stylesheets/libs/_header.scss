@@ -1652,6 +1652,7 @@
 }
 .report-detail {
   margin-top: 10px;
+  margin-left: 12px;
 }
 .list-report {
   padding: 7px 25px 7px !important;
@@ -1725,4 +1726,10 @@
 }
 .size-report-unread {
   right: -15px !important;
+}
+.category-report {
+  width: 20%;
+}
+.show-detail-report tr td {
+  border-top: 1px solid $white !important;
 }

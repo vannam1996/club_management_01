@@ -3,11 +3,13 @@
     <div class="modal-content">
       <div class="modal-header">
         <% if report.monthly? %>
-          <h6><%= t "detail_report_club", time: month_report(report.time),
-            year: report.year %></h6>
+          <h6 class="col-md-11 text-center">
+            <%= t "detail_report_club", time: month_report(report.time), year: report.year %>
+          </h6>
         <% elsif report.quarterly? %>
-          <h6><%= t "detail_report_club", time: quarter_report(report.time),
-            year: report.year %></h6>
+          <h6 class="col-md-11 text-center">
+            <%= t "detail_report_club", time: quarter_report(report.time), year: report.year %>
+          </h6>
         <% end %>
         <%= button_tag type: "button", class: "close", data: {dismiss: "modal"} do %>
           &times;
@@ -34,36 +36,59 @@
             </div>
           </div>
         </div>
-        <table class="table ui-block table-pricing results">
-          <thead>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <table class="table table-pricing results show-detail-report">
             <tr>
-              <th><%= t "item_report" %></th>
-              <th><%= t "detail_report" %></th>
-              <th><%= t "plan_next_month" %></th>
-              <th><%= t "others" %></th>
-              <th><%= t "note" %></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="add-user-member">
-              <td>
-                <%= report.item_report %>
+              <td class="category-report">
+                <div class="inline-items">
+                  <h6 class="title">
+                    <strong><%= t "item_report" %></strong>
+                  </h6>
+                </div>
               </td>
               <td>
-                <%= report.detail_report %>
-              </td>
-              <td>
-                <%= report.plan_next_month %>
-              </td>
-              <td>
-                <%= report.others %>
-              </td>
-              <td>
-                <%= report.note %>
+                <div class="inline-items text-center">
+                  <h6 class="title">
+                    <strong><%= t "detail_report" %></strong>
+                  </h6>
+                </div>
               </td>
             </tr>
-          </tbody>
-        </table>
+            <% report.report_details.each do |detail| %>
+              <tr>
+                <td><%= detail.report_category_name %></td>
+                <td><%= detail.detail %></td>
+              </tr>
+            <% end %>
+          </table>
+          <div class="inline-items report-detail">
+            <h6 class="title">
+              <i class="fa fa-codepen"></i>
+              <strong><%= t "plan_next_month" %>:</strong>
+            </h6><br/>
+            <span>
+              <%= report.plan_next_month %>
+            </span><br/>
+          </div>
+          <div class="inline-items report-detail">
+            <h6 class="title">
+              <i class="fa fa-codepen"></i>
+              <strong><%= t "others" %>:</strong>
+            </h6><br/>
+            <span>
+              <%= report.others %>
+            </span><br/>
+          </div>
+          <div class="inline-items report-detail">
+            <h6 class="title">
+              <i class="fa fa-codepen"></i>
+              <strong><%= t "note" %>:</strong>
+            </h6><br/>
+            <span>
+              <%= report.note %>
+            </span>
+          </div><br/>
+        </div>
       </div>
       <div class="text-center">
         <%= button_tag t("close"), class: "btn btn-sm btn-warning",
