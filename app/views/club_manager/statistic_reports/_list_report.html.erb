@@ -1,47 +1,36 @@
-<div class="ui-block col-md-12">
-  <div class="list-report ui-block-title">
-    <h6 class="title"><%= t "title_list_report" %></h6>
-    <% if @club.is_admin? current_user %>
-      <%= link_to "#modal-add-report", data: {toggle: "modal"},
-        class: "btn btn-sm btn-breez pull-right" do %>
-        <i class="fa fa-plus-circle"> </i><%= t "add_report" %>
-      <% end %>
-    <% end %>
-  </div>
-  <% if reports.any? %>
-    <div class="table-reponsive">
-      <table class="table ui-block table-pricing">
-        <thead>
-          <tr>
-            <th><%= t "person_report" %></th>
-            <th><%= t "date_report" %></th>
-            <th><%= t "time_report" %></th>
-            <th><%= t "status_report" %></th>
-            <th><%= t "action" %></th>
+<% if reports.any? %>
+  <div class="table-reponsive">
+    <table class="table ui-block table-pricing">
+      <thead>
+        <tr>
+          <th><%= t ".person_report" %></th>
+          <th><%= t ".date_report" %></th>
+          <th><%= t ".time_report" %></th>
+          <th><%= t ".status_report" %></th>
+          <th><%= t ".action" %></th>
+        </tr>
+      </thead>
+      <tbody id="table-list-report">
+        <% reports.each do |report| %>
+          <tr class="add-user-member report-<%= report.id %>">
+            <%= render partial: "club_manager/statistic_reports/report", locals: {report: report} %>
           </tr>
-        </thead>
-        <tbody id="table-list-report">
-          <% reports.each do |report| %>
-            <tr class="add-user-member report-<%= report.id %>">
-              <%= render partial: "report", locals: {report: report} %>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-    <div class="col-md-12">
-      <nav aria-label="Page navigation example">
-        <%= paginate reports, remote: true %>
-      </nav>
-    </div>
-  <% else %>
-    <tr class="text-center">
-      <td colspan="4">
-        <h5 class="center notifi-empty"><%= t "no_report" %></h5>
-      </td>
-    </tr>
-  <% end %>
-</div>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-12">
+    <nav aria-label="Page navigation example">
+      <%= paginate reports, remote: true %>
+    </nav>
+  </div>
+<% else %>
+  <tr class="text-center">
+    <td colspan="4">
+      <h5 class="center notifi-empty"><%= t ".no_report" %></h5>
+    </td>
+  </tr>
+<% end %>
 <div id="modal-info-report" class="modal fade" tabindex="-1"
   role="dialog" aria-hidden="true">
   <div class="col-md-12 col-md-offset-2">
@@ -54,8 +43,4 @@
       </div>
     </div>
   </div>
-</div>
-<div id="modal-add-report" class="modal fade" tabindex="-1"
-  role="dialog" aria-hidden="true">
-  <%= render "clubs/new_report" %>
 </div>

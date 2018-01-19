@@ -233,3 +233,4 @@ file_xlsx: ".xlsx"
 per_page_report_category: 10
 obligatory: "obligatory"
 max_name_category: 50
+count_render_list_report: 1

@@ -1,8 +1,9 @@
 class ClubManager::StatisticReportsController < ApplicationController
   before_action :authenticate_user!
+  authorize_resource
   before_action :load_club
   before_action :load_report, only: %i(show edit update)
-  authorize_resource
+  before_action :load_report_categories, only: %i(index edit)
 
   def index
     gon_variable
@@ -10,7 +11,6 @@ class ClubManager::StatisticReportsController < ApplicationController
       @statistic_report = current_user.statistic_reports.build club_id: @club.id
       @statistic_report.report_details.build
       all_report
-      @report_categories = @club.organization.report_categories
     end
     respond_to do |format|
       format.js
@@ -21,8 +21,6 @@ class ClubManager::StatisticReportsController < ApplicationController
 
   def edit
     gon_variable
-    @report_categories = @club.organization.report_categories
-    @report_details = @report.report_details
   end
 
   def update
@@ -90,5 +88,9 @@ class ClubManager::StatisticReportsController < ApplicationController
       create_acivity @report, Settings.update_report,
         @club.organization, current_user, Activity.type_receives[:organization_manager]
     end
+  end
+
+  def load_report_categories
+    @report_categories = @club.organization.report_categories
   end
 end
