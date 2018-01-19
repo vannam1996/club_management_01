@@ -6,9 +6,10 @@
   </div>
 </td>
 <td class="text-center column-select">
-  <%= select_tag :status, options_for_select(ReportCategory.statuses.map{|k ,v|
-    [t("status_category.#{k}"), v]}, ReportCategory.statuses[report_category.status]),
-    {class: "role_user form-control select-status-category", id: "status_report_category"} %>
+  <%= check_box_tag :status, nil, report_category.obligatory? , id: "status_report_category" %>
+</td>
+<td class="text-center">
+  <%= check_box_tag :status_active, nil, report_category.active? , id: "active_report_category" %>
 </td>
 <td class="text-center">
   <%= report_category.report_details.size %>

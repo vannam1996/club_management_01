@@ -11,3 +11,6 @@
   $('#rules_club').hide();
   $('#statistic_report').hide();
 <% end %>
+<% if @report_categories.optional.blank? %>
+  $('#button-add-fields').hide();
+<% end %>

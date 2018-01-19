@@ -6,6 +6,9 @@
   <% elsif @report.monthly? %>
     $('.quarter-style').hide();
   <% end %>
+  <% if @report_categories.optional.blank? %>
+    $('#button-add-fields').hide();
+  <% end %>
 <% else %>
   $('.container').append('<%= j render partial: "shared/flash_warning" %>');
 <% end %>

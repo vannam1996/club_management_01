@@ -106,11 +106,11 @@ class Club < ApplicationRecord
   end
 
   def money_pay money
-    self.update_attribute :money, self.money - money
+    self.update_attributes! money: self.money - money
   end
 
   def money_subsidy money
-    self.update_attribute :money, self.money + money
+    self.update_attributes! money: self.money + money
   end
 
   def subsidy_money_change event, change

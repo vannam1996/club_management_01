@@ -9,6 +9,7 @@ class Event < ApplicationRecord
   has_many :notifications, as: :target
   has_many :activities, as: :trackable, dependent: :destroy
   has_many :donate, dependent: :destroy
+  has_many :albums, dependent: :destroy
 
   belongs_to :club
   belongs_to :user
@@ -38,6 +39,8 @@ class Event < ApplicationRecord
   enum event_category: {pay_money: 1, get_money: 2, notification: 3, subsidy: 0, donate: 4}
 
   delegate :full_name, :avatar, to: :user, prefix: :user
+
+  accepts_nested_attributes_for :albums
 
   def self.group_by_quarter
     quarters = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]]

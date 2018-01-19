@@ -46,7 +46,8 @@ class ReportCategoriesController < ApplicationController
   end
 
   def category_update_params
-    params.permit(:name).merge!(status: params[:status].to_i)
+    params.permit(:name).merge!(status: params[:status].to_i,
+      status_active: params[:status_active].to_i)
   end
 
   def load_report_category

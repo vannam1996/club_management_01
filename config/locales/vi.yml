@@ -439,6 +439,17 @@ vi:
     clubs: "Câu lạc bộ đã tham gia"
     show: "Thành viên"
   club_manager:
+    statistic_reports:
+      list_report:
+        person_report: "Người báo cáo"
+        date_report: "Ngày báo cáo"
+        time_report: "Thời gian"
+        status_report: "Trạng thái"
+        action: "Hành động"
+        no_report: "Không có báo cáo nào"
+      field_for_category_obligatory:
+        item_report: "Danh mục báo cáo"
+        detail_report: "Chi tiết báo cáo"
     money: "Tiền quỹ: "
     cant_fount: "Không thể tìm thấy câu lạc bộ!"
     user_club:
@@ -1253,23 +1264,19 @@ vi:
     list_report_categories:
       create_category: "Tạo mới"
       name_category: "Tên danh mục"
-      status: "Trạng thái"
+      status: "Bắt buộc"
       report_count: "Báo cáo"
       action: "Hành động"
       title_category: "Danh mục báo cáo"
+      report_active: "Kích hoạt"
+    report_category:
+      confirm_delete_category: "Xóa danh mục này"
     form_new:
       name_category: "Tên danh mục"
   statistic_report_helper:
     important: " *"
-  club_manager:
-    statistic_reports:
-      list_report:
-        person_report: "Người báo cáo"
-        date_report: "Ngày báo cáo"
-        time_report: "Thời gian"
-        status_report: "Trạng thái"
-        action: "Hành động"
-        no_report: "Không có báo cáo nào"
-      field_for_category_obligatory:
-        item_report: "Danh mục báo cáo"
-        detail_report: "Chi tiết báo cáo"
+  events_club:
+    error_in_process: "Có lỗi, vui lòng thử lại!"
+  form_club_event:
+    album: "Bộ sưu tập"
+    create_album: "Tạo bộ sưu tập"
