@@ -19,14 +19,20 @@
     </div>
   </div>
   <div class="form-group" id="detail-report-field">
-    <div id="detail" class="col-md-12">
-      <%= f.fields_for :report_details do |detail| %>
-        <%= render "statistic_reports/report_detail_fields", f: detail %>
-      <% end %>
+    <div class="form-group col-md-12" id="detail-report-field">
+      <div id="detail" class="col-md-12">
+        <%= f.fields_for :report_details do |ff| %>
+          <% if is_report_of_category_obligatory? ff.object %>
+            <%= render partial: "field_for_category_obligatory", locals: {f: ff, category: ff.object.report_category} %>
+          <% else %>
+            <%= render "report_detail_fields", f: ff %>
+          <% end %>
+        <% end %>
+      </div>
     </div>
-    <div class="row col-md-12 push-md-10">
+    <div class="form-group col-md-12", id="button-add-fields">
       <%= link_to_add_association t("add"), f, :report_details,
-        partial: "statistic_reports/report_detail_fields", class: "pull-right btn btn-breez" %>
+        class: "pull-right btn btn-breez" %>
     </div>
   </div>
   <div class="form-group col-md-12">

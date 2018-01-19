@@ -1,10 +1,27 @@
 <div class="row">
   <div class = "col-xl-9 push-xl-3 col-lg-12 push-lg-0 col-md-12 col-sm-12 col-xs-12">
-    <div id="list-report">
-      <%= render partial: "list_report", locals: {reports:reports} %>
+    <div>
+      <div class="ui-block col-md-12">
+        <div class="list-report ui-block-title">
+          <h6 class="title"><%= t "title_list_report" %></h6>
+          <% if @club.is_admin? current_user %>
+            <%= link_to "#modal-add-report", data: {toggle: "modal"},
+              class: "btn btn-sm btn-breez pull-right" do %>
+              <i class="fa fa-plus-circle"> </i><%= t "add_report" %>
+            <% end %>
+          <% end %>
+        </div>
+        <div id="list-report">
+          <%= render partial: "list_report", locals: {reports:reports} %>
+        </div>
+      </div>
     </div>
   </div>
   <div class="col-xl-3 pull-xl-9 col-lg-12 pull-lg-0 col-md-12 col-sm-12 col-xs-12">
     <%= render "left_sidebar" %>
   </div>
+</div>
+<div id="modal-add-report" class="modal fade" tabindex="-1"
+  role="dialog" aria-hidden="true">
+  <%= render "clubs/new_report" %>
 </div>

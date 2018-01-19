@@ -3,8 +3,8 @@
     <div class="form-group label-floating col-md-3">
       <label for="contact-name"><%= t "item_report" %></label></br>
       <%= f.select(:report_category_id, options_for_select(
-        option_select_with_status(@report_categories)), {},
-        {class: "form-control select_custom select_category_report"}) %>
+        option_select_with_status(@report_categories.optional), f.object.report_category_id), {},
+        {class: "form-control select_custom select_category_report_#{params[:action]}"}) %>
     </div>
     <div class="form-group label-floating col-md-8 push-md-1">
       <%= f.label(:detail, class: "control-label") do %>

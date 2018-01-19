@@ -18,17 +18,20 @@ $(document).ready(function() {
   $('#detail-report-field')
   .on('cocoon:before-insert', function(e, insertedItem) {
     item_selected = []
-    $('.select_category_report').each(function () {
+    $('.select_category_report_index').each(function () {
       item_selected.push($(this).val());
     });
   })
   .on('cocoon:after-insert', function(e, insertedItem) {
-    id_select = insertedItem.find('.select_category_report').attr('id');
+    id_select = insertedItem.find('.select_category_report_index').attr('id');
     $.each(item_selected, function (index, value) {
       $('#'+id_select+' option[value='+value+']').remove();
     });
-    if($('#'+id_select).val() === null){
-      insertedItem.remove();
+    if($('#'+id_select + ' option').size() === 1){
+      $('#button-add-fields').hide();
     }
+  })
+  .on("cocoon:after-remove", function() {
+    $('#button-add-fields').show();
   });
 });

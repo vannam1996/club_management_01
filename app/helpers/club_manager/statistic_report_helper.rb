@@ -15,6 +15,10 @@ module ClubManager::StatisticReportHelper
     report_categories.map{|category| [category.name + set_status(category), category.id]}
   end
 
+  def is_report_of_category_obligatory? report
+    report.report_category.obligatory?
+  end
+
   private
   def set_status category
     case category.status
