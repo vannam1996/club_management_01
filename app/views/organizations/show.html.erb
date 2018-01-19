@@ -136,6 +136,12 @@
                           <%= t "manager_report_category" %>
                         <% end %>
                       </li>
+                      <li>
+                        <%= link_to organization_settings_path(organization_slug: @organization),
+                          remote: :true do %>
+                          <%= t "organization_settings.index.title" %>
+                        <% end %>
+                      </li>
                     </ul>
                   </div>
                 </div>

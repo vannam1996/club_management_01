@@ -1,0 +1,37 @@
+<div class="ui-block col-md-12">
+  <div class="infor-request ui-block-title">
+    <h6 class="title"><%= t ".title" %></h6>
+    <div class="pull-right funtion-request">
+      <%= link_to organization_path(@organization), remote: :true,
+        class: "btn btn-primary btn-sm button-back" do %>
+        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+        <%= t "back" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="ui-block-content">
+    <%= label_tag nil, class: "control-label label-setting" do %>
+      <%= t ".system" %>
+    <% end %>
+    <%= hidden_field_tag :organization_slug, @organization.slug %>
+    <% @settings.each do |setting| %>
+      <%= hidden_field_tag :key, setting.key, id: "#{setting.key}" %>
+      <div class="row">
+        <div class="col-md-3">
+          <%= label_tag :key, class: "control-label label-setting" do %>
+            <%= t ".#{setting.key}" %>
+          <% end %>
+        </div>
+        <div class="col-md-1">
+          <%= select_day setting.value, {},
+            {class: "select_custom form-control", id: "#{setting.key}_select"} %>
+        </div>
+      </div>
+    <% end %>
+    <%= link_to "#",
+      class: "btn btn-breez btn-sm", id: "btn-update-settings" do %>
+      <%= t "update" %>
+    <% end %>
+  </div>
+</div>
+<%= javascript_include_tag "organization_settings" %>
