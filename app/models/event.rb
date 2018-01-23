@@ -12,6 +12,7 @@ class Event < ApplicationRecord
 
   belongs_to :club
   belongs_to :user
+  belongs_to :organization
 
   after_destroy :update_money
   mount_uploader :image, ImageUploader
@@ -38,6 +39,7 @@ class Event < ApplicationRecord
   enum event_category: {pay_money: 1, get_money: 2, notification: 3, subsidy: 0, donate: 4}
 
   delegate :full_name, :avatar, to: :user, prefix: :user
+  delegate :name, :logo, :slug, to: :club, prefix: :club
 
   def self.group_by_quarter
     quarters = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]]

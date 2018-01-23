@@ -1,4 +1,10 @@
-$('#organization_club').html('<%= j render "clubs/clubs", collection: @clubs %>');
-<% if params[:q].blank? %>
-  $('#search-organization').html('<%= j render "search_club" %>');
+<% if params[:club] %>
+  $('#organization_club').html('<%= j render "clubs/clubs", collection: @clubs %>');
+  <% if params[:q].blank? %>
+    $('#search-organization').html('<%= j render "search_club" %>');
+  <% end %>
+<% else %>
+  $('#organization_club').html('<%= j render partial: "timeline",
+    locals: {events: @organization_event} %>');
 <% end %>
+

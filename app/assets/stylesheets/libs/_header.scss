@@ -1736,3 +1736,60 @@
 .warning-report-un_read {
   background-color: $body-bg;
 }
+* {
+  position: relative;
+}
+.timeline .column {
+  margin: 30px 40px 0px 67px;
+}
+.timeline .column .title h5 {
+}
+.timeline .column .title img {
+  position: absolute;
+  left: -56px;
+  width: 40px;
+  height: 40px;
+  background: #fff;
+  border-radius: 50%;
+}
+.timeline .column .title h6 {
+}
+.timeline .column .description p {
+  font-size: 13px;
+  line-height: 20px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+.timeline .column .description {
+  border-left: 1px solid #000;
+}
+.main {
+  width: 80%;
+  margin-left: 10%;
+  margin-top: 80px;
+}
+.main h5 {
+  font-size: 80px;
+  line-height: 60px;
+}
+.main p {
+  font-size: 13px;
+  line-height: 20px;
+  font-family: serif;
+  text-align: right;
+}
+.time-line-description {
+  padding: 0px 12px;
+}
+.time-line-description img {
+  width: 80%;
+  height: 200px;
+  margin-top: 10px;
+}
+.time-line-description p {
+  margin-top: 10px;
+  background-color: $body-bg !important;
+  border-left: 2px solid #ccc;
+  padding-left: 10px;
+  width: 80%;
+}
