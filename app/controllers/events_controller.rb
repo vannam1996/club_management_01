@@ -10,9 +10,10 @@ class EventsController < ApplicationController
   end
 
   def create
-    event = Event.new event_params
+    event = Event.new event_params_with_album
     event.amount = @club.money
-    if event.save
+    ActiveRecord::Base.transaction do
+      event.save!
       create_acivity event, Settings.create, event.club, current_user,
         Activity.type_receives[:club_member]
       case params[:event][:event_category].to_i
@@ -23,10 +24,14 @@ class EventsController < ApplicationController
       end
       flash[:success] = t "club_manager.event.success_create"
       redirect_to club_path params[:club_id]
-    else
-      flash_error event
-      redirect_back fallback_location: new_club_event_path
     end
+  rescue
+    if event.errors.any?
+      flash_error event
+    else
+      flash[:danger] = t "events_club.error_in_process"
+    end
+    redirect_back fallback_location: new_club_event_path(club_id: @club.id)
   end
 
   def show
@@ -109,6 +114,15 @@ class EventsController < ApplicationController
     if @event.finished?
       flash[:danger] = t "event_is_finish"
       redirect_to organization_club_path @club.organization.slug, @club
+    end
+  end
+
+  def event_params_with_album
+    if params[:create_albums].present?
+      event_params.merge! albums_attributes: [name: params[:event][:name],
+        club_id: @club.id]
+    else
+      event_params
     end
   end
 end

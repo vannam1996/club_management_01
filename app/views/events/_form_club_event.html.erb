@@ -76,6 +76,19 @@
     </div>
   </div>
   <div class="form-group">
+    <label class="col-md-2 control-label" for="example-text-input">
+      <%= t "form_club_event.album" %>
+    </label>
+    <div class="row">
+      <div class="radio col-md-1">
+        <%= check_box_tag "create_albums", Settings.value_default_check_box, false %>
+      </div>
+      <div class="col-md-3">
+        <%= t "form_club_event.create_album" %>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
     <label class="col-md-3 control-label" for="example-textarea-input">
       <%= t "description" %>
     </label>

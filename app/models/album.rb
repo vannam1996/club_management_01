@@ -3,6 +3,7 @@ class Album < ApplicationRecord
   has_many :activities, as: :trackable, dependent: :destroy
 
   belongs_to :club
+  belongs_to :event
 
   validates :name, presence: true, length: {minimum: Settings.min_name}
 

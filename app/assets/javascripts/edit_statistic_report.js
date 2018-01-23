@@ -25,13 +25,13 @@ $(document).ready(function() {
   .on('cocoon:after-insert', function(e, insertedItem) {
     id_select = insertedItem.find('.select_category_report_edit').attr('id');
     $.each(item_selected, function (index, value) {
-      $('#'+id_select+' option[value='+value+']').remove();
+      $('#' + id_select + ' option[value=' + value + ']').remove();
     });
-    if($('#'+id_select + ' option').size() === 1){
+    if ($('#' + id_select + ' option').size() === 1) {
       $('#button-add-fields').hide();
     }
   })
-  .on("cocoon:after-remove", function() {
+  .on('cocoon:after-remove', function() {
     $('#button-add-fields').show();
   });
 });

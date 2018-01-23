@@ -91,6 +91,6 @@ class ClubManager::StatisticReportsController < ApplicationController
   end
 
   def load_report_categories
-    @report_categories = @club.organization.report_categories
+    @report_categories = @club.organization.report_categories.active
   end
 end
