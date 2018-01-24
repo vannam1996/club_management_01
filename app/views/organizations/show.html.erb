@@ -55,7 +55,7 @@
               </td>
               <td class="location">
                 <div class="ui-block-title" id="search-organization">
-                  <%= search_form_for @q, url: organization_path(@organization), class: "w-search", id: "organization_club_form" do |f| %>
+                  <%= search_form_for @q, url: organization_path(@organization, club: :true), class: "w-search", id: "organization_club_form" do |f| %>
                     <div class="row">
                       <div class="form-group with-button col-md-5" >
                         <%= f.text_field :name_cont,
@@ -103,16 +103,6 @@
                         <% end %>
                       </li>
                       <li>
-                        <%= link_to organization_club_type_path(@organization), remote: :true do %>
-                          <%= t "manager_club_type" %>
-                        <% end %>
-                      </li>
-                      <li>
-                        <%= link_to report_categories_path(organization_slug: @organization.slug), remote: :true do %>
-                          <%= t "manager_report_category" %>
-                        <% end %>
-                      </li>
-                      <li>
                         <%= link_to user_request_organization_path(@organization),
                           remote: :true do %>
                           <%= t "request_member" %>
@@ -128,6 +118,22 @@
                           q: params_reports, style_report: StatisticReport.styles[:monthly]),
                           remote: :true do %>
                           <%= t "list_statistic" %>
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= link_to organization_path(@organization, club: :true),
+                          remote: :true do %>
+                          <%= t "club" %>
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= link_to organization_club_type_path(@organization), remote: :true do %>
+                          <%= t "manager_club_type" %>
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= link_to report_categories_path(organization_slug: @organization.slug), remote: :true do %>
+                          <%= t "manager_report_category" %>
                         <% end %>
                       </li>
                     </ul>
@@ -148,7 +154,7 @@
       <div class="row" id="organization_club">
         <% if @clubs.present? %>
           <% unless current_user.user_organizations.joined.join?(@organization) %>
-            <%= render "clubs/clubs", collection: @clubs %>
+            <%= render partial: "timeline", locals: {events: @organization_event} %>
           <% else %>
             <div class="col-md-12 text-center">
               <h5 class="notifi-join text-center"><%= t "organizations.organization_not_joined" %></h5>

@@ -1,0 +1,8 @@
+$('.timeline').append('<%= j render partial: "list_event",
+  locals: {events: @organization_event} %>')
+<% if @organization_event.current_page == @organization_event.total_pages %>
+  $('#view-more').remove();
+<% else %>
+  $('#view-more').attr('href',
+    '<%= organization_events_path(page: @organization_event.next_page, id: @organization.slug) %>');
+<% end %>

@@ -14,6 +14,7 @@ class OrganizationsController < ApplicationController
     @q = @organization.clubs.search(params[:q])
     @clubs = @q.result.page(params[:page]).per Settings.club_per_page
     @add_user_club = User.without_user_ids(@organization.user_organizations.map(&:user_id))
+    @organization_event = @organization.events.newest.page(params[:page]).per Settings.club_per_page
     respond_to do |format|
       format.html
       format.js
@@ -28,7 +29,7 @@ class OrganizationsController < ApplicationController
 
   private
   def load_organization
-    @organization = Organization.friendly.find_by slug: params[:id]
+    @organization = Organization.includes(:events).friendly.find_by slug: params[:id]
     return if @organization
     flash[:danger] = t("organization_not_found")
     redirect_to root_url
