@@ -132,4 +132,5 @@ Rails.application.routes.draw do
   resources :warning_reports, except: %i(new destroy)
   resources :report_categories, except: %i(show new)
   resources :organization_events, only: :index
+  resources :organization_settings, only: %i(index update)
 end

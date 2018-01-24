@@ -36,6 +36,10 @@ class Ability
         category.organization.user_organizations.are_admin.pluck(:user_id)
           .include?(user.id)
       end
+      can :manage, OrganizationSetting do |setting|
+        setting.organization.user_organizations.are_admin.pluck(:user_id)
+          .include?(user.id)
+      end
     end
   end
 end

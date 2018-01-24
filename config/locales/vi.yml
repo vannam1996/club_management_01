@@ -1280,3 +1280,11 @@ vi:
   form_club_event:
     album: "Bộ sưu tập"
     create_album: "Tạo bộ sưu tập"
+  organization_settings:
+    update_success: "Cập nhật thành công"
+    update_errors: "Cập nhật thất bại"
+    index:
+      title: "Cài đặt"
+      date_remind_month: "Nhắc nhở báo cáo tháng: "
+      date_remind_quarter: "Nhắc nhở báo cáo quý: "
+      system: "Hệ thống"
