@@ -32,10 +32,10 @@
                 </div>
               <% end %>
             </div>
-            <%= image_tag @club.image, class: "img-cover", title: t("image_cover") %>
+            <%= image_tag @club.image_url(:thumb), class: "img-cover", title: t("image_cover") %>
             <div class="top-header-author col-md-9">
               <div class="author-thumb">
-                <%= image_tag @club.logo, class: "img-cover img_small" %>
+                <%= image_tag @club.logo_url(:thumb), class: "img-cover img_small" %>
                 <% if @club.is_admin? current_user %>
                   <div class="edit-logo-club">
                     <%= link_to edit_club_path(id: @club, tab: "logo"), remote: :true,

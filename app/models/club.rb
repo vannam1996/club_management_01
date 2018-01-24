@@ -1,4 +1,7 @@
 class Club < ApplicationRecord
+  attr_accessor :logo_crop_x, :logo_crop_y, :logo_crop_w, :logo_crop_h,
+    :image_crop_x, :image_crop_y, :image_crop_w, :image_crop_h
+
   extend FriendlyId
   friendly_id :name, use: [:slugged, :finders]
 
@@ -22,8 +25,11 @@ class Club < ApplicationRecord
   belongs_to :organization
   belongs_to :club_type
 
-  mount_uploader :image, ImageUploader
-  mount_uploader :logo, ImageUploader
+  mount_uploader :image, BackgroundClubUploader
+  mount_uploader :logo, LogoUploader
+
+  CROP_LOGO = [:logo_crop_x, :logo_crop_y, :logo_crop_w, :logo_crop_h]
+  CROP_IMAGE = [:image_crop_x, :image_crop_y, :image_crop_w, :image_crop_h]
 
   serialize :time_activity, Array
 
@@ -131,6 +137,20 @@ class Club < ApplicationRecord
   def display_organization
     return "" if self.nil?
     self.organization_name.to_s
+  end
+
+  def set_attr_crop_logo x, y, h, w
+    self.logo_crop_x = x
+    self.logo_crop_y = y
+    self.logo_crop_h = h
+    self.logo_crop_w = w
+  end
+
+  def set_attr_crop_image x, y, h, w
+    self.image_crop_x = x
+    self.image_crop_y = y
+    self.image_crop_h = h
+    self.image_crop_w = w
   end
 
   private

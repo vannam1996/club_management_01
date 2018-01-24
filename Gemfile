@@ -44,6 +44,7 @@ gem "omniauth-framgia", git: "https://github.com/framgia-education/omniauth-fram
 gem "gon"
 gem "whenever", require: false
 gem "cocoon"
+gem "cropper-rails"
 
 source "https://rails-assets.org" do
   gem "rails-assets-chosen"

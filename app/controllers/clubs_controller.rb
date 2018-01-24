@@ -91,6 +91,7 @@ class ClubsController < ApplicationController
   end
 
   def update
+    set_crop
     if club_params
       @organizations = current_user.user_organizations.joined
       if @club.update_attributes club_params
@@ -140,6 +141,24 @@ class ClubsController < ApplicationController
 
   def club_params
     params.require(:club).permit :logo, :image if params[:club].present?
+  end
+
+  def crop_params_logo
+    params.require(:club).permit :logo_crop_x, :logo_crop_y, :logo_crop_w, :logo_crop_h
+  end
+
+  def crop_params_image
+    params.require(:club).permit :image_crop_x, :image_crop_y, :image_crop_w, :image_crop_h
+  end
+
+  def set_crop
+    if crop_params_logo[:logo_crop_x]
+      @club.set_attr_crop_logo crop_params_logo[:logo_crop_x], crop_params_logo[:logo_crop_y],
+        crop_params_logo[:logo_crop_h], crop_params_logo[:logo_crop_w]
+    elsif crop_params_image[:image_crop_x]
+      @club.set_attr_crop_image crop_params_image[:image_crop_x], crop_params_image[:image_crop_y],
+        crop_params_image[:image_crop_h], crop_params_image[:image_crop_w]
+    end
   end
 
   def create_club_params

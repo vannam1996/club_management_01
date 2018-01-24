@@ -14,8 +14,11 @@
                   <div class="col-md-12">
                     <%= f.file_field :image %>
                   </div>
-                  <%= image_tag @club.image, class: "background-club" %><hr/>
+                  <%= image_tag @club.image, class: "background-club", id: "image-background-club" %><hr/>
                 </div>
+                <% Club::CROP_IMAGE.each do |attr| %>
+                  <%= f.hidden_field attr.to_sym, id: "club_#{attr}" %>
+                <% end %>
                 <div class="text-center col-md-12">
                   <%= f.submit t("update"), class: "btn btn-primary col-md-2 btn-sm" %>
                   <%= f.button t("close"), class: "btn btn-sm btn-warning",
@@ -29,3 +32,4 @@
     </div>
   </div>
 </div>
+<%= javascript_include_tag "background_club" %>
