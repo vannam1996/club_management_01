@@ -6,7 +6,7 @@
           <%= image_tag event.club_logo %>
           <%= link_to club_event_path(event.club_slug, event.id) do %>
             <span class="h6"><%= t "event" %>: <%= event.name %></span> <%= t "in_the" %>
-            <span class="h6"><%= event.club_name %></span> - <br/>
+            <span class="h6"><%= event.club_name %></span><br/>
           <% end %>
           <%= l event.created_at, format: :short %></i>
         </div>
