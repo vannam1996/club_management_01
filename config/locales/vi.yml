@@ -1269,10 +1269,33 @@ vi:
       action: "Hành động"
       title_category: "Danh mục báo cáo"
       report_active: "Kích hoạt"
+      style_event: "Loại sự kiện"
     report_category:
       confirm_delete_category: "Xóa danh mục này"
+      pay_money: "Chi tiền"
+      get_money: "Thu tiền"
+      notification: "Thông báo"
+      subsidy: "Tiền trợ cấp"
+      donate: "Ủng hộ"
+      no_style: "Không có"
     form_new:
       name_category: "Tên danh mục"
+      style_event: "Loại sự kiện"
+      pay_money: "Chi tiền"
+      get_money: "Thu tiền"
+      notification: "Thông báo"
+      subsidy: "Tiền trợ cấp"
+      donate: "Ủng hộ"
+    edit_report_category:
+      choose-style-event: "Chọn loại sự kiện"
+    modal_style_event:
+      pay_money: "Chi tiền"
+      get_money: "Thu tiền"
+      notification: "Thông báo"
+      subsidy: "Tiền trợ cấp"
+      donate: "Ủng hộ"
+      title: "Loại sự kiện"
+      confirm: "Xác nhận"
   statistic_report_helper:
     important: " *"
   events_club:

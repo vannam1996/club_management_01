@@ -14,6 +14,15 @@
 <td class="text-center">
   <%= report_category.report_details.size %>
 </td>
+<td class="text-center column-select">
+  <%= link_to "#modal-choose-event", data: {toggle: "modal"}, title: t(".choose-style-event"),
+    class: "btn btn-primary btn-bottom-0" do %>
+    <i class="fa fa-cog"></i>
+  <% end %>
+  <div id="modal-choose-event" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <%= render partial: "modal_style_event", locals: {report_category: report_category} %>
+  </div>
+</td>
 <td class="text-center">
   <%= button_tag "", title: t("save_chage_type"), value: report_category.id, id: "save-report-category",
     class: "btn btn-breez btn-bottom-0" do %>

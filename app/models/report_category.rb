@@ -2,6 +2,8 @@ class ReportCategory < ApplicationRecord
   has_many :report_details, dependent: :destroy
   belongs_to :organization
 
+  serialize :style_event, Array
+
   enum status: {obligatory: 1, optional: 0}
   enum status_active: {active: 1, not_active: 0}
 

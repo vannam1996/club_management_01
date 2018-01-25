@@ -19,7 +19,7 @@ class ReportCategoriesController < ApplicationController
 
   def create
     if @organization
-      @report_category = @organization.report_categories.new report_category_params
+      @report_category = @organization.report_categories.new report_category_with_style_event
       if @report_category.save
         flash.now[:success] = t ".create_success"
       else
@@ -45,9 +45,18 @@ class ReportCategoriesController < ApplicationController
     params.require(:report_category).permit(:name).merge!(status: :obligatory)
   end
 
+  def report_category_with_style_event
+    if params[:style_event_ids]
+      report_category_params.merge! style_event: params[:style_event_ids].map(&:to_i)
+    else
+      report_category_params
+    end
+  end
+
   def category_update_params
-    params.permit(:name).merge!(status: params[:status].to_i,
-      status_active: params[:status_active].to_i)
+    params.permit(:name).merge! status: params[:status].to_i,
+      status_active: params[:status_active].to_i,
+      style_event: params[:style_event]&.map(&:to_i)
   end
 
   def load_report_category

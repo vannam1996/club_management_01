@@ -999,10 +999,34 @@ en:
       action: "Action"
       title_category: "Report category"
       report_active: "Active"
+      style_event: "Style event"
     form_new:
       name_category: "Category name"
+      style_event: "Style event"
+      pay_money: "Pay money"
+      get_money: "Get Money"
+      notification: "Notification"
+      subsidy: "Subsidy"
+      donate: "Donate"
+      no_style: "None"
     report_category:
       confirm_delete_category: "Delete this category"
+      pay_money: "Pay money"
+      get_money: "Get Money"
+      notification: "Notification"
+      subsidy: "Subsidy"
+      donate: "Donate"
+      no_style: "None"
+    edit_report_category:
+      choose-style-event: "Choose style event"
+    modal_style_event:
+      pay_money: "Pay money"
+      get_money: "Get Money"
+      notification: "Notification"
+      subsidy: "Subsidy"
+      donate: "Donate"
+      title: "Style event"
+      confirm: "Confirm"
   statistic_report_helper:
     important: " *"
   events_club:

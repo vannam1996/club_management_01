@@ -12,5 +12,15 @@
         <%= f.button t("btn_create_type"), type: :submit, class: "btn btn-sm btn-primary btn-create-type" %>
       </div>
     </div>
+    <div class="row input-text">
+      <%= link_to "#modal-choose-event-create", data: {toggle: "modal"},
+        class: "btn btn-breez btn-bottom-0" do %>
+        <%= t ".style_event" %>
+      <% end %>
+      <div id="modal-choose-event-create" class="modal fade" tabindex="-1"
+        role="dialog" aria-hidden="true">
+        <%= render partial: "modal_style_event", locals: {report_category: nil} %>
+      </div>
+    </div>
   <% end %>
 </div>

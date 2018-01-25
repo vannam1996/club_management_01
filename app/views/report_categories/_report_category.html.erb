@@ -11,6 +11,9 @@
   <td class="text-center">
     <%= report_category.report_details.size %>
   </td>
+  <td class="text-center column-select">
+    <%= list_style_category report_category %>
+  </td>
   <td class="text-center">
     <%= link_to edit_report_category_path(report_category, organization_slug: @organization.slug),
       title: t("edit"), remote: :true, class: "btn btn-primary btn-bottom-0" do %>
