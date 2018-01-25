@@ -30,3 +30,4 @@
 //= require_tree ./member/
 //= require ckeditor/init
 //= require cocoon
+//= require cropper

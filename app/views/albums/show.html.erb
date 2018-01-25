@@ -26,7 +26,7 @@
                         <div class="col-sm-12 col-md-2 portfolio-item img-<%= image.id %>"
                           data-category="">
                           <%= link_to "#{image.url}", class: "list-image lightbox" do  %>
-                            <%= image_tag image.url %>
+                            <%= image_tag image.url, class: "centered-and-cropped" %>
                           <% end %>
                           <% if @club.is_admin? current_user %>
                             <div class="middle">

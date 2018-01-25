@@ -7,5 +7,4 @@ class Image < ApplicationRecord
   mount_uploader :url, ImageUploader
 
   scope :newest, ->{order created_at: :desc}
-  mount_uploader :url, ImageUploader
 end

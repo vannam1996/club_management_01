@@ -17,8 +17,11 @@
                   <div>
                     <%= f.file_field :logo%>
                   </div>
+                  <% Club::CROP_LOGO.each do |attr| %>
+                    <%= f.hidden_field attr.to_sym, id: "club_#{attr}" %>
+                  <% end %>
                   <div class="col-md-12 text-center">
-                    <%= image_tag @club.logo, class: "update-club-logo" %><hr/>
+                    <%= image_tag @club.logo, class: "update-club-logo",id: "logo-club-crop" %><hr/>
                   </div>
                   <%= link_to set_logo_club_path(@club), class: "h6 set-image-club",
                     remote: :true do %>
@@ -39,3 +42,4 @@
     </div>
   </div>
 </div>
+<%= javascript_include_tag "club_logo" %>

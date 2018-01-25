@@ -3,7 +3,7 @@
     <% events.each do |event| %>
       <div class="column">
         <div class="title">
-          <%= image_tag event.club_logo %>
+          <%= image_tag event.club_logo, class: "centered-and-cropped" %>
           <%= link_to club_event_path(event.club_slug, event.id) do %>
             <span class="h6"><%= t "event" %>: <%= event.name %></span> <%= t "in_the" %>
             <span class="h6"><%= event.club_name %></span><br/>
@@ -13,7 +13,7 @@
       </div>
       <div class="time-line-description">
         <% unless event.image.nil? %>
-          <%= image_tag event.image %>
+          <%= image_tag event.image, class: "centered-and-cropped" %>
           <%= raw(event.description.truncate(Settings.event_truncate)) unless event.description.nil? %>
         <% end %>
       </div>

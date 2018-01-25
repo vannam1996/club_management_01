@@ -8,9 +8,9 @@
         <div class="thumbnail">
           <%= link_to club_album_path(@club.id, album.id) do %>
             <% if album.images.blank? %>
-              <%= image_tag "fram.jpg", class: "col-md-12" %>
+              <%= image_tag "fram.jpg", class: "col-md-12 centered-and-cropped" %>
             <% else %>
-              <%= image_tag albums_club(album), class: "col-md-12" %>
+              <%= image_tag albums_club(album), class: "col-md-12 centered-and-cropped" %>
             <% end %>
           <% end %>
           <div class="col-md-12">
