@@ -52,6 +52,7 @@ class StatisticReportsController < ApplicationController
 
   def create
     if @statistic_report.save
+      create_detail_report @statistic_report
       flash.now[:success] = t "create_statistic_report_success"
       create_acivity @statistic_report, Settings.create_report,
         @club.organization, current_user, Activity.type_receives[:organization_manager]
@@ -71,7 +72,7 @@ class StatisticReportsController < ApplicationController
   def statistic_report_params
     params.require(:statistic_report).permit(:club_id, :time,
       :item_report, :detail_report, :plan_next_month, :note, :others,
-      report_details_attributes: [:report_category_id, :detail])
+      report_details_attributes: [:report_category_id, :detail, :style])
       .merge! style: params[:statistic_report][:style].to_i,
       year: params[:date][:year].to_i
   end
@@ -148,5 +149,13 @@ class StatisticReportsController < ApplicationController
     id_clubs_report = @statistic_reports.club_is_not_report.search(params[:q])
       .result.map(&:club_id)
     @clubs_not_report = Club.not_report(club_ids - id_clubs_report)
+  end
+
+  def create_detail_report static_report
+    @report_categorys = ReportCategory.load_category.active
+    if @report_categorys
+      service = CreateReportService.new @report_categorys, static_report
+      ReportDetail.import service.create_report
+    end
   end
 end

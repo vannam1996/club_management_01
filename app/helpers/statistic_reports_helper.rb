@@ -35,4 +35,16 @@ module StatisticReportsHelper
       status: StatisticReport.statuses[:rejected], q: params_reports,
       style_report: StatisticReport.styles[:monthly])
   end
+
+  def load_event club, category
+    club.events.by_event(category).by_quarter(Date.current.month).by_current_year
+  end
+
+  def money_expense event
+    if event.get_money?
+      event.expense * event.budgets.size
+    else
+      event.expense
+    end
+  end
 end

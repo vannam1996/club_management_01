@@ -1,15 +1,23 @@
 $(document).ready(function() {
-  $('#statistic_report_style').change(function() {
-    if ($('#statistic_report_style').val() === '1')
+  $(document).on('change', '#statistic_report_style',function(){
+    var club_id = $('#club_id').val();
+    var data = {};
+    var style = $('#statistic_report_style').val();
+    if (style === '1')
     {
-      $('.month').show();
-      $('.quarter').hide();
+      var month = $('#month').val();
+      var date_year = $('#date_year').val();
+      data = {q: {month: month, date_year: date_year, style: style}}
     }
-    else if ($('#statistic_report_style').val() === '2')
+    else if (style === '2')
     {
       $('.month').hide();
       $('.quarter').show();
+      var quarter = $('#quarter').val();
+      var date_year = $('#date_year').val();
+      data = {q: {quarter: quarter, date_year: date_year, style: style}}
     }
+    $.get('/set_static_reports/?club_id=' + club_id, data , null, 'script');
   });
 
   $('#detail a.add_fields').data('association-insertion-method', 'append');
@@ -33,5 +41,42 @@ $(document).ready(function() {
   })
   .on('cocoon:after-remove', function() {
     $('#button-add-fields').show();
+  });
+  $(document).on('change', '#month',function(){
+    var club_id = $('#club_id').val();
+    var data = {};
+    var style = $('#statistic_report_style').val();
+    var month = $('#month').val();
+    var date_year = $('#date_year').val();
+    data = {q: {month: month, date_year: date_year, style: style}}
+    $.get('/set_static_reports/?club_id=' + club_id, data , null, 'script');
+  });
+  $(document).on('change', '#quarter',function(){
+    var club_id = $('#club_id').val();
+    var data = {};
+    var style = $('#statistic_report_style').val();
+    var quarter = $('#quarter').val();
+    var date_year = $('#date_year').val();
+    data = {q: {quarter: quarter, date_year: date_year, style: style}}
+    $.get('/set_static_reports/?club_id=' + club_id, data , null, 'script');
+  });
+  $(document).on('change', '#date_year',function(){
+    var club_id = $('#club_id').val();
+    var style = $('#statistic_report_style').val();
+    if (style === '1')
+    {
+      var month = $('#month').val();
+      var date_year = $('#date_year').val();
+      data = {q: {month: month, date_year: date_year, style: style}}
+    }
+    else if (style === '2')
+    {
+      $('.month').hide();
+      $('.quarter').show();
+      var quarter = $('#quarter').val();
+      var date_year = $('#date_year').val();
+      data = {q: {quarter: quarter, date_year: date_year, style: style}}
+    }
+    $.get('/set_static_reports/?club_id=' + club_id, data , null, 'script');
   });
 });
