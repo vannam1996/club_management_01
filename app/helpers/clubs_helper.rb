@@ -44,4 +44,28 @@ module ClubsHelper
       Settings.user_club.member
     end
   end
+
+  def set_image_in_list_club club
+    if club && club.image.in_list_club.file && club.image.in_list_club.file.exists?
+      image_tag club.image_url(:in_list_club), class: "centered-and-cropped"
+    elsif club
+      image_tag club.image_url, class: "centered-and-cropped"
+    end
+  end
+
+  def set_image_background_club club
+    if club && club.image.thumb.file && club.image.thumb.file.exists?
+      image_tag club.image_url(:thumb), class: "img-cover", title: t("image_cover")
+    elsif club
+      image_tag club.image_url, class: "img-cover", title: t("image_cover")
+    end
+  end
+
+  def set_logo_club club
+    if club && club.logo.thumb.file && club.logo.thumb.file.exists?
+      image_tag club.logo_url(:thumb), class: "img-cover", title: t("image_cover")
+    elsif club
+      image_tag club.logo_url, class: "img-cover", title: t("image_cover")
+    end
+  end
 end

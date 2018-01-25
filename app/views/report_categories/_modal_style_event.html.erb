@@ -1,0 +1,39 @@
+<div class="col-md-12 col-md-offset-2">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="col-md-11 text-center">
+          <%= t ".title"%>
+        </h6>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body widget-simple list-scroll">
+        <div class="text-left col-md-12">
+          <div id = "check_box_style">
+            <% Event.event_categories.each do |key, value| %>
+              <div class="row row-style-checkbox">
+                <% if report_category.present? %>
+                  <div class="check_box_category col-md-1">
+                    <%= check_box_tag "style_event_#{key}", value, check_style_event(value,
+                      report_category.style_event) %><br>
+                  </div>
+                <% else %>
+                  <div class="check-box-style col-md-1">
+                    <%= check_box_tag "style_event_ids[]", value %><br>
+                  </div>
+                <% end %>
+                <div class="col-md-5">
+                  <%= t ".#{key}" %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <%= button_tag t(".confirm"), class: "btn btn-sm btn-breez",
+          "data-dismiss": "modal" %>
+      </div>
+    </div>
+  </div>
+</div>
