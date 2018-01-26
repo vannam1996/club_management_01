@@ -100,6 +100,7 @@ Rails.application.routes.draw do
       resources :images
     end
     resources :budgets
+    resources :event_notifications, except: [:show, :index, :destroy]
   end
 
   resources :invite_join_clubs, only: :create

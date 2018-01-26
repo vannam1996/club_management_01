@@ -1,12 +1,12 @@
 <% if current_user.user_clubs.joined.of_club(@club) %>
-  <% if @events.any? %>
+  <% if events.any? %>
     <table class="event-item-table">
       <tbody>
-        <%= render partial: "events/view_list_event", locals: {events: @events} %>
+        <%= render partial: "events/view_list_event", locals: {events: events} %>
       </tbody>
     </table>
     <div class="col-md-12 text-center">
-      <%= paginate @events, remote: true %>
+      <%= paginate events, remote: true %>
     </div>
   <% else %>
     <h5 class="notifi-join text-center"><%= t "no_event" %></h5>

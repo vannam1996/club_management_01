@@ -4,6 +4,7 @@ class ClubsController < ApplicationController
   before_action :verify_club, only: :show
   before_action :load_user_organizations, only: :show
   before_action :load_organization, only: %i(new update create)
+  before_action :load_event_notification, only: :show
 
   def index
     organizations_joined = Organization.by_user_organizations(
@@ -33,7 +34,7 @@ class ClubsController < ApplicationController
     @album = Album.new
     list_events = @club.events
     @q = list_events.search(params[:q])
-    @events = @q.result.newest.includes(:budgets)
+    @events = @q.result.newest.in_categories(events_ids).includes(:budgets)
       .page(params[:page]).per Settings.per_page
     @time_line_events = @events.by_current_year.group_by_quarter
     @message = Message.new
@@ -179,5 +180,15 @@ class ClubsController < ApplicationController
       end
     end
     flash[:warning] = t "add_member_error", msg: msg if msg.present?
+  end
+
+  def events_ids
+    Event.event_categories.except(:notification).keys
+  end
+
+  def load_event_notification
+    id_notification = Event.event_categories[:notification]
+    @events_notification = @club.events.newest.in_categories(id_notification)
+      .page(params[:page]).per Settings.per_page
   end
 end

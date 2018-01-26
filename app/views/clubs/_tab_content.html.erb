@@ -12,7 +12,21 @@
           <% end %>
         </div>
         <div id="list-event-show">
-          <%= render partial: "events/event", locals: {event: @club.events} %>
+          <%= render partial: "events/event", locals: {events: @events} %>
+        </div>
+      </div>
+      <div class="ui-block" id="event-noti">
+        <div class="ui-block-title ui-block-title-small">
+          <h6 class="title col-md-1"><%= t "event_notification" %></h6>
+          <% if @club.is_admin? current_user %>
+            <%= link_to new_club_event_notification_path(
+              club_id: @club.id), class: "btn btn-sm btn-breez" do %>
+              <i class="fa fa-plus-circle"> </i><%= t "new_noti" %>
+            <% end %>
+          <% end %>
+        </div>
+        <div id="list-event-show">
+          <%= render partial: "events/event", locals: {events: @events_notification} %>
         </div>
       </div>
       <div class="ui-block" id="image">

@@ -66,7 +66,6 @@ module EventsHelper
   def category_event
     [[t("subsidy"), Event.event_categories[:subsidy]],
     [t("get_money"), Event.event_categories[:get_money]],
-    [t("notification"), Event.event_categories[:notification]],
     [t("pay_money"), Event.event_categories[:pay_money]],
     [t("donate.donate"), Event.event_categories[:donate]]]
   end
@@ -81,5 +80,10 @@ module EventsHelper
     else
       content_tag(:span, t("donate.wait_confirmation"), class: "btn btn-warning")
     end
+  end
+
+  def check_event_category category_id
+    event_category_ids = Event.event_categories.except(:notification).keys
+    event_category_ids.include? category_id
   end
 end

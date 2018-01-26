@@ -36,6 +36,8 @@ class Event < ApplicationRecord
     where("DATE(created_at) BETWEEN DATE(?) AND DATE(?)", first_date, end_date)
   end
 
+  scope :in_categories, ->ids{where event_category: ids}
+
   enum status: {inprocess: 0, finished: 1}
   enum event_category: {pay_money: 1, get_money: 2, notification: 3, subsidy: 0, donate: 4}
 
