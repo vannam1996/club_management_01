@@ -6,7 +6,7 @@
       <div class="ui-block">
         <div class="top-header top-header-favorit">
           <section class="top-header-thumb">
-            <%= image_tag @organization.logo, class: "img-cover", title: t("image_cover") %>
+            <%= set_image_background_org @organization %>
             <% if @organization.is_admin? current_user %>
               <div class="title-header col-md-12">
                 <div class="pull-left">
@@ -46,7 +46,7 @@
               <td class="author">
                 <div class="event-author inline-items">
                   <div class="author-thumb img_small">
-                    <%= image_tag @organization.logo, class: "img-circle org-img-details" %>
+                    <%= image_tag @organization.logo, class: "img-circle org-img-details centered-and-cropped" %>
                   </div>
                   <div class="author-date">
                     <a href="#" class="author-name h6"><%= @organization.name %></a>

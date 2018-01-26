@@ -1,0 +1,30 @@
+<ul class="list-style-type-decimal">
+  <% group_detail.each do |key, value| %>
+    <% if key.present? %>
+      <li>
+        <strong><%= t "statistic_reports.show.#{key}" %></strong>
+        <ul>
+          <% value.each do |report_detail| %>
+            <li><%= report_detail.detail %></li>
+          <% end %>
+        </ul>
+      </li>
+    <% else %>
+      <% value.each do |report_detail| %>
+        <li class="list-style-type-none">
+          <%= report_detail.detail %>
+        </li>
+      <% end %>
+    <% end %>
+  <% end %>
+  <% if array_detail.first.first_money %>
+    <li>
+      <strong><%= t "statistic_reports.show.count" %></strong>
+      <ul>
+        <li><%= t "statistic_reports.show.first_money" %>
+          <%= number_to_currency(array_detail.first.first_money, locale: :vi) %>
+        </li>
+      </ul>
+    </li>
+  <% end %>
+</ul>

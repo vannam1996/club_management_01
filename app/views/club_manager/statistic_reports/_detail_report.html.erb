@@ -54,10 +54,12 @@
                 </div>
               </td>
             </tr>
-            <% report.report_details.each do |detail| %>
+            <% report_details.each do |key, array_detail| %>
               <tr>
-                <td><%= detail.report_category_name %></td>
-                <td><%= detail.detail %></td>
+                <td><%= array_detail.first.report_category_name %></td>
+                <td><%=  render partial: "content_report", locals: {group_detail:
+                  get_details_group_by_style(array_detail), array_detail: array_detail} %>
+                </td>
               </tr>
             <% end %>
           </table>

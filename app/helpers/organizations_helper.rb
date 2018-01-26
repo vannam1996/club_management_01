@@ -28,4 +28,12 @@ module OrganizationsHelper
     time_eq: Date.current.month,
     year_eq: Date.current.year}
   end
+
+  def set_image_background_org org
+    if org && org.logo.thumb.file && org.logo.thumb.file.exists?
+      image_tag org.logo_url(:thumb), class: "img-cover", title: t("image_cover")
+    elsif org
+      image_tag org.logo_url, class: "img-cover", title: t("image_cover")
+    end
+  end
 end

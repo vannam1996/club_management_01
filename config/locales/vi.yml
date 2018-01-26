@@ -450,6 +450,13 @@ vi:
       field_for_category_obligatory:
         item_report: "Danh mục báo cáo"
         detail_report: "Chi tiết báo cáo"
+      content_report:
+        pay_money: "Chi tiền"
+        get_money: "Thu tiền"
+        orther: "Khác"
+        count: "Tổng"
+        first_money: "Tiền đầu kì: "
+        last_money: "Tiền cuối kì: "
     money: "Tiền quỹ: "
     cant_fount: "Không thể tìm thấy câu lạc bộ!"
     user_club:
@@ -1311,3 +1318,11 @@ vi:
       date_remind_month: "Nhắc nhở báo cáo tháng: "
       date_remind_quarter: "Nhắc nhở báo cáo quý: "
       system: "Hệ thống"
+  statistic_reports:
+    show:
+      pay_money: "Chi tiền"
+      get_money: "Thu tiền"
+      orther: "Khác"
+      count: "Tổng"
+      first_money: "Tiền đầu kì: "
+      last_money: "Tiền cuối kì: "
