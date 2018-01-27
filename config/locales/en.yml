@@ -428,6 +428,13 @@ en:
       field_for_category_obligatory:
         item_report: "Danh mục báo cáo"
         detail_report: "Chi tiết báo cáo"
+      detail_report:
+        pay_money: "Pay money"
+        get_money: "Get money"
+        orther: "Other"
+        count: "Total"
+        first_money: "First money: "
+        last_money: "Last money: "
     money: "Money"
     cant_fount: "Can found club!"
     user_club:
@@ -1042,3 +1049,11 @@ en:
       date_remind_month: "Remind report month: "
       date_remind_quarter: "Remind report quarter: "
       system: "System"
+  statistic_reports:
+    show:
+      pay_money: "Pay money"
+      get_money: "Get money"
+      orther: "Other"
+      count: "Total"
+      first_money: "First money: "
+      last_money: "Last money: "

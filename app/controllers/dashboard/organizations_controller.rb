@@ -12,6 +12,7 @@ class Dashboard::OrganizationsController < BaseDashboardController
   end
 
   def update
+    set_crop
     if @organization.update_attributes organization_parmas
       flash[:success] = t("update_organization_success")
       redirect_to organization_path(@organization)
@@ -42,5 +43,16 @@ class Dashboard::OrganizationsController < BaseDashboardController
       flash[:danger] = t "not_authorities_to_access"
       redirect_to dashboard_path
     end
+  end
+
+  def set_crop
+    if crop_params_logo[:bgr_crop_x]
+      @organization.set_attr_crop_logo_org crop_params_logo[:bgr_crop_x], crop_params_logo[:bgr_crop_y],
+        crop_params_logo[:bgr_crop_h], crop_params_logo[:bgr_crop_w]
+    end
+  end
+
+  def crop_params_logo
+    params.require(:organization).permit :bgr_crop_x, :bgr_crop_y, :bgr_crop_w, :bgr_crop_h
   end
 end

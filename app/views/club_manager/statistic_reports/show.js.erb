@@ -1,6 +1,7 @@
 <% if @report %>
   $('#modal-info-report').modal('show');
-  $('#modal-info-report').html('<%= j render partial: "detail_report", locals: {report: @report} %>');
+  $('#modal-info-report').html('<%= j render partial: "detail_report", locals: {report: @report,
+    report_details: @report_details} %>');
 <% else %>
   $('.container').append('<%= j render partial: "shared/flash_warning" %>');
 <% end %>

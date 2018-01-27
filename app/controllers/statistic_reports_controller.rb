@@ -113,6 +113,7 @@ class StatisticReportsController < ApplicationController
 
   def load_statistic
     @statistic_report = StatisticReport.find_by id: params[:id]
+    @report_details = @statistic_report.report_details.group_by(&:report_category_id) if @statistic_report
     return if @statistic_report
     flash.now[:danger] = t "not_found_statistic"
   end

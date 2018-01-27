@@ -56,6 +56,7 @@ class ClubManager::StatisticReportsController < ApplicationController
 
   def load_report
     @report = @club.statistic_reports.find_by id: params[:id] if @club
+    @report_details = @report.report_details.group_by(&:report_category_id) if @report
     return if @report
     flash.now[:danger] = t "error_find_report"
   end
