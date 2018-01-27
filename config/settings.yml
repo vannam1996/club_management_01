@@ -239,3 +239,4 @@ key_date_remind_month: "date_remind_month"
 key_date_remind_quarter: "date_remind_quarter"
 command_update_whenever: "whenever -w"
 size_image_club: 200
+action_edit: "edit"
