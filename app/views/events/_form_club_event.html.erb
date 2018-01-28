@@ -35,6 +35,15 @@
       <%= f.hidden_field :user_id, value: current_user.id %>
     </div>
   </div>
+  <div class="form-group">
+    <label class="col-md-2 control-label" for="example-text-input">
+      <%= t "club_manager.event.kind" %>
+    </label>
+    <div class="row">
+      <%= f.check_box :is_public, class: "radio col-md-1", checked: @event.is_public %>
+      <%= f.label :is_public, t("style_event.event_public"), class: "col-md-3 label-status" %>
+    </div>
+  </div>
   <div class="form-group col-md-12 expense">
     <% if @event.present? && @event.notification? %>
       <%= f.hidden_field :expense, value: nil %>
@@ -81,7 +90,8 @@
     </label>
     <div class="row">
       <div class="radio col-md-1">
-        <%= check_box_tag "create_albums", Settings.value_default_check_box, false %>
+        <%= check_box_tag "create_albums", Settings.value_default_check_box, check_albums(@event),
+          disabled: check_action_and_albums(params[:action], @event) %>
       </div>
       <div class="col-md-3">
         <%= t "form_club_event.create_album" %>

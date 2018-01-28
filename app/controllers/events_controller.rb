@@ -99,7 +99,7 @@ class EventsController < ApplicationController
   def event_params
     event_category = params[:event][:event_category].to_i
     params.require(:event).permit(:club_id, :name, :date_start, :status,
-      :expense, :date_end, :location, :description, :image, :user_id)
+      :expense, :date_end, :location, :description, :image, :user_id, :is_public)
       .merge! event_category: event_category
   end
 

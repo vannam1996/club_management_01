@@ -1,11 +1,13 @@
 <ul class="list-style-type-decimal">
   <% group_detail.each do |key, value| %>
-    <% if key.present? %>
+    <% if check_key_details_style_money key %>
       <li>
-        <strong><%= t "statistic_reports.show.#{key}" %></strong>
+        <strong><%= t "statistic_reports.show.#{key}" %>: <%= total_money value %></strong>
         <ul>
           <% value.each do |report_detail| %>
-            <li><%= report_detail.detail %></li>
+            <li>
+              <%= report_detail.detail %> (<%= number_to_currency(report_detail.money, locale: :vi) %>)
+            </li>
           <% end %>
         </ul>
       </li>
@@ -22,7 +24,10 @@
       <strong><%= t "statistic_reports.show.count" %></strong>
       <ul>
         <li><%= t "statistic_reports.show.first_money" %>
-          <%= number_to_currency(array_detail.first.first_money, locale: :vi) %>
+          <%= first_money array_detail %>
+        </li>
+        <li><%= t "statistic_reports.show.last_money" %>
+          <%= last_money array_detail %>
         </li>
       </ul>
     </li>

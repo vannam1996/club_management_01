@@ -521,6 +521,7 @@ vi:
       edit: "Chỉnh sửa thông tin sự kiện"
       no_event: "Chưa có sự kiện nào!"
       create: "Tạo mới"
+      kind: "Chế độ"
     club:
       success_update: "Thông tin câu lạc bộ được cập nhập thành công"
   club_management: "Quản lý câu lạc bộ"
@@ -1335,3 +1336,5 @@ vi:
     error_find_club: "Không tìm thấy câu lạc bộ"
     update_success: "Thành công"
     update_errors: "Thất bại"
+  style_event:
+    event_public: "Công khai"

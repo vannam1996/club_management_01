@@ -3,7 +3,8 @@ class OrganizationEventsController < ApplicationController
   before_action :load_organization, only: [:index]
 
   def index
-    @organization_event = @organization.events.newest.page(params[:page]).per Settings.club_per_page
+    @organization_event = @organization.events.status_public(true)
+      .newest.page(params[:page]).per Settings.club_per_page
     respond_to do |format|
       format.html
       format.js

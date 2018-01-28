@@ -12,8 +12,10 @@
     </div>
     <div class="time-line-description">
       <% unless event.image.nil? %>
-        <%= image_tag event.image, class: "centered-and-cropped" %>
-        <%= raw(event.description.truncate(Settings.event_truncate)) unless event.description.nil? %>
+        <%= image_tag event.image, class: "centered-and-cropped" %><br>
+        <div class="text-left">
+          <%= raw(event.description.truncate(Settings.event_truncate)) unless event.description.nil? %>
+        </div>
       <% end %>
     </div>
   <% end %>
