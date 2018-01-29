@@ -12,13 +12,14 @@ class LastMoney
 
   class << self
     def last_money event
+      expense = event.expense.to_i
       case
       when event.get_money?
-        event.expense * event.budgets.size
+        expense * event.budgets.size
       when event.pay_money?
-        - event.expense
+        - expense
       when event.subsidy?
-        event.expense
+        expense
       end
     end
   end
