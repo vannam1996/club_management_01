@@ -134,4 +134,5 @@ Rails.application.routes.draw do
   resources :report_categories, except: %i(show new)
   resources :organization_events, only: :index
   resources :organization_settings, only: %i(index update)
+  resources :set_static_reports, only: :index
 end

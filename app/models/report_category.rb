@@ -8,6 +8,7 @@ class ReportCategory < ApplicationRecord
   enum status_active: {active: 1, not_active: 0}
 
   scope :order_desc, ->{order created_at: :desc}
+  scope :load_category, ->{where.not style_event: nil}
 
   validates :name, presence: true, length: {maximum: Settings.max_name_category},
     uniqueness: {scope: :organization_id}

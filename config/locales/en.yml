@@ -1069,3 +1069,5 @@ en:
     update_errors: "Update errors"
   style_event:
     event_public: "Public"
+  update_events_report: "Please update the event before creating the report!"
+  surplus: "Surplus"

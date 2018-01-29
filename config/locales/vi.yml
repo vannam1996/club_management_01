@@ -1338,3 +1338,6 @@ vi:
     update_errors: "Thất bại"
   style_event:
     event_public: "Công khai"
+  update_events_report: "Vui lòng cập nhật sự kiện trước khi tạo báo cáo!"
+  surplus: "Số dư"
+

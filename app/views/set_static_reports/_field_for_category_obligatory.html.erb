@@ -1,11 +1,12 @@
 <% if category.present? %>
   <% unless category.style_event.blank? %>
+    <% service = SetStaticReportService.new @club, category.style_event, params[:q] %>
+    <% events = service.load_events %>
     <% if !category.style_event.include?(Event.event_categories[:notification]) %>
-      <% events = load_event @club, category.style_event %>
       <label for="contact-name"><%= category.name %> *</label>
       <% if events.present? %>
         (<%= l events.first.created_at, format: :short %> - <%= l events.last.created_at, format: :short %>)</br>
-        <table class="table ui-block table table-bordered results" id="event_category">
+        <table class="table ui-block table table-bordered results">
           <thead>
             <tr class="deatil-money-first">
               <th colspan="5">
@@ -39,24 +40,21 @@
                 <td>
                   <%= raw(event.description) %>
                 </td>
-                <td><%= l event.created_at, format: :short %></i></td>
+                <td><%= l event.created_at, format: :short %></td>
               </tr>
             <% end %>
             <tr>
               <td colspan="5" class="text-center">
-                <strong>
-                  <%= t "money_last" %>:
-                  <%= number_to_currency(moneys.surplus(events.first.amount), locale: :vi) %>
-                </strong>
+                <%= t "money_last" %>:
+                <%= number_to_currency(moneys.surplus(events.first.amount), locale: :vi) %>
               </td>
             </tr>
           </tbody>
-        </table>
-      <% else %>
-        <%= t "update_events_report" %><br/>
-      <% end %>
+        <% else %>
+          <%= t "update_events_report" %><br/>
+        <% end %>
+      </table>
     <% else %>
-      <% events = load_event @club, category.style_event %>
       <label for="contact-name"><%= category.name %> *</label>
       <% if events.present? %>
         (<%= l events.first.created_at, format: :short %> - <%= l events.last.created_at, format: :short %>)</br>
@@ -83,14 +81,13 @@
           </tbody>
         </table>
       <% else %>
-        <%= t "update_events_report" %><br/>
+        <%= t "update_events_report" %>
       <% end %>
     <% end %>
   <% else %>
     <div class="nested-fields">
       <div class="form-group row">
         <div class="form-group label-floating col-md-3">
-          <label for="contact-name"><%= t ".item_report" %></label></br>
           <label for="contact-name"><%= category.name %> *</label></br>
           <%= f.hidden_field :report_category_id, value: category.id %>
         </div>
