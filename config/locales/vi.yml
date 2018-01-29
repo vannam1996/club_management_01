@@ -457,6 +457,15 @@ vi:
         count: "Tổng"
         first_money: "Tiền đầu kì: "
         last_money: "Tiền cuối kì: "
+      detail_money:
+        date: "Ngày"
+        pay: "Chi"
+        get: "Thu"
+        detail: "Nội dung"
+        money: "Số dư"
+      detail_activity:
+        date: "Ngày"
+        detail: "Nội dung"
     money: "Tiền quỹ: "
     cant_fount: "Không thể tìm thấy câu lạc bộ!"
     user_club:
@@ -1277,7 +1286,10 @@ vi:
       action: "Hành động"
       title_category: "Danh mục báo cáo"
       report_active: "Kích hoạt"
-      style_event: "Loại sự kiện"
+      style_category: "Loại danh mục"
+      money: "Tiền bạc"
+      activity: "Hoạt động"
+      other: "Khác"
     report_category:
       confirm_delete_category: "Xóa danh mục này"
       pay_money: "Chi tiền"
@@ -1286,6 +1298,9 @@ vi:
       subsidy: "Tiền trợ cấp"
       donate: "Ủng hộ"
       no_style: "Không có"
+      money: "Tiền bạc"
+      activity: "Hoạt động"
+      other: "Khác"
     form_new:
       name_category: "Tên danh mục"
       style_event: "Loại sự kiện"
@@ -1294,16 +1309,25 @@ vi:
       notification: "Thông báo"
       subsidy: "Tiền trợ cấp"
       donate: "Ủng hộ"
+      money: "Tiền bạc"
+      activity: "Hoạt động"
+      other: "Khác"
     edit_report_category:
       choose-style-event: "Chọn loại sự kiện"
+      money: "Tiền bạc"
+      activity: "Hoạt động"
+      other: "Khác"
     modal_style_event:
       pay_money: "Chi tiền"
       get_money: "Thu tiền"
       notification: "Thông báo"
       subsidy: "Tiền trợ cấp"
       donate: "Ủng hộ"
-      title: "Loại sự kiện"
+      title: "Loại danh mục"
       confirm: "Xác nhận"
+      money: "Tiền bạc"
+      activity: "Hoạt động"
+      other: "Khác"
   statistic_report_helper:
     important: " *"
   events_club:

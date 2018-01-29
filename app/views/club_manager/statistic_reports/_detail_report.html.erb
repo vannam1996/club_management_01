@@ -57,8 +57,7 @@
             <% report_details.each do |key, array_detail| %>
               <tr>
                 <td><%= array_detail.first.report_category_name %></td>
-                <td><%=  render partial: "content_report", locals: {group_detail:
-                  get_details_group_by_style(array_detail), array_detail: array_detail} %>
+                <td><%=  render partial: "content_report", locals: {array_detail: array_detail} %>
                 </td>
               </tr>
             <% end %>

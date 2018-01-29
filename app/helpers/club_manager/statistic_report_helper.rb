@@ -19,10 +19,6 @@ module ClubManager::StatisticReportHelper
     report.report_category.obligatory?
   end
 
-  def get_details_group_by_style array_detail
-    array_detail.group_by(&:style)
-  end
-
   private
   def set_status category
     case category.status

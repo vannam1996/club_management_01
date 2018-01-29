@@ -1,0 +1,18 @@
+<div class="table-responsive">
+  <table class="ui-block table-pricing table-white list-event-notifications">
+    <thead>
+      <tr>
+        <th class="column-date"><%= t ".date" %></th>
+        <th><%= t ".detail" %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% array_detail.each do |detail| %>
+        <tr>
+          <td><%= l detail.date_event, format: :short %></td>
+          <td><%= detail.detail %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
