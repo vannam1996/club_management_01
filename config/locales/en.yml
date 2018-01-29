@@ -498,6 +498,7 @@ en:
       edit: "Edit event's information"
       no_event: "No events"
       create: "New"
+      kind: "Public"
     club:
       success_update: "Club's information update successfull"
   cant_found_club: "Can found club"
@@ -1066,3 +1067,5 @@ en:
     error_find_club: "Error find club"
     update_success: "Update success"
     update_errors: "Update errors"
+  style_event:
+    event_public: "Public"

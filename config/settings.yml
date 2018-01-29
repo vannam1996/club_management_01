@@ -240,3 +240,5 @@ key_date_remind_quarter: "date_remind_quarter"
 command_update_whenever: "whenever -w"
 size_image_club: 200
 action_edit: "edit"
+first_range_enum_money_in_report_details: 0
+last_range_enum_money_in_report_details: 1

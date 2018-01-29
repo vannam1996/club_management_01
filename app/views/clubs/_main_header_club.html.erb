@@ -67,6 +67,9 @@
                     <%= link_to t("events"), "#event", class: "active" %>
                   </li>
                   <li>
+                    <%= link_to t("event_notification"), "#event-noti" %>
+                  </li>
+                  <li>
                     <%= link_to t("images"), "#image" %>
                   </li>
                   <li >
@@ -77,9 +80,6 @@
                   </li>
                   <li>
                     <%= link_to t("rules"), "#rules_club" %>
-                  </li>
-                  <li>
-                    <%= link_to t("event_notification"), "#event-noti" %>
                   </li>
                   <li>
                     <%= link_to club_manager_club_statistic_reports_path(@club), remote: :true do %>

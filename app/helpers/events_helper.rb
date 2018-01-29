@@ -86,4 +86,12 @@ module EventsHelper
     event_category_ids = Event.event_categories.except(:notification).keys
     event_category_ids.include? category_id
   end
+
+  def check_albums event
+    event.albums.present?
+  end
+
+  def check_action_and_albums action, event
+    action == Settings.action_edit && check_albums(event)
+  end
 end

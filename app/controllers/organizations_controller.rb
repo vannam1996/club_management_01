@@ -14,7 +14,8 @@ class OrganizationsController < ApplicationController
     @q = @organization.clubs.search(params[:q])
     @clubs = @q.result.page(params[:page]).per Settings.club_per_page
     @add_user_club = User.without_user_ids(@organization.user_organizations.map(&:user_id))
-    @organization_event = @organization.events.newest.page(params[:page]).per Settings.club_per_page
+    @organization_event = @organization.events.status_public(true)
+      .newest.page(params[:page]).per Settings.club_per_page
     respond_to do |format|
       format.html
       format.js

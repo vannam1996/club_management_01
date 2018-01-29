@@ -41,7 +41,7 @@ class EventNotificationsController < ApplicationController
 
   def event_notification_params
     params.require(:event).permit(:club_id, :name, :date_start, :status,
-      :date_end, :location, :description, :image, :user_id)
+      :date_end, :location, :description, :image, :user_id, :is_public)
   end
 
   def merge_event_category_params
