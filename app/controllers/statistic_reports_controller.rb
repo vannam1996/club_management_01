@@ -154,7 +154,7 @@ class StatisticReportsController < ApplicationController
   def create_detail_report static_report
     @report_categorys = ReportCategory.load_category.active
     if @report_categorys
-      service = CreateReportService.new @report_categorys, static_report
+      service = CreateReportService.new @report_categorys, static_report, @club
       ReportDetail.import service.create_report
     end
   end

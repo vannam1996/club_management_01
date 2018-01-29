@@ -1,18 +1,19 @@
 class CreateReportService
-  def initialize report_categorys, static_report
+  def initialize report_categorys, static_report, club
     @report_categorys = report_categorys
     @static_report = static_report
+    @club = club
   end
 
   def create_report
     @report_detail = []
     @report_categorys.each do |report_category|
       if @static_report.monthly?
-        @events = Event.by_event(report_category.style_event)
+        @events = @club.events.by_event(report_category.style_event)
           .by_quarter(@static_report.time).by_years(@static_report.year)
       elsif @static_report.quarterly?
         quarter = SetQuarterReport.new @static_report.time
-        @events = Event.by_event(report_category.style_event)
+        @events = @club.events.by_event(report_category.style_event)
           .by_quarter(quarter.quarter_report).by_years(@static_report.year)
       end
       report_detail @events, @report_detail, report_category
