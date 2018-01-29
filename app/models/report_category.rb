@@ -10,6 +10,7 @@ class ReportCategory < ApplicationRecord
 
   scope :order_desc, ->{order created_at: :desc}
   scope :load_category, ->{where.not style_event: nil}
+  scope :by_category, ->organization{where organization_id: organization}
 
   validates :name, presence: true, length: {maximum: Settings.max_name_category},
     uniqueness: {scope: :organization_id}
