@@ -12,7 +12,11 @@
     <tbody>
       <% array_detail.each do |detail| %>
         <tr>
-          <td><%= l detail.date_event, format: :short %></td>
+          <td>
+            <% if detail.date_event.present? %>
+              <%= l detail.date_event, format: :short %>
+            <% end %>
+          </td>
           <% if detail.pay_money? %>
             <td><%= number_to_currency detail.money, locale: :vi %></td>
             <td></td>
