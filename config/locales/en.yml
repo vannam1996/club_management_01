@@ -435,6 +435,15 @@ en:
         count: "Total"
         first_money: "First money: "
         last_money: "Last money: "
+      detail_money:
+        date: "Date"
+        pay: "Pay"
+        get: "Get"
+        detail: "Description"
+        money: "Money"
+      detail_activity:
+        date: "Date"
+        detail: "Description"
     money: "Money"
     cant_fount: "Can found club!"
     user_club:
@@ -1008,6 +1017,9 @@ en:
       title_category: "Report category"
       report_active: "Active"
       style_event: "Style event"
+      money: "Money"
+      activity: "Activity"
+      other: "Other"
     form_new:
       name_category: "Category name"
       style_event: "Style event"
@@ -1017,6 +1029,9 @@ en:
       subsidy: "Subsidy"
       donate: "Donate"
       no_style: "None"
+      money: "Money"
+      activity: "Activity"
+      other: "Other"
     report_category:
       confirm_delete_category: "Delete this category"
       pay_money: "Pay money"
@@ -1025,8 +1040,14 @@ en:
       subsidy: "Subsidy"
       donate: "Donate"
       no_style: "None"
+      money: "Money"
+      activity: "Activity"
+      other: "Other"
     edit_report_category:
       choose-style-event: "Choose style event"
+      money: "Money"
+      activity: "Activity"
+      other: "Other"
     modal_style_event:
       pay_money: "Pay money"
       get_money: "Get Money"
@@ -1035,6 +1056,9 @@ en:
       donate: "Donate"
       title: "Style event"
       confirm: "Confirm"
+      money: "Money"
+      activity: "Activity"
+      other: "Other"
   statistic_report_helper:
     important: " *"
   events_club:

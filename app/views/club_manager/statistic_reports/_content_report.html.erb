@@ -1,35 +1,11 @@
-<ul class="list-style-type-decimal">
-  <% group_detail.each do |key, value| %>
-    <% if check_key_details_style_money key %>
-      <li>
-        <strong><%= t "statistic_reports.show.#{key}" %>: <%= total_money value %></strong>
-        <ul>
-          <% value.each do |report_detail| %>
-            <li>
-              <%= report_detail.detail %> (<%= number_to_currency(report_detail.money, locale: :vi) %>)
-            </li>
-          <% end %>
-        </ul>
-      </li>
-    <% else %>
-      <% value.each do |report_detail| %>
-        <li class="list-style-type-none">
-          <%= report_detail.detail %>
-        </li>
-      <% end %>
+<% if array_detail.first.report_category.money? %>
+  <%= render partial: "club_manager/statistic_reports/detail_money", locals: {array_detail: array_detail} %>
+<% elsif array_detail.first.report_category.activity? %>
+  <%= render partial: "club_manager/statistic_reports/detail_activity", locals: {array_detail: array_detail} %>
+<% else %>
+  <ul>
+    <% array_detail.each do |report_detail| %>
+      <li><%= report_detail.detail %></li>
     <% end %>
-  <% end %>
-  <% if array_detail.first.first_money %>
-    <li>
-      <strong><%= t "statistic_reports.show.count" %></strong>
-      <ul>
-        <li><%= t "statistic_reports.show.first_money" %>
-          <%= first_money array_detail %>
-        </li>
-        <li><%= t "statistic_reports.show.last_money" %>
-          <%= last_money array_detail %>
-        </li>
-      </ul>
-    </li>
-  <% end %>
-</ul>
+  </ul>
+<% end %>

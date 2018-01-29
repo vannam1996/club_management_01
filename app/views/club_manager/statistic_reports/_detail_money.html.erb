@@ -1,0 +1,47 @@
+<div class="table-responsive">
+  <table class="ui-block table-pricing table-white">
+    <thead>
+      <tr>
+        <th><%= t ".date" %></th>
+        <th><%= t ".pay" %></th>
+        <th><%= t ".get" %></th>
+        <th><%= t ".money" %></th>
+        <th class ="column-detail"><%= t ".detail" %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% array_detail.each do |detail| %>
+        <tr>
+          <td><%= l detail.date_event, format: :short %></td>
+          <% if detail.pay_money? %>
+            <td><%= number_to_currency detail.money, locale: :vi %></td>
+            <td></td>
+          <% elsif detail.get_money? %>
+            <td></td>
+            <td><%= number_to_currency detail.money, locale: :vi %></td>
+          <% end %>
+            <td><%= number_to_currency detail.first_money, locale: :vi %></td>
+          <td><%= detail.detail %></td>
+        </tr>
+      <% end %>
+      <tr>
+        <td><%= t ".count" %></td>
+        <%= total_pay_get_money array_detail %>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+          <strong><%= t "statistic_reports.show.first_money" %>
+            <%= first_money array_detail %></strong><br>
+          <strong><%= t "statistic_reports.show.last_money" %>
+            <%= last_money array_detail %></strong>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

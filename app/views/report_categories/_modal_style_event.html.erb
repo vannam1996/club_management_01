@@ -10,18 +10,11 @@
       <div class="modal-body widget-simple list-scroll">
         <div class="text-left col-md-12">
           <div id = "check_box_style">
-            <% Event.event_categories.each do |key, value| %>
-              <div class="row row-style-checkbox">
-                <% if report_category.present? %>
-                  <div class="check_box_category col-md-1">
-                    <%= check_box_tag "style_event_#{key}", value, check_style_event(value,
-                      report_category.style_event) %><br>
-                  </div>
-                <% else %>
-                  <div class="check-box-style col-md-1">
-                    <%= check_box_tag "style_event_ids[]", value %><br>
-                  </div>
-                <% end %>
+            <% get_style_category(report_category, @report_categories).each do |key, value| %>
+              <div class="row">
+                <div class="check-box-style col-md-2">
+                  <%= radio_button_tag :style, value, check_style(report_category, key) %><br>
+                </div>
                 <div class="col-md-5">
                   <%= t ".#{key}" %>
                 </div>

@@ -66,8 +66,7 @@
               <tr>
                 <td><%= array_detail.first.report_category_name %></td>
                 <td><%=  render partial: "club_manager/statistic_reports/content_report",
-                  locals: {group_detail: get_details_group_by_style(array_detail),
-                  array_detail: array_detail} %>
+                  locals: {array_detail: array_detail} %>
                 </td>
               </tr>
             <% end %>

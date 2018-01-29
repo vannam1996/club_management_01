@@ -725,6 +725,7 @@ a.pull-right.add_fields {
 
 .check-box-style {
   margin-right: 5px;
+  margin-top: 3px;
 }
 
 .row-style-checkbox {
@@ -737,4 +738,35 @@ a.pull-right.add_fields {
 
 .list-style-type-none {
   list-style-type: none;
+}
+
+.ui-block .table-white {
+  background-color: white;
+}
+
+.table-white td, table-white th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.column-detail {
+  width: 35%;
+}
+
+.table-white tr:hover {
+  background-color: #ddd;
+}
+
+.list-event-notifications {
+  width: 100%;
+}
+
+.column-date {
+  width: 20%;
+}
+
+.radio_choose {
+  display: -webkit-inline-box;
+  margin-top: 5px;
+  width: 30px;
 }
