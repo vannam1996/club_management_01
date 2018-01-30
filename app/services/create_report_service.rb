@@ -33,10 +33,10 @@ class CreateReportService
   end
 
   def save_report event, report_category
-    ReportDetail.new(detail: event.name,
+    ReportDetail.new(detail: event.description,
       statistic_report_id: @static_report.id, report_category_id: report_category.id,
       style: style_detail_report(event), money: money_detail_report(event), first_money: event.amount,
-      date_event: event.created_at)
+      date_event: event.created_at, name_event: event.name)
   end
 
 

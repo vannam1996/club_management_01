@@ -7,7 +7,8 @@
       <% end %>
       <%= f.select(:style, options_for_select(option_select(
         StatisticReport.styles), StatisticReport.styles[report.style]),
-        {}, {class: "form-control select_custom", id: "style-report"}) %>
+        {}, {class: "form-control select_custom", id: "style-report",
+        disabled: @report.id?}) %>
     </div>
     <%= render partial: "option_report_style", locals: {report: report} %>
     <div class="form-group col-md-3 push-md-2">
@@ -15,15 +16,17 @@
         <%= t("year") %>
       <% end %>
       <%= f.select :year, Settings.year_ago.years.ago.year..Date.current.year, {},
-        {class: "select_custom form-control"} %>
+        {class: "select_custom form-control", disabled: @report.id?} %>
     </div>
   </div>
   <div class="form-group" id="detail-report-field">
     <div class="form-group col-md-12" id="detail-report-field">
       <div id="detail" class="col-md-12">
+        <%= render "list_bugets_report" %>
+        <%= render partial: "list_activity_report" %>
         <%= f.fields_for :report_details do |ff| %>
           <% if is_report_of_category_obligatory? ff.object %>
-            <%= render partial: "field_for_category_obligatory", locals: {f: ff, category: ff.object.report_category} %>
+            <%= render partial: "detail_category_report", locals: {f: ff, category: ff.object.report_category} %>
           <% else %>
             <%= render "report_detail_fields", f: ff %>
           <% end %>

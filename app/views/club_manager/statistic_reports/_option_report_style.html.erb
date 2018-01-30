@@ -4,7 +4,7 @@
   <% end %>
   <%= select_tag "month", options_for_select(option_select(
     StatisticReport.months), report.time),
-    class: "form-control select_custom" %>
+    class: "form-control select_custom", disabled: report.id? %>
 </div>
 <div class="form-group col-md-3 push-md-1 quarter-style">
   <%= label_tag(:time, class: "control-label") do %>
@@ -12,5 +12,5 @@
   <% end %>
   <%= select_tag "quarter", options_for_select(
     option_select(StatisticReport.quarters), report.time),
-    class: "form-control select_custom" %>
+    class: "form-control select_custom", disabled: report.id? %>
 </div>

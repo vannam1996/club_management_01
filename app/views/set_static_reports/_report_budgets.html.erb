@@ -1,0 +1,57 @@
+<label for="contact-name"><%= category.name %> *</label>
+<% if events.present? %>
+  (<%= l events.first.created_at, format: :short %> - <%= l events.last.created_at, format: :short %>)</br>
+  <table class="table ui-block table table-bordered results">
+    <thead>
+      <tr class="deatil-money-first">
+        <th colspan="5">
+          <%= t "money_first" %>
+          <%= number_to_currency(events.first.amount, locale: :vi) %>
+        </th>
+      </tr>
+      <tr>
+        <th class="table-paymoney"><%= t "report_categories.report_category.get_money" %></th>
+        <th class="table-paymoney"><%= t "report_categories.report_category.pay_money" %></th>
+        <th class="table-paymoney"><%= t "surplus" %></th>
+        <th class="table-content"><%= t "content" %></th>
+        <th><%= t "time_report" %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% moneys = LastMoney.new events %>
+      <% events.each do |event| %>
+        <tr>
+          <td class="check-user">
+            <% unless event.pay_money? || event.notification? %>
+              <%= number_to_currency(money_expense(event), locale: :vi) %>
+            <% end %>
+          </td>
+          <td>
+            <% if event.pay_money? %>
+              <%= number_to_currency(event.expense, locale: :vi) %>
+            <% end %>
+          </td>
+          <td>
+            <% if event.expense.present? %>
+              <%= event.amount + LastMoney.last_money(event)%>
+            <% else %>
+              <%= event.amount %>
+            <% end %>
+          </td>
+          <td>
+            <%= raw(event.description) %>
+          </td>
+          <td><%= l event.created_at, format: :short %></td>
+        </tr>
+      <% end %>
+      <tr>
+        <td colspan="5" class="text-center">
+          <%= t "money_last" %>:
+          <%= number_to_currency(moneys.surplus(events.first.amount), locale: :vi) %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+<% else %>
+  <%= t "update_events_report" %><br/>
+<% end %>
