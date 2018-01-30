@@ -81,11 +81,13 @@
                   <li>
                     <%= link_to t("rules"), "#rules_club" %>
                   </li>
-                  <li>
-                    <%= link_to club_manager_club_statistic_reports_path(@club), remote: :true, id: "none-tab" do %>
-                      <%= t "statistic_report" %>
-                    <% end %>
-                  </li>
+                  <% if current_user.user_clubs.joined.of_club(@club) %>
+                    <li>
+                      <%= link_to club_manager_club_statistic_reports_path(@club), remote: :true, id: "none-tab" do %>
+                        <%= t "statistic_report" %>
+                      <% end %>
+                    </li>
+                  <% end %>
                 </ul>
               </div>
               <div class="col-md-1 offset-md-1 pull-right">
