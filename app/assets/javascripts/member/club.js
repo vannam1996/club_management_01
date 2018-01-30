@@ -5,7 +5,9 @@ jQuery(document).ready(function($) {
     $('.tab_list_detail_club li a').removeClass('active');
     $(this).addClass('active');
     var id=$(this).attr('href');
-    $(id).show('slow');
-    return false;
+    if ($('#none-tab').attr('href') != id) {
+      $(id).show('slow');
+      return false;
+    };
   });
 });

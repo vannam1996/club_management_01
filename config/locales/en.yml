@@ -438,6 +438,7 @@ en:
       detail_money:
         date: "Date"
         pay: "Pay"
+        count: "Total"
         get: "Get"
         detail: "Description"
         money: "Money"
@@ -1032,6 +1033,7 @@ en:
       money: "Money"
       activity: "Activity"
       other: "Other"
+      style: "Style"
     report_category:
       confirm_delete_category: "Delete this category"
       pay_money: "Pay money"

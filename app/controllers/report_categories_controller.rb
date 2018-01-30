@@ -10,7 +10,8 @@ class ReportCategoriesController < ApplicationController
   def edit; end
 
   def update
-    if @report_category && @report_category.update_attributes(category_update_params_with_check_style)
+    if @report_category && @report_category.update_attributes(category_params_with_check_style(
+      category_update_params))
       flash.now[:success] = t ".update_success"
     elsif @report_category
       flash.now[:danger] = t ".update_errors"
@@ -19,7 +20,8 @@ class ReportCategoriesController < ApplicationController
 
   def create
     if @organization
-      @report_category = @organization.report_categories.new report_category_params
+      @report_category = @organization.report_categories.new category_params_with_check_style(
+        report_category_params)
       if @report_category.save
         flash.now[:success] = t ".create_success"
       else
@@ -52,14 +54,13 @@ class ReportCategoriesController < ApplicationController
       style: params[:style].to_i
   end
 
-  def category_update_params_with_check_style
-    params = category_update_params
-    if params[:style] == ReportCategory.styles[:money]
-      params.merge! style_event: Settings.array_style_event_money
-    elsif params[:style] == ReportCategory.styles[:activity]
-      params.merge! style_event: Settings.array_style_event_activity
+  def category_params_with_check_style params_category
+    if params_category[:style] == ReportCategory.styles[:money]
+      params_category.merge! style_event: Settings.array_style_event_money
+    elsif params_category[:style] == ReportCategory.styles[:activity]
+      params_category.merge! style_event: Settings.array_style_event_activity
     else
-      params.merge! style_event: nil
+      params_category.merge! style_event: nil
     end
   end
 

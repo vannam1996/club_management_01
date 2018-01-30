@@ -5,7 +5,7 @@ $(document).ready(function() {
     var organization_slug = $('#organization_slug').val();
     var status = $('#status_report_category').is(':checked');
     var active = $('#active_report_category').is(':checked');
-    var style = $('input[name=style]:checked').val();
+    var style = $('input[name=style_category]:checked').val();
     var data = {name: name, status: Number(status), status_active: Number(active),
       organization_slug: organization_slug, style: style};
     $.ajax(
