@@ -3,7 +3,7 @@ class ClubManager::StatisticReportsController < ApplicationController
   authorize_resource
   before_action :load_club
   before_action :load_report, only: %i(show edit update)
-  before_action :load_report_categories, only: %i(index edit)
+  before_action :load_report_categories, only: %i(index edit new)
 
   def index
     gon_variable
@@ -30,6 +30,15 @@ class ClubManager::StatisticReportsController < ApplicationController
     elsif @report
       flash.now[:danger] = t "update_report_error"
     end
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def new
+    @statistic_report = current_user.statistic_reports.build club_id: @club.id
+    @statistic_report.report_details.build
+    all_report
     respond_to do |format|
       format.js
     end
