@@ -254,3 +254,11 @@ array_style_event_money: [1, 2, 0, 4]
 array_style_event_activity: [3]
 key_money_enum: "money"
 key_activity_enum: "activity"
+folder_public: "/public"
+folder_upload: "/upload"
+folder_video: "/videos"
+folder_image_video: "/images"
+type_write: "ab"
+path_images_screenshot: "public/upload/images/"
+ext_image_screen: ".png"
+file_video: "video/mp3, video/mp4, video/3gp"

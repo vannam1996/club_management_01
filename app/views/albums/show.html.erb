@@ -13,11 +13,20 @@
                     class: "pull-left btn btn-primary btn-sm" %>
                   <h4 class=" col-md-8 text-center"><%= @album.name %></h4>
                   <% if @club.is_admin? current_user %>
-                    <%= link_to "#modal-new-image", data: {toggle: "modal"},
-                      class: "btn btn-sm btn-breez pull-right" do %>
-                      <i class="fa fa-camera"></i><%= t "club_manager.image.create" %>
-                    <% end %>
+                    <div class="new_image_video">
+                      <%= link_to "#modal-new-image", data: {toggle: "modal"},
+                        class: "btn btn-sm btn-breez pull-right" do %>
+                        <i class="fa fa-camera"></i><%= t "club_manager.image.create" %>
+                      <% end %>
+                      <%= link_to "#modal-new-video", data: {toggle: "modal"},
+                        class: "btn btn-sm btn-breez pull-right" do %>
+                        <i class="fa fa-camera"></i><%= t "club_manager.video.create" %>
+                      <% end %>
+                    </div>
                   <% end %>
+                </div>
+                <div id="list-video">
+                  <%= render partial: "videos/list_video" %>
                 </div>
                 <div class="tz-gallery">
                   <div class="row">
@@ -60,4 +69,7 @@
 </div>
 <div id="modal-new-image" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
   <%= render "new_club_image" %>
+</div>
+<div id="modal-new-video" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <%= render "new_club_video" %>
 </div>

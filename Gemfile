@@ -45,6 +45,8 @@ gem "gon"
 gem "whenever", require: false
 gem "cocoon"
 gem "cropper-rails"
+gem "jquery-fileupload-rails"
+gem "streamio-ffmpeg"
 
 source "https://rails-assets.org" do
   gem "rails-assets-chosen"

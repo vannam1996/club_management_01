@@ -98,6 +98,8 @@ Rails.application.routes.draw do
     end
     resources :albums do
       resources :images
+      resources :videos, only: %i(create destroy update)
+      post "/videos/upload", to: "videos#upload"
     end
     resources :budgets
     resources :event_notifications, except: [:show, :index, :destroy]

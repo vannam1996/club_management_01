@@ -52,6 +52,10 @@ class Ability
       can :manage, :event_notification, Club do |club|
         club.keys.first.user_clubs.manager.pluck(:user_id).include?(user.id)
       end
+
+      can :manage, Video do |video|
+        video.album.club.user_clubs.manager.pluck(:user_id).include? user.id
+      end
     end
   end
 end

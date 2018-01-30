@@ -23,6 +23,7 @@ class AlbumsController < ApplicationController
 
   def show
     @image = Image.new
+    @videos = @album.videos.upload_success
     @album_other = @club.albums.newest.other params[:id]
   end
 

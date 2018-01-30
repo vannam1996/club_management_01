@@ -1,5 +1,6 @@
 class Album < ApplicationRecord
   has_many :images, dependent: :destroy
+  has_many :videos, dependent: :destroy
   has_many :activities, as: :trackable, dependent: :destroy
 
   belongs_to :club
