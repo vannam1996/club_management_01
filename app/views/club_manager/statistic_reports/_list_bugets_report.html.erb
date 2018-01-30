@@ -1,0 +1,53 @@
+<% budgets = @report.report_details.load_detail_budgets %>
+<label for="contact-name"><%= budgets.first.report_category_name %> *</label>
+<% if budgets.present? %>
+  (<%= l budgets.first.date_event, format: :short %> - <%= l budgets.last.date_event, format: :short %>)</br>
+  <table class="table ui-block table table-bordered results">
+    <thead>
+      <tr class="deatil-money-first">
+        <th colspan="5">
+          <%= t "money_first" %>
+          <%= number_to_currency(budgets.first.first_money, locale: :vi) %>
+        </th>
+      </tr>
+      <tr>
+        <th class="table-paymoney"><%= t "report_categories.report_category.get_money" %></th>
+        <th class="table-paymoney"><%= t "report_categories.report_category.pay_money" %></th>
+        <th class="table-paymoney"><%= t "surplus" %></th>
+        <th class="table-content"><%= t "content" %></th>
+        <th><%= t "time_report" %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% budgets.each do |budget| %>
+        <tr>
+          <td class="check-user">
+            <% if budget.get_money? %>
+              <%= number_to_currency(budget.money, locale: :vi) %>
+            <% end %>
+          </td>
+          <td>
+            <% if budget.pay_money? %>
+              <%= number_to_currency(budget.money, locale: :vi) %>
+            <% end %>
+          </td>
+          <td>
+            <%= number_to_currency(budget.first_money, locale: :vi) %>
+          </td>
+          <td>
+            <%= raw(budget.detail) %>
+          </td>
+          <td><%= l budget.date_event, format: :short %></td>
+        </tr>
+      <% end %>
+      <tr>
+        <td colspan="5">
+          <strong>
+            <%= t "money_last" %>:
+            <%= last_money budgets %>
+          </strong>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+<% end %>

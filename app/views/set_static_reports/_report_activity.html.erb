@@ -1,0 +1,28 @@
+<label for="contact-name"><%= category.name %> *</label>
+<% if events.present? %>
+  (<%= l events.first.created_at, format: :short %> - <%= l events.last.created_at, format: :short %>)</br>
+  <table class="table ui-block table-bordered results">
+    <thead>
+      <tr>
+        <th class="table-paymoney"><%= t "time_report" %></th>
+        <th><%= t "name" %></th>
+        <th class="table-content"><%= t "content" %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% events.each do |event| %>
+        <tr>
+          <td><%= l event.created_at, format: :short %></td>
+          <td class="check-user">
+            <%= event.name %>
+          </td>
+          <td>
+            <%= raw(event.description) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <%= t "update_events_report" %>
+<% end %>

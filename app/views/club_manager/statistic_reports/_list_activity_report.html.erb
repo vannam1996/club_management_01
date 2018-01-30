@@ -1,0 +1,27 @@
+<% budgets = @report.report_details.other %>
+<label for="contact-name"><%= budgets.first.report_category_name %> *</label>
+<% if budgets.present? %>
+  (<%= l budgets.first.date_event, format: :short %> - <%= l budgets.last.date_event, format: :short %>)</br>
+  <table class="table ui-block table-bordered results">
+    <thead>
+      <tr>
+        <th class="table-paymoney"><%= t "time_report" %></th>
+        <th><%= t "name" %></th>
+        <th class="table-content"><%= t "content" %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% budgets.each do |budget| %>
+        <tr>
+          <td><%= l budget.date_event, format: :short %></td>
+          <td class="check-user">
+            <%= budget.name_event %>
+          </td>
+          <td>
+            <%= raw(budget.detail) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

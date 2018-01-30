@@ -25,7 +25,7 @@
             <td><%= number_to_currency detail.money, locale: :vi %></td>
           <% end %>
             <td><%= number_to_currency detail.first_money, locale: :vi %></td>
-          <td><%= detail.detail %></td>
+          <td><%= raw(detail.detail) %></td>
         </tr>
       <% end %>
       <tr>
@@ -35,10 +35,7 @@
         <td></td>
       </tr>
       <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td colspan="4"></td>
         <td>
           <strong><%= t "statistic_reports.show.first_money" %>
             <%= first_money array_detail %></strong><br>

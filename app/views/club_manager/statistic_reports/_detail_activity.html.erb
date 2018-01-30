@@ -3,6 +3,7 @@
     <thead>
       <tr>
         <th class="column-date"><%= t ".date" %></th>
+        <th><%= t "name" %></th>
         <th><%= t ".detail" %></th>
       </tr>
     </thead>
@@ -14,7 +15,8 @@
               <%= l detail.date_event, format: :short %>
             <% end %>
           </td>
-          <td><%= detail.detail %></td>
+          <td><%= detail.name_event %></td>
+          <td><%= raw(detail.detail) %></td>
         </tr>
       <% end %>
     </tbody>
