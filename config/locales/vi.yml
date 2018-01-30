@@ -463,6 +463,7 @@ vi:
         get: "Thu"
         detail: "Nội dung"
         money: "Số dư"
+        count: "Tổng"
       detail_activity:
         date: "Ngày"
         detail: "Nội dung"
@@ -1312,6 +1313,7 @@ vi:
       money: "Tiền bạc"
       activity: "Hoạt động"
       other: "Khác"
+      style: "Loại"
     edit_report_category:
       choose-style-event: "Chọn loại sự kiện"
       money: "Tiền bạc"

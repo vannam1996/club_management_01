@@ -13,7 +13,7 @@
             <% get_style_category(report_category, @report_categories).each do |key, value| %>
               <div class="row">
                 <div class="check-box-style col-md-2">
-                  <%= radio_button_tag :style, value, check_style(report_category, key) %><br>
+                  <%= radio_button_tag :style_category, value, check_style(report_category, key) %><br>
                 </div>
                 <div class="col-md-5">
                   <%= t ".#{key}" %>

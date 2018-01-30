@@ -14,8 +14,9 @@
     </div>
     <div class="row">
       <div class="radio_choose">
+        <%= t ".style" %>
         <% get_option_create(@report_categories).each do |key, value| %>
-          <%= radio_button_tag :style, value, false %><%= t ".#{key}" %>
+          <%= radio_button_tag :style, value, f.object.style , class: "radio-style" %><p><%= t ".#{key}" %></p>
         <% end %>
       </div>
     </div>
