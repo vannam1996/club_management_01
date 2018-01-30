@@ -43,7 +43,7 @@ Rails.application.routes.draw do
   namespace :club_manager do
     get "/" => "static_pages#index"
     resources :clubs do
-      resources :statistic_reports, except: [:new, :destroy, :create]
+      resources :statistic_reports
       resources :members, only: [:index, :show]
       resources :club_budgets
       resources :events do
