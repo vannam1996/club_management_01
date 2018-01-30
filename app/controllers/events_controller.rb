@@ -71,6 +71,7 @@ class EventsController < ApplicationController
   end
 
   def destroy
+    update_money @event
     unless @event.destroy
       flash[:danger] = t "error_process"
       redirect_to organization_club_path @club.organization.slug, @club
@@ -123,6 +124,12 @@ class EventsController < ApplicationController
         club_id: @club.id]
     else
       event_params
+    end
+  end
+
+  def update_money event
+    if event.get_money?
+      event.club.update_attributes money: event.club.money - (event.budgets.size * event.expense.to_i)
     end
   end
 end

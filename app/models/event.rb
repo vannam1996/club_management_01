@@ -81,8 +81,6 @@ class Event < ApplicationRecord
       self.club.update_attributes money: self.club.money + self.expense
     elsif self.donate? || self.subsidy?
       self.club.update_attributes money: self.club.money - self.expense
-    elsif self.get_money?
-      self.club.update_attributes money: self.club.money - (self.budgets.size * self.expense.to_i)
     end
   end
 end
