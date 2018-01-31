@@ -66,4 +66,14 @@ $(document).ready(function () {
       $('#status').text('Uploading...');
     }
   });
+  $('.modal-video').on('hidden.bs.modal', function (e) {
+    $(this).find('.iframe-video').get(0).pause();
+  });
+  $('.iframe-video').click(function() {
+    if (this.paused) {
+      this.play();
+    } else {
+      this.pause();
+    }
+  });
 });

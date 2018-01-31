@@ -4,7 +4,8 @@
       <% @videos.each do |video| %>
         <div class="col-sm-12 col-md-2 portfolio-item video-<%= video.id %>"
           data-category="">
-          <%= link_to video.video_file, class: "list-image lightbox" do  %>
+          <%= link_to "#modal-video-#{video.id}", data: {toggle: "modal"},
+            class: "list-image lightbox" do  %>
             <% if video.image_file.present? %>
               <%= image_tag video.image_file, class: "centered-and-cropped" %>
             <% end %>
@@ -23,9 +24,23 @@
           <% end %>
           <div class="middle-icon-play">
             <div class="play-video">
-              <%= link_to "#{video.video_file}" do  %>
+              <%= link_to "#modal-video-#{video.id}" do  %>
                 <i class="fa fa-play-circle"></i>
               <% end %>
+            </div>
+          </div>
+        </div>
+        <div id="modal-video-<%= video.id %>" class="modal fade modal-video" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="pull-right ">
+                <%= button_tag type: "button", class: "icon-close-video close", data: {dismiss: "modal"} do %>
+                  &times;
+                <% end %>
+              </div>
+              <div class="modal-body">
+                <%= video_tag video.video_file, controls: true, class: "iframe-video", id: "video-#{video.id}" %>
+              </div>
             </div>
           </div>
         </div>
@@ -37,3 +52,4 @@
     <% end %>
   </div>
 </div>
+<%= javascript_include_tag "upload_video" %>

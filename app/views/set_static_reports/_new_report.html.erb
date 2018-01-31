@@ -28,13 +28,13 @@
       </div>
     </div>
   </div>
-  <div class="form-group col-md-12" id="detail-report-field">
+  <div class="form-group col-md-12" id="detail-report-field-new">
     <% @report_categories.obligatory.each do |category|%>
       <%= f.fields_for :report_details do |ff| %>
         <%= render partial: "field_for_category_obligatory", locals: {f: ff, category: category} %>
       <% end %>
     <% end %>
-    <div class="form-group col-md-12", id="button-add-fields">
+    <div class="form-group col-md-12", id="button-add-fields-new-form">
       <%= link_to_add_association t("add"), f, :report_details,
         class: "btn btn-breez pull-right" %>
     </div>

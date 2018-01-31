@@ -786,8 +786,8 @@ a.pull-right.add_fields {
 
 .middle-icon-play {
   position: absolute;
-  top: 45%;
-  left: 47%;
+  top: 44%;
+  left: 49%;
   transform: translate(-50%, -50%);
 }
 
@@ -811,4 +811,14 @@ a.pull-right.add_fields {
 
 .bar-upload {
   width: 0%;
+}
+
+.iframe-video {
+  width: 100%;
+  max-height: 450px;
+  max-width: 768px;
+}
+
+.icon-close-video {
+  margin: 5px 10px -5px;
 }

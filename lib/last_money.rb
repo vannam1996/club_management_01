@@ -22,5 +22,15 @@ class LastMoney
         expense
       end
     end
+
+    def last_money_detail detail
+      if detail.pay_money?
+        detail.first_money - detail.money
+      elsif detail.get_money?
+        detail.first_money + detail.money
+      else
+        Settings.default_value_return
+      end
+    end
   end
 end
