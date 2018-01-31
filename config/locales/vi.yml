@@ -534,6 +534,11 @@ vi:
       kind: "Chế độ"
     club:
       success_update: "Thông tin câu lạc bộ được cập nhập thành công"
+    video:
+      create: " THÊM MỚI VIDEO"
+      confirm_delete: "Bạn có muốn xóa video này không?"
+      deleted: "Xóa video thành công!"
+      cant_delete: "Không thể xóa video, vui lòng xem lại!"
   club_management: "Quản lý câu lạc bộ"
   none: "Không"
   location: "Địa chỉ"
@@ -1368,3 +1373,13 @@ vi:
   surplus: "Số dư"
   spending: "Chi tiêu"
   club_activity: "Hoạt động CLB"
+  videos:
+    title: "Video"
+    upload_success: "Thành công"
+    upload_errors: "Thất bại"
+    error_upload: "Xảy ra lỗi trong quá trình upload"
+    not_found_video: "Không tìm thấy video"
+    list_video:
+      no_video: "Bộ sưu tập này tạm thời chưa có video"
+  new_club_video:
+    button_browse: "Chọn file"

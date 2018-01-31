@@ -1,0 +1,39 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header text-center">
+      <h2 class="modal-title"><i class="fa fa-camera"></i> <%= t "club_manager.album.create" %></h2>
+    </div>
+    <div class="modal-body">
+      <%= form_for [@club, @album, @album.videos.build], class: "form-horizontal form-bordered" do |f| %>
+        <%= f.hidden_field :album_id, value: @album.id %>
+        <%= f.hidden_field :club_id, value: @club.slug %>
+        <fieldset>
+          <div class="form-group">
+            <label class="col-md-3 control-label" for="example-file-input"><%= t "videos.title" %></label>
+            <div class="col-md-12">
+              <div class="field-upload">
+                <span class="btn btn-success fileinput-button">
+                  <i class="glyphicon glyphicon-plus"></i>
+                  <span><%= t "new_club_video.button_browse" %></span>
+                  <%= f.file_field :url, class:"upload-image", accept: Settings.file_video %>
+                </span>
+                <label id = "name-file"></label>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+        <div class="row"><label id = "status"></label></div>
+        <div id="progress" class="row progess">
+          <div class="bar bar-upload"></div>
+        </div>
+        <div class="form-group form-actions">
+          <div class="col-xs-12 text-right">
+            <%= f.button t("close"), class: "btn btn-sm btn-warning","data-dismiss": "modal" %>
+            <%= f.button t("save"), class: "btn btn-sm btn-primary" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<%= javascript_include_tag "upload_video" %>
