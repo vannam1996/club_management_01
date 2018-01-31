@@ -1366,4 +1366,5 @@ vi:
     event_public: "Công khai"
   update_events_report: "Vui lòng cập nhật sự kiện trước khi tạo báo cáo!"
   surplus: "Số dư"
-
+  spending: "Chi tiêu"
+  club_activity: "Hoạt động CLB"

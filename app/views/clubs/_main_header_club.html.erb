@@ -64,10 +64,7 @@
               <div class="col-md-8 offset-md-2">
                 <ul class="profile-menu tab_list_detail_club">
                   <li>
-                    <%= link_to t("events"), "#event", class: "active" %>
-                  </li>
-                  <li>
-                    <%= link_to t("event_notification"), "#event-noti" %>
+                    <%= link_to t("club_activity"), "#event-noti", class: "active" %>
                   </li>
                   <li>
                     <%= link_to t("images"), "#image" %>
@@ -80,6 +77,9 @@
                   </li>
                   <li>
                     <%= link_to t("rules"), "#rules_club" %>
+                  </li>
+                  <li>
+                    <%= link_to t("spending"), "#event" %>
                   </li>
                   <% if current_user.user_clubs.joined.of_club(@club) %>
                     <li>
