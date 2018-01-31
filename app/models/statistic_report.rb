@@ -3,6 +3,7 @@ class StatisticReport < ApplicationRecord
   belongs_to :user, required: true
   has_many :report_details, dependent: :destroy, inverse_of: :statistic_report
   has_many :report_categories, through: :report_details
+  has_many :activities, as: :trackable, dependent: :destroy
 
   validates :style, presence: true
   validates :plan_next_month, presence: true

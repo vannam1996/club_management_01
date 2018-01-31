@@ -1,0 +1,4 @@
+<% if @static_report.destroy %>
+  $('.report-<%=params[:id]%>').fadeOut();
+<% end %>
+$('#page-container').append('<%= j render "shared/flash_warning" %>');

@@ -4,6 +4,7 @@ class ClubManager::StatisticReportsController < ApplicationController
   before_action :load_club
   before_action :load_report, only: %i(show edit update)
   before_action :load_report_categories, only: %i(index edit new)
+  before_action :load_static_report, only: :destroy
 
   def index
     gon_variable
@@ -21,6 +22,19 @@ class ClubManager::StatisticReportsController < ApplicationController
 
   def edit
     gon_variable
+  end
+
+  def destroy
+    if @static_report.pending? || report.rejected?
+      if @static_report.destroy
+        flash[:success] = t "success_process"
+      else
+        flash[:danger] = t "error_process"
+      end
+    end
+    respond_to do |format|
+      format.js
+    end
   end
 
   def update
@@ -92,5 +106,11 @@ class ClubManager::StatisticReportsController < ApplicationController
 
   def load_report_categories
     @report_categories = @club.organization.report_categories.active
+  end
+
+  def load_static_report
+    @static_report = StatisticReport.find_by id: params[:id]
+    return if @static_report
+    flash.now[:danger] = t "error_find_report"
   end
 end
