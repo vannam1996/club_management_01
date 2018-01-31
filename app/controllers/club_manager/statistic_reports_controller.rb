@@ -25,7 +25,7 @@ class ClubManager::StatisticReportsController < ApplicationController
 
   def update
     send_notification
-    if @report && @report.update_attributes(params_with_check_style)
+    if @report && @report.update_attributes(report_params)
       flash.now[:success] = t "update_report_success"
     elsif @report
       flash.now[:danger] = t "update_report_error"
@@ -49,18 +49,7 @@ class ClubManager::StatisticReportsController < ApplicationController
     params.require(:statistic_report).permit(:item_report, :detail_report,
       :plan_next_month, :note, :year, :others, report_details_attributes:
       [:report_category_id, :detail, :id, :_destroy])
-      .merge!(style: params[:statistic_report][:style].to_i,
-      status: :pending, reason_reject: nil)
-  end
-
-  def params_with_check_style
-    params_with_check_style = report_params
-    case params_with_check_style[:style]
-    when Settings.style_month
-      params_with_check_style.merge! time: params[:month].to_i
-    when Settings.style_quater
-      params_with_check_style.merge! time: params[:quarter].to_i
-    end
+      .merge!(status: :pending, reason_reject: nil)
   end
 
   def load_report

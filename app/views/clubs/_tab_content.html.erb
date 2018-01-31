@@ -1,20 +1,6 @@
 <div class="container">
   <div class="row">
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 tab_detail_club">
-      <div class="ui-block" id="event">
-        <div class="ui-block-title ui-block-title-small">
-          <h6 class="title col-md-1"><%= t "events" %></h6>
-          <% if @club.is_admin? current_user %>
-            <%= link_to new_club_event_path(
-              club_id: @club.id), class: "btn btn-sm btn-breez" do %>
-              <i class="fa fa-plus-circle"> </i><%= t "new_event" %>
-            <% end %>
-          <% end %>
-        </div>
-        <div id="list-event-show">
-          <%= render partial: "events/event", locals: {events: @events} %>
-        </div>
-      </div>
       <div class="ui-block" id="event-noti">
         <div class="ui-block-title ui-block-title-small">
           <h6 class="title col-md-1"><%= t "event_notification" %></h6>
@@ -50,6 +36,20 @@
       </div>
       <div class="ui-block" id="rules_club">
         <%= render "club_rules" %>
+      </div>
+      <div class="ui-block" id="event">
+        <div class="ui-block-title ui-block-title-small">
+          <h6 class="title col-md-1"><%= t "events" %></h6>
+          <% if @club.is_admin? current_user %>
+            <%= link_to new_club_event_path(
+              club_id: @club.id), class: "btn btn-sm btn-breez" do %>
+              <i class="fa fa-plus-circle"> </i><%= t "new_event" %>
+            <% end %>
+          <% end %>
+        </div>
+        <div id="list-event-show">
+          <%= render partial: "events/event", locals: {events: @events} %>
+        </div>
       </div>
       <div class="ui-block" id="statistic_report"></div>
       <div id="history-report">
