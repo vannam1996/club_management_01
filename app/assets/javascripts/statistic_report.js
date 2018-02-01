@@ -23,24 +23,27 @@ $(document).ready(function() {
   $('#detail a.add_fields').data('association-insertion-method', 'append');
   var item_selected = [];
 
-  $('#detail-report-field')
+  $('#detail-report-field-new')
   .on('cocoon:before-insert', function(e, insertedItem) {
     item_selected = []
-    $('.select_category_report_index').each(function () {
+    $('.select_category_report_new').each(function () {
       item_selected.push($(this).val());
     });
   })
   .on('cocoon:after-insert', function(e, insertedItem) {
-    id_select = insertedItem.find('.select_category_report_index').attr('id');
+    id_select = insertedItem.find('.select_category_report_new').attr('id');
+    if (typeof(id_select) === 'undefined'){
+      id_select = insertedItem.find('.select_category_report_index').attr('id');
+    }
     $.each(item_selected, function (index, value) {
       $('#' + id_select + ' option[value=' + value + ']').remove();
     });
     if ($('#' + id_select + ' option').size() === 1) {
-      $('#button-add-fields').hide();
+      $('#button-add-fields-new-form').hide();
     }
   })
   .on('cocoon:after-remove', function() {
-    $('#button-add-fields').show();
+    $('#button-add-fields-new-form').show();
   });
   $(document).on('change', '#month',function(){
     var club_id = $('#club_id').val();

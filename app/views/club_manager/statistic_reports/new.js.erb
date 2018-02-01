@@ -1,2 +1,5 @@
 $('#modal-add-report').html('<%= j render "clubs/new_report" %>');
 $('#modal-add-report').modal('show');
+<% if @report_categories.optional.blank? %>
+  $('#button-add-fields-new-form').hide();
+<% end %>

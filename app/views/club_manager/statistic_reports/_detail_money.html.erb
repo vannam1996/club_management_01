@@ -24,7 +24,7 @@
             <td></td>
             <td><%= number_to_currency detail.money, locale: :vi %></td>
           <% end %>
-            <td><%= number_to_currency detail.first_money, locale: :vi %></td>
+          <td><%= number_to_currency(LastMoney.last_money_detail(detail), locale: :vi) %></td>
           <td><%= raw(detail.detail) %></td>
         </tr>
       <% end %>

@@ -47,7 +47,6 @@
           </td>
           <td class="add-event">
             <%= number_to_currency(view_case_money_event_after(event, @club), locale: :vi) %></br>
-            <%= count_member_done event, @club if event.get_money? %>
           </td>
         </tr>
       <% end %>
