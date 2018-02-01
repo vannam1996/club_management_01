@@ -10,6 +10,9 @@ class Event < ApplicationRecord
   has_many :activities, as: :trackable, dependent: :destroy
   has_many :donate, dependent: :destroy
   has_many :albums, dependent: :destroy
+  has_many :event_details, dependent: :destroy
+
+  accepts_nested_attributes_for :event_details, allow_destroy: true
 
   belongs_to :club
   belongs_to :user
@@ -41,7 +44,7 @@ class Event < ApplicationRecord
   scope :status_public, ->is_public{where is_public: is_public}
 
   enum status: {inprocess: 0, finished: 1}
-  enum event_category: {pay_money: 1, get_money: 2, notification: 3, subsidy: 0, donate: 4}
+  enum event_category: {pay_money: 1, get_money: 2, notification: 3, subsidy: 0, donate: 4, receive_money: 5}
 
   delegate :full_name, :avatar, to: :user, prefix: :user
   delegate :name, :logo, :slug, to: :club, prefix: :club
@@ -79,7 +82,7 @@ class Event < ApplicationRecord
   def update_money
     if self.pay_money?
       self.club.update_attributes money: self.club.money + self.expense
-    elsif self.donate? || self.subsidy?
+    elsif !self.notification? && !self.get_money?
       self.club.update_attributes money: self.club.money - self.expense
     end
   end

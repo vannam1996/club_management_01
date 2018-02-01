@@ -14,7 +14,7 @@
                 <h3 class="text-center"><strong><%= @club.name %></strong></h3>
               </div>
               <% if params[:event_category] && check_event_category(params[:event_category]) %>
-                <%= render "form_club_event" %>
+                <%= render "form_edit_event" %>
               <% else %>
                 <%= render "event_notifications/form_club_event_noti" %>
               <% end %>
@@ -25,4 +25,4 @@
     </div>
   </div>
 </div>
-<%= javascript_include_tag "event" %>
+<%= javascript_include_tag "money_format" %>

@@ -9,10 +9,10 @@
     </label>
     <div class="col-md-12">
       <%= f.select(:event_category, options_for_select(category_event,
-        if @event.present?
-          {selected: Event.event_categories[@event.event_category]}
-        end), {},
-        class: "form-control") %>
+        selected: Event.event_categories[@event.event_category]),
+        {}, class: "form-control", disabled: true) %>
+      <%= f.hidden_field :event_category, value:
+        Event.event_categories[@event.event_category] %>
     </div>
   </div>
   <div class="form-group col-md-12">
@@ -44,41 +44,39 @@
       <%= f.label :is_public, t("style_event.event_public"), class: "col-md-3 label-status" %>
     </div>
   </div>
-  <div class="form-group col-md-12 expense_details hide-div" id="expense_details">
-    <% @event.event_details.build %>
-    <div class="row" id="add_field_detail">
-      <label class="col-md-1 col-xl-2 label-detail"><%= t("detail_event") %></label>
-      <%= link_to_add_association f, :event_details,
-        partial: "event_details/event_detail_fields", class: "btn btn-breez btn-sm button-add-detail col-md-1" do %>
-        <i class="fa fa-plus"></i>
+  <% if @event.pay_money? || @event.receive_money? %>
+    <div class="form-group col-md-12 expense_details" id="expense_details">
+      <% @event.event_details.build %>
+      <div class="row" id="add_field_detail">
+        <label class="col-md-1 col-xl-2 label-detail"><%= t("detail_event") %></label>
+        <%= link_to_add_association f, :event_details,
+          partial: "event_details/event_detail_fields", class: "btn btn-breez btn-sm button-add-detail col-md-1" do %>
+          <i class="fa fa-plus"></i>
+        <% end %>
+      </div>
+      <%= f.fields_for :event_details do |detail| %>
+        <% if detail.object.id.present? %>
+          <%= render partial: "event_details/event_detail_fields", locals: {f: detail} %>
+        <% end %>
       <% end %>
     </div>
-    <%= f.fields_for :event_details do |detail| %>
-      <div class="nested-fields full-width">
-        <div class="row">
-          <div class="col-md-5">
-            <%= detail.text_field :description, class: "form-control input-text",
-              placeholder: t("club_manager.event.description") %>
-          </div>
-          <div class="col-md-5 push-md-1">
-            <%= detail.text_field :money, class: "form-control input-text money-input",
-              placeholder: t("club_manager.event.expense_holder"), required: true %>
-          </div>
-        </div>
-      </div>
-    <% end %>
-  </div>
+  <% end %>
   <div class="form-group col-md-12 expense">
-    <label id="get_money_member" class="hide-div"><%= t("amount_member") %></label>
-    <label id="subsidy" class="hide-div"><%= t("amount_for") %></label>
     <% if @event.present? && @event.notification? %>
       <%= f.hidden_field :expense, value: nil %>
     <% else %>
-      <%= f.label(:expense, class: "control-label", id: "label-expense") do %>
-        <%= t("amount_for") %>
+      <% if @event.get_money? %>
+        <%= f.label(:expense, class: "control-label", id: "label-expense") do %>
+          <%= t("amount_member") %>
+        <% end %>
+      <% else %>
+        <%= f.label(:expense, class: "control-label", id: "label-expense") do %>
+          <%= t("amount_for") %>
+        <% end %>
+        <%= f.text_field :expense, class: "form-control input-text",
+          placeholder: t("club_manager.event.expense_holder"), required: true,
+          disabled: check_event_have_details(@event) %>
       <% end %>
-      <%= f.text_field :expense, class: "form-control input-text",
-        placeholder: t("club_manager.event.expense_holder"), required: true %>
     <% end %>
   </div>
   <div class="form-group col-md-12">
@@ -108,20 +106,6 @@
     </label>
     <div class="col-md-7">
       <%= f.file_field :image %>
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="col-md-2 control-label" for="example-text-input">
-      <%= t "form_club_event.album" %>
-    </label>
-    <div class="row">
-      <div class="radio col-md-1">
-        <%= check_box_tag "create_albums", Settings.value_default_check_box, check_albums(@event),
-          disabled: check_action_and_albums(params[:action], @event) %>
-      </div>
-      <div class="col-md-3">
-        <%= t "form_club_event.create_album" %>
-      </div>
     </div>
   </div>
   <div class="form-group">

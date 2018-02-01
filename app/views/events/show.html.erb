@@ -23,7 +23,7 @@
                     <i class="fa fa-arrow-left"></i>
                   <% end %>
                   <% if @club.is_admin?(current_user) && @event.by_user?(current_user) %>
-                    <%= link_to edit_club_event_path(@club, @event),
+                    <%= link_to edit_club_event_path(@club, @event, event_category: @event.event_category),
                       title: t("edit"), class: "btn btn-sm btn-breez" do %>
                       <i class="fa fa-pencil"></i>
                     <% end %>

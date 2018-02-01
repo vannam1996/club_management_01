@@ -28,13 +28,16 @@ module EventsHelper
 
   def view_case_money_event_after event, club
     members_done = club.users.done_by_ids(event.budgets.map(&:user_id))
-    if event.get_money?
+    case event.event_category
+    when Settings.get_money
       after_money = event.amount.to_i + (members_done.size.to_i * event.expense.to_i)
-    elsif event.pay_money?
+    when Settings.pay_money
       after_money = event.amount.to_i - event.expense.to_i
-    elsif event.subsidy?
+    when Settings.subsidy
       after_money = event.amount.to_i + event.expense.to_i
-    elsif event.donate?
+    when Settings.donate
+      after_money = event.amount.to_i + event.expense.to_i
+    when Settings.receive_money
       after_money = event.amount.to_i + event.expense.to_i
     else
       after_money = nil
@@ -67,7 +70,8 @@ module EventsHelper
     [[t("subsidy"), Event.event_categories[:subsidy]],
     [t("get_money"), Event.event_categories[:get_money]],
     [t("pay_money"), Event.event_categories[:pay_money]],
-    [t("donate.donate"), Event.event_categories[:donate]]]
+    [t("donate.donate"), Event.event_categories[:donate]],
+    [t("receive_money"), Event.event_categories[:receive_money]]]
   end
 
   def confirm_donate donate, club
@@ -93,5 +97,10 @@ module EventsHelper
 
   def check_action_and_albums action, event
     action == Settings.action_edit && check_albums(event)
+  end
+
+  def check_event_have_details event
+    Event.event_categories.key(Settings.value_pay_money) == event.event_category ||
+      Event.event_categories.key(Settings.value_receive_money) == event.event_category
   end
 end

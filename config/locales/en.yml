@@ -1026,6 +1026,7 @@ en:
       money: "Money"
       activity: "Activity"
       other: "Other"
+      member: "Member"
     form_new:
       name_category: "Category name"
       style_event: "Style event"
@@ -1039,6 +1040,7 @@ en:
       activity: "Activity"
       other: "Other"
       style: "Style"
+      member: "Member"
     report_category:
       confirm_delete_category: "Delete this category"
       pay_money: "Pay money"
@@ -1050,11 +1052,13 @@ en:
       money: "Money"
       activity: "Activity"
       other: "Other"
+      member: "Member"
     edit_report_category:
       choose-style-event: "Choose style event"
       money: "Money"
       activity: "Activity"
       other: "Other"
+      member: "Member"
     modal_style_event:
       pay_money: "Pay money"
       get_money: "Get Money"
@@ -1066,6 +1070,7 @@ en:
       money: "Money"
       activity: "Activity"
       other: "Other"
+      member: "Member"
   statistic_report_helper:
     important: " *"
   events_club:

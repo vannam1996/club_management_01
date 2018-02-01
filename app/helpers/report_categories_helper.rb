@@ -32,9 +32,11 @@ module ReportCategoriesHelper
     options = get_option_create report_categories
     case report_category.style
     when Settings.key_money_enum
-      options.except :activity
+      options.except :activity, :member
     when Settings.key_activity_enum
-      options.except :money
+      options.except :money, :member
+    when Settings.key_activity_enum
+      options.except :activity, :money
     else
       options
     end
@@ -51,6 +53,8 @@ module ReportCategoriesHelper
         options = options.except :money
       elsif category.style == Settings.key_activity_enum
         options = options.except :activity
+      elsif category.style == Settings.key_member_enum
+        options = options.except :member
       end
     end
     options

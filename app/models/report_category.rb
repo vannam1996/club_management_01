@@ -6,7 +6,7 @@ class ReportCategory < ApplicationRecord
 
   enum status: {obligatory: 1, optional: 0}
   enum status_active: {active: 1, not_active: 0}
-  enum style: {money: 1, activity: 2, other: 3}
+  enum style: {money: 1, activity: 2, member: 4, other: 3}
 
   scope :order_desc, ->{order created_at: :desc}
   scope :load_category, ->{where.not style_event: nil}

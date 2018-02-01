@@ -26,5 +26,4 @@ class StatisticReport < ApplicationRecord
   scope :style, ->style{where "style = ?", style}
 
   accepts_nested_attributes_for :report_details, allow_destroy: true
-
 end

@@ -1,0 +1,15 @@
+<div class="nested-fields full-width">
+  <div class="row">
+    <div class="col-md-5">
+      <%= f.text_field :description, class: "form-control input-text",
+        placeholder: t("club_manager.event.description"), required: true %>
+    </div>
+    <div class="col-md-5 push-md-1">
+      <%= f.text_field :money, class: "form-control input-text money-input",
+        placeholder: t("club_manager.event.expense_holder"), required: true %>
+    </div>
+    <div class="col-md-1 push-md-1">
+      <%= link_to_remove_association button_tag('-', type: "button", class: "btn btn-primary"), f %>
+    </div>
+  </div>
+</div>
