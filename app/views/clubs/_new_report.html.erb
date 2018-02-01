@@ -23,7 +23,7 @@
                 <div class="col-md-3 push-md-1 month">
                   <label for="contact-name"><%= t "month" %></label></br>
                   <%= select_tag "month", options_for_select(option_select(
-                    StatisticReport.months)), class: "form-control select_custom" %>
+                    StatisticReport.months), Date.current.month), class: "form-control select_custom" %>
                 </div>
                 <div class="col-md-3 push-md-1 quarter", style="display: none;">
                   <label for="contact-name"><%= t "quarter" %></label></br>

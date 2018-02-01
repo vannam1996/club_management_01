@@ -18,7 +18,7 @@ class LastMoney
         expense * event.budgets.size
       when event.pay_money?
         - expense
-      when event.subsidy?
+      when event.subsidy? || event.donate?
         expense
       end
     end

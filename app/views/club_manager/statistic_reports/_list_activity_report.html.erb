@@ -1,4 +1,4 @@
-<% budgets = @report.report_details.other %>
+<% budgets = @report.report_details.other.load_date_report %>
 <% if budgets.present? %>
   <label for="contact-name"><%= budgets.first.report_category_name %> *</label>
   (<%= l budgets.first.date_event, format: :short %> - <%= l budgets.last.date_event, format: :short %>)</br>

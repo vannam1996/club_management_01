@@ -14,17 +14,18 @@
               </th>
             </tr>
             <tr>
+              <th class="table-paymoney"><%= t "time_report" %></th>
               <th class="table-paymoney"><%= t "report_categories.report_category.get_money" %></th>
               <th class="table-paymoney"><%= t "report_categories.report_category.pay_money" %></th>
               <th class="table-paymoney"><%= t "surplus" %></th>
               <th class="table-content"><%= t "content" %></th>
-              <th><%= t "time_report" %></th>
             </tr>
           </thead>
           <tbody>
             <% moneys = LastMoney.new events %>
             <% events.each do |event| %>
               <tr>
+                <td><%= l event.created_at, format: :short %></i></td>
                 <td class="check-user">
                   <% unless event.pay_money? || event.notification? %>
                     <%= number_to_currency(money_expense(event), locale: :vi) %>
@@ -37,19 +38,18 @@
                 </td>
                 <td>
                   <% if event.expense.present? %>
-                    <%= event.amount + LastMoney.last_money(event)%>
+                    <%= number_to_currency(event.amount + LastMoney.last_money(event).to_i, locale: :vi) %>
                   <% else %>
-                    <%= event.amount %>
+                    <%= number_to_currency(event.amount, locale: :vi ) %>
                   <% end %>
                 </td>
                 <td>
                   <%= raw(event.description) %>
                 </td>
-                <td><%= l event.created_at, format: :short %></i></td>
               </tr>
             <% end %>
             <tr>
-              <td colspan="5" class="text-center">
+              <td colspan="5">
                 <strong>
                   <%= t "money_last" %>:
                   <%= number_to_currency(moneys.surplus(events.first.amount), locale: :vi) %>
