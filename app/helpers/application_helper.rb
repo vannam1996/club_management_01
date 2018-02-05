@@ -92,4 +92,10 @@ module ApplicationHelper
       t "errors_style_not_exist"
     end
   end
+
+  def get_class_checkbox data_boolean
+    if data_boolean
+      Settings.class_check_box_checked
+    end
+  end
 end

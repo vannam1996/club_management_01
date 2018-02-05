@@ -252,7 +252,7 @@ default_money: 0
 key_other_style_report_details: "other"
 key_pay_money_report_details: "pay_money"
 key_get_money_report_details: "get_money"
-array_style_event_money: [1, 2, 0, 4]
+array_style_event_money: [1, 2, 0, 4, 5]
 array_style_event_activity: [3]
 array_style_event_member: [3]
 key_money_enum: "money"
@@ -269,3 +269,5 @@ file_video: "video/mp3, video/mp4, video/3gp"
 default_value_return: 0
 value_pay_money: 1
 value_receive_money: 5
+value_destroy_attribute_params: "1"
+class_check_box_checked: "active"

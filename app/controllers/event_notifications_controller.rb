@@ -4,6 +4,12 @@ class EventNotificationsController < ApplicationController
   authorize_resource class: false, through: :club
   before_action :load_event_notification, only: :update
 
+  def show
+    @events_notification = @club.events.newest
+      .in_categories(Event.event_categories[:notification])
+      .page(params[:page]).per Settings.per_page
+  end
+
   def new
     @event = @club.events.new
   end

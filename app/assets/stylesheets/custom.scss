@@ -692,7 +692,7 @@ body{
 }
 
 a.pull-right.add_fields {
-  margin-top: -20px;
+  margin-top: -15px;
   margin-left: 40px;
   margin-bottom: 0px;
 }
@@ -834,4 +834,51 @@ a.pull-right.add_fields {
 .label-detail {
   max-width: 10%;
   margin-top: 9px;
+}
+
+.toggle-btn{
+  width: 45px;
+  margin-bottom: -7px;
+  height: 20px;
+  border-radius: 50px;
+  display: inline-block;
+  position: relative;
+  background : url('uncheck.png') no-repeat 22px center #e74c3c;
+  cursor: pointer;
+  -webkit-transition: background-color .40s ease-in-out;
+  -moz-transition: background-color .40s ease-in-out;
+  -o-transition: background-color .40s ease-in-out;
+  transition: background-color .40s ease-in-out;
+  cursor:pointer;
+  &.active{
+    background : url('check.png') no-repeat 8px center #2ecc71;
+    .round-btn{
+      left: 25px;
+    }
+  }
+  .round-btn{
+    width: 16px;
+    height: 16px;
+    background-color: #fff;
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+    left: 3px;
+    top: 50%;
+    margin-top: -8px;
+    -webkit-transition: all .30s ease-in-out;
+  -moz-transition: all .30s ease-in-out;
+  -o-transition: all .30s ease-in-out;
+  transition: all .30s ease-in-out;
+  }
+  .cb-value{
+    position: absolute;
+    left:0;
+    right:0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 9;
+    cursor:pointer;
+  }
 }

@@ -6,10 +6,17 @@
   </div>
 </td>
 <td class="text-center column-select">
-  <%= check_box_tag :status, nil, report_category.obligatory? , id: "status_report_category" %>
+  <div class="toggle-btn <%= get_class_checkbox report_category.obligatory? %>">
+    <%= check_box_tag :status, nil, report_category.obligatory? , id: "status_report_category",
+      class: "cb-value" %>
+    <span class="round-btn"></span>
+  </div>
 </td>
 <td class="text-center">
-  <%= check_box_tag :status_active, nil, report_category.active? , id: "active_report_category" %>
+  <div class="toggle-btn <%= get_class_checkbox report_category.active? %>">
+    <%= check_box_tag :status_active, nil, report_category.active?, id: "active_report_category", class: "cb-value" %>
+    <span class="round-btn"></span>
+</div>
 </td>
 <td class="text-center">
   <%= report_category.report_details.size %>
@@ -34,3 +41,4 @@
   <% end %>
 </td>
 <%= javascript_include_tag "edit_report_category" %>
+<%= javascript_include_tag "check_box" %>

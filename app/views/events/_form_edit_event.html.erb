@@ -36,12 +36,12 @@
     </div>
   </div>
   <div class="form-group">
-    <label class="col-md-2 control-label" for="example-text-input">
-      <%= t "club_manager.event.kind" %>
+    <label class="col-md-2 control-label label-check" for="example-text-input">
+      <%= t "style_event.event_public" %>
     </label>
-    <div class="row">
-      <%= f.check_box :is_public, class: "radio col-md-1", checked: @event.is_public %>
-      <%= f.label :is_public, t("style_event.event_public"), class: "col-md-3 label-status" %>
+    <div class="toggle-btn <%= get_class_checkbox @event.is_public? %>">
+      <%= f.check_box :is_public, class: "cb-value", checked: @event.is_public %>
+      <span class="round-btn"></span>
     </div>
   </div>
   <% if @event.pay_money? || @event.receive_money? %>
@@ -93,7 +93,7 @@
     <div class="col-md-12">
       <div class="form-group row" data-date-format="dd/mm/yyyy">
         <%= f.date_field :date_start, class: "form-control text-center input-text col-md-5" %>
-        <span class="text-center col-md-1">
+        <span class="text-center col-md-2">
           <h3><i class="fa fa-angle-right"></i></h3>
         </span>
         <%= f.date_field :date_end, class: "form-control text-center input-text col-md-5 pull-right" %>
@@ -104,7 +104,7 @@
     <label class="col-md-3 control-label" for="example-file-input">
       <%= t "club_manager.event.image" %>
     </label>
-    <div class="col-md-7">
+    <div class="col-md-12">
       <%= f.file_field :image %>
     </div>
   </div>
@@ -126,3 +126,4 @@
     </div>
   </div>
 <% end %>
+<%= javascript_include_tag "check_box" %>
