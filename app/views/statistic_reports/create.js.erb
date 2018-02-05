@@ -1,6 +1,6 @@
 <% if @statistic_report.errors.any? %>
   $('.error-messages').html('<%= j render partial: "shared/error_messages", locals: {object: @statistic_report} %>');
-<% elsif @reports.size == Settings.count_render_list_report %>
+<% elsif @reports && @reports.size == Settings.count_render_list_report %>
   $('#list-report').html('<%= j render partial: "club_manager/statistic_reports/list_report",
     locals: {reports: @reports} %>');
   $('#modal-add-report').modal('hide');

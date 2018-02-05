@@ -94,12 +94,13 @@
     </label>
     <div class="col-md-12">
       <div class="form-group row" data-date-format="dd/mm/yyyy">
-        <%= f.date_field :date_start, class: "form-control text-center input-text col-md-5" %>
+        <%= f.text_field :date_start, value: format_date(Date.current),
+          class: "form-control text-center input-text col-md-5 datepicker white-bgr", readonly: true %>
         <span class="text-center col-md-2">
           <h3><i class="fa fa-angle-right"></i></h3>
         </span>
-        <%= f.date_field :date_end, required: true,
-          class: "form-control text-center input-text col-md-5 pull-right" %>
+        <%= f.text_field :date_end, value: format_date(Date.current),
+          class: "form-control text-center input-text col-md-5 pull-right datepicker white-bgr", readonly: true %>
       </div>
     </div>
   </div>

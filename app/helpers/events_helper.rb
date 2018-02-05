@@ -103,4 +103,16 @@ module EventsHelper
     Event.event_categories.key(Settings.value_pay_money) == event.event_category ||
       Event.event_categories.key(Settings.value_receive_money) == event.event_category
   end
+
+  def format_date date
+    date.strftime(t("date.formats.short")) if date
+  end
+
+  def check_date date
+    if date.present?
+      date
+    else
+      Date.current
+    end
+  end
 end

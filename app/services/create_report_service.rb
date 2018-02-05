@@ -47,7 +47,7 @@ class CreateReportService
     case
     when event.notification?
       :other
-    when event.subsidy? || event.donate?
+    when event.subsidy? || event.donate? || event.receive_money?
       :get_money
     else
       event.event_category

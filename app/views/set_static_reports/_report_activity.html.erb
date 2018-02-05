@@ -1,6 +1,10 @@
 <label for="contact-name"><%= category.name %> *</label></br>
 <% if events.present? %>
-  (<%= l events.first.created_at, format: :short %> - <%= l events.last.created_at, format: :short %>)</br>
+  <% if events.first.date_end %>
+    (<%= l events.first.date_end.beginning_of_month, format: :short %> - <%= l events.last.date_end.end_of_month, format: :short %>)</br>
+  <% else %>
+    (<%= l events.first.created_at, format: :short %> - <%= l events.last.created_at, format: :short %>)</br>
+  <% end %>
   <table class="table ui-block table-bordered results">
     <thead>
       <tr>
@@ -12,7 +16,11 @@
     <tbody>
       <% events.each do |event| %>
         <tr>
-          <td><%= l event.created_at, format: :short %></td>
+          <% if events.first.date_end %>
+            <td><%= l event.date_end, format: :short %></td>
+          <% else %>
+            <td><%= l event.created_at, format: :short %></td>
+          <% end %>
           <td class="check-user">
             <%= event.name %>
           </td>

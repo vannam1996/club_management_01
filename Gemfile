@@ -47,6 +47,7 @@ gem "cocoon"
 gem "cropper-rails"
 gem "jquery-fileupload-rails"
 gem "streamio-ffmpeg"
+gem "jquery-ui-rails"
 
 source "https://rails-assets.org" do
   gem "rails-assets-chosen"
