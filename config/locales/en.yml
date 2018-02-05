@@ -445,6 +445,9 @@ en:
       detail_activity:
         date: "Date"
         detail: "Description"
+      detail_member:
+        name_member: "Name"
+        events_join: "Event"
     money: "Money"
     cant_fount: "Can found club!"
     user_club:

@@ -2,6 +2,8 @@
   <%= render partial: "club_manager/statistic_reports/detail_money", locals: {array_detail: array_detail} %>
 <% elsif array_detail.first.report_category.activity? %>
   <%= render partial: "club_manager/statistic_reports/detail_activity", locals: {array_detail: array_detail} %>
+<% elsif array_detail.first.report_category.member? %>
+  <%= render partial: "club_manager/statistic_reports/detail_member", locals: {array_detail: array_detail} %>
 <% else %>
   <ul>
     <% array_detail.each do |report_detail| %>
