@@ -7,7 +7,9 @@ class CountMoney
     count = Settings.default_money
     if @params
       @params.each do |key, value|
-        count += value[:money].to_i if value[:money]
+        if value[:money] && value[:_destroy] != Settings.value_destroy_attribute_params
+          count += value[:money].to_i
+        end
       end
     end
     count

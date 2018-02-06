@@ -102,7 +102,7 @@ Rails.application.routes.draw do
       post "/videos/upload", to: "videos#upload"
     end
     resources :budgets
-    resources :event_notifications, except: [:show, :index, :destroy]
+    resources :event_notifications, except: [:index, :destroy]
   end
 
   resources :invite_join_clubs, only: :create

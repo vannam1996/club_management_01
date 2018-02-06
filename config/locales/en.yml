@@ -482,6 +482,7 @@ en:
       success_create: "Create new album successfull!"
       success_update: "Album's name update successfull!"
     event:
+      notification_name: "Notification's name"
       status: "Status"
       new: "New event"
       name_guide: "Event's name cant blank and must have atleast 10 character!"

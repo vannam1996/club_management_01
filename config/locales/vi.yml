@@ -505,6 +505,7 @@ vi:
       success_create: "Tạo mới bộ sưu tập thành công!"
       success_update: "Tên bộ sưu tập đưọc cập nhập thành công!"
     event:
+      notification_name: "Tên thông báo"
       status: "Trạng thái"
       new: "Tạo mới sự kiện"
       name_guide: "Tên sự kiện không thể để trống và phải có ít nhất 10 ký tự"

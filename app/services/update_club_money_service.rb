@@ -12,7 +12,7 @@ class UpdateClubMoneyService
   def update_money
     if @event.event_category == Settings.spend && @event.status?
       @club.money -= @event.expense
-    elsif @event.get_money? && @event.status? || @event.receive_money? && @event.status?
+    elsif @event.get_money? && @event.status?
       @club.money += @event.expense
     end
     @club.save
