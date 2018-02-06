@@ -4,8 +4,10 @@
     <% events = service.load_events %>
     <% if !category.style_event.include?(Event.event_categories[:notification]) %>
       <%= render partial: "report_budgets", locals: {events: events, category: category} %>
-    <% else %>
+    <% elsif category.activity? %>
       <%= render partial: "report_activity", locals: {events: events, category: category} %>
+    <% elsif category.member? %>
+      <%= render partial: "report_member", locals: {events: events, category: category} %>
     <% end %>
   <% else %>
     <div class="nested-fields">

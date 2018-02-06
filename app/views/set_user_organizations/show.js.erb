@@ -4,7 +4,7 @@
     locals: {members: @user_members, admins: @user_admins} %>');
 <% else %>
   $('.load-member').append('<%= escape_javascript(render partial: "load_member",
-    locals: {members: @user_members, members_not_manager: @user_members}) %>')
+    locals: {members: @user_members, members_not_manager: @user_members}) %>');
   $('#view-more').remove();
   <% if @user_members.current_page == @user_members.total_pages %>
     $('#view-more').remove();

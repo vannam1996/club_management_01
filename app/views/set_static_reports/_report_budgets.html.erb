@@ -1,4 +1,4 @@
-<label for="contact-name"><%= category.name %> *</label>
+<label for="contact-name"><%= category.name %> *</label></br>
 <% if events.present? %>
   (<%= l events.first.created_at, format: :short %> - <%= l events.last.created_at, format: :short %>)</br>
   <table class="table ui-block table table-bordered results">

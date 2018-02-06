@@ -51,16 +51,20 @@ class StatisticReportsController < ApplicationController
   end
 
   def create
-    if @statistic_report.save
-      create_detail_report @statistic_report
-      flash.now[:success] = t "create_statistic_report_success"
-      create_acivity @statistic_report, Settings.create_report,
-        @club.organization, current_user, Activity.type_receives[:organization_manager]
-      @reports = @club.statistic_reports.order_by_created_at
-        .page(params[:page]).per Settings.per_page_report
-    else
-      flash.now[:danger] = t "create_statistic_report_fail"
+    ActiveRecord::Base.transaction do
+      if @statistic_report.save!
+        create_detail_report @statistic_report
+        flash.now[:success] = t "create_statistic_report_success"
+        create_acivity @statistic_report, Settings.create_report,
+          @club.organization, current_user, Activity.type_receives[:organization_manager]
+        @reports = @club.statistic_reports.order_by_created_at
+          .page(params[:page]).per Settings.per_page_report
+      else
+        flash.now[:danger] = t "create_statistic_report_fail"
+      end
     end
+  rescue
+    flash.now[:danger] = t "create_statistic_report_fail"
   end
 
   private

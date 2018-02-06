@@ -1,0 +1,26 @@
+<label for="contact-name"><%= category.name %> *</label></br>
+<% if events.present? %>
+  <label for="contact-name"><%= t "total_event" %>:</label> <strong><%= events.size %></strong>
+  <div class="list-scroll">
+    <table class="table ui-block table-bordered results list-scroll">
+      <thead>
+        <tr>
+          <th><%= t "name" %></th>
+          <th class="table-content"><%= t "event_participation" %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @club.user_clubs.each do |user_club| %>
+          <tr>
+            <td><%= user_club.user.full_name %></td>
+            <td class="check-user">
+              <%= LastMoney.count_event(user_club.user_id, events) %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% else %>
+  <%= t "not_event" %>
+<% end %>
