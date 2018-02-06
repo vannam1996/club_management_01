@@ -43,12 +43,11 @@ class CreateReportService
       first_money: event.amount, date_event: event.created_at, name_event: event.name)
   end
 
-
   def style_detail_report event
     case
     when event.notification?
       :other
-    when event.subsidy? || event.donate? || event.receive_money?
+    when event.subsidy? || event.donate?
       :get_money
     else
       event.event_category

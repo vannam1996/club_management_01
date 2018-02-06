@@ -83,11 +83,11 @@ module ApplicationHelper
   end
 
   def type_report data
-    case data.style
+    case data.style.to_i
     when StatisticReport.styles[:monthly]
-      t StatisticReport.months.key(data.time).to_s
+      t StatisticReport.months.key(data.time.to_i).to_s
     when StatisticReport.styles[:quarterly]
-      t StatisticReport.quarters.key(data.time).to_s
+      t StatisticReport.quarters.key(data.time.to_i).to_s
     else
       t "errors_style_not_exist"
     end

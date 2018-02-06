@@ -24,6 +24,7 @@ class Event < ApplicationRecord
   validates :name, presence: true, length: {minimum: Settings.min_name}
   validates :expense, length: {maximum: Settings.max_exspene}
   validates :location, length: {maximum: Settings.max_location}
+  validates :date_end, presence: true
 
   scope :top_like, ->{order num_like: :desc}
   scope :of_month_payment, ->month_payment{where month_of_payment: month_payment}
@@ -36,6 +37,7 @@ class Event < ApplicationRecord
   scope :without_notification, ->category_notification do
     where.not event_category: category_notification
   end
+  scope :by_months, ->months{where("month(date_end) in (?)", months)}
   scope :by_created_at, ->(first_date, end_date) do
     where("DATE(created_at) BETWEEN DATE(?) AND DATE(?)", first_date, end_date)
   end

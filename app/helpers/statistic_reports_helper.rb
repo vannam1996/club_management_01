@@ -37,7 +37,7 @@ module StatisticReportsHelper
   end
 
   def load_event club, category
-    club.events.by_event(category).by_quarter(Date.current.month).by_current_year
+    club.events.by_event(category).by_months(Date.current.month).by_current_year
   end
 
   def money_expense event
