@@ -95,6 +95,8 @@ messages_load_more: 30
 subsidy: "subsidy"
 pay_money: "pay_money"
 get_money: "get_money"
+receive_money: "receive_money"
+donate: "donate"
 max_exspene: 9
 tools_url: "https://wsm.framgia.vn/all-tools"
 club_description: 200
@@ -252,8 +254,10 @@ key_pay_money_report_details: "pay_money"
 key_get_money_report_details: "get_money"
 array_style_event_money: [1, 2, 0, 4]
 array_style_event_activity: [3]
+array_style_event_member: [3]
 key_money_enum: "money"
 key_activity_enum: "activity"
+key_member_enum: "member"
 folder_public: "/public"
 folder_upload: "/upload"
 folder_video: "/videos"
@@ -263,3 +267,5 @@ path_images_screenshot: "public/upload/images/"
 ext_image_screen: ".png"
 file_video: "video/mp3, video/mp4, video/3gp"
 default_value_return: 0
+value_pay_money: 1
+value_receive_money: 5

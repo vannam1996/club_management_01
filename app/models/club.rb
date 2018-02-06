@@ -122,6 +122,14 @@ class Club < ApplicationRecord
     self.update_attribute :money, self.money.to_i + (change.to_i - event.expense.to_i)
   end
 
+  def receive_money_change event, change
+    self.update_attribute :money, self.money.to_i + (change.to_i - event.expense.to_i)
+  end
+
+  def money_receive money
+    self.update_attributes! money: self.money + money
+  end
+
   def display_organization
     return "" if self.nil?
     self.organization_name.to_s

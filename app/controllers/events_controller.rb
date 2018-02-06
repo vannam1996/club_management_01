@@ -4,6 +4,8 @@ class EventsController < ApplicationController
   before_action :load_event, only: [:show, :edit, :update, :destroy]
   before_action :event_is_inprocess, only: [:destroy, :edit]
   before_action :check_is_admin, only: [:new, :edit, :destroy]
+  before_action :replace_string_in_money, only: [:create, :update]
+  before_action :set_gon_varible
 
   def new
     @event = Event.new
@@ -18,9 +20,11 @@ class EventsController < ApplicationController
         Activity.type_receives[:club_member]
       case params[:event][:event_category].to_i
       when Event.event_categories[:pay_money]
-        @club.money_pay(params[:event][:expense].to_i)
+        @club.money_pay(event_params_with_attributes[:expense].to_i)
       when Event.event_categories[:subsidy]
         @club.money_subsidy(params[:event][:expense].to_i)
+      when Event.event_categories[:receive_money]
+        @club.money_receive(event_params_with_attributes[:expense].to_i)
       end
       flash[:success] = t "club_manager.event.success_create"
       redirect_to club_path params[:club_id]
@@ -52,12 +56,15 @@ class EventsController < ApplicationController
 
   def update
     ActiveRecord::Base.transaction do
-      if params[:event][:event_category].to_i == Event.event_categories[:pay_money]
-        @club.pay_money_change(@event, params[:event][:expense])
-      elsif params[:event][:event_category].to_i == Event.event_categories[:subsidy]
-        @club.subsidy_money_change(@event, params[:event][:expense])
+      case @event.event_category
+      when Settings.pay_money
+        @club.pay_money_change(@event, event_params_with_attributes[:expense].to_i)
+      when Settings.subsidy
+        @club.subsidy_money_change(@event, params[:event][:expense].to_i)
+      when Settings.receive_money
+        @club.receive_money_change(@event, event_params_with_attributes[:expense].to_i)
       end
-      club_money = UpdateClubMoneyService.new @event, @club, event_params
+      club_money = UpdateClubMoneyService.new @event, @club, event_params_with_money_details
       club_money.update_event
       club_money.update_money
       create_acivity @event, Settings.update, @event.club, current_user,
@@ -98,10 +105,8 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    event_category = params[:event][:event_category].to_i
     params.require(:event).permit(:club_id, :name, :date_start, :status,
       :expense, :date_end, :location, :description, :image, :user_id, :is_public)
-      .merge! event_category: event_category
   end
 
   def check_is_admin
@@ -120,16 +125,51 @@ class EventsController < ApplicationController
 
   def event_params_with_album
     if params[:create_albums].present?
-      event_params.merge! albums_attributes: [name: params[:event][:name],
+      event_params_with_money_details.merge! albums_attributes: [name: params[:event][:name],
         club_id: @club.id]
     else
-      event_params
+      event_params_with_money_details
     end
+  end
+
+  def event_params_with_money_details
+    case params[:event][:event_category].to_i
+    when Event.event_categories[:pay_money]
+      event_params_with_attributes
+    when Event.event_categories[:receive_money]
+      event_params_with_attributes
+    else
+      event_params.merge! event_category: params[:event][:event_category].to_i
+    end
+  end
+
+  def replace_string_in_money
+    if params[:event] && params[:event][:expense]
+      params[:event][:expense].gsub!(",", "")
+    end
+    if params[:event] && params[:event][:event_details_attributes]
+      params[:event][:event_details_attributes].each do |key, value|
+        value[:money].gsub!(",", "") if value[:money]
+      end
+    end
+  end
+
+  def event_params_with_attributes
+    event_category = params[:event][:event_category].to_i
+    count_money = CountMoney.new params[:event][:event_details_attributes]
+    params.require(:event).permit(:club_id, :name, :date_start, :status,
+      :date_end, :location, :description, :image, :user_id, :is_public,
+      event_details_attributes: [:description, :money, :id, :_destroy])
+      .merge! event_category: event_category, expense: count_money.money
   end
 
   def update_money event
     if event.get_money?
       event.club.update_attributes money: event.club.money - (event.budgets.size * event.expense.to_i)
     end
+  end
+
+  def set_gon_varible
+    gon.event_categories = Event.event_categories
   end
 end

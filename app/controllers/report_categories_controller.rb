@@ -55,10 +55,13 @@ class ReportCategoriesController < ApplicationController
   end
 
   def category_params_with_check_style params_category
-    if params_category[:style] == ReportCategory.styles[:money]
+    case params_category[:style]
+    when ReportCategory.styles[:money]
       params_category.merge! style_event: Settings.array_style_event_money
-    elsif params_category[:style] == ReportCategory.styles[:activity]
+    when ReportCategory.styles[:activity]
       params_category.merge! style_event: Settings.array_style_event_activity
+    when ReportCategory.styles[:member]
+      params_category.merge! style_event: Settings.array_style_event_member
     else
       params_category.merge! style_event: nil
     end

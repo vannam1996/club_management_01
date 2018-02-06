@@ -16,6 +16,7 @@ vi:
     reject: "Từ chối"
   validation_moth_budget: "Vui lòng chọn tháng trước khi lấy dữ liệu!!"
   amount_for: "Số tiền"
+  amount_member: "Số tiền (theo thành viên)"
   month_payment: "Tháng đóng tiền:"
   confirm: "Xác nhận"
   select_user_settlement: "Chọn thành viên nộp quỹ"
@@ -532,6 +533,7 @@ vi:
       no_event: "Chưa có sự kiện nào!"
       create: "Tạo mới"
       kind: "Chế độ"
+      description: "Mô tả"
     club:
       success_update: "Thông tin câu lạc bộ được cập nhập thành công"
     video:
@@ -1122,6 +1124,7 @@ vi:
     pay_money: "Chi tiền"
     subsidy: "Tiền trợ cấp"
     notifications: "Thông báo"
+    receive_money: "Thu tiền"
   user_organization_not_remove: "Bạn là quản lý duy nhất của tổ chức. Vui lòng chọn một thành viên khác làm quản lý để được rời khỏi tổ chức."
   user_club_not_remove: "Bạn là quản lý duy nhất của câu lạc bộ. Vui lòng chọn một thành viên khác làm quản lý để được rời khỏi câu lạc bộ."
   pause_club: "Tạm dừng hoạt động"
@@ -1296,6 +1299,7 @@ vi:
       money: "Tiền bạc"
       activity: "Hoạt động"
       other: "Khác"
+      member: "Thành viên"
     report_category:
       confirm_delete_category: "Xóa danh mục này"
       pay_money: "Chi tiền"
@@ -1307,6 +1311,7 @@ vi:
       money: "Tiền bạc"
       activity: "Hoạt động"
       other: "Khác"
+      member: "Thành viên"
     form_new:
       name_category: "Tên danh mục"
       style_event: "Loại sự kiện"
@@ -1319,11 +1324,13 @@ vi:
       activity: "Hoạt động"
       other: "Khác"
       style: "Loại"
+      member: "Thành viên"
     edit_report_category:
       choose-style-event: "Chọn loại sự kiện"
       money: "Tiền bạc"
       activity: "Hoạt động"
       other: "Khác"
+      member: "Thành viên"
     modal_style_event:
       pay_money: "Chi tiền"
       get_money: "Thu tiền"
@@ -1335,6 +1342,7 @@ vi:
       money: "Tiền bạc"
       activity: "Hoạt động"
       other: "Khác"
+      member: "Thành viên"
   statistic_report_helper:
     important: " *"
   events_club:
@@ -1384,3 +1392,5 @@ vi:
   new_club_video:
     button_browse: "Chọn file"
   gallery: "Bộ sưu tập"
+  receive_money: "Thu tiền"
+  detail_event: "Chi tiết"
