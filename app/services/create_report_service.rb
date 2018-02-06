@@ -24,19 +24,23 @@ class CreateReportService
   private
   def report_detail events, report_detail, report_category
     @report_detail = report_detail
-    if events.present?
-      events.each do |event|
-        @report_detail << save_report(event, report_category)
+      if events.present?
+        if !report_category.member?
+          events.each do |event|
+            @report_detail << save_report(event, report_category)
+          end
+        else
+          @report_detail << report_member(events, report_category)
+        end
       end
-    end
     return @report_detail
   end
 
   def save_report event, report_category
     ReportDetail.new(detail: event.description,
       statistic_report_id: @static_report.id, report_category_id: report_category.id,
-      style: style_detail_report(event), money: money_detail_report(event), first_money: event.amount,
-      date_event: event.created_at, name_event: event.name)
+      style: style_detail_report(event), money: money_detail_report(event),
+      first_money: event.amount, date_event: event.created_at, name_event: event.name)
   end
 
 
@@ -57,5 +61,20 @@ class CreateReportService
     else
       event.expense
     end
+  end
+
+  def report_member events, report_category
+    ReportDetail.new(detail: save_report_member(events, report_category),
+      statistic_report_id: @static_report.id, report_category_id: report_category.id,
+      style: :other)
+  end
+
+  def save_report_member events, report_category
+    detail = {};
+    @club.user_clubs.each do |user_club|
+      detail.merge!({user_club.user_id.to_s.to_sym => {name: "#{user_club.user.full_name}",
+        size: LastMoney.count_event(user_club.user_id, events)}})
+    end
+    return detail.merge!(count_event: events.size)
   end
 end

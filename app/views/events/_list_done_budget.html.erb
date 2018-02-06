@@ -26,7 +26,7 @@
                 <% if @club.is_admin? current_user %>
                   <td class="text-center">
                     <%= link_to club_manager_club_club_budget_path(
-                      user_id: user.id,event_id: @event.id ), method: :delete,
+                      user_id: user.id,event_id: @event.id, club_id: @club.id), method: :delete,
                       data: {confirm: t("confirm_delete_budget")}, title: t("delete") do %>
                         <i class="fa fa-trash-o" aria-hidden="true"></i>
                     <% end %>

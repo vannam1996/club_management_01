@@ -1121,3 +1121,6 @@ en:
   new_club_video:
     button_browse: "Choose file"
   gallery: "Gallery"
+  total_event: "Total event"
+  event_participation: "Event participation"
+  not_event: "No events took place!"

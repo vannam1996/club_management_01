@@ -1395,3 +1395,6 @@ vi:
   gallery: "Bộ sưu tập"
   receive_money: "Thu tiền"
   detail_event: "Chi tiết"
+  total_event: "Tổng số sự kiện"
+  event_participation: "Sự kiện tham gia"
+  not_event: "Không có sự kiện nào diễn ra!"
