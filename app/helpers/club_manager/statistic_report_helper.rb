@@ -19,6 +19,16 @@ module ClubManager::StatisticReportHelper
     report.report_category.obligatory?
   end
 
+  def count_event array_details
+    array_details.first.detail[:count_event] if array_details.first.detail.is_a? Hash
+  end
+
+  def content_detail_member content_hash
+    if content_hash.is_a?(Hash) && content_hash[:name] && content_hash[:size]
+      content_tag(:td, content_hash[:name]) << content_tag(:td, content_hash[:size])
+    end
+  end
+
   private
   def set_status category
     case category.status

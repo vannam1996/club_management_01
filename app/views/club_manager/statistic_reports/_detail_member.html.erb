@@ -1,0 +1,22 @@
+<% if array_detail.first && array_detail.first.detail %>
+  <%= label_tag t "total_event" %>: <strong><%= count_event array_detail %></strong>
+  <div class="table-responsive  widget-simple list-scroll">
+    <table class="ui-block table-pricing table-white full-width">
+      <thead>
+        <tr>
+          <th><%= t ".name_member" %></th>
+          <th><%= t ".events_join" %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <div>
+          <% array_detail.first.detail.each do |key, hash_content| %>
+            <tr>
+              <%= content_detail_member(hash_content) %>
+            </tr>
+          <% end %>
+        </div>
+      </tbody>
+    </table>
+  </div>
+<% end %>

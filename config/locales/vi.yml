@@ -468,6 +468,9 @@ vi:
       detail_activity:
         date: "Ngày"
         detail: "Nội dung"
+      detail_member:
+        name_member: "Tên"
+        events_join: "Sự kiện tham gia"
     money: "Tiền quỹ: "
     cant_fount: "Không thể tìm thấy câu lạc bộ!"
     user_club:
