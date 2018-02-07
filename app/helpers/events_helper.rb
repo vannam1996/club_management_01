@@ -46,11 +46,11 @@ module EventsHelper
   end
 
   def view_class event
-    event.pay_money? ? "text-primary" : "text-success"
+    event.activity_money? || event.money? ? "text-primary" : "text-success"
   end
 
   def view_icon event
-    if event.pay_money?
+    if event.activity_money? || event.money?
       content_tag(:i, "", class: "fa fa-minus get-money-icon")
     else
       content_tag(:i, "", class: "fa fa-plus pay-money-icon")
@@ -67,11 +67,10 @@ module EventsHelper
   end
 
   def category_event
-    [[t("subsidy"), Event.event_categories[:subsidy]],
-    [t("get_money"), Event.event_categories[:get_money]],
-    [t("pay_money"), Event.event_categories[:pay_money]],
+    [[t("money"), Event.event_categories[:money]],
+    [t("get_money_member"), Event.event_categories[:get_money_member]],
     [t("donate.donate"), Event.event_categories[:donate]],
-    [t("receive_money"), Event.event_categories[:receive_money]]]
+    [t("subsidy"), Event.event_categories[:subsidy]]]
   end
 
   def confirm_donate donate, club

@@ -114,6 +114,10 @@ class Club < ApplicationRecord
     self.update_attributes! money: self.money - money
   end
 
+  def update_money_club money
+    self.update_attributes! money: self.money + money
+  end
+
   def money_subsidy money
     self.update_attributes! money: self.money + money
   end

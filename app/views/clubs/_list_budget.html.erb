@@ -36,7 +36,7 @@
           </td>
           <td class="description <%= view_class(event) %>">
             <%= view_icon event %>
-            <% if event.get_money? %>
+            <% if event.activity_money? || event.money? %>
               <%= number_to_currency(get_money_expense(event, @club), locale: :vi) %>
             <% else %>
               <%= number_to_currency(event.expense, locale: :vi) %>

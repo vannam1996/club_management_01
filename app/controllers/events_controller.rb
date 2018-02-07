@@ -19,12 +19,8 @@ class EventsController < ApplicationController
       create_acivity event, Settings.create, event.club, current_user,
         Activity.type_receives[:club_member]
       case params[:event][:event_category].to_i
-      when Event.event_categories[:pay_money]
-        @club.money_pay(event_params_with_attributes[:expense].to_i)
-      when Event.event_categories[:subsidy]
-        @club.money_subsidy(params[:event][:expense].to_i)
-      when Event.event_categories[:receive_money]
-        @club.money_receive(event_params_with_attributes[:expense].to_i)
+      when Event.event_categories[:money] || Event.event_categories[:subsidy]
+        @club.update_money_club(event_params_with_attributes[:expense].to_i)
       end
       flash[:success] = t "club_manager.event.success_create"
       redirect_to club_path params[:club_id]
@@ -134,9 +130,7 @@ class EventsController < ApplicationController
 
   def event_params_with_money_details
     case params[:event][:event_category].to_i
-    when Event.event_categories[:pay_money]
-      event_params_with_attributes
-    when Event.event_categories[:receive_money]
+    when Event.event_categories[:money]
       event_params_with_attributes
     else
       event_params.merge! event_category: params[:event][:event_category].to_i
@@ -170,6 +164,9 @@ class EventsController < ApplicationController
   end
 
   def set_gon_varible
-    gon.event_categories = Event.event_categories
+    gon.money = Event.event_categories[:money]
+    gon.get_money_member = Event.event_categories[:get_money_member]
+    gon.donate = Event.event_categories[:donate]
+    gon.subsidy = Event.event_categories[:subsidy]
   end
 end

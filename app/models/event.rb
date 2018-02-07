@@ -46,7 +46,8 @@ class Event < ApplicationRecord
   scope :status_public, ->is_public{where is_public: is_public}
 
   enum status: {inprocess: 0, finished: 1}
-  enum event_category: {pay_money: 1, get_money: 2, notification: 3, subsidy: 0, donate: 4, receive_money: 5}
+  enum event_category: {notification: 0, activity_no_money: 1, activity_money: 2,
+    money: 3, get_money_member: 4, donate: 5, subsidy: 6}
 
   delegate :full_name, :avatar, to: :user, prefix: :user
   delegate :name, :logo, :slug, to: :club, prefix: :club

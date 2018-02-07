@@ -1401,3 +1401,7 @@ vi:
   total_event: "Tổng số sự kiện"
   event_participation: "Sự kiện tham gia"
   not_event: "Không có sự kiện nào diễn ra!"
+  activity_no_money: "Hoạt động ( không thu chi )"
+  activity_money: "Hoạt động ( có thu chi )"
+  money: "Thu chi"
+  get_money_member: "Thu tiền thành viên"

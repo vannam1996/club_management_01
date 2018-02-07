@@ -8,7 +8,11 @@ class CountMoney
     if @params
       @params.each do |key, value|
         if value[:money] && value[:_destroy] != Settings.value_destroy_attribute_params
-          count += value[:money].to_i
+          if value[:style].to_i == EventDetail.styles[:get]
+            count += value[:money].to_i
+          elsif value[:style].to_i == EventDetail.styles[:pay]
+            count -= value[:money].to_i
+          end
         end
       end
     end

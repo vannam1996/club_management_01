@@ -44,7 +44,7 @@
       <span class="round-btn"></span>
     </div>
   </div>
-  <div class="form-group col-md-12 expense_details hide-div" id="expense_details">
+  <div class="form-group col-md-12 expense_details" id="expense_details">
     <% @event.event_details.build %>
     <div class="row" id="add_field_detail">
       <label class="col-md-1 col-xl-2 label-detail"><%= t("detail_event") %></label>
@@ -60,7 +60,13 @@
             <%= detail.text_field :description, class: "form-control input-text",
               placeholder: t("club_manager.event.description") %>
           </div>
-          <div class="col-md-5 push-md-1">
+          <div class="col-md-1">
+            <div class="toggle-btn active">
+              <%= detail.check_box :style, class: "cb-value", checked: true %>
+              <span class="round-btn"></span>
+            </div>
+          </div>
+          <div class="col-md-5">
             <%= detail.text_field :money, class: "form-control input-text money-input",
               placeholder: t("club_manager.event.expense_holder"), required: true %>
           </div>
@@ -68,18 +74,14 @@
       </div>
     <% end %>
   </div>
-  <div class="form-group col-md-12 expense">
+  <div class="form-group col-md-12" id="expense">
     <label id="get_money_member" class="hide-div"><%= t("amount_member") %></label>
     <label id="subsidy" class="hide-div"><%= t("amount_for") %></label>
-    <% if @event.present? && @event.notification? %>
-      <%= f.hidden_field :expense, value: nil %>
-    <% else %>
-      <%= f.label(:expense, class: "control-label", id: "label-expense") do %>
-        <%= t("amount_for") %>
-      <% end %>
-      <%= f.text_field :expense, class: "form-control input-text",
-        placeholder: t("club_manager.event.expense_holder"), required: true %>
+    <%= f.label(:expense, class: "control-label", id: "label-expense") do %>
+      <%= t("amount_for") %>
     <% end %>
+    <%= f.text_field :expense, class: "form-control input-text",
+      placeholder: t("club_manager.event.expense_holder"), required: true, disabled: true %>
   </div>
   <div class="form-group col-md-12">
     <%= f.label(:location, class: "control-label") do %>
