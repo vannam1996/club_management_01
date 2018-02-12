@@ -3,7 +3,7 @@
   class: "form-horizontal form-bordered edit-organization"} do |f| %>
   <%= f.hidden_field :club_id, value: @club.id %>
   <div class="form-group">
-    <label class="col-md-3 control-label" for="example-text-input">
+    <label class="col-md-3 control-label label-bold" for="example-text-input">
       <%= t "club_manager.event.type" %>
       <span class="text-danger">*</span>
     </label>
@@ -16,27 +16,40 @@
     </div>
   </div>
   <div class="form-group col-md-12">
-    <%= f.label(:name, class: "control-label") do %>
+    <%= f.label(:name, class: "control-label label-bold") do %>
       <%= t("name") %>
       <span class="text-danger">*</span>
     <% end %>
     <%= f.text_field :name, class: "form-control input-text",
       placeholder: t("club_manager.event.event_name"), required: true %>
   </div>
-  <div class="form-group">
-    <label class="col-md-2 control-label" for="example-text-input">
+  <div class = "form-money" id = "money-details">
+    <%= render partial: "event_details/details_event", locals: {f: f} %>
+    <div class="form-group col-md-12 expense" id="expense">
+      <label id="get_money_member" class="hide-div"><%= t("amount_member") %></label>
+      <label id="subsidy" class="hide-div"><%= t("amount_for") %></label>
+      <label id="money" class="hide-div"><%= t("event_notifications.amount_for") %></label>
+      <%= f.label(:expense, class: "control-label label-bold", id: "label-expense") do %>
+        <%= t("event_notifications.amount_for") %>
+      <% end %>
+      <%= f.text_field :expense, class: "form-control input-text",
+        placeholder: t("club_manager.event.expense_holder"), required: true, disabled: true %>
+    </div>
+  </div>
+  <div class="form-group expense">
+    <label class="col-md-2 control-label label-bold" for="example-text-input">
       <%= t "club_manager.event.status" %>
     </label>
     <div class="row">
       <%= f.radio_button :status, Settings.inprocess, class: "radio col-md-1", checked: @event.inprocess? %>
-      <%= f.label :status_in_procress, t("inprocess"), class: "col-md-3 label-status" %>
+      <%= f.label :status_in_procress, t("inprocess"), class: "col-md-3 label-status control-label" %>
       <%= f.radio_button :status, Settings.finished, class: "radio col-md-1", checked: @event.finished? %>
-      <%= f.label :status_finished, t("finished"), class: "col-md-3 label-status" %>
+      <%= f.label :status_finished, t("finished"), class: "col-md-3 label-status control-label" %>
       <%= f.hidden_field :user_id, value: current_user.id %>
     </div>
   </div>
   <div class="form-group">
-    <label class="col-md-2 control-label label-check" for="example-text-input">
+    <label class="col-md-2 control-label label-check label-bold" for="example-text-input">
       <%= t "style_event.event_public" %>
     </label>
     <div class="toggle-btn <%= get_class_checkbox @event.is_public? %>">
@@ -44,56 +57,15 @@
       <span class="round-btn"></span>
     </div>
   </div>
-  <div class="form-group col-md-12 expense_details" id="expense_details">
-    <% @event.event_details.build %>
-    <div class="row" id="add_field_detail">
-      <label class="col-md-1 col-xl-2 label-detail"><%= t("detail_event") %></label>
-      <%= link_to_add_association f, :event_details,
-        partial: "event_details/event_detail_fields", class: "btn btn-breez btn-sm button-add-detail col-md-1" do %>
-        <i class="fa fa-plus"></i>
-      <% end %>
-    </div>
-    <%= f.fields_for :event_details do |detail| %>
-      <div class="nested-fields full-width">
-        <div class="row">
-          <div class="col-md-3">
-            <%= detail.text_field :description, class: "form-control input-text",
-              placeholder: t("club_manager.event.description") %>
-          </div>
-          <div class="col-md-1">
-          </div>
-          <div class="col-md-3">
-            <%= detail.text_field :money, class: "form-control input-text money-input",
-              placeholder: t("club_manager.event.expense_holder"), required: true %>
-          </div>
-          <div class="col-md-1">
-          </div>
-          <%= detail.radio_button :style, EventDetail.styles[:get], class: "radio-get-money radio col-md-1", checked: detail.object.get? %>
-          <%= detail.label :style, t("event_details.event_detail_fields.get"), class: "col-md-1 label-status" %>
-          <%= detail.radio_button :style, EventDetail.styles[:pay], class: "radio-pay-money radio col-md-1", checked: detail.object.pay? %>
-          <%= detail.label :style, t("event_details.event_detail_fields.pay"), class: "col-md-1 label-status" %>
-        </div>
-      </div>
-    <% end %>
-  </div>
-  <div class="form-group col-md-12" id="expense">
-    <label id="get_money_member" class="hide-div"><%= t("amount_member") %></label>
-    <label id="subsidy" class="hide-div"><%= t("event_notifications.amount_for") %></label>
-    <%= f.label(:expense, class: "control-label", id: "label-expense") do %>
-      <%= t("event_notifications.amount_for") %>
-    <% end %>
-    <%= f.text_field :expense, class: "form-control input-text",
-      placeholder: t("club_manager.event.expense_holder"), required: true, disabled: true %>
-  </div>
   <div class="form-group col-md-12">
-    <%= f.label(:location, class: "control-label") do %>
+    <%= f.label(:location, class: "control-label label-bold") do %>
       <%= t("location") %>
     <% end %>
     <%= f.text_field :location, class: "form-control input-text",
       placeholder: t("club_manager.event.location_holder") %>
   </div>
-  <div class="form-group col-md-12">
-    <label class="col-md-3 control-label">
+  <div class="form-group col-md-12 expense">
+    <label class="col-md-3 control-label label-bold">
       <%= t "club_manager.event.start" %>
     </label>
     <div class="col-md-12">
@@ -109,7 +81,7 @@
     </div>
   </div>
   <div class="form-group">
-    <label class="col-md-3 control-label" for="example-file-input">
+    <label class="col-md-3 control-label label-bold" for="example-file-input">
       <%= t "club_manager.event.image" %>
     </label>
     <div class="col-md-12">
@@ -117,7 +89,7 @@
     </div>
   </div>
   <div class="form-group">
-    <label class="col-md-2 control-label label-check" for="example-text-input">
+    <label class="col-md-2 control-label label-check label-bold" for="example-text-input">
       <%= t "form_club_event.album" %>
     </label>
     <div class="toggle-btn col-md-1">
@@ -127,7 +99,7 @@
     </div>
   </div>
   <div class="form-group">
-    <label class="col-md-3 control-label" for="example-textarea-input">
+    <label class="col-md-3 control-label label-bold" for="example-textarea-input">
       <%= t "description" %>
     </label>
     <div class="col-md-12">

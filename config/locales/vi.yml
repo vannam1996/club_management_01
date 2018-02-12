@@ -1102,6 +1102,7 @@ vi:
     un_join_event:
       status:
         joined: "Đã tham gia"
+      confirm_leave: "Bạn muốn hủy tham gia hoạt đông này?"
   browse_all: "Duyệt tất cả"
   decline_all: "Từ chối tất cả"
   update_background: "Cập nhật hình nền"
@@ -1394,8 +1395,15 @@ vi:
       description: "Mô tả"
       submit: "Gửi"
       reset: "Hủy"
+      spending: "Chi tiêu (nếu có) "
     form_club_event_noti:
       amount_for: "Tổng tiền"
+      spending: "Chi tiêu (nếu có) "
+      inprocess: "Đang diễn ra"
+      finished: "Kết thúc"
+      detail_event: "Chi tiết thu chi"
+      location: "Địa chỉ"
+      name: "Tên"
   style_event:
     event_public: "Công khai"
   update_events_report: "Vui lòng cập nhật sự kiện trước khi tạo báo cáo!"
@@ -1425,3 +1433,5 @@ vi:
     event_detail_fields:
       pay: "Chi"
       get: "Thu"
+    details_event:
+      detail_event: "Chi tiết thu chi"

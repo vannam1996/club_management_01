@@ -15,13 +15,17 @@
                     <div class="choose-photo-item col-md-2" data-mh="choose-item">
                       <div class="radio">
                         <label class="custom-radio">
-                          <%= image_tag image.url , class: "background-images" %>
-                          <%= f.radio_button :image, image.url %>
+                          <%= image_tag image.url , class: "background-images", id: "image-#{image.id}" %>
+                          <%= f.radio_button :image, image.url, id: "radio-image-#{image.id}", class: "radio-image" %>
                           <span class="circle"></span><span class="check"></span>
                         </label>
                       </div>
                     </div>
                    <% end %>
+                  <% end %>
+                  <%= image_tag @club.image, class: "background-club", id: "image-background" %><hr/>
+                  <% Club::CROP_IMAGE.each do |attr| %>
+                    <%= f.hidden_field attr.to_sym, id: "club_#{attr}" %>
                   <% end %>
                 </div>
                 <div class="text-center col-md-12 modal-footer">
@@ -37,3 +41,4 @@
     </div>
   </div>
 </div>
+<%= javascript_include_tag "background_club" %>

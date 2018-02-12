@@ -44,14 +44,18 @@ class UpdateClubMoneyService
   end
 
   def update_first_money_of_event
-    money_change = @event.expense - @event_params[:expense]
-    list_event_after_event_update = @club.events.more_id_event @event.id
+    return unless @event_params[:expense]
+    money_change = @event.expense - @event_params[:expense].to_i
+    list_event_after_event_update = @club.events.more_id_event(@event.id)
+      .event_category_activity_money(events_ids_money, Event.event_categories[:activity_money])
     events = []
-    list_event_after_event_update.each do |event|
-      event.amount -= money_change
-      events << event
+    if list_event_after_event_update
+      list_event_after_event_update.each do |event|
+        event.amount -= money_change
+        events << event
+      end
+      Event.import events, on_duplicate_key_update: [:amount]
     end
-    Event.import events, on_duplicate_key_update: [:amount]
   end
 
   private
@@ -65,5 +69,10 @@ class UpdateClubMoneyService
     if @event.get_money_member?
       @event.club.update_attributes! money: @event.club.money - (@event.budgets.size * @event.expense.to_i)
     end
+  end
+
+  def events_ids_money
+    [Event.event_categories[:money], Event.event_categories[:get_money_member],
+      Event.event_categories[:donate], Event.event_categories[:subsidy]]
   end
 end

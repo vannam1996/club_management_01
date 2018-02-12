@@ -1,0 +1,15 @@
+<div class="form-group col-md-12 expense_details" id="expense_details">
+  <% @event.event_details.build %>
+  <div class="row" id="add_field_detail">
+    <label class="col-md-1 col-xl-2 label-detail control-label"><%= t("detail_event") %></label>
+    <%= link_to_add_association f, :event_details,
+      partial: "event_details/event_detail_fields", class: "btn btn-breez btn-sm button-add-detail col-md-1" do %>
+      <i class="fa fa-plus"></i>
+    <% end %>
+  </div>
+  <%= f.fields_for :event_details do |detail| %>
+    <% if detail.object.id.present? %>
+      <%= render partial: "event_details/event_detail_fields", locals: {f: detail} %>
+    <% end %>
+  <% end %>
+</div>

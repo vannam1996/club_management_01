@@ -838,6 +838,7 @@ en:
     un_join_event:
       status:
         joined: "Joined"
+      confirm_leave: "You want to leave this activity?"
   browse_all: "Browse all"
   decline_all: "Decline all"
   update_background: "Update background"
@@ -1121,8 +1122,15 @@ en:
       description: "Description"
       submit: "Submit"
       reset: "Reset"
+      spending: "Spending (if any) "
     form_club_event_noti:
-      amount_for: "Tổng tiền"
+      amount_for: "Total money"
+      spending: "Spending (if any) "
+      inprocess: "On-going"
+      finished: "Finished"
+      detail_event: "Details money"
+      location: "Location"
+      name: "Name"
   style_event:
     event_public: "Public"
   update_events_report: "Please update the event before creating the report!"
@@ -1150,3 +1158,5 @@ en:
     event_detail_fields:
       pay: "Pay"
       get: "Get"
+    details_event:
+      detail_event: "Details money"

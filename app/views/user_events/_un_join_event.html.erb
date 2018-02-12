@@ -6,7 +6,7 @@
   <ul class="drop-organization dropdown-menu" role="menu" aria-labelledby="menu1">
     <li>
       <%= link_to join_event_url(event_id: @event.id),
-        class: "", method: :delete, data: {confirm: t("leave_organization")} do  %>
+        class: "", method: :delete, data: {confirm: t(".confirm_leave")} do  %>
         <i class="fa fa-sign-out"></i> <%= t "leave_this_event" %>
       <% end %>
     </li>

@@ -59,7 +59,7 @@ class EventsController < ApplicationController
     if @event && @event.errors.any?
       flash_error @event
     else
-      flash[:danger] = t "event_notifications.error_in_process"
+      flash[:danger] = t "event_notifications.error_process"
     end
     redirect_back fallback_location: edit_club_event_path(club_id: @club.id, event_id: @event)
   end

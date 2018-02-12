@@ -17,8 +17,11 @@ class Donate < ApplicationRecord
   private
   def update_event
     if self.event.present?
+      params = {expense: self.event.expense + self.expense}
+      service_money = UpdateClubMoneyService.new self.event, self.event.club, params
+      service_money.update_first_money_of_event
       self.event.update_attributes expense: self.event.expense + self.expense
-      Event.calculate_get_donate event
+      Event.calculate_get_donate self, self.event
     end
   end
 end

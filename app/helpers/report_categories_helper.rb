@@ -35,7 +35,7 @@ module ReportCategoriesHelper
       options.except :activity, :member
     when Settings.key_activity_enum
       options.except :money, :member
-    when Settings.key_activity_enum
+    when Settings.key_member_enum
       options.except :activity, :money
     else
       options
