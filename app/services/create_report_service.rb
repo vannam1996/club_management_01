@@ -40,7 +40,8 @@ class CreateReportService
     ReportDetail.new(detail: event.description,
       statistic_report_id: @static_report.id, report_category_id: report_category.id,
       style: style_detail_report(event), money: money_detail_report(event),
-      first_money: event.amount, date_event: event.created_at, name_event: event.name)
+      first_money: event.amount, date_event: event.created_at, name_event: event.name,
+      user_events: event.user_events.map(&:user_id))
   end
 
   def style_detail_report event

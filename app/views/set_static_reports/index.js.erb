@@ -1,1 +1,4 @@
 $('#new_report').html('<%= j render "new_report" %>');
+<% if @report_categories.optional.blank? %>
+  $('#button-add-fields-new-form').hide();
+<% end %>

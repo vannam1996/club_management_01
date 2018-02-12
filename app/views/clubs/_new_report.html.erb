@@ -1,86 +1,70 @@
-<div class="col-md-12">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-body">
-        <div class="ui-block-title ui-block-title-small">
-          <h5 class="col-md-12 text-center">
-            <strong><%= t "statistic_report" %></strong> <%= @club.name %>
-          </h5>
-          <%= button_tag type: "button", class: "close", data: {dismiss: "modal"} do %>
-            &times;
-          <% end %>
+<%= hidden_field_tag :club_id, @club.id %>
+<div class="col-sm-10 col-md-10 push-md-1" id="new_report">
+  <%= form_for @statistic_report, html: {id: "form-contact"}, remote: true do |f|%>
+    <div class="col-md-12">
+      <div class="form-group row">
+        <div class="col-md-3">
+          <label for="contact-name"><%= t "type_report" %></label></br>
+          <%= f.select(:style, options_for_select(option_select(
+            StatisticReport.styles)),
+            {}, {class: "form-control select_custom"}) %>
         </div>
-        <div class="col-sm-10 col-md-10 push-md-1" id="new_report">
-          <%= form_for @statistic_report, html: {id: "form-contact"}, remote: true do |f|%>
-            <div class="col-md-12">
-              <div class="form-group row">
-                <div class="col-md-3">
-                  <label for="contact-name"><%= t "type_report" %></label></br>
-                  <%= f.select(:style, options_for_select(option_select(
-                    StatisticReport.styles)),
-                    {}, {class: "form-control select_custom"}) %>
-                </div>
-                <div class="col-md-3 push-md-1 month">
-                  <label for="contact-name"><%= t "month" %></label></br>
-                  <%= select_tag "month", options_for_select(option_select(
-                    StatisticReport.months), Date.current.month), class: "form-control select_custom" %>
-                </div>
-                <div class="col-md-3 push-md-1 quarter", style="display: none;">
-                  <label for="contact-name"><%= t "quarter" %></label></br>
-                  <%= select_tag "quarter", options_for_select(
-                    option_select(StatisticReport.quarters)),
-                    class: "form-control select_custom" %>
-                </div>
-                <div class="col-md-3 push-md-2 year">
-                  <label for="contact-name"><%= t "year" %></label></br>
-                  <%= select_year(Date.current, {start_year: Settings.year_ago.years.ago.year,
-                    end_year: Date.current.year}, {class: "select_custom form-control stype-reports"}) %>
-                </div>
-              </div>
-            </div>
-            <div class="form-group col-md-12" id="detail-report-field-new">
-              <% @report_categories.obligatory.each do |category|%>
-                <%= f.fields_for :report_details do |ff| %>
-                  <%= render partial: "field_for_category_obligatory", locals: {f: ff, category: category} %>
-                <% end %>
-              <% end %>
-              <div class="form-group col-md-12", id="button-add-fields-new-form">
-                <%= link_to_add_association t("add"), f, :report_details,
-                  class: "btn btn-breez pull-right" %>
-              </div>
-            </div>
-            <div class="form-group col-md-12">
-              <div class="form-group label-floating">
-                <%= f.label(:plan_next_month, class: "control-label") do %>
-                  <%= t("plan_next_month") %>
-                  <span class="text-danger">*</span>
-                <% end %>
-                <%= f.text_area :plan_next_month, class: "form-control", required: true %>
-              </div>
-            </div>
-            <div class="form-group col-md-12">
-               <div class="form-group label-floating">
-                <%= f.label(:note, t("note"), class: "control-label") %>
-                <%= f.text_area :note, class: "form-control",
-                  row: Settings.club_request.row_text_area %>
-              </div>
-            </div>
-            <div class="form-group col-md-12">
-              <div class="form-group label-floating">
-                <%= f.label(:others, t("others"), class: "control-label") %>
-                <%= f.text_area :others, class: "form-control", id: "contact-message",
-                  row: Settings.club_request.row_text_area %>
-              </div>
-            </div>
-            <%= f.hidden_field :club_id %>
-            <div class="error-messages"></div>
-            <div class="form-group center">
-              <%= f.submit t("report"), class: "btn btn-primary full-width col-md-2" %>
-            </div>
-          <% end %>
+        <div class="col-md-3 push-md-1 month">
+          <label for="contact-name"><%= t "month" %></label></br>
+          <%= select_tag "month", options_for_select(option_select(
+            StatisticReport.months), Date.current.month), class: "form-control select_custom" %>
+        </div>
+        <div class="col-md-3 push-md-1 quarter", style="display: none;">
+          <label for="contact-name"><%= t "quarter" %></label></br>
+          <%= select_tag "quarter", options_for_select(
+            option_select(StatisticReport.quarters)),
+            class: "form-control select_custom" %>
+        </div>
+        <div class="col-md-3 push-md-2 year">
+          <label for="contact-name"><%= t "year" %></label></br>
+          <%= select_year(Date.current, {start_year: Settings.year_ago.years.ago.year,
+            end_year: Date.current.year}, {class: "select_custom form-control stype-reports"}) %>
         </div>
       </div>
     </div>
-  </div>
+    <div class="form-group col-md-12" id="detail-report-field-new">
+      <% @report_categories.obligatory.each do |category|%>
+        <%= f.fields_for :report_details do |ff| %>
+          <%= render partial: "field_for_category_obligatory", locals: {f: ff, category: category} %>
+        <% end %>
+      <% end %>
+      <div class="form-group col-md-12", id="button-add-fields-new-form">
+        <%= link_to_add_association t("add"), f, :report_details,
+          class: "btn btn-breez pull-right" %>
+      </div>
+    </div>
+    <div class="form-group col-md-12">
+      <div class="form-group label-floating">
+        <%= f.label(:plan_next_month, class: "control-label") do %>
+          <%= t("plan_next_month") %>
+          <span class="text-danger">*</span>
+        <% end %>
+        <%= f.text_area :plan_next_month, class: "form-control", required: true %>
+      </div>
+    </div>
+    <div class="form-group col-md-12">
+       <div class="form-group label-floating">
+        <%= f.label(:note, t("note"), class: "control-label") %>
+        <%= f.text_area :note, class: "form-control",
+          row: Settings.club_request.row_text_area %>
+      </div>
+    </div>
+    <div class="form-group col-md-12">
+      <div class="form-group label-floating">
+        <%= f.label(:others, t("others"), class: "control-label") %>
+        <%= f.text_area :others, class: "form-control", id: "contact-message",
+          row: Settings.club_request.row_text_area %>
+      </div>
+    </div>
+    <%= f.hidden_field :club_id %>
+    <div class="error-messages"></div>
+    <div class="form-group center">
+      <%= f.submit t("report"), class: "btn btn-primary full-width col-md-2" %>
+    </div>
+  <% end %>
 </div>
-<%= javascript_include_tag "statistic_report" %>

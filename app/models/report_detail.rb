@@ -1,6 +1,7 @@
 class ReportDetail < ApplicationRecord
 
   serialize :detail
+  serialize :user_events, Array
 
   belongs_to :statistic_report, required: true
   belongs_to :report_category, required: true
