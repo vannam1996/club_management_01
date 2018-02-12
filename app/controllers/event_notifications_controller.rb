@@ -36,6 +36,7 @@ class EventNotificationsController < ApplicationController
   def update
     service_money = UpdateClubMoneyService.new @event, @club, params_option
     ActiveRecord::Base.transaction do
+      service_money.update_first_money_of_event
       service_money.update_event_and_money_club_in_activity_event
       flash[:success] = t ".update_success"
       redirect_to club_event_path(club_id: @club.id, id: @event.id)
@@ -95,7 +96,7 @@ class EventNotificationsController < ApplicationController
   def params_option
     event_category = params[:event][:event_category].to_i
     case event_category
-    when Event.event_categories[:notification], Event.event_categories[:activity_no_money]
+    when Event.event_categories[:notification]
       event_params_with_album
     else
       if params[:create_albums].present?
@@ -131,7 +132,6 @@ class EventNotificationsController < ApplicationController
 
   def set_gon_varible
     gon.notification = Event.event_categories[:notification]
-    gon.activity_no_money = Event.event_categories[:activity_no_money]
     gon.activity_money = Event.event_categories[:activity_money]
   end
 end

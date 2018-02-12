@@ -85,4 +85,8 @@ class ApplicationController < ActionController::Base
   def current_ability
     @current_ability ||= Ability.new current_user, namespace
   end
+
+  def key_money_event
+    Event.event_categories.except(:money, :get_money_member, :donate, :subsidy).keys
+  end
 end

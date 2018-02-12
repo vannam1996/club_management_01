@@ -8,7 +8,7 @@
       <span class="text-danger">*</span>
     </label>
     <div class="col-md-12">
-      <%= f.select(:event_category, options_for_select(category_event_notification,
+      <%= f.select(:event_category, options_for_select(category_event_activity,
         if @event.present?
           {selected: Event.event_categories[@event.event_category]}
         end), {},
@@ -43,6 +43,25 @@
       <%= f.check_box :is_public, class: "cb-value", checked: @event.is_public %>
       <span class="round-btn"></span>
     </div>
+  </div>
+  <div class="form-group hide-div col-md-12 expense_details" id="expense_details">
+    <% @event.event_details.build %>
+    <div class="row" id="add_field_detail">
+      <label class="col-md-3 label-detail"><%= t("detail_event") %></label>
+      <%= link_to_add_association f, :event_details,
+        partial: "event_details/event_detail_fields", class: "btn btn-breez btn-sm button-add-detail col-md-1" do %>
+        <i class="fa fa-plus"></i>
+      <% end %>
+    </div>
+    <%= f.fields_for :event_details do |detail| %>
+    <% end %>
+  </div>
+  <div class="form-group hide-div col-md-12" id="expense">
+    <%= f.label(:expense, class: "control-label", id: "label-expense") do %>
+      <%= t(".amount_for") %>
+    <% end %>
+    <%= f.text_field :expense, class: "form-control input-text",
+      placeholder: t("club_manager.event.expense_holder"), required: true, disabled: true %>
   </div>
   <div class="form-group col-md-12">
     <%= f.label(:location, class: "control-label") do %>
@@ -104,3 +123,4 @@
   </div>
 <% end %>
 <%= javascript_include_tag "check_box" %>
+<%= include_gon %>

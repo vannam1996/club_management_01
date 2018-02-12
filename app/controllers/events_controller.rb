@@ -48,6 +48,7 @@ class EventsController < ApplicationController
   def update
     ActiveRecord::Base.transaction do
       service_money = UpdateClubMoneyService.new @event, @club, event_params_with_album
+      service_money.update_first_money_of_event
       service_money.update_event_and_money_club_in_money_event
       create_acivity @event, Settings.update, @event.club, current_user,
         Activity.type_receives[:club_member]
@@ -149,6 +150,6 @@ class EventsController < ApplicationController
   end
 
   def set_gon_varible
-    gon.event_money = Event.event_categories.except(:notification, :activity_no_money, :activity_money)
+    gon.event_money = Event.event_categories.except(:notification, :activity_money)
   end
 end
