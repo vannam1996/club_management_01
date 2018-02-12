@@ -1435,3 +1435,11 @@ vi:
       get: "Thu"
     details_event:
       detail_event: "Chi tiết thu chi"
+  notification_event:
+    notification: "Thông báo"
+    activity_money: "Hoạt động"
+    money: "Thu chi"
+    get_money_member: "Thu tiền thành viên"
+    donate: "Ủng hộ"
+    subsidy: "Trợ cấp"
+  information: "Thông tin trong"

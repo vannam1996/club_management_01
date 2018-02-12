@@ -8,11 +8,11 @@ class Support::ClubSupport
   end
 
   def members
-    @club_value.user_clubs.newest
+    @club_value.user_clubs.includes(:user).newest
   end
 
   def albums
-    @club_value.albums.newest.page(@page).per Settings.per_page_album
+    @club_value.albums.includes(:images).newest.page(@page).per Settings.per_page_album
   end
 
   def events
@@ -39,19 +39,19 @@ class Support::ClubSupport
   end
 
   def members_joined
-    @club_value.user_clubs.joined.newest
+    @club_value.user_clubs.includes(:user).joined.newest
   end
 
   def members_manager
-    @club_value.user_clubs.joined.manager.newest
+    @club_value.user_clubs.includes(:user).joined.manager.newest
   end
 
   def user_requests
-    @club_value.user_clubs.pending.newest
+    @club_value.user_clubs.includes(:user).pending.newest
   end
 
   def members_not_manager
-    @club_value.user_clubs.joined.are_member.newest
+    @club_value.user_clubs.includes(:user).joined.are_member.newest
   end
 
   def messages

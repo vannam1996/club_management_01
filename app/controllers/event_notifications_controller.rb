@@ -20,6 +20,8 @@ class EventNotificationsController < ApplicationController
     event.amount = @club.money if event.activity_money?
     service_money = UpdateClubMoneyService.new event, @club, params_option
     ActiveRecord::Base.transaction do
+      create_acivity event, Settings.create, event.club, current_user,
+        Activity.type_receives[:club_member]
       service_money.save_event_and_plus_money_club_in_activity_event
       flash[:success] = t ".create_success"
       redirect_to club_path params[:club_id]
@@ -36,6 +38,8 @@ class EventNotificationsController < ApplicationController
   def update
     service_money = UpdateClubMoneyService.new @event, @club, params_option
     ActiveRecord::Base.transaction do
+      create_acivity @event, Settings.update, @event.club, current_user,
+        Activity.type_receives[:club_member]
       service_money.update_first_money_of_event
       service_money.update_event_and_money_club_in_activity_event
       flash[:success] = t ".update_success"

@@ -16,6 +16,8 @@ class EventsController < ApplicationController
     event.amount = @club.money
     service_money = UpdateClubMoneyService.new event, @club, event_params_with_album
     ActiveRecord::Base.transaction do
+      create_acivity event, Settings.create, event.club, current_user,
+        Activity.type_receives[:club_member]
       service_money.save_event_and_plus_money_club_in_money_event
       flash[:success] = t "club_manager.event.success_create"
       redirect_to club_path params[:club_id]

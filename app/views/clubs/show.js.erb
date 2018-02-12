@@ -1,5 +1,6 @@
 <% if params[:user].nil? %>
-  $("#list-event-show").html('<%= j render partial: "events/event", locals: {events: @events} %>');
+  $("#list-event-show").html('<%= j render partial: "events/event", locals: {events: @events,
+    tab_activity: false} %>');
 <% else %>
   $('.load-member').append('<%= escape_javascript(render partial: 'load_member',
     locals: {members: @members_not_manager, members_not_manager: @members_not_manager}) %>')

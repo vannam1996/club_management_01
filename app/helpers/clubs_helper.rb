@@ -7,7 +7,7 @@ module ClubsHelper
     html_safe?(field) if field.present?
   end
 
-  def check_date days, day
+  def check_date_club days, day
     days.include? day
   end
 

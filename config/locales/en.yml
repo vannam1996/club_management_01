@@ -1160,3 +1160,11 @@ en:
       get: "Get"
     details_event:
       detail_event: "Details money"
+  notification_event:
+    notification: "Notification"
+    activity_money: "Activity"
+    money: "Spending"
+    get_money_member: "Get money member"
+    donate: "Donate"
+    subsidy: "Subsidy"
+  information: "Information in"
