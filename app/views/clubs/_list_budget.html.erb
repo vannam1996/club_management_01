@@ -35,11 +35,19 @@
               class: "#{view_class(event)}" %>
           </td>
           <td class="description <%= view_class(event) %>">
-            <%= view_icon event %>
-            <% if event.get_money? %>
+            <% if event.get_money_member? %>
+              <%= view_icon event %>
               <%= number_to_currency(get_money_expense(event, @club), locale: :vi) %>
-            <% else %>
+            <% elsif event.donate? || event.subsidy? %>
+              <i class="fa fa-plus get-money-icon"></i>
               <%= number_to_currency(event.expense, locale: :vi) %>
+            <% else %>
+              <i class="fa fa-minus pay-money-icon"></i>
+              <%= number_to_currency(event.get_money_by_style(EventDetail.styles[:pay]), locale: :vi) %><br><br>
+              <span class="text-success">
+                <i class="fa fa-plus get-money-icon"></i>
+                <%= number_to_currency(event.get_money_by_style(EventDetail.styles[:get]), locale: :vi) %>
+              </span>
             <% end %>
           </td>
           <td class="users">

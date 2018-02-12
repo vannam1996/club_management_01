@@ -35,7 +35,7 @@ class Support::ClubSupport
   end
 
   def history_budget
-    @club_value.events.without_notification(Settings.notification).newest
+    @club_value.events.without_notification(Event.event_categories[:notification]).newest
   end
 
   def members_joined
