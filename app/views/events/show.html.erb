@@ -7,7 +7,7 @@
           <div class="private-event-head inline-items">
             <div class="author-date">
               <a class="h3 event-title" href="#">
-                <% if @event.notification? %>
+                <% if @event.notification? || @event.activity_money? %>
                   <i class="fa fa-bell"></i>
                 <% else %>
                   <i class="fa fa-money"></i>
@@ -34,7 +34,7 @@
             <div class="pull-right">
               <% case when @event.notification? %>
                 <%= render "user_events/join_event_toggle" %>
-              <% when @event.get_money? %>
+              <% when @event.get_money_member? %>
                 <%= link_to t("get_money"), "#collapse1", data: {toggle: "collapse"},
                   class: "btn btn-blue btn-sm" %>
               <% when @event.donate? %>
@@ -113,7 +113,7 @@
           <% else %>
             <p><%= raw(@event.description) %></p>
           <% end %>
-          <% case when @event.get_money? %>
+          <% case when @event.get_money_member? %>
             <div class="content-event col-md-12 site-block border panel-collapse collapse"
               id="collapse1">
               <%= render partial: "view_get_money" %>

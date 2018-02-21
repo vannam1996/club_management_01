@@ -864,8 +864,7 @@ en:
     pay_money: "Pay money"
     subsidy: "Subsidy"
     notifications: "Notification"
-    activity_no_money: "Activity ( no money )"
-    activity_money: "Activity ( money )"
+    activity_money: "Activity"
     money: "Money"
     get_money_member: "Get money member"
   user_organization_not_remove: "You are only management of the organization. Please choose a another member to handle to be removed from organization."
@@ -1113,6 +1112,17 @@ en:
     update_errors: "Update errors"
     error_process: "Error in processing,please try again"
     success_process: "You processed success"
+    form_edit_event_activity:
+      name: "Name"
+      inprocess: "On-going"
+      finished: "Finished"
+      amount_for: "Total money"
+      location: "Location"
+      description: "Description"
+      submit: "Submit"
+      reset: "Reset"
+    form_club_event_noti:
+      amount_for: "Tổng tiền"
   style_event:
     event_public: "Public"
   update_events_report: "Please update the event before creating the report!"
@@ -1133,8 +1143,7 @@ en:
   total_event: "Total event"
   event_participation: "Event participation"
   not_event: "No events took place!"
-  activity_no_money: "Activity ( no money )"
-  activity_money: "Activity ( money )"
+  activity_money: "Activity"
   money: "Money"
   get_money_member: "Get money member"
   event_details:

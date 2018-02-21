@@ -1,7 +1,6 @@
 module EventNotificationsHelper
   def category_event_activity
     [[t("notification"), Event.event_categories[:notification]],
-    [t("activity_no_money"), Event.event_categories[:activity_no_money]],
     [t("activity_money"), Event.event_categories[:activity_money]]]
   end
 

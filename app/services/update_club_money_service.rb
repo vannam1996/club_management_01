@@ -43,6 +43,17 @@ class UpdateClubMoneyService
     @event.update_attributes! @event_params
   end
 
+  def update_first_money_of_event
+    money_change = @event.expense - @event_params[:expense]
+    list_event_after_event_update = @club.events.more_id_event @event.id
+    events = []
+    list_event_after_event_update.each do |event|
+      event.amount -= money_change
+      events << event
+    end
+    Event.import events, on_duplicate_key_update: [:amount]
+  end
+
   private
 
   def is_money_type_event?

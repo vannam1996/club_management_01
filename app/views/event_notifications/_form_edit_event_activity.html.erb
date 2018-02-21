@@ -1,4 +1,4 @@
-<%= form_for [@club, @event],
+<%= form_for [@club, @event], url: club_event_notification_path(@club),
   html: {multipart: true, enctype: "multipart/form-data",
   class: "form-horizontal form-bordered edit-organization"} do |f| %>
   <%= f.hidden_field :club_id, value: @club.id %>
@@ -8,7 +8,7 @@
       <span class="text-danger">*</span>
     </label>
     <div class="col-md-12">
-      <%= f.select(:event_category, options_for_select(category_event,
+      <%= f.select(:event_category, options_for_select(category_event_activity,
         selected: Event.event_categories[@event.event_category]),
         {}, class: "form-control", disabled: true) %>
       <%= f.hidden_field :event_category, value:
@@ -17,7 +17,7 @@
   </div>
   <div class="form-group col-md-12">
     <%= f.label(:name, class: "control-label") do %>
-      <%= t("name") %>
+      <%= t(".name") %>
       <span class="text-danger">*</span>
     <% end %>
     <%= f.text_field :name, class: "form-control input-text",
@@ -29,9 +29,9 @@
     </label>
     <div class="row">
       <%= f.radio_button :status, Settings.inprocess, class: "radio col-md-1", checked: @event.inprocess? %>
-      <%= f.label :status_in_procress, t("inprocess"), class: "col-md-3 label-status" %>
+      <%= f.label :status_in_procress, t(".inprocess"), class: "col-md-3 label-status" %>
       <%= f.radio_button :status, Settings.finished, class: "radio col-md-1", checked: @event.finished? %>
-      <%= f.label :status_finished, t("finished"), class: "col-md-3 label-status" %>
+      <%= f.label :status_finished, t(".finished"), class: "col-md-3 label-status" %>
       <%= f.hidden_field :user_id, value: current_user.id %>
     </div>
   </div>
@@ -44,7 +44,7 @@
       <span class="round-btn"></span>
     </div>
   </div>
-  <% if @event.money? %>
+  <% if @event.activity_money? %>
     <div class="form-group col-md-12 expense_details" id="expense_details">
       <% @event.event_details.build %>
       <div class="row" id="add_field_detail">
@@ -63,15 +63,15 @@
   <% end %>
   <div class="form-group col-md-12 expense">
     <%= f.label(:expense, class: "control-label", id: "label-expense") do %>
-      <%= t("amount_for") %>
+      <%= t(".amount_for") %>
     <% end %>
-    <%= f.text_field :expense, class: "form-control input-text",
+    <%= f.text_field :expense, class: "form-control input-text col-md-12",
       placeholder: t("club_manager.event.expense_holder"), required: true,
-      disabled: check_event_have_details(@event), disabled: @event.money? %>
+      disabled: true %>
   </div>
   <div class="form-group col-md-12">
     <%= f.label(:location, class: "control-label") do %>
-      <%= t("location") %>
+      <%= t(".location") %>
     <% end %>
     <%= f.text_field :location, class: "form-control input-text",
       placeholder: t("club_manager.event.location_holder") %>
@@ -102,7 +102,7 @@
   </div>
   <div class="form-group">
     <label class="col-md-3 control-label" for="example-textarea-input">
-      <%= t "description" %>
+      <%= t ".description" %>
     </label>
     <div class="col-md-12">
       <%= f.cktext_area :description, rows: Settings.new_description,
@@ -112,8 +112,8 @@
   </div>
   <div class="form-group form-actions">
     <div class="col-md-12 text-center">
-      <%= f.submit t("submit"), class: "btn btn-sm btn-primary col-md-2" %>
-      <%= button_tag t("reset"), type: :reset,
+      <%= f.submit t(".submit"), class: "btn btn-sm btn-primary col-md-2" %>
+      <%= button_tag t(".reset"), type: :reset,
         class: "btn btn-sm btn-warning col-md-2" %>
     </div>
   </div>

@@ -80,7 +80,7 @@ module EventsHelper
   end
 
   def check_event_category category_id
-    event_category_ids = Event.event_categories.except(:notification, :activity_money, :activity_no_money).keys
+    event_category_ids = Event.event_categories.except(:notification, :activity_money).keys
     event_category_ids.include? category_id
   end
 

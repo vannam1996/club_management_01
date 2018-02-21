@@ -41,12 +41,18 @@ class Event < ApplicationRecord
   scope :by_created_at, ->(first_date, end_date) do
     where("DATE(created_at) BETWEEN DATE(?) AND DATE(?)", first_date, end_date)
   end
-
+  scope :more_id_event, ->id{where "id > ?", id}
   scope :in_categories, ->ids{where event_category: ids}
   scope :status_public, ->is_public{where is_public: is_public}
+  scope :event_category_activity_money, ->ids, activity_money_id do
+    where "case event_category
+    when ? then exists (SELECT * FROM event_details WHERE events.id = event_id)
+    else event_category in (?)
+    end", activity_money_id, ids
+  end
 
   enum status: {inprocess: 0, finished: 1}
-  enum event_category: {notification: 0, activity_no_money: 1, activity_money: 2,
+  enum event_category: {notification: 0, activity_money: 2,
     money: 3, get_money_member: 4, donate: 5, subsidy: 6}
 
   delegate :full_name, :avatar, to: :user, prefix: :user
@@ -102,6 +108,13 @@ class Event < ApplicationRecord
   def update_money
     if in_type_money_event?
       self.club.update_attributes money: self.club.money - self.expense
+      list_event_after_event_update = self.club.events.more_id_event self.id
+      events = []
+      list_event_after_event_update.each do |event|
+        event.amount -= self.expense
+        events << event
+      end
+      Event.import events, on_duplicate_key_update: [:amount]
     end
   end
 
