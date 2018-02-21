@@ -6,7 +6,7 @@
           <h6 class="title"><%= t "title_list_report" %></h6>
           <% if @club.is_admin? current_user %>
             <%= link_to new_club_manager_club_statistic_report_path(@club.slug),
-              class: "btn btn-sm btn-breez pull-right", remote: :true do %>
+              class: "btn btn-sm btn-breez pull-right" do %>
               <i class="fa fa-plus-circle"> </i><%= t "add_report" %>
             <% end %>
           <% end %>

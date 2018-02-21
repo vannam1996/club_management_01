@@ -53,9 +53,6 @@ class ClubManager::StatisticReportsController < ApplicationController
     @statistic_report = current_user.statistic_reports.build club_id: @club.id
     @statistic_report.report_details.build
     all_report
-    respond_to do |format|
-      format.js
-    end
   end
 
   private

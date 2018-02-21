@@ -11,6 +11,7 @@
         <th class="table-paymoney"><%= t "time_report" %></th>
         <th><%= t "name" %></th>
         <th class="table-content"><%= t "content" %></th>
+        <th class="table-paymoney"><%= t "club_manager.event.joined" %></th>
       </tr>
     </thead>
     <tbody>
@@ -26,6 +27,11 @@
           </td>
           <td>
             <%= raw(event.description) %>
+          </td>
+          <td>
+            <% event.user_events.each do |user_event| %>
+              <%= user_event.user_full_name %>
+            <% end %>
           </td>
         </tr>
       <% end %>
