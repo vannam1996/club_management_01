@@ -66,7 +66,7 @@ periodic_category: 4
 payment_budget: "Payment For Club Of Month:"
 max_display_member_club: 5
 club_member: 18
-notification: 3
+notification: 0
 get_money: 2
 pay_money: 1
 event_page: 4
@@ -252,9 +252,6 @@ default_money: 0
 key_other_style_report_details: "other"
 key_pay_money_report_details: "pay_money"
 key_get_money_report_details: "get_money"
-array_style_event_money: [1, 2, 0, 4, 5]
-array_style_event_activity: [3]
-array_style_event_member: [3]
 key_money_enum: "money"
 key_activity_enum: "activity"
 key_member_enum: "member"
@@ -271,3 +268,6 @@ value_pay_money: 1
 value_receive_money: 5
 value_destroy_attribute_params: "1"
 class_check_box_checked: "active"
+get_money_member: "get_money_member"
+money: "money"
+activity_money: "activity_money"

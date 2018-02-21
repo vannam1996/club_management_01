@@ -60,10 +60,6 @@ class Club < ApplicationRecord
     self.update_attributes money: size_member * event.expense.to_i + self.money.to_i
   end
 
-  def pay_money_change event, change
-    self.update_attributes money: self.money.to_i + (event.expense.to_i - change.to_i)
-  end
-
   def rating_club
     self.rating.round.times do
       safe_join "<i class='fa fa-star'></i>"
@@ -108,26 +104,6 @@ class Club < ApplicationRecord
   def is_admin? user
     user_club = self.user_clubs.manager.find_by(user_id: user.id)
     user_club.present?
-  end
-
-  def money_pay money
-    self.update_attributes! money: self.money - money
-  end
-
-  def money_subsidy money
-    self.update_attributes! money: self.money + money
-  end
-
-  def subsidy_money_change event, change
-    self.update_attribute :money, self.money.to_i + (change.to_i - event.expense.to_i)
-  end
-
-  def receive_money_change event, change
-    self.update_attribute :money, self.money.to_i + (change.to_i - event.expense.to_i)
-  end
-
-  def money_receive money
-    self.update_attributes! money: self.money + money
   end
 
   def display_organization

@@ -29,15 +29,9 @@ module EventsHelper
   def view_case_money_event_after event, club
     members_done = club.users.done_by_ids(event.budgets.map(&:user_id))
     case event.event_category
-    when Settings.get_money
+    when Settings.get_money_member
       after_money = event.amount.to_i + (members_done.size.to_i * event.expense.to_i)
-    when Settings.pay_money
-      after_money = event.amount.to_i - event.expense.to_i
-    when Settings.subsidy
-      after_money = event.amount.to_i + event.expense.to_i
-    when Settings.donate
-      after_money = event.amount.to_i + event.expense.to_i
-    when Settings.receive_money
+    when Settings.money, Settings.activity_money, Settings.subsidy, Settings.donate
       after_money = event.amount.to_i + event.expense.to_i
     else
       after_money = nil
@@ -46,11 +40,11 @@ module EventsHelper
   end
 
   def view_class event
-    event.pay_money? ? "text-primary" : "text-success"
+    event.activity_money? || event.money? ? "text-primary" : "text-success"
   end
 
   def view_icon event
-    if event.pay_money?
+    if event.expense < Settings.default_money
       content_tag(:i, "", class: "fa fa-minus get-money-icon")
     else
       content_tag(:i, "", class: "fa fa-plus pay-money-icon")
@@ -67,11 +61,10 @@ module EventsHelper
   end
 
   def category_event
-    [[t("subsidy"), Event.event_categories[:subsidy]],
-    [t("get_money"), Event.event_categories[:get_money]],
-    [t("pay_money"), Event.event_categories[:pay_money]],
+    [[t("money"), Event.event_categories[:money]],
+    [t("get_money_member"), Event.event_categories[:get_money_member]],
     [t("donate.donate"), Event.event_categories[:donate]],
-    [t("receive_money"), Event.event_categories[:receive_money]]]
+    [t("subsidy"), Event.event_categories[:subsidy]]]
   end
 
   def confirm_donate donate, club
@@ -87,7 +80,7 @@ module EventsHelper
   end
 
   def check_event_category category_id
-    event_category_ids = Event.event_categories.except(:notification).keys
+    event_category_ids = Event.event_categories.except(:notification, :activity_money, :activity_no_money).keys
     event_category_ids.include? category_id
   end
 

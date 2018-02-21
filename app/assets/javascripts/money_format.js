@@ -25,6 +25,12 @@ $(document).ready(function () {
     $(this).val(format($(this).val()));
   });
   $('#event_expense').val(format($('#event_expense').val()));
+  $('#expense_details').on('change', '.radio-get-money', function(){
+    setMoney();
+  });
+  $('#expense_details').on('change', '.radio-pay-money', function(){
+    setMoney();
+  });
 });
 
 var format = function(num){
@@ -44,13 +50,35 @@ var format = function(num){
     }
   }
   formatted = output.reverse().join('');
-  return(formatted + ((parts) ? '.' + parts[1].substr(0, 2) : ''));
+  money = formatted + ((parts) ? '.' + parts[1].substr(0, 2) : '');
+  if (money.charAt(0) === '-' && money.charAt(1) === ',')
+  {
+    money = money.replace('-,', '-');
+  }
+  return(money);
 };
 
 function setMoney(){
   var count = 0;
-  $.each($('.money-input:visible'), function(index, value){
-    count += parseInt($(value).val().replace(/,/g, ''));
+  var array_id_radio_pay = [];
+  var array_id_money = [];
+  $('.expense_details').find('.radio-pay-money:visible').each(function(){
+    array_id_radio_pay.push($(this).attr('id'));
   });
+
+  $('.expense_details').find('.money-input:visible').each(function(){
+    array_id_money.push($(this).attr('id'));
+  });
+
+  $.each(array_id_radio_pay, function(index, id){
+    if ($('#' + id).is(':checked')){
+      count -= parseInt($('#' + array_id_money[index]).val().replace(/,/g, ''));
+    }
+    else
+    {
+      count += parseInt($('#' + array_id_money[index]).val().replace(/,/g, ''));
+    }
+  });
+
   $('#event_expense').val(format(count));
 }

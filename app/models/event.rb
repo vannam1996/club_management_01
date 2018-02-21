@@ -46,7 +46,8 @@ class Event < ApplicationRecord
   scope :status_public, ->is_public{where is_public: is_public}
 
   enum status: {inprocess: 0, finished: 1}
-  enum event_category: {pay_money: 1, get_money: 2, notification: 3, subsidy: 0, donate: 4, receive_money: 5}
+  enum event_category: {notification: 0, activity_no_money: 1, activity_money: 2,
+    money: 3, get_money_member: 4, donate: 5, subsidy: 6}
 
   delegate :full_name, :avatar, to: :user, prefix: :user
   delegate :name, :logo, :slug, to: :club, prefix: :club
@@ -79,13 +80,50 @@ class Event < ApplicationRecord
     def calculate_get_donate donate
       donate.club.update_attributes money: donate.expense.to_i + donate.club.money.to_i
     end
+
+    def money_event_keys
+      Event.event_categories.except(:money, :get_money_member, :donate, :subsidy).keys
+    end
+
+    def array_style_event_money
+      [Event.event_categories[:activity_money], Event.event_categories[:money],
+        Event.event_categories[:donate], Event.event_categories[:subsidy]]
+    end
+
+    def array_style_event_activity
+      [Event.event_categories[:notification], Event.event_categories[:activity_money]]
+    end
+
+    def array_style_event_member
+      [Event.event_categories[:activity_money]]
+    end
   end
 
   def update_money
-    if self.pay_money?
-      self.club.update_attributes money: self.club.money + self.expense
-    elsif !self.notification? && !self.get_money?
+    if in_type_money_event?
       self.club.update_attributes money: self.club.money - self.expense
     end
+  end
+
+  def get_money_by_style style
+    details_group = self.event_details.group_by(&:style)
+    count_money_details details_group, style
+  end
+
+  private
+
+  def count_money_details details_group, style
+    count = Settings.default_money
+    details = details_group[EventDetail.styles.key(style)] if details_group
+    if details
+      details.each do |detail|
+        count += detail.money
+      end
+    end
+    count
+  end
+
+  def in_type_money_event?
+    self.money? || self.activity_money? || self.subsidy? || self.donate?
   end
 end

@@ -34,7 +34,7 @@ class ClubsController < ApplicationController
     @album = Album.new
     list_events = @club.events
     @q = list_events.search(params[:q])
-    @events = @q.result.newest.in_categories(events_ids).includes(:budgets)
+    @events = @q.result.newest.in_categories(events_ids).includes(:budgets, :event_details)
       .page(params[:page]).per Settings.per_page
     @time_line_events = @events.by_current_year.group_by_quarter
     @message = Message.new
@@ -183,12 +183,11 @@ class ClubsController < ApplicationController
   end
 
   def events_ids
-    Event.event_categories.except(:notification).keys
+    Event.event_categories.except(:notification, :activity_no_money).keys
   end
 
   def load_event_notification
-    id_notification = Event.event_categories[:notification]
-    @events_notification = @club.events.newest.in_categories(id_notification)
+    @events_notification = @club.events.newest.in_categories(Event.money_event_keys)
       .page(params[:page]).per Settings.per_page
   end
 end

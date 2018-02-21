@@ -1129,6 +1129,10 @@ vi:
     subsidy: "Tiền trợ cấp"
     notifications: "Thông báo"
     receive_money: "Thu tiền"
+    activity_no_money: "Hoạt động ( không thu chi )"
+    activity_money: "Hoạt động ( có thu chi )"
+    money: "Thu chi"
+    get_money_member: "Thu tiền thành viên"
   user_organization_not_remove: "Bạn là quản lý duy nhất của tổ chức. Vui lòng chọn một thành viên khác làm quản lý để được rời khỏi tổ chức."
   user_club_not_remove: "Bạn là quản lý duy nhất của câu lạc bộ. Vui lòng chọn một thành viên khác làm quản lý để được rời khỏi câu lạc bộ."
   pause_club: "Tạm dừng hoạt động"
@@ -1371,7 +1375,7 @@ vi:
       first_money: "Tiền đầu kì: "
       last_money: "Tiền cuối kì: "
   event_notification: "Thông báo"
-  new_noti: "Tạo thông báo"
+  new_noti: " Tạo hoạt động"
   event_notifications:
     create_success: "Thành công"
     create_errors: "Thất bại"
@@ -1379,6 +1383,8 @@ vi:
     error_find_club: "Không tìm thấy câu lạc bộ"
     update_success: "Thành công"
     update_errors: "Thất bại"
+    error_process: "Có lỗi trong quá trình xử lý,vui lòng thử lại"
+    success_process: "Bạn đã xử lý thành công"
   style_event:
     event_public: "Công khai"
   update_events_report: "Vui lòng cập nhật sự kiện trước khi tạo báo cáo!"
@@ -1401,3 +1407,11 @@ vi:
   total_event: "Tổng số sự kiện"
   event_participation: "Sự kiện tham gia"
   not_event: "Không có sự kiện nào diễn ra!"
+  activity_no_money: "Hoạt động ( không thu chi )"
+  activity_money: "Hoạt động ( có thu chi )"
+  money: "Thu chi"
+  get_money_member: "Thu tiền thành viên"
+  event_details:
+    event_detail_fields:
+      pay: "Chi"
+      get: "Thu"

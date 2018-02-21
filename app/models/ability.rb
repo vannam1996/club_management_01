@@ -49,7 +49,7 @@ class Ability
           .include?(user.id)
       end
 
-      can :manage, :event_notification, Club do |club|
+      can :manage, :event_notification do |club|
         club.keys.first.user_clubs.manager.pluck(:user_id).include?(user.id)
       end
 
