@@ -3,14 +3,14 @@ module NotificationsHelper
     if current_user.user_organizations.are_admin
       notification_ids = notification_club_manager + notification_member +
         notification_organization_manager
-      Activity.includes(:trackable, [owner: :user_clubs], :container)
+      Activity.includes(:trackable, :owner, :container)
         .activity_ids(notification_ids).oder_by_read
     elsif current_user.user_clubs.manager
       notification_ids = notification_club_manager + notification_member
-      Activity.includes(:trackable, [owner: :user_clubs], :container)
+      Activity.includes(:trackable, :owner, :container)
         .activity_ids(notification_ids).oder_by_read
     else
-      Activity.includes(:trackable, [owner: :user_clubs], :container)
+      Activity.includes(:trackable, :owner, :container)
         .activity_ids(notification_member).oder_by_read
     end
   end

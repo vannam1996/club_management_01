@@ -1,6 +1,7 @@
 class ClubsController < ApplicationController
   before_action :authenticate_user!
-  load_and_authorize_resource find_by: :slug
+  before_action :load_club, only: %i(show edit update)
+  authorize_resource
   before_action :verify_club, only: :show
   before_action :load_user_organizations, only: :show
   before_action :load_organization, only: %i(new update create)
@@ -17,7 +18,7 @@ class ClubsController < ApplicationController
       @club_joined
     )
     @q = clubs.search(params[:q])
-    @clubs = @q.result.newest.page(params[:page]).per Settings.club_per_page
+    @clubs = @q.result.includes(:organization).newest.page(params[:page]).per Settings.club_per_page
     @user_organizations = current_user.user_organizations.joined
     @organizations = Organization.by_user_organizations(
       current_user.user_organizations.joined
@@ -34,13 +35,14 @@ class ClubsController < ApplicationController
     @album = Album.new
     list_events = @club.events
     @q = list_events.search(params[:q])
-    @events = @q.result.newest.event_category_activity_money(events_ids, Event.event_categories[:activity_money])
-      .includes(:budgets, :event_details).page(params[:page]).per Settings.per_page
+    @events_budget = @q.result.newest.event_category_activity_money(events_ids, Event.event_categories[:activity_money])
+      .includes(:budgets, :event_details)
+    @events = @events_budget.page(params[:page]).per Settings.per_page
     @time_line_events = @events.by_current_year.group_by_quarter
     @message = Message.new
     @user_club = UserClub.new
     @infor_club = Support::ClubSupport.new(@club, params[:page], nil)
-    @albums = @club.albums.newest.includes(:images)
+    @albums = @club.albums.includes(:images).newest
     @add_user_club = @user_organizations
       .user_not_joined(@club.user_clubs.map(&:user_id))
     @members_not_manager = @infor_club.members_not_manager.page(params[:page])
@@ -54,7 +56,7 @@ class ClubsController < ApplicationController
   def new
     if can? :manager, @organization
       @club = Club.new
-      @user_organizations = UserOrganization
+      @user_organizations = UserOrganization.includes(:user)
         .load_user_organization(params[:organization_id])
         .except_me current_user.id
       @club_types = ClubType.of_organization params[:organization_id]
@@ -116,12 +118,12 @@ class ClubsController < ApplicationController
     end
   end
 
-  # def load_club
-  #   @club = Club.find_by slug: params[:id]
-  #   return if @club
-  #   flash[:danger] = t("not_found")
-  #   redirect_to root_path
-  # end
+  def load_club
+    @club = Club.find_by slug: params[:id]
+    return if @club
+    flash[:danger] = t("not_found")
+    redirect_to root_path
+  end
 
   def load_user_organizations
     @user_organizations = @club.organization

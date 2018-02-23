@@ -6,7 +6,7 @@
       </tbody>
     </table>
     <div class="col-md-12 text-center">
-      <% if events.first.notification? %>
+      <% if tab_activity %>
         <%= paginate events, params: {controller: "event_notifications", action: "show", club_id: @club.id}, remote: true %>
       <% else %>
         <%= paginate events, remote: true %>

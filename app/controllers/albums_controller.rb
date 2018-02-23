@@ -24,7 +24,7 @@ class AlbumsController < ApplicationController
   def show
     @image = Image.new
     @videos = @album.videos.upload_success
-    @album_other = @club.albums.newest.other params[:id]
+    @album_other = @club.albums.includes(:images).newest.other params[:id]
   end
 
   def destroy
@@ -64,7 +64,7 @@ class AlbumsController < ApplicationController
   end
 
   def load_album
-    @album = Album.find_by id: params[:id]
+    @album = Album.includes(:images).find_by id: params[:id]
     unless @album
       flash[:danger] = t "not_found"
       redirect_to root_url

@@ -13,7 +13,7 @@ class ClubRequestsController < ApplicationController
 
   def new
     @request = ClubRequest.new
-    @organizations = current_user.user_organizations.joined
+    @organizations = current_user.user_organizations.includes(:organization).joined
     if params[:organization_id]
       @user_organizations = UserOrganization.load_user_organization(
         params[:organization_id]

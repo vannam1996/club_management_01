@@ -4,7 +4,7 @@ class OrganizationsController < ApplicationController
 
   def index
     @q = Organization.search(params[:q])
-    @organizations = @q.result.newest.includes(:users).page(params[:page])
+    @organizations = @q.result.newest.page(params[:page])
       .per Settings.club_per_page
   end
 
@@ -14,7 +14,7 @@ class OrganizationsController < ApplicationController
     @q = @organization.clubs.search(params[:q])
     @clubs = @q.result.page(params[:page]).per Settings.club_per_page
     @add_user_club = User.without_user_ids(@organization.user_organizations.map(&:user_id))
-    @organization_event = @organization.events.status_public(true)
+    @organization_event = @organization.events.includes(:club).status_public(true)
       .newest.page(params[:page]).per Settings.club_per_page
     respond_to do |format|
       format.html
@@ -30,7 +30,7 @@ class OrganizationsController < ApplicationController
 
   private
   def load_organization
-    @organization = Organization.includes(:events).friendly.find_by slug: params[:id]
+    @organization = Organization.friendly.find_by slug: params[:id]
     return if @organization
     flash[:danger] = t("organization_not_found")
     redirect_to root_url

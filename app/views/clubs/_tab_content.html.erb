@@ -12,7 +12,8 @@
           <% end %>
         </div>
         <div id="list-event-show-notification">
-          <%= render partial: "events/event", locals: {events: @events_notification} %>
+          <%= render partial: "events/event", locals: {events: @events_notification,
+            tab_activity: true} %>
         </div>
       </div>
       <div class="ui-block" id="image">
@@ -48,7 +49,8 @@
           <% end %>
         </div>
         <div id="list-event-show">
-          <%= render partial: "events/event", locals: {events: @events} %>
+          <%= render partial: "events/event", locals: {events: @events,
+            tab_activity: false} %>
         </div>
       </div>
       <div class="ui-block" id="statistic_report"></div>

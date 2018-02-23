@@ -15,10 +15,13 @@
             <div class="notification-value">
               <a href="#" class="h6 notification-friend"><%= notification.owner_full_name %></a>
               <%= t "has_been" %><%= t notification.key.try(:downcase) %>
-              <%= t notification.trackable_type.try(:downcase) %>:
+              <% if notification.trackable_type == Settings.event %>
+                <%= t notification.trackable_type.try(:downcase) %>
+                <%= t "notification_event.#{notification.trackable.event_category}" %>
                 <a href="#" class="notification-link"><%= notification.trackable_name %></a>
-              <% if notification.container %>
                 <%= t "in_the" %>
+              <% end %>
+              <% if notification.container %>
                 <%= t notification.container_type.try(:downcase) %>
                 <strong><%= notification.container_name %></strong>
                 </br><i class="fa fa-clock-o time_create" aria-hidden="true">

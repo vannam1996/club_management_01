@@ -32,7 +32,7 @@
                   <div class="days-selector row">
                     <% for day in I18n.t("date.day_names") %>
                       <%= check_box_tag "club[time_activity][]",
-                        day, check_date(@club.time_activity, day), class: "col-md-1 col-xs-1 col-sm-1" %>
+                        day, check_date_club(@club.time_activity, day), class: "col-md-1 col-xs-1 col-sm-1" %>
                       <label><%= day %></label>
                     <% end %>
                   </div>

@@ -1,2 +1,3 @@
 $('#list-event-show-notification')
-  .html('<%= j render partial: "events/event", locals: {events: @events_notification} %>')
+  .html('<%= j render partial: "events/event", locals: {events: @events_notification,
+    tab_activity: true} %>')
