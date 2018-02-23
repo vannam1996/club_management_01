@@ -12,7 +12,8 @@ class Event < ApplicationRecord
   has_many :albums, dependent: :destroy
   has_many :event_details, dependent: :destroy
 
-  accepts_nested_attributes_for :event_details, allow_destroy: true
+  accepts_nested_attributes_for :event_details, allow_destroy: true,
+    reject_if: proc {|attributes| attributes[:description].blank?}
 
   belongs_to :club
   belongs_to :user
@@ -83,8 +84,8 @@ class Event < ApplicationRecord
   end
 
   class << self
-    def calculate_get_donate donate
-      donate.club.update_attributes money: donate.expense.to_i + donate.club.money.to_i
+    def calculate_get_donate donate, event
+      event.club.update_attributes money: donate.expense.to_i + event.club.money.to_i
     end
 
     def money_event_keys
@@ -97,7 +98,7 @@ class Event < ApplicationRecord
     end
 
     def array_style_event_activity
-      [Event.event_categories[:notification], Event.event_categories[:activity_money]]
+      [Event.event_categories[:activity_money]]
     end
 
     def array_style_event_member

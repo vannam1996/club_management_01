@@ -12,6 +12,7 @@ class SetImageClubsController < ApplicationController
   end
 
   def update
+    set_crop
     if @club.update_attributes remote_image_url: @url_upload.to_s
       create_acivity @club, Settings.update, @club, current_user,
         Activity.type_receives[:club_member]
@@ -37,6 +38,13 @@ class SetImageClubsController < ApplicationController
     else
       flash[:danger] = t "params_image_blank"
       redirect_to organization_club_path(@club.organization.slug, @club)
+    end
+  end
+
+  def set_crop
+    if params[:club]
+      @club.set_attr_crop_image params[:club][:image_crop_x], params[:club][:image_crop_y],
+        params[:club][:image_crop_h], params[:club][:image_crop_w]
     end
   end
 end

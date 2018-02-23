@@ -181,7 +181,6 @@
   margin-bottom: 0;
   .ui-block-title{
     background-color:$breez;
-    padding: 8px;
     .icon-status{
       font-size: 20px;
       position: absolute;
@@ -885,4 +884,28 @@ a.pull-right.add_fields {
 
 .white-bgr {
   background-color: white !important;
+}
+
+.expense{
+  margin-top: 17px;
+}
+
+.field-btn {
+  margin-top: 1px;
+}
+
+.label-bold {
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.form-money {
+  border-radius: 20px;
+  border: 1px solid #b9d690;
+  padding: 15px;
+  margin-top: 20px;
+}
+
+#collapse-money:hover {
+  color: hotpink;
 }

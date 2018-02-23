@@ -32,7 +32,7 @@
               </div>
             </div>
             <div class="pull-right">
-              <% case when @event.notification? %>
+              <% case when @event.activity_money? %>
                 <%= render "user_events/join_event_toggle" %>
               <% when @event.get_money_member? %>
                 <%= link_to t("get_money"), "#collapse1", data: {toggle: "collapse"},
@@ -90,7 +90,7 @@
                   <i class="fa fa-money" aria-hidden="true"></i>
                   <span class="total_money"><%= number_to_currency(@event.expense, locals: :vi) %></span>
                 </div>
-                <% if @event.notification? %>
+                <% if @event.activity_money? %>
                   <h6 class="event-description-title"><%= t "club_manager.event.joined" %></h6>
                   <div class="row">
                     <% @event.user_events.each do |user_event| %>

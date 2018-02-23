@@ -23,7 +23,7 @@
     <%= f.text_field :name, class: "form-control input-text",
       placeholder: t("club_manager.event.event_name"), required: true %>
   </div>
-  <div class="form-group">
+  <div class="form-group expense">
     <label class="col-md-2 control-label" for="example-text-input">
       <%= t "club_manager.event.status" %>
     </label>
@@ -44,31 +44,21 @@
       <span class="round-btn"></span>
     </div>
   </div>
-  <% if @event.activity_money? %>
-    <div class="form-group col-md-12 expense_details" id="expense_details">
-      <% @event.event_details.build %>
-      <div class="row" id="add_field_detail">
-        <label class="col-md-1 col-xl-2 label-detail"><%= t("detail_event") %></label>
-        <%= link_to_add_association f, :event_details,
-          partial: "event_details/event_detail_fields", class: "btn btn-breez btn-sm button-add-detail col-md-1" do %>
-          <i class="fa fa-plus"></i>
-        <% end %>
-      </div>
-      <%= f.fields_for :event_details do |detail| %>
-        <% if detail.object.id.present? %>
-          <%= render partial: "event_details/event_detail_fields", locals: {f: detail} %>
-        <% end %>
+  <% if @event.event_details.present? %>
+    <div class = "<%= "form-money" if @event.activity_money? %>" id = "money-details">
+      <% if @event.activity_money? %>
+        <%= render partial: "event_details/details_event_edit", locals: {f: f} %>
       <% end %>
+      <div class="form-group col-md-12 expense">
+        <%= f.label(:expense, class: "control-label", id: "label-expense") do %>
+          <%= t(".amount_for") %>
+        <% end %>
+        <%= f.text_field :expense, class: "form-control input-text col-md-12",
+          placeholder: t("club_manager.event.expense_holder"), required: true,
+          disabled: true %>
+      </div>
     </div>
   <% end %>
-  <div class="form-group col-md-12 expense">
-    <%= f.label(:expense, class: "control-label", id: "label-expense") do %>
-      <%= t(".amount_for") %>
-    <% end %>
-    <%= f.text_field :expense, class: "form-control input-text col-md-12",
-      placeholder: t("club_manager.event.expense_holder"), required: true,
-      disabled: true %>
-  </div>
   <div class="form-group col-md-12">
     <%= f.label(:location, class: "control-label") do %>
       <%= t(".location") %>
