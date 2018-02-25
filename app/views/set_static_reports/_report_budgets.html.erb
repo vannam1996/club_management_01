@@ -1,7 +1,8 @@
 <label for="contact-name"><%= category.name %> *</label></br>
 <% if events.present? %>
   <% if events.first.date_end %>
-    (<%= l events.first.date_end.beginning_of_month, format: :short %> - <%= l events.last.date_end.end_of_month, format: :short %>)</br>
+    (<%= l events.first.date_end.beginning_of_month, format: :short %>
+    - <%= l events.last.date_end.end_of_month, format: :short %>)</br>
   <% else %>
     (<%= l events.first.created_at, format: :short %> - <%= l events.last.created_at, format: :short %>)</br>
   <% end %>
@@ -15,8 +16,8 @@
       </tr>
       <tr>
         <th class="table-paymoney"><%= t "time_report" %></th>
-        <th class="table-paymoney"><%= t "report_categories.report_category.get_money" %></th>
-        <th class="table-paymoney"><%= t "report_categories.report_category.pay_money" %></th>
+        <th class="table-paymoney"><%= t "event_name" %></th>
+        <th class="table-paymoney"><%= t "amount_for" %></th>
         <th class="table-paymoney"><%= t "surplus" %></th>
         <th class="table-content"><%= t "content" %></th>
       </tr>
@@ -25,19 +26,16 @@
       <% moneys = LastMoney.new events %>
       <% events.each do |event| %>
         <tr>
-          <% if event && event.date_end %>
-            <td><%= l event.date_end, format: :short %></td>
-          <% else %>
-            <td><%= l event.created_at, format: :short %></td>
-          <% end %>
-          <td class="check-user">
-            <% unless event.pay_money? || event.notification? %>
-              <%= number_to_currency(money_expense(event), locale: :vi) %>
-            <% end %>
-          </td>
-          <td>
-            <% if event.pay_money? %>
-              <%= number_to_currency(event.expense, locale: :vi) %>
+          <td><%= l event.date_end, format: :short %></td>
+          <td><%= event.name %></td>
+          <td class="check-user text-center">
+            <%= number_to_currency(LastMoney.last_money(event).to_i, locale: :vi) %>
+            <% if event.event_details.present? %>
+              <%= link_to "#detail-pay-#{event.id}", data: { toggle: :collapse },
+                title: t("click_to_show") do %>
+                <i class="fa fa-eye"></i>
+              <% end %>
+              <%= render partial: "events/event_detail", locals: {event: event} %>
             <% end %>
           </td>
           <td>
@@ -55,7 +53,6 @@
       <tr>
         <td colspan="5">
           <strong>
-            <%= t "money_last" %>:
             <%= number_to_currency(moneys.surplus(events.first.amount), locale: :vi) %>
           </strong>
         </td>

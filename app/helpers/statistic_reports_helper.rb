@@ -41,7 +41,7 @@ module StatisticReportsHelper
   end
 
   def money_expense event
-    if event.get_money?
+    if event.get_money_member?
       event.expense * event.budgets.size
     else
       event.expense

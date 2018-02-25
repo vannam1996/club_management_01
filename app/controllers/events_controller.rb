@@ -20,7 +20,7 @@ class EventsController < ApplicationController
         Activity.type_receives[:club_member]
       service_money.save_event_and_plus_money_club_in_money_event
       flash[:success] = t "club_manager.event.success_create"
-      redirect_to club_path params[:club_id]
+      redirect_to club_event_path params[:club_id], event.id
     end
   rescue
     if event.errors.any?

@@ -13,12 +13,9 @@ class LastMoney
   class << self
     def last_money event
       expense = event.expense.to_i
-      case
-      when event.get_money?
+      if event.get_money_member?
         expense * event.budgets.size
-      when event.pay_money?
-        - expense
-      when event.subsidy? || event.donate? || event.receive_money?
+      else
         expense
       end
     end

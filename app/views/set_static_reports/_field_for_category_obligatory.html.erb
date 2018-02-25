@@ -2,7 +2,7 @@
   <% unless category.style_event.blank? %>
     <% service = SetStaticReportService.new @club, category.style_event, params[:q] %>
     <% events = service.load_events %>
-    <% if !category.style_event.include?(Event.event_categories[:notification]) %>
+    <% if category.money? %>
       <%= render partial: "report_budgets", locals: {events: events, category: category} %>
     <% elsif category.activity? %>
       <%= render partial: "report_activity", locals: {events: events, category: category} %>
