@@ -9,6 +9,8 @@ class ClubManager::ClubBudgetsController < BaseClubManagerController
           @budget = Budget.create event_id: params[:event_id], user_id: user_id
         end
         @club.calculate_get_budget(@event, params[:users].size)
+        params_money = {expense: @event.expense * params[:users].size * Settings.negative}
+        create_service_and_update_money params_money
         flash[:success] = t("success_process")
       end
     end
@@ -32,6 +34,8 @@ class ClubManager::ClubBudgetsController < BaseClubManagerController
     if @budget_user
       if @budget_user.destroy
         @club.calculate_change_budget(@event)
+        params_money = {expense: @event.expense}
+        create_service_and_update_money params_money
         flash[:success] = t "success_process"
       else
         flash[:danger] = t "error_process"
@@ -49,5 +53,10 @@ class ClubManager::ClubBudgetsController < BaseClubManagerController
       flash[:danger] = t("event_not_found")
       redirect_to :back
     end
+  end
+
+  def create_service_and_update_money params_money
+    service_money = UpdateClubMoneyService.new @event, @event.club, params_money
+    service_money.update_first_money_of_event_get_money_member
   end
 end

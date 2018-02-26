@@ -1168,3 +1168,6 @@ en:
     donate: "Donate"
     subsidy: "Subsidy"
   information: "Information in"
+  sum_label: "Total: "
+  click_to_show: "Click to show details"
+  click_show_reason_reject: "Click to show reason"

@@ -275,3 +275,7 @@ static_report:
   pay_money: "pay"
   get_money: "get"
 file_uploader: "image/jpeg, image/gif, image/png"
+style_event_detail:
+  value_enum_pay: 0
+  value_enum_get: 1
+negative: -1
