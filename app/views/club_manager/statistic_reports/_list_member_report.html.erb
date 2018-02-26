@@ -1,0 +1,29 @@
+<% if budgets.present? %>
+  <label for="contact-name"><%= budgets.first.report_category_name %> *</label>
+  <div class="list-scroll">
+    <table class="table ui-block table-bordered results list-scroll">
+      <thead>
+        <tr>
+          <th><%= t "name" %></th>
+          <th class="table-content"><%= t "event_participation" %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% budgets.each do |budget| %>
+          <% budget.detail.each do |key, member| %>
+            <% if member.is_a? Hash %>
+              <tr>
+                <td class="check-user">
+                  <%= member[:name] %>
+                </td>
+                <td>
+                  <%= member[:size] %>
+                </td>
+              </tr>
+            <% end %>  
+          <% end %>
+        <% end %>  
+      </tbody>
+    </table>
+  </div>  
+<% end %>
