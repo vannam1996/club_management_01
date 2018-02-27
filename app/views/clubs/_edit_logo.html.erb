@@ -15,7 +15,7 @@
                     <%= t "upload_photo" %>
                   </label>
                   <div>
-                    <%= f.file_field :logo%>
+                    <%= f.file_field :logo, accept: Settings.file_uploader %>
                   </div>
                   <% Club::CROP_LOGO.each do |attr| %>
                     <%= f.hidden_field attr.to_sym, id: "club_#{attr}" %>

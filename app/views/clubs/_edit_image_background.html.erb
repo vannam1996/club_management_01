@@ -12,7 +12,7 @@
                 <div class="form-group">
                   <label class="col-md-3 control-label"><%= t "background" %></label>
                   <div class="col-md-12">
-                    <%= f.file_field :image %>
+                    <%= f.file_field :image, accept: Settings.file_uploader %>
                   </div>
                   <%= image_tag @club.image, class: "background-club", id: "image-background-club" %><hr/>
                 </div>

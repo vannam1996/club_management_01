@@ -11,7 +11,7 @@
                 <div class="form-group col-md-12 logo-organization text-center" id="myfileupload">
                   <%= f.hidden_field :status, value: Organization.statuses["#{@organization.status}"] %>
                   <img height="100" width="100" alt="Thumb image" id="thumbimage" style="display: none" />
-                  <%= f.file_field :logo, id: "background-org" %>
+                  <%= f.file_field :logo, id: "background-org", accept: Settings.file_uploader %>
                   <% Organization::CROP_BACKGROUND.each do |attr| %>
                     <%= f.hidden_field attr.to_sym, id: "org_#{attr}" %>
                   <% end %>
