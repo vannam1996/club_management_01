@@ -5,8 +5,12 @@ module ReportDetailsHelper
 
   def count_money_detail report_detail, style
     total = Settings.default_money
-    report_detail.detail.each do |key, value|
-      total += value[:money].to_i if value[:style] == style
+    if report_detail.detail.is_a? Hash
+      report_detail.detail.each do |key, value|
+        total += value[:money].to_i if value[:style] == style
+      end
+    else
+      total = report_detail.money
     end
     t("sum_label") + number_to_currency(total, locale: :vi).to_s
   end
@@ -19,12 +23,16 @@ module ReportDetailsHelper
 
   def last_money_of_event report_detail
     money = report_detail.first_money
-    report_detail.detail.each do |key, value|
-      if value[:style] == EventDetail.styles.key(Settings.style_event_detail.value_enum_pay)
-        money -= value[:money].to_i
-      elsif value[:style] == EventDetail.styles.key(Settings.style_event_detail.value_enum_get)
-        money += value[:money].to_i
+    if report_detail.detail.is_a? Hash
+      report_detail.detail.each do |key, value|
+        if value[:style] == EventDetail.styles.key(Settings.style_event_detail.value_enum_pay)
+          money -= value[:money].to_i
+        elsif value[:style] == EventDetail.styles.key(Settings.style_event_detail.value_enum_get)
+          money += value[:money].to_i
+        end
       end
+    else
+      money += report_detail.money
     end
     money
   end
@@ -43,9 +51,11 @@ module ReportDetailsHelper
 
   def view_by_style_details report_detail, style
     content_tag(:ul, class: "collapse", id: "detail-#{style}-#{report_detail.id}") do
-      report_detail.detail.each do |key, value|
-        if value[:style] == style
-          concat content_tag(:li, value[:name] + ": " + number_to_currency(value[:money], locals: :vi))
+      if report_detail.detail.is_a? Hash
+        report_detail.detail.each do |key, value|
+          if value[:style] == style
+            concat content_tag(:li, value[:name] + ": " + number_to_currency(value[:money], locals: :vi))
+          end
         end
       end
     end

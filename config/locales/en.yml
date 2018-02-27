@@ -1171,3 +1171,8 @@ en:
   sum_label: "Total: "
   click_to_show: "Click to show details"
   click_show_reason_reject: "Click to show reason"
+  event_activity: "Club's activity"
+  events_money: "Spending"
+  pay: "Pay"
+  get: "Get"
+  sum: "Sum"

@@ -21,27 +21,43 @@ head = wb.styles.add_style(
   :border=>Axlsx::STYLE_THIN_BORDER,
   :alignment=>{:horizontal => :center})
 
+negative = wb.styles.add_style(
+  :fg_color=>Settings.export_member.fg_manager,
+  :format_code=>"dd-mm-yyyy",
+  :sz=>Settings.export_budget.sz_content,
+  :border=>Axlsx::STYLE_THIN_BORDER,
+  :alignment=>{:horizontal => :center})
+
 wb.add_worksheet(name: "Budgets") do |sheet|
-  sheet.merge_cells "A1:F1"
+  sheet.merge_cells "A1:H1"
   sheet.add_row [t("history_budget") + @club.name + ": " +
-    @events.first.created_at.strftime(Settings.date_format_vi) +" -> " +
-    @events.last.created_at.strftime(Settings.date_format_vi)], :style=>title
-  sheet.add_row [t("timeline"), t("form"), t("name_event"), t("money"),
+    @events.last.created_at.strftime(Settings.date_format_vi) +" -> " +
+    @events.first.created_at.strftime(Settings.date_format_vi)], :style=>title
+  sheet.add_row [t("timeline"), t("form"), t("name_event"), t("pay"),t("get"), t("sum"),
   t("money_first"), t("money_last")], :style=>head
   @events.each do |event|
-    sheet.add_row [event.created_at, t("event_category.#{event.event_category}"),
-    event.name,
-    if event.get_money?
-      "+ " + number_to_currency(get_money_expense(event, @club), locale: :vi)
+    if event.money? || event.activity_money?
+      sheet.add_row [event.created_at, t("event_category.#{event.event_category}"),
+        event.name, count_money_event_details(event, EventDetail.styles.key(Settings.style_event_detail.value_enum_pay)),
+        count_money_event_details(event, EventDetail.styles.key(Settings.style_event_detail.value_enum_get)),
+        number_to_currency(event.expense, locale: :vi),
+        number_to_currency(event.amount, locale: :vi),
+        number_to_currency(view_case_money_event_after(event, @club), locale: :vi)], style: get_style_row(event, negative, percent)
+    elsif event.get_money_member?
+      sheet.add_row [event.created_at, t("event_category.#{event.event_category}"),
+        event.name, "",
+        number_to_currency(get_money_expense(event, @club), locale: :vi),
+        number_to_currency(get_money_expense(event, @club), locale: :vi),
+        number_to_currency(event.amount, locale: :vi),
+        number_to_currency(view_case_money_event_after(event, @club), locale: :vi)], style: percent
     else
-      if event.event_category=="pay_money"
-        "- " + number_to_currency(event.expense, locale: :vi)
-      else
-        "+ " + number_to_currency(event.expense, locale: :vi)
-      end
-    end ,
-    number_to_currency(event.amount, locale: :vi),
-    number_to_currency(view_case_money_event_after(event, @club), locale: :vi)], :style=>percent
+      sheet.add_row [event.created_at, t("event_category.#{event.event_category}"),
+        event.name, "",
+        number_to_currency(event.expense, locale: :vi),
+        number_to_currency(event.expense, locale: :vi),
+        number_to_currency(event.amount, locale: :vi),
+        number_to_currency(view_case_money_event_after(event, @club), locale: :vi)], style: percent
+    end
   end
   sheet.column_widths *col_widths
 end

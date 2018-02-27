@@ -1446,3 +1446,8 @@ vi:
   sum_label: "Tổng: "
   click_to_show: "Nhấn để xem chi tiết"
   click_show_reason_reject: "Nhấn để xem lý do"
+  event_activity: "Hoạt động CLB"
+  events_money: "Chi tiêu"
+  pay: "Chi"
+  get: "Thu"
+  sum: "Tổng"

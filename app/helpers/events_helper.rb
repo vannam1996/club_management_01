@@ -108,4 +108,20 @@ module EventsHelper
       Date.current
     end
   end
+
+  def count_money_event_details event, style
+    total = Settings.default_money
+    event.event_details.each do |detail|
+      total += detail.money if detail.style == style
+    end
+    number_to_currency(total, locale: :vi).to_s
+  end
+
+  def get_style_row event, style_red, style_default
+    if event.expense < Settings.default_money
+      style_red
+    else
+      style_default
+    end
+  end
 end

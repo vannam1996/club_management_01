@@ -105,13 +105,25 @@ jQuery(document).ready(function($) {
   });
 
   $('#budget-filter').change(function(){
+    var limit_page = $('#limit_page').val();
     var first_date = $('#date_first').val();
     var second_date = $('#date_end').val();
     var club_id = $('#club_id').val();
-    // alert(club_id);
-    var data = {date_search: {first_date: first_date,
-      second_date: second_date}}
-    $.get('/clubs/' + club_id + '/budgets', data , null, 'script');
+    if (first_date === "" && second_date === ""){
+      data = {page: 1, limit_page: limit_page};
+      $.get('/clubs/' + club_id + '/budgets', data , null, 'script');
+    }
+    else if (first_date != "" && second_date != "")
+    {
+      var data = {date_search: {first_date: first_date,
+        second_date: second_date}, limit_page: limit_page}
+      $.get('/clubs/' + club_id + '/budgets', data , null, 'script');
+    }
+    else if (first_date === "" || second_date === "")
+    {
+      data = {page: 1, limit_page: limit_page};
+      $.get('/clubs/' + club_id + '/budgets', data , null, 'script');
+    }
     return false;
   });
 

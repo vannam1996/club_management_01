@@ -1,8 +1,13 @@
 class Dashboard::ExportHistoryBudgetsController < ApplicationController
   before_action :load_club, only: :index
   def index
-    @event_clubs = @club.events.without_notification(Settings.notification).newest
-    @events = @event_clubs.by_created_at params[:first_date], params[:second_date]
+    if params[:first_date].present? && params[:second_date].present?
+      @events = @club.events.newest.event_category_activity_money(Event.array_style_event_money_except_activity,
+        Event.event_categories[:activity_money]).by_created_at(params[:first_date], params[:second_date])
+    else
+      @events = @club.events.newest.event_category_activity_money(Event.array_style_event_money_except_activity,
+        Event.event_categories[:activity_money])
+    end
     respond_to do |format|
       format.html
       format.xlsx do
@@ -12,14 +17,11 @@ class Dashboard::ExportHistoryBudgetsController < ApplicationController
     end
   end
 
-  def create
-  end
-
   private
   def load_club
-    @club = Club.friendly.find params[:id]
-  rescue
-    flash[:danger] = t "club_manager.cant_fount"
+    @club = Club.find_by id: params[:club_id]
+    return if @club
+    flash[:danger] = t "cant_found_club"
     redirect_to root_path
   end
 end
