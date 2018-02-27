@@ -1,4 +1,3 @@
-<% budgets = @report.report_details.load_detail_budgets %>
 <% if budgets.present? %>
   <label for="contact-name"><%= budgets.first.report_category_name %> *</label>
   (<%= l budgets.first.date_event, format: :short %> - <%= l budgets.last.date_event, format: :short %>)</br>
@@ -11,40 +10,53 @@
         </th>
       </tr>
       <tr>
-        <th class="table-paymoney"><%= t "report_categories.report_category.get_money" %></th>
-        <th class="table-paymoney"><%= t "report_categories.report_category.pay_money" %></th>
-        <th class="table-paymoney"><%= t "surplus" %></th>
-        <th class="table-content"><%= t "content" %></th>
         <th><%= t "time_report" %></th>
+        <th class="table-paymoney"><%= t "event_name" %></th>
+        <th class="table-paymoney"><%= t "amount_for" %></th>
+        <th class="table-paymoney"><%= t "surplus" %></th>
       </tr>
     </thead>
     <tbody>
       <% budgets.each do |budget| %>
         <tr>
-          <td class="check-user">
-            <% if budget.get_money? %>
-              <%= number_to_currency(budget.money, locale: :vi) %>
-            <% end %>
-          </td>
-          <td>
-            <% if budget.pay_money? %>
-              <%= number_to_currency(budget.money, locale: :vi) %>
-            <% end %>
-          </td>
-          <td>
-            <%= number_to_currency(budget.first_money, locale: :vi) %>
-          </td>
-          <td>
-            <%= raw(budget.detail) %>
-          </td>
           <td><%= l budget.date_event, format: :short %></td>
+          <td class="check-user">
+            <%= budget.name_event %>
+          </td>
+          <td class="text-center">
+            <table class="table ui-block table table-bordered results">
+              <tr>
+                <th><%= t "content" %></th>
+                <th><%= t "report_categories.report_category.get_money" %></th>
+                <th><%= t "report_categories.report_category.pay_money" %></th>
+              </tr>
+              <%= number_to_currency(budget.money, locale: :vi) %>
+              <% if budget.detail.is_a? Hash %>
+                <% budget.detail.each do |key, budget_detail| %>
+                  <tr>
+                    <td><%= budget_detail[:name] %></td>
+                    <td>
+                      <% if budget_detail[:style] == Settings.static_report.get_money %>
+                        <%= budget_detail[:money] %>
+                      <% end %>
+                    </td>
+                    <td>
+                      <% if budget_detail[:style] == Settings.static_report.pay_money %>
+                        <%= budget_detail[:money] %>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+              <% end %> 
+            </table>
+          </td>
+          <td></td>
         </tr>
       <% end %>
       <tr>
         <td colspan="5">
           <strong>
             <%= t "money_last" %>:
-            <%= last_money budgets %>
           </strong>
         </td>
       </tr>

@@ -271,3 +271,6 @@ class_check_box_checked: "active"
 get_money_member: "get_money_member"
 money: "money"
 activity_money: "activity_money"
+static_report:
+  pay_money: "pay"
+  get_money: "get"

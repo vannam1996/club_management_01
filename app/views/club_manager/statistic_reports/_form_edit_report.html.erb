@@ -22,8 +22,9 @@
   <div class="form-group" id="detail-report-field">
     <div class="form-group col-md-12" id="detail-report-field">
       <div id="detail" class="col-md-12">
-        <%= render "list_bugets_report" %>
-        <%= render partial: "list_activity_report" %>
+        <%= render partial: "list_bugets_report", locals: {budgets: @report.report_details.money} %>
+        <%= render partial: "list_activity_report", locals: {budgets: @report.report_details.active} %>
+        <%= render partial: "list_member_report", locals: {budgets: @report.report_details.member.load_date_report} %>
         <%= f.fields_for :report_details do |ff| %>
           <% if is_report_of_category_obligatory? ff.object %>
             <%= render partial: "detail_category_report", locals: {f: ff, category: ff.object.report_category} %>
