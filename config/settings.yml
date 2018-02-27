@@ -274,3 +274,4 @@ activity_money: "activity_money"
 static_report:
   pay_money: "pay"
   get_money: "get"
+file_uploader: "image/jpeg, image/gif, image/png"
