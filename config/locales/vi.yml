@@ -555,6 +555,9 @@ vi:
   save: "Lưu"
   activerecord:
     attributes:
+      post:
+        content: ""
+        name: ""
       club_type:
         name: ""
       statistic_report:
@@ -618,6 +621,12 @@ vi:
       messages:
         record_invalid: "Bản ghi không hợp lệ"
       models:
+        post:
+          attributes:
+            content:
+              blank: "Không được bỏ trống nội dung bài viết"
+            name:
+              blank: "Không được bỏ trống tên bài viết"
         news:
           attributes:
             title:
@@ -1471,3 +1480,23 @@ vi:
     new_errors: "Bạn đã tạo thư mời tài trợ cho sự kiện này rồi, vui lòng kiểm tra lại"
     new_sponsor: "Tạo thư mời tài trợ"
     sponsor: "Thư mời tài trợ"
+  social_share_button:
+    share_to: "Chia sẽ"
+  new_post: "Tạo bài viết"
+  post: "Bài viết"
+  list_post: "Danh sách bài viết"
+  title_modal_new_post: "Bài viết mới"
+  posts:
+    name: "Tên"
+    content: "Nội dung"
+    name_post: "Tên bài viết"
+    post_now: "Đăng bài viết"
+    cant_find_post: "Không tìm thấy bài viết"
+    cant_find_event: "Không tìm thấy sự kiện"
+    create_success: "Tạo bài viết thành công"
+    create_errors: "Có lỗi xảy ra, vui lòng thử lại"
+    update_success: "Cập nhật thành công"
+    update_errors: "Có lỗi xảy ra, vui lòng thử lại"
+    post_update: "Cập nhật"
+    destroy_success: "Xóa bài viết thành công"
+    destroy_errors: "Có lỗi xảy ra, vui lòng thử lại"

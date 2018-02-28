@@ -43,8 +43,10 @@ class EventsController < ApplicationController
         format.js
       end
     else
-      @comments = @event.comments.newest.take(Settings.limit_comments)
+      @comments = @event.comments.includes(:user).newest.take(Settings.limit_comments)
     end
+    @posts = @event.posts.includes(:user).newest.page(params[:page]).per Settings.per_page
+    @post = Post.new
   end
 
   def update

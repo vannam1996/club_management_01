@@ -56,6 +56,14 @@ class Ability
       can :manage, Video do |video|
         video.album.club.user_clubs.manager.pluck(:user_id).include? user.id
       end
+
+      can [:create, :update], Post do |post|
+        post.user_id == user.id
+      end
+
+      can :destroy, Post do |post|
+        post.user_id == user.id || post.target.club.user_clubs.manager.pluck(:user_id).include?(user.id)
+      end
     end
   end
 end

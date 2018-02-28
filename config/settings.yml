@@ -11,6 +11,7 @@ event_truncate: 360
 truncate_description: 90
 truncate_organization: 30
 description_event: 360
+truncat_content_post: 300
 max_location: 150
 delete: "delete"
 comment: "comment"

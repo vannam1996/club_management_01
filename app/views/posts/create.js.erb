@@ -1,0 +1,7 @@
+<% if @post.errors.blank? %>
+  $('#post').html('<%=j render partial: "events/post", locals: {posts: @posts} %>');
+  $('#modal-new-post').modal('hide');
+  $('.modal-backdrop').remove()
+  $('body').removeClass('modal-open');
+<% end %>
+$('.container').append('<%= j render partial: "shared/flash_warning" %>');

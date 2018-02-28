@@ -48,6 +48,7 @@ gem "cropper-rails"
 gem "jquery-fileupload-rails"
 gem "streamio-ffmpeg"
 gem "jquery-ui-rails"
+gem "social-share-button"
 
 source "https://rails-assets.org" do
   gem "rails-assets-chosen"
