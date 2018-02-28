@@ -10,9 +10,9 @@
         </th>
       </tr>
       <tr>
-        <th><%= t "time_report" %></th>
+        <th class="table-paymoney"><%= t "time_report" %></th>
         <th class="table-paymoney"><%= t "event_name" %></th>
-        <th class="table-paymoney"><%= t "amount_for" %></th>
+        <th class="text-center"><%= t "amount_for" %></th>
         <th class="table-paymoney"><%= t "surplus" %></th>
       </tr>
     </thead>
@@ -24,31 +24,37 @@
             <%= budget.name_event %>
           </td>
           <td class="text-center">
-            <table class="table ui-block table table-bordered results">
-              <tr>
-                <th><%= t "content" %></th>
-                <th><%= t "report_categories.report_category.get_money" %></th>
-                <th><%= t "report_categories.report_category.pay_money" %></th>
-              </tr>
-              <%= number_to_currency(budget.money, locale: :vi) %>
-              <% if budget.detail.is_a? Hash %>
-                <% budget.detail.each do |key, budget_detail| %>
+            <%= number_to_currency(budget.money, locale: :vi) %>
+            <% if budget.detail.is_a? Hash %>
+              <%= link_to "#detail-budget-#{budget.id}", data: { toggle: :collapse },
+                title: t("click_to_show") do %>
+                <i class="fa fa-eye"></i>
+              <% end %>
+              <div class="collapse" id="detail-budget-<%= budget.id %>">
+                <table class="table ui-block table table-bordered results">
                   <tr>
-                    <td><%= budget_detail[:name] %></td>
-                    <td>
-                      <% if budget_detail[:style] == Settings.static_report.get_money %>
-                        <%= budget_detail[:money] %>
-                      <% end %>
-                    </td>
-                    <td>
-                      <% if budget_detail[:style] == Settings.static_report.pay_money %>
-                        <%= budget_detail[:money] %>
-                      <% end %>
-                    </td>
+                    <th><%= t "content" %></th>
+                    <th><%= t "report_categories.report_category.get_money" %></th>
+                    <th><%= t "report_categories.report_category.pay_money" %></th>
                   </tr>
-                <% end %>
-              <% end %> 
-            </table>
+                    <% budget.detail.each do |key, budget_detail| %>
+                      <tr>
+                        <td><%= budget_detail[:name] %></td>
+                        <td>
+                          <% if budget_detail[:style] == Settings.static_report.get_money %>
+                            <%= budget_detail[:money] %>
+                          <% end %>
+                        </td>
+                        <td>
+                          <% if budget_detail[:style] == Settings.static_report.pay_money %>
+                            <%= budget_detail[:money] %>
+                          <% end %>
+                        </td>
+                      </tr>
+                    <% end %>
+                </table>
+              </div>  
+            <% end %> 
           </td>
           <td></td>
         </tr>

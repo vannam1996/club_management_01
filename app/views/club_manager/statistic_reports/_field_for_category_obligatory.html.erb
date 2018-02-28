@@ -1,7 +1,7 @@
 <% if category.present? %>
   <% unless category.style_event.blank? %>
     <% events = load_event @club, category.style_event %>
-    <% if !category.style_event.include?(Event.event_categories[:notification]) %>
+    <% if category.money? %>
       <%= render partial: "set_static_reports/report_budgets", locals: {events: events, category: category} %>
     <% elsif category.activity? %>
       <%= render partial: "set_static_reports/report_activity", locals: {events: events, category: category} %>

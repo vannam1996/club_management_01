@@ -24,7 +24,7 @@ class EventNotificationsController < ApplicationController
         Activity.type_receives[:club_member]
       service_money.save_event_and_plus_money_club_in_activity_event
       flash[:success] = t ".create_success"
-      redirect_to club_path params[:club_id]
+      redirect_to club_event_path params[:club_id], event.id
     end
   rescue
     if event && event.errors.any?
