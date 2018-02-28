@@ -94,6 +94,7 @@ class Event < ApplicationRecord
 
     def array_style_event_money
       [Event.event_categories[:activity_money], Event.event_categories[:money],
+        Event.event_categories[:get_money_member],
         Event.event_categories[:donate], Event.event_categories[:subsidy]]
     end
 

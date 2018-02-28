@@ -10,27 +10,38 @@
       </tr>
     </thead>
     <tbody>
-      <% array_detail.each do |detail| %>
+      <% array_detail.each do |report_detail| %>
         <tr>
           <td>
-            <% if detail.date_event.present? %>
-              <%= l detail.date_event, format: :short %>
+            <% if report_detail.date_event.present? %>
+              <%= l report_detail.date_event, format: :short %>
             <% end %>
           </td>
-          <% if detail.pay_money? %>
-            <td><%= number_to_currency detail.money, locale: :vi %></td>
-            <td></td>
-          <% elsif detail.get_money? %>
-            <td></td>
-            <td><%= number_to_currency detail.money, locale: :vi %></td>
-          <% end %>
-          <td><%= number_to_currency(LastMoney.last_money_detail(detail), locale: :vi) %></td>
-          <td><%= raw(detail.detail) %></td>
+          <td>
+            <%= count_money_detail report_detail, EventDetail.styles.key(Settings.style_event_detail.value_enum_pay) %></br>
+            <%= link_to "#detail-pay-#{report_detail.id}", data: { toggle: :collapse },
+              title: t("click_to_show") do %>
+              <i class="fa fa-info"></i> <%= t "detail" %>
+            <% end %>
+            <%= view_by_style_details report_detail, EventDetail.styles.key(Settings.style_event_detail.value_enum_pay) %>
+          </td>
+          <td>
+            <%= count_money_detail report_detail, EventDetail.styles.key(Settings.style_event_detail.value_enum_get) %></br>
+            <%= link_to "#detail-get-#{report_detail.id}", data: { toggle: :collapse },
+              title: t("click_to_show") do %>
+              <i class="fa fa-info"></i> <%= t "detail" %>
+            <% end %>
+            <%= view_by_style_details report_detail, EventDetail.styles.key(Settings.style_event_detail.value_enum_get) %>
+          </td>
+          <td>
+            <%= number_to_currency last_money_of_event(report_detail), locals: :vi %>
+          </td>
+          <td><%= raw(report_detail.name_event) %></td>
         </tr>
       <% end %>
       <tr>
-        <td><%= t ".count" %></td>
-        <%= total_pay_get_money array_detail %>
+        <td><strong><%= t ".count" %></strong></td>
+        <%= view_total_pay_get_money array_detail %>
         <td></td>
         <td></td>
       </tr>

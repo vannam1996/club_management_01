@@ -18,7 +18,14 @@
 <% end %>
 <td class="status">
   <span class="status-report-<%= report.status %>">
-    <%= t"#{report.status}" %>
+    <% if report.rejected? %>
+      <%= link_to "#modal-reason-#{report.id}", data: {toggle: "modal"},
+        title: t("click_show_reason_reject"), class: "white-text" do %>
+        <%= t"#{report.status}" %>
+      <% end %>
+    <% else %>
+      <%= t"#{report.status}" %>
+    <% end %>
   </span>
 </td>
 <td>
@@ -38,3 +45,29 @@
     <% end %>
   <% end %>
 </td>
+<div id="modal-reason-<%= report.id %>" class="modal fade" tabindex="-1"
+  role="dialog" aria-hidden="true">
+  <div class="col-md-12">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-body">
+          <h3 class="text-center col-md-12">
+            <%= t "reason_reject" %>
+            <%= button_tag type: "submit", class: "close", data: {dismiss: "modal"} do %>
+              &times;
+            <% end %>
+          </h3>
+          <div class="block">
+            <div class="form-group col-md-12">
+              <%= report.reason_reject %>
+            </div>
+            <div class="text-center">
+              <%= button_tag t("close"), class: "btn btn-sm btn-warning",
+                "data-dismiss": "modal" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

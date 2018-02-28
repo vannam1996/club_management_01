@@ -1443,3 +1443,6 @@ vi:
     donate: "Ủng hộ"
     subsidy: "Trợ cấp"
   information: "Thông tin trong"
+  sum_label: "Tổng: "
+  click_to_show: "Nhấn để xem chi tiết"
+  click_show_reason_reject: "Nhấn để xem lý do"
