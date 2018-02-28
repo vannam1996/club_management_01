@@ -35,9 +35,8 @@ class ClubsController < ApplicationController
     @album = Album.new
     list_events = @club.events
     @q = list_events.search(params[:q])
-    @events_budget = @q.result.newest.event_category_activity_money(events_ids, Event.event_categories[:activity_money])
-      .includes(:budgets, :event_details)
-    @events = @events_budget.page(params[:page]).per Settings.per_page
+    @events = @q.result.newest.event_category_activity_money(events_ids, Event.event_categories[:activity_money])
+      .includes(:budgets, :event_details).page(params[:page]).per Settings.per_page
     @time_line_events = @events.by_current_year.group_by_quarter
     @message = Message.new
     @user_club = UserClub.new

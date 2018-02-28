@@ -1,2 +1,1 @@
-$('#data-event').html('<%= j render "budgets/data_request" %>');
-$('#export-budget').html('<%= j render partial: "shared/export_button", locals:{events: @events, club: @club} %>');
+$('#data-event').html('<%= j render partial: "clubs/list_budget", locals: {events: @events} %>');

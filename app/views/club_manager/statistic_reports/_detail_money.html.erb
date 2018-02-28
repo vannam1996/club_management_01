@@ -18,20 +18,24 @@
             <% end %>
           </td>
           <td>
-            <%= count_money_detail report_detail, EventDetail.styles.key(Settings.style_event_detail.value_enum_pay) %></br>
-            <%= link_to "#detail-pay-#{report_detail.id}", data: { toggle: :collapse },
-              title: t("click_to_show") do %>
-              <i class="fa fa-info"></i> <%= t "detail" %>
+            <% if report_detail.detail.is_a? Hash %>
+              <%= count_money_detail report_detail, EventDetail.styles.key(Settings.style_event_detail.value_enum_pay) %></br>
+              <%= link_to "#detail-pay-#{report_detail.id}", data: { toggle: :collapse },
+                title: t("click_to_show") do %>
+                <i class="fa fa-info"></i> <%= t "detail" %>
+              <% end %>
+              <%= view_by_style_details report_detail, EventDetail.styles.key(Settings.style_event_detail.value_enum_pay) %>
             <% end %>
-            <%= view_by_style_details report_detail, EventDetail.styles.key(Settings.style_event_detail.value_enum_pay) %>
           </td>
           <td>
             <%= count_money_detail report_detail, EventDetail.styles.key(Settings.style_event_detail.value_enum_get) %></br>
-            <%= link_to "#detail-get-#{report_detail.id}", data: { toggle: :collapse },
-              title: t("click_to_show") do %>
-              <i class="fa fa-info"></i> <%= t "detail" %>
+            <% if report_detail.detail.is_a? Hash %>
+              <%= link_to "#detail-get-#{report_detail.id}", data: { toggle: :collapse },
+                title: t("click_to_show") do %>
+                <i class="fa fa-info"></i> <%= t "detail" %>
+              <% end %>
+              <%= view_by_style_details report_detail, EventDetail.styles.key(Settings.style_event_detail.value_enum_get) %>
             <% end %>
-            <%= view_by_style_details report_detail, EventDetail.styles.key(Settings.style_event_detail.value_enum_get) %>
           </td>
           <td>
             <%= number_to_currency last_money_of_event(report_detail), locals: :vi %>

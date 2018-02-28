@@ -1,5 +1,5 @@
 <div class="table-responsive">
-  <table class="event-item-table table table-vcenter datatable-public table-condensed table-bordered sort-bubget" id="">
+  <table class="event-item-table table table-vcenter table-condensed table-bordered" id="">
     <thead>
       <tr>
         <th><%= t "timeline" %></th>
@@ -68,4 +68,4 @@
   </tbody>
 </table>
 </div>
-<%= javascript_include_tag "sort_by_date" %>
+<%= paginate @events, params: {controller: "budgets", action: "index", club_id: @club.id}, remote: true %>

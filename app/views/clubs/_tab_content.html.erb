@@ -3,7 +3,7 @@
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 tab_detail_club">
       <div class="ui-block" id="event-noti">
         <div class="ui-block-title ui-block-title-small">
-          <h6 class="title col-md-1"><%= t "event_notification" %></h6>
+          <h6 class="title col-md-1"><%= t "event_activity" %></h6>
           <% if @club.is_admin? current_user %>
             <%= link_to new_club_event_notification_path(
               club_id: @club.id), class: "btn btn-sm btn-breez" do %>
@@ -40,7 +40,7 @@
       </div>
       <div class="ui-block" id="event">
         <div class="ui-block-title ui-block-title-small">
-          <h6 class="title col-md-1"><%= t "events" %></h6>
+          <h6 class="title col-md-1"><%= t "events_money" %></h6>
           <% if @club.is_admin? current_user %>
             <%= link_to new_club_event_path(
               club_id: @club.id), class: "btn btn-sm btn-breez" do %>

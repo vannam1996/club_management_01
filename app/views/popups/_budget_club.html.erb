@@ -5,12 +5,10 @@
   <div class="ui-block">
     <div class="ui-block-title ui-block-title-small">
       <h6 class="title col-md-9"><%= t("history_budget") %></h6>
-      <div class="pull-right" id="export-budget">
+      <div class="pull-right">
         <% if @infor_club.history_budget.any? %>
-          <%= link_to dashboard_export_history_budgets_path( format: :xlsx, id: @club,
-            first_date: format_date(@infor_club.history_budget.last.created_at), second_date:
-            format_date(@infor_club.history_budget.first.created_at)),
-            title: t("export_budget") do %>
+          <%= link_to "",
+            title: t("export_budget"), id: "export-budgets" do %>
             <span class="export-bugets primary">
               <i class="fa fa-download"></i>
             </span>
@@ -18,7 +16,7 @@
         <% end %>
       </div>
     </div>
-    <div class="input-group col-md-7 search-buget" data-date-format="dd/mm/yyyy" id="budget-filter">
+    <div class="input-group col-md-7 push-md-2 nav_search" data-date-format="dd/mm/yyyy" id="budget-filter">
       <div class="col-md-6 row">
         <div class="col-md-3 span-date text-center"><span><strong><%= t("from") %></strong></span></div>
         <%= date_field_tag :date_first, {}, class: "export-buget text-center col-md-9" %>
@@ -27,13 +25,19 @@
         <div class="col-md-3 span-date text-center"><span><strong><%= t("to") %></span></strong></span></div>
         <%= date_field_tag :date_end, {}, class: "export-buget text-center col-md-9" %>
       </div>
+      <div class="col-md-6 row">
+        <%= select_tag :limit_page, options_for_select(Settings.per_page_budget,
+          selected: params[:limit_page] || Settings.per_page),
+          class: "select_custom select_per_page col-md-2 push-md-2" %>
+      </div>
       <%= hidden_field :club_id, value: @club.id %>
     </div>
     <div id="data-event">
-      <%= render partial: "list_budget", locals: {events: @events_budget} %>
+      <%= render partial: "list_budget", locals: {events: @events} %>
     </div>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-default" data-dismiss="modal"><%= t("close") %></button>
+    <button type="button" class="btn btn-primary" data-dismiss="modal"><%= t("close") %></button>
   </div>
 </div>
+<%= javascript_include_tag "budgets" %>
