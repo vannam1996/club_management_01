@@ -9,8 +9,12 @@
             <div class="row portfolio">
               <div class="container gallery-container">
                 <div class="ui-block-title ui-block-title-small row">
-                  <%= link_to t("back"), organization_club_path(@club.organization.slug, @club),
-                    class: "pull-left btn btn-primary btn-sm" %>
+                  <div class="confirm-donate">
+                    <%= link_to club_path(@club), title: t("back"),
+                      class: "btn btn-sm btn-primary" do %>
+                      <i class="fa fa-arrow-left"></i>
+                    <% end %>  
+                  </div>
                   <h4 class=" col-md-8 text-center"><%= @album.name %></h4>
                   <% if @club.is_admin? current_user %>
                     <div class="new_image_video">

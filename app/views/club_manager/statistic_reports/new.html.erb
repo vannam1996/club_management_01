@@ -6,6 +6,12 @@
         <article class="hentry post has-post-thumbnail thumb-full-width private-event">
           <div class="row">
             <div class="col-md-12">
+              <div class="col-md-2 confirm-donate">
+                <%= link_to club_path(@club), title: t("back"),
+                  class: "btn btn-sm btn-primary" do %>
+                  <i class="fa fa-arrow-left"></i>
+                <% end %>  
+              </div>
               <div class="block-title">
                 <h5 class="text-center"><strong><%= t "add_report" %>: <%= @club.name %></strong></h5>
               </div>

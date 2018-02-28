@@ -56,13 +56,15 @@
               </div>  
             <% end %> 
           </td>
-          <td></td>
+          <td>
+            <%= number_to_currency last_money_of_event(budget), locals: :vi %>
+          </td>
         </tr>
       <% end %>
       <tr>
         <td colspan="5">
           <strong>
-            <%= t "money_last" %>:
+            <%= t "money_last" %>: <%= last_money budgets %>
           </strong>
         </td>
       </tr>
