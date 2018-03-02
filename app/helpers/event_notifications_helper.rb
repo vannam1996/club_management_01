@@ -11,4 +11,8 @@ module EventNotificationsHelper
       club_event_notifications_path(club)
     end
   end
+
+  def group_by_month events
+    events.group_by{|e| e.date_start&.beginning_of_month}
+  end
 end

@@ -2,12 +2,24 @@
   <% if events.any? %>
     <table class="event-item-table">
       <tbody>
-        <%= render partial: "events/view_list_event", locals: {events: events} %>
+        <% if events.first.activity_money? && tab_activity %>
+          <%= render partial: "event_notifications/list_activity", locals: {events: events} %>
+        <% elsif events.first.notification? && tab_activity %>
+          <%= render partial: "event_notifications/list_notification", locals: {events: events} %>
+        <% else %>
+          <%= render partial: "events/view_list_event", locals: {events: events} %>
+        <% end %>
       </tbody>
     </table>
     <div class="col-md-12 text-center">
       <% if tab_activity %>
-        <%= paginate events, params: {controller: "event_notifications", action: "show", club_id: @club.id}, remote: true %>
+        <% if events.first.activity_money? %>
+          <%= paginate events, params: {controller: "event_notifications", action: "show",
+            club_id: @club.id, category: Event.event_categories[:activity_money]}, remote: true %>
+        <% elsif events.first.notification? %>
+          <%= paginate events, params: {controller: "event_notifications", action: "show",
+            club_id: @club.id, category: Event.event_categories[:notification]}, remote: true %>
+        <% end %>
       <% else %>
         <%= paginate events, remote: true %>
       <% end %>

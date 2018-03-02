@@ -1,3 +1,7 @@
-$('#list-event-show-notification')
-  .html('<%= j render partial: "events/event", locals: {events: @events_notification,
+<% if params[:category].to_i == Event.event_categories[:activity_money] %>
+  $('#event-activity').html('<%= j render partial: "events/event", locals: {events: @events_activity,
     tab_activity: true} %>')
+<% else %>
+  $('#event-notification').html('<%= j render partial: "events/event", locals: {events: @events_notification,
+    tab_activity: true} %>')
+<% end %>

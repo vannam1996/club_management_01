@@ -5,7 +5,7 @@ class ClubsController < ApplicationController
   before_action :verify_club, only: :show
   before_action :load_user_organizations, only: :show
   before_action :load_organization, only: %i(new update create)
-  before_action :load_event_notification, only: :show
+  before_action :load_event_tab_activity, only: :show
 
   def index
     organizations_joined = Organization.by_user_organizations(
@@ -188,8 +188,8 @@ class ClubsController < ApplicationController
       Event.event_categories[:donate], Event.event_categories[:subsidy]]
   end
 
-  def load_event_notification
-    @events_notification = @club.events.newest.in_categories(Event.money_event_keys)
+  def load_event_tab_activity
+    @events_activity = @club.events.newest.in_categories(Event.money_event_keys)
       .page(params[:page]).per Settings.per_page
   end
 end

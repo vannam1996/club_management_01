@@ -1,0 +1,21 @@
+<% events.each do |event| %>
+  <tr class="event-item list-event-<%= event.id %>">
+    <td class="description width-80">
+      <%= link_to event.name, club_event_url(event.club, event), class: "author-name h3" %>
+      <% if event.description.present? %>
+        <div id="description-<%= event.id %>">
+          <%= raw(event.description.truncate(Settings.event_truncate, separator: " ")) unless event.description.nil? %>
+          <%= link_to "", data: {event: event.id},
+            title: t("show_more_descrip"), class: "show-more" do %>
+            <%= t "show_more_descrip" %>
+          <% end %>
+        </div>
+        <div class="hide-div" id="content-<%= event.id %>">
+          <%= raw(event.description) unless event.description.nil? %>
+        </div>
+      <% end %>
+    </td>
+    <%= render partial: "event_notifications/action_event", locals: {event: event} %>
+  </tr>
+<% end %>
+<%= javascript_include_tag "event_notification" %>
