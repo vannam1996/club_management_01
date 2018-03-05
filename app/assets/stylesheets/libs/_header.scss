@@ -1805,3 +1805,29 @@
 .deatil-money-first th input{
   padding: 7px 3px;
 }
+.bootstrap-tagsinput {
+  display: block !important;
+  padding: 8px 6px !important;
+  width: 100%;
+  border-color: #9a9fbf !important;
+  .label-info {
+    padding: 4px;
+  }
+}
+[data-role='dynamic-fields'] > .form-inline [data-role='add'] {
+  display: none;
+}
+[data-role='dynamic-fields'] > .form-inline:last-child [data-role='add'] {
+  display: inline-block;
+}
+[data-role='dynamic-fields'] > .form-inline:last-child [data-role='remove'] {
+  display: none;
+}
+.form-experience {
+  margin-right: -15px;
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+.new-sponsor {
+  margin-right: 3px;
+}

@@ -95,6 +95,7 @@ Rails.application.routes.draw do
     resources :events do
       resources :donates
       resources :set_user_donates
+      resources :sponsors
     end
     resources :albums do
       resources :images

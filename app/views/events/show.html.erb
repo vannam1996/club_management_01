@@ -33,7 +33,14 @@
             </div>
             <div class="pull-right">
               <% case when @event.activity_money? %>
-                <%= render "user_events/join_event_toggle" %>
+                <div class="row">
+                  <%= link_to new_club_event_sponsor_path(@club, @event), 
+                    class: "btn btn-sm btn-breez new-sponsor" do %>
+                    <i class="fa fa-plus"></i>
+                    <%= t "sponsors.new_sponsor" %>
+                  <% end %>
+                  <%= render "user_events/join_event_toggle" %>
+                </div>
               <% when @event.get_money_member? %>
                 <%= link_to t("get_money"), "#collapse1", data: {toggle: "collapse"},
                   class: "btn btn-blue btn-sm" %>

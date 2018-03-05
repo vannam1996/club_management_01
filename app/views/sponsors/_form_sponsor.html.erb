@@ -1,0 +1,200 @@
+<%= javascript_include_tag "bootstrap-tagsinput.js",
+  "data-turbolinks-track" => true %>
+<%= form_for [@club, @event, @sponsor],
+  html: {multipart: true, enctype: "multipart/form-data",
+  class: "form-horizontal form-bordered edit-organization"} do |f| %>
+  <div class="form-group">
+    <label class="col-md-3 control-label label-bold" for="example-textarea-input">
+      <%= t "sponsors.purpose_of_organization" %>
+      <span class="text-danger">*</span>
+    </label>
+    <div class="col-md-12">
+      <%= f.cktext_area :purpose, rows: Settings.new_description,
+        class: "form-control", required: true,
+        placeholder: t("sponsors.communication_plan") %>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <div class="form-group row">
+      <div class="form-group col-md-6">
+        <label class="control-label label-bold">
+          <%= t "sponsors.place" %>
+          <span class="text-danger">*</span>
+        </label>
+        <div class="col-md-12">
+          <div class="form-group row">
+            <%= f.text_field :place, class: "form-control input-text white-bgr", required: true %>
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-md-6 is-empty">
+        <label class="control-label label-bold">
+          <%= t "sponsors.time" %>
+          <span class="text-danger">*</span>
+        </label>
+        <div class="col-md-12">
+          <div class="form-group row" data-date-format="dd/mm/yyyy">
+            <%= f.text_field :time, value: format_date(Date.current), class: "form-control text-center input-text datepicker white-bgr", readonly: true %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-md-3 control-label label-bold" for="example-textarea-input">
+      <%= t "sponsors.organizational_units" %>
+      <span class="text-danger">*</span>
+    </label>
+    <div class="col-md-12">
+      <div class="col-md-12">
+        <div class="form-group row">
+          <%= f.text_field(:organizational_units,
+            "data-role": "tagsinput", class: "form-control input-edit col-md-12", required: true)%>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-md-3 control-label label-bold" for="example-textarea-input">
+      <%= t "sponsors.participating_units" %>
+      <span class="text-danger">*</span>
+    </label>
+    <div class="col-md-12">
+      <div class="col-md-12">
+        <div class="form-group row">
+          <%= f.text_field(:participating_units,
+            "data-role": "tagsinput", class: "form-control input-edit col-md-12", required: true)%>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-md-12">
+      <div class="row">
+        <label class="col-md-3 control-label label-bold" for="example-textarea-input">
+          <%= t "sponsors.experience" %>
+        </label>
+      </div>
+    </div>
+    <div data-role="dynamic-fields">
+      <div class="form-inline">
+        <div class="row">
+          <div class="form-group col-md-3 form-experience">
+            <div class="col-md-12">
+              <div class="form-group">
+                <%= text_field_tag "event[]", "", class: "form-control input-text white-bgr",
+                  placeholder: t("sponsors.event")%>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-3 form-experience">
+            <div class="col-md-12">
+              <div class="form-group">
+                <%= text_field_tag "time[]", "", class: "form-control input-text white-bgr",
+                  placeholder: t("sponsors.time_and_place")%>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-3 form-experience">
+            <div class="col-md-12">
+              <div class="form-group">
+                <%= text_field_tag "member[]", "", class: "form-control input-text white-bgr",
+                  placeholder: t("sponsors.number_of_participants")%>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-3 form-experience">
+            <div class="col-md-12">
+              <div class="form-group">
+                <%= text_field_tag "communication[]", "",   class: "form-control input-text white-bgr",
+                  placeholder: t("sponsors.effective_communication")%>
+              </div>
+            </div>
+          </div>
+          <div class="form-experience">
+            <button class="btn-primary" data-role="remove">
+              <i class="fa fa-minus"></i>
+            </button>
+            <button class="btn-breez" data-role="add">
+              <i class="fa fa-plus"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-md-3 control-label label-bold" for="example-textarea-input">
+      <%= t "sponsors.communication_plan" %>
+    </label>
+    <div class="col-md-12">
+      <%= f.cktext_area :communication_plan, rows: Settings.new_description,
+        class: "form-control",
+        placeholder: t("sponsors.communication_plan") %>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-md-3 control-label label-bold" for="example-textarea-input">
+      <%= t "sponsors.prize" %>
+    </label>
+    <div class="col-md-12">
+      <%= f.cktext_area :prize, rows: Settings.new_description,
+        class: "form-control",
+        placeholder: t("sponsors.prize") %>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-md-3 control-label label-bold" for="example-textarea-input">
+      <%= t "sponsors.regulations" %>
+    </label>
+    <div class="col-md-12">
+      <%= f.cktext_area :regulations, rows: Settings.new_description,
+        class: "form-control",
+        placeholder: t("sponsors.regulations") %>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-md-3 control-label label-bold" for="example-textarea-input">
+      <%= t "sponsors.expense" %>
+      <span class="text-danger">*</span>
+    </label>
+    <div class="col-md-12">
+      <div class="col-md-12">
+        <div class="form-group row">
+          <%= f.text_field :expense, class: "form-control input-text datepicker white-bgr", required: true %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-md-3 control-label label-bold" for="example-textarea-input">
+      <%= t "sponsors.sponsor" %>
+      <span class="text-danger">*</span>
+    </label>
+    <div class="col-md-12">
+      <div class="col-md-12">
+        <div class="form-group row">
+          <%= f.text_field :sponsor, class: "form-control input-text datepicker white-bgr", required: true %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-md-4 control-label label-bold" for="example-textarea-input">
+      <%= t "sponsors.interest" %>
+    </label>
+    <div class="col-md-12">
+      <%= f.cktext_area :interest, rows: Settings.new_description,
+        class: "form-control",
+        placeholder: t("sponsors.interest") %>
+    </div>
+  </div>
+  <div class="form-group form-actions">
+    <div class="col-md-12 text-center">
+      <%= f.submit t("submit"), class: "btn btn-sm btn-primary col-md-2" %>
+      <%= button_tag t("reset"), type: :reset,
+        class: "btn btn-sm btn-warning col-md-2" %>
+    </div>
+  </div>
+<% end %>
+<%= javascript_include_tag "sponsor" %>
