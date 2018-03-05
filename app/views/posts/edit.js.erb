@@ -1,2 +1,14 @@
 $('#collapse-post').html('<%=j render partial: "events/new_post", locals: {post: @post, event: @post.target} %>');
 $('#collapse-post').collapse('toggle');
+$('.nested-fields').each(function(){
+  url = $(this).find('.url-input').val();
+  if (typeof url != 'undefined' && url === "") {
+    $(this).remove();
+  }
+  else{
+    url = $(this).find('.image_view').attr('src');
+    if (typeof url != 'undefined' && url.split('/')[1] === "<%= Settings.folder_assets %>") {
+      $(this).remove();
+    }
+  }
+});

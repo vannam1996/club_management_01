@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  $('.fields_gallery').on('change', '.img-file-input', function(event){
+  $('#fields_image').on('change', '.img-file-input', function(event){
     var input = $(event.currentTarget);
     var file = input[0].files[0];
     var reader = new FileReader();
@@ -11,11 +11,11 @@ $(document).ready(function () {
   });
 
   $('.fields_gallery').on('mouseover', '.image_view', function(){
-    $(this).parents('.nested-fields').find('.btn-remove').fadeIn();
+    $(this).parents('.list-gallery').find('.btn-remove').fadeIn();
   });
 
   $('.fields_gallery').on('click', '.image_view', function(){
-    $(this).parents('.nested-fields').find('.img-file-input').click();
+    $(this).parents('.list-gallery').find('.img-file-input').click();
   });
 
   $('.fields_gallery').on('change', '.img-file-input', function(){

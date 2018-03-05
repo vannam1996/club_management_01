@@ -9,7 +9,7 @@ class Post < ApplicationRecord
   scope :newest, ->{order created_at: :desc}
 
   accepts_nested_attributes_for :post_galleries, allow_destroy: true,
-    reject_if: proc {|attributes| attributes[:url].blank?}
+    reject_if: proc {|attributes| attributes[:url].blank? && attributes[:url_video].blank?}
 
   delegate :full_name, :avatar, to: :user, prefix: :user
 end

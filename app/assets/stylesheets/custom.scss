@@ -1086,7 +1086,8 @@ a.pull-right.add_fields {
   background-color: #fff;
   border-radius: 5px;
   border: 1px solid #e6ecf5;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
+  margin-top: 5px;
 }
 .list-gallery img {
   width: 100% !important;
@@ -1147,5 +1148,17 @@ a.pull-right.add_fields {
 }
 .content-posts {
   margin: 20px;
-  border-bottom: 1px solid #EAF6FF
+  border-bottom: 1px solid #EAF6FF;
+}
+.label-url {
+  margin: 9px 0px 0px 3px;
+}
+.bt-del-field {
+  padding: 8px;
+}
+.list-video{
+  margin: 5px;
+}
+.label-gallery {
+  margin: 5px 0px 0px 8px;
 }

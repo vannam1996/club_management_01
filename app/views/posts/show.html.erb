@@ -30,8 +30,8 @@
                         <div class="">
                           <div class="tz-gallery list-gellary">
                             <div class="row">
-                              <% if @post.post_galleries.present? %>
-                                <% @post.post_galleries.each do |image| %>
+                              <% if @post.post_galleries.image.present? %>
+                                <% @post.post_galleries.image.each do |image| %>
                                   <div class="portfolio-item img-<%= image.id %>"
                                     data-category="">
                                     <%= link_to "#{image.url}", class: "list-image lightbox" do  %>
@@ -39,10 +39,16 @@
                                     <% end %>
                                   </div>
                                 <% end %>
-                              <% else %>
-                                <div class="text-center col-md-12">
-                                  <h5><%= t "club_manager.image.no_image" %></h5>
-                                </div>
+                              <% end %>
+                              <% if @post.post_galleries.video.present? %>
+                                <% @post.post_galleries.video.each do |video| %>
+                                  <div class="portfolio-item video-<%= video.id %>"
+                                    data-category="">
+                                    <%= link_to "#{video}", class: "list-image lightbox" do  %>
+                                      <iframe src="<%= gsub_url_youtube video.url_video %>" allowfullscreen></iframe>
+                                    <% end %>
+                                  </div>
+                                <% end %>
                               <% end %>
                             </div>
                           </div>
@@ -63,7 +69,7 @@
                 <% end %>
                 <% if can? :destroy, @post %>
                   <%= link_to post_path(@post, event_id: @post.target.id), method: :delete,
-                    title: t("delete"),  class: "btn btn-sm btn-primary" do %>
+                    title: t("delete"), data: {confirm: t("posts.confirm_delete")}, class: "btn btn-sm btn-primary" do %>
                     <i class="fa fa-trash"></i>
                   <% end %>
                 <% end %>

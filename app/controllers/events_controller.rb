@@ -45,7 +45,7 @@ class EventsController < ApplicationController
     else
       @comments = @event.comments.includes(:user).newest.take(Settings.limit_comments)
     end
-    @posts = @event.posts.includes(:user).newest.page(params[:page]).per Settings.per_page
+    @posts = @event.posts.includes(:user, :post_galleries).newest.page(params[:page]).per Settings.per_page
     @post = Post.new
     load_member_not_join
   end
