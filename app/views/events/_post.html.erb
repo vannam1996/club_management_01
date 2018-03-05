@@ -1,0 +1,40 @@
+<div class="ui-block-title ui-block-title-small">
+  <h6 class="title col-md-1"><%= t "list_post"%></h6>
+    <%= link_to "#modal-new-post", data: {toggle: :collapse}, class: "btn btn-sm btn-breez" do %>
+      <i class="fa fa-plus"></i> <%= t "new_post" %>
+    <% end %>
+</div>
+<div id="modal-new-post" class="collapse" tabindex="-1"
+  role="dialog" aria-hidden="true">
+  <%= render partial: "events/new_post", locals: {post: @post, event: @event} %>
+</div>
+<% if posts.any? %>
+  <% posts.each do |post| %>
+    <div class="content-posts">
+      <div class="listing-grid">
+        <div class="row">
+          <div class="col-md-2 col-sm-2 col-xs-2 hidden-xs">
+              <%= image_tag post.user.avatar, class: "img-responsive center-block" %>
+          </div>
+          <div class="col-md-10 col-sm-10 col-xs-10 topic-post-content">
+            <div class="col-md-9 col-sm-8 col-xs-12">
+              <h3><%= link_to post.name, post_path(post) %></h3>
+              <div class="listing-meta">
+                <span>
+                  <i class="fa fa-clock-o" aria-hidden="true"></i>
+                  <%= l post.created_at, format: :full_date %>
+                </span>
+              </div>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12 truncate-post">
+              <div class="content-post">
+                <%= raw post.content.truncate(Settings.truncat_content_post) %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <%= paginate posts, remote: true, params: {controller: "posts", action: "index", event_id: @event.id} %>
+<% end %>

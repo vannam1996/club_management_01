@@ -110,6 +110,11 @@
                     <% end %>
                   </div>
                 <% end %>
+                <% if @event.is_public %>
+                  <div class="place inline-items">
+                    <%= social_share_button_tag @event.name, desc: @event.description, image: @event.image %>
+                  </div>
+                <% end %>
               </div>
             </div>
           </div>
@@ -130,8 +135,27 @@
               <%= render partial: "view_donate", locals: {donates: @event.donate.newest} %>
             </div>
           <% end %>
-          <div class="mCustomScrollbar list-comment-event" data-mcs-theme="dark">
-            <%= render partial: "events/comment", locals: {comments: @comments, event: @event} %>
+          <div class="comment-post">
+            <div class="row">
+              <div class="col-md-8">
+                <ul class="profile-menu tab_list_detail_club">
+                  <li>
+                    <%= link_to t("comment"), "#comment", class: "active" %>
+                  </li>
+                  <li>
+                    <%= link_to t("post"), "#post" %>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class = "tab_detail_club">
+            <div class="ui-block" id="comment">
+              <%= render partial: "events/comment", locals: {comments: @comments, event: @event} %>
+            </div>
+            <div class="ui-block" id="post">
+              <%= render partial: "events/post", locals: {posts: @posts} %>
+            </div>
           </div>
         </article>
       </div>

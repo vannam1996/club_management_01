@@ -1,0 +1,2 @@
+$('#collapse-post').html('<%=j render partial: "events/new_post", locals: {post: @post, event: @post.target} %>');
+$('#collapse-post').collapse('toggle');

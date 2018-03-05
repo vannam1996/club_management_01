@@ -36,3 +36,4 @@
 //= require jquery-fileupload/jquery.fileupload-process
 //= require jquery-fileupload/jquery.fileupload-video
 //= require jquery-ui/widgets/datepicker
+//= require social-share-button

@@ -139,4 +139,5 @@ Rails.application.routes.draw do
   resources :organization_settings, only: %i(index update)
   resources :set_static_reports, only: :index
   resources :budgets, only: :index
+  resources :posts, except: :new
 end

@@ -927,3 +927,62 @@ a.pull-right.add_fields {
   padding: 2px;
   height: 43px;
 }
+
+.listing-grid {
+  border-bottom: 1px solid #e5eaef;
+  display: inline-block;
+  margin-top: 25px;
+  padding-bottom: 25px;
+  position: relative;
+  width: 100%;
+  min-height: 161px;
+}
+
+.listing-grid img {
+  margin: 15%;
+  width: 83px;
+  height: 83px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 20px;
+  -webkit-border-top-left-radius: 1px;
+  -webkit-border-top-right-radius: 2px;
+  -webkit-border-bottom-right-radius: 3px;
+  -webkit-border-bottom-left-radius: 4px;
+  -moz-border-radius-topleft: 1px;
+  -moz-border-radius-topright: 2px;
+  -moz-border-radius-bottomright: 3px;
+  -moz-border-radius-bottomleft: 4px;
+  border-top-left-radius: 1px;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 4px;
+}
+
+.content-post {
+  float: left;
+  position: absolute;
+  height: 500px;
+  width: 95%;
+}
+
+.content-post p {
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+  word-wrap: break-word;
+}
+
+.content-post-show img {
+  max-width: 100%;
+  height: auto;
+}
+
+.input-text-custom {
+  padding: 8px 20px;
+}
+
+.comment-post {
+  width: 20%;
+}
