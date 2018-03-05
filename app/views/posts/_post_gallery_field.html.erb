@@ -1,0 +1,18 @@
+<div class="col-md-2 list-gallery nested-fields">
+  <%= image_tag url_image(f), class: "centered-and-cropped image_view", title: t("choose_image") %>
+  <div class="btn-remove hide-div">
+    <div class="delete-img">
+      <%= link_to_remove_association f do %>
+        <i class="fa fa-window-close"></i>
+      <% end %>
+    </div>
+  </div>
+  <div class="btn-add-data">
+    <div class="delete-img hide-div">
+      <span class="btn btn-info btn-file img-select-btn">
+        <span>+</span>
+        <%= f.file_field :url, class: "img-file-input", accept: Settings.file_uploader %>
+      </span>
+    </div>
+  </div>
+</div>

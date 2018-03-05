@@ -1,2 +1,3 @@
-$('#post').html('<%=j render partial: "events/post", locals: {posts: @posts} %>');
+$('#view-more').remove();
+$('#post-list').append('<%=j render partial: "events/post", locals: {posts: @posts} %>');
 $('.container').append('<%= j render partial: "shared/flash_warning" %>');

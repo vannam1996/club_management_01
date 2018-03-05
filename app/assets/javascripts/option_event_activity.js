@@ -1,8 +1,10 @@
 $(document).ready(function () {
+  $('#event_event_details_attributes_0_description').prop('required', false);
   $('#event_event_category').change(function(){
     var cat = $('#event_event_category').val();
     if (cat === gon.notification.toString()){
       $('#collapse-money').hide();
+      $('#event_event_details_attributes_0_description').prop('required', false);
     }
     else if (cat === gon.activity_money.toString()) {
       $('#collapse-money').show();
