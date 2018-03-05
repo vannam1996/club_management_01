@@ -66,6 +66,13 @@ class ApplicationController < ActionController::Base
     redirect_to request.referer || root_url
   end
 
+  def load_member_not_join
+    @members = @event.users
+    user_club_ids = @event.club.user_clubs.pluck(:user_id)
+    member_ids = @members.pluck(:user_id)
+    @member_not_join = User.done_by_ids(user_club_ids - member_ids)
+  end
+
   private
   def set_locale
     I18n.locale = session[:locale] || I18n.default_locale

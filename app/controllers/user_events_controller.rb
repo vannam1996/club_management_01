@@ -1,31 +1,30 @@
 class UserEventsController < ApplicationController
   before_action :authenticate_user!
-  before_action :load_event, only: :create
+  before_action :load_event, only: [:create, :destroy]
+  before_action :load_user_event, only: :destroy
 
   def create
-    user_event = UserEvent.new user_event_params
-    unless user_event.save
-      flash_error user_event
-      redirect_to :back
+    if params[:user_event]
+      user_event = UserEvent.new user_event_params
+      unless user_event.save
+        flash_error user_event
+        redirect_to :back
+      end
+      flash[:success] = t("thanks_for_join")
+    elsif params[:user_id].is_a? Array
+      import_member params[:user_id], @event.id
     end
-    flash[:success] = t("thanks_for_join")
     redirect_to :back
   end
 
   def destroy
-    user_event = current_user.user_events.find_by event_id: params[:event_id]
-    if user_event
-      @event = user_event.event
-      unless user_event.destroy
-        flash_error user_event
-        redirect_to :back
-      end
-    else
-      flash[:danger] = t("not_found_user_event")
-      redirect_to :back
+    @club = @event.club
+    if @user_event && @user_event.destroy
+      flash.now[:success] = t ".success"
+    elsif @user_event
+      flash.now[:danger] = t ".error_in_process"
     end
-    flash[:success] = t("see_you_next_time")
-    redirect_to :back
+    load_member_not_join
   end
 
   private
@@ -34,10 +33,34 @@ class UserEventsController < ApplicationController
   end
 
   def load_event
-    @event = Event.find_by id: params[:user_event][:event_id]
+    if params[:user_event]
+      @event = Event.find_by id: params[:user_event][:event_id]
+    else
+      @event = Event.find_by id: params[:event_id]
+    end
     unless @event
       flash[:danger] = t("not_found_event")
       redirect_to :back
     end
+  end
+
+  def import_member user_ids, event_id
+    user_events = []
+    user_ids.each do |user_id|
+      user_event = UserEvent.new user_id: user_id, event_id: event_id
+      user_events << user_event
+    end
+    UserEvent.import user_events
+    flash[:sucess] = t ".success"
+  end
+
+  def load_user_event
+    if params[:member_id]
+      @user_event = @event.user_events.find_by user_id: params[:member_id]
+    else
+      @user_event = current_user.user_events.find_by event_id: params[:event_id]
+    end
+    return if @user_event
+    flash.now[:danger] = t ".cant_find_member"
   end
 end

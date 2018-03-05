@@ -1,0 +1,66 @@
+<div class="modal-dialog ui-block window-popup private-event user-event-join"
+  id="modal-list-member">
+  <div class="row">
+    <h4 class="title col-md-11 text-center"><%= t "member_has_join" %></h4>
+    <%= button_tag type: "button", class: "close push-md-1 close-modal", data: {dismiss: "modal"} do %>
+      &times;
+    <% end %>
+  </div>
+  <div class="content-list modal-body row load-member">
+    <div class="widget-simple list-scroll">
+      <div class="table-responsive">
+        <table class="table ui-block table-pricing results">
+          <tbody>
+            <% if @members.any? %>
+              <% @members.each do |member| %>
+                <tr class="add-user-member">
+                  <td>
+                    <div class="col-md-1 avarta-memeber">
+                      <%= link_to user_path(member.id) do %>
+                        <%= image_tag member.avatar, class: "member-organization-view view-avt-member",
+                          title: "#{member.full_name}" %>
+                      <% end %>
+                    </div>
+                  </td>
+                  <td>
+                    <%= member.full_name %>
+                  </td>
+                  <td>
+                    <%= member.email %>
+                  </td>
+                  <% if @club.is_admin? current_user %>
+                    <td>
+                      <%= link_to club_event_user_event_path(event_id: @event.id, member_id: member.id), method: :delete, remote: true, title: t("delete_member"),
+                        data: {confirm: t("answer_delete_member")} do %>
+                        <i class="fa fa-remove"></i>
+                      <% end %>
+                    </td>
+                  <% end %>
+                </tr>
+              <% end %>
+            <% else %>
+              <tr class="text-center">
+                <td colspan="4">
+                  <h3 class="center notifi-empty"><%= t "empty" %></h3>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer text-center">
+    <% if @club.is_admin? current_user %>
+      <strong>
+        <%= link_to "",
+          class: "animation-fadeIn360 pull-left", id: "detail-members", title: t("add_member_join") do %>
+          <i class="fa fa-pencil-square-o"></i><%= t "add_member_join" %>
+        <% end %>
+      </strong>
+    <% end %>
+    <button type="button" class="btn btn-sm button-more" data-dismiss="modal">
+      <%= t "close" %>
+    </button>
+  </div>
+</div>

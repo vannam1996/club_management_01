@@ -1112,6 +1112,9 @@ vi:
       status:
         joined: "Đã tham gia"
       confirm_leave: "Bạn muốn hủy tham gia hoạt đông này?"
+    success: "Thành công"
+    cant_find_member: "Không tìm thấy thành viên"
+    error_in_process: "Có lỗi, vui lòng thử lại!"
   browse_all: "Duyệt tất cả"
   decline_all: "Từ chối tất cả"
   update_background: "Cập nhật hình nền"
@@ -1504,3 +1507,6 @@ vi:
     destroy_errors: "Có lỗi xảy ra, vui lòng thử lại"
   show_more_descrip: "Xem thêm"
   date_start_nil: "Không có ngày bắt đầu"
+  member_join: "Thành viên tham gia"
+  member_has_join: "Thành viên đã tham gia"
+  add_member_join: "Thêm thành viên tham gia"

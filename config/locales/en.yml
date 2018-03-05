@@ -839,6 +839,9 @@ en:
       status:
         joined: "Joined"
       confirm_leave: "You want to leave this activity?"
+    success: "Success"
+    cant_find_member: "Can't find member"
+    error_in_process: "Error, please try again!"
   browse_all: "Browse all"
   decline_all: "Decline all"
   update_background: "Update background"
@@ -1220,3 +1223,6 @@ en:
     destroy_errors: "Error in processing,please try again"
   show_more_descrip: "details"
   date_start_nil: "No starting date"
+  member_join: "Participants"
+  member_has_join: "Participants"
+  add_member_join: "add participants"

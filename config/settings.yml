@@ -284,3 +284,4 @@ negative: -1
 per_page_budget: [5, 10, 15, 20]
 value_enum_style_event_detail_pay: 0
 value_enum_style_event_detail_get: 1
+number_view_user_event: 8
