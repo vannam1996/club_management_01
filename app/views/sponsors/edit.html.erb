@@ -1,0 +1,26 @@
+<div class="header-spacer header-spacer_custom"></div>
+<div class="container">
+  <div class="row">
+    <div class="col-xl-12 push-xl-0 col-lg-12 push-lg-0 col-md-12 col-sm-12 col-xs-12">
+      <div class="ui-block">
+        <article class="hentry post has-post-thumbnail thumb-full-width private-event">
+          <div class="row">
+            <div class="col-md-1 confirm-donate">
+              <%= link_to club_event_path(@club, @event), title: t("back"),
+                class: "btn btn-sm btn-primary" do %>
+                <i class="fa fa-arrow-left"></i>
+              <% end %>
+            </div>
+            <div class="col-md-10">
+              <div class="block-title">
+                <h5 class="text-center"><strong><%= t "sponsors.sponsor" %></strong></h5>
+                <h6 class="text-center"><strong><%= @club.name %>: <%= @event.name %></strong></h6>
+              </div>
+              <%= render "form_sponsor" %>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</div>

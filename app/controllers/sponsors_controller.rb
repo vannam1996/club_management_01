@@ -1,8 +1,8 @@
-class SponsorsController < AlbumsController
+class SponsorsController < ApplicationController
   before_action :authenticate_user!
-  before_action :user_signed_in
   before_action :load_club
   before_action :load_event
+  before_action :load_sponsor, only: [:show, :edit, :destroy, :update]
 
   def new
     if @event.sponsors.blank?
@@ -20,8 +20,27 @@ class SponsorsController < AlbumsController
       redirect_to club_event_path @club, @event
     else
       flash_error sponsor
-      redirect_back fallback_location: new_club_event_sponsor_path @club, @event
+      redirect_back fallback_location: new_club_event_sponsor_path(@club, @event)
     end
+  end
+
+  def update
+    if @sponsor.update_attributes sponsor_params
+      flash[:success] = t "success_process"
+      redirect_to club_event_path @club, @event
+    else
+      flash_error sponsor
+      redirect_back fallback_location: new_club_event_sponsor_path(@club, @event)
+    end
+  end
+
+  def destroy
+    if @sponsor.destroy
+      flash[:success] = t "event_notifications.success_process"
+    else
+      flash[:danger] = t "event_notifications.error_in_process"
+    end
+    redirect_to club_event_path @club, @event
   end
 
   private
@@ -46,6 +65,14 @@ class SponsorsController < AlbumsController
     unless @event
       flash[:danger] = t "not_found"
       redirect_to root_url
+    end
+  end
+
+  def load_sponsor
+    @sponsor = Sponsor.find_by id: params[:id]
+    unless @sponsor
+      flash[:danger] = t "not_found"
+      redirect_to club_event_path @club, @event
     end
   end
 
