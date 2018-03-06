@@ -1,0 +1,34 @@
+<% if experience.present? %>
+  <div class="table-responsive">
+    <table class="ui-block table-pricing table-white">
+      <thead>
+        <tr>
+          <th class="money-colums"><%= t "sponsors.event" %></th>
+          <th class="money-colums"><%= t "sponsors.time_and_place" %></th>
+          <th class="money-colums"><%= t "sponsors.number_of_participants" %></th>
+          <th class ="column-detail"><%= t "sponsors.effective_communication" %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% experience.each do |key, experience| %>
+          <% unless check_experience_detail?(experience) %>
+            <tr>
+              <td>
+                <%= experience[:event] %>
+              </td>
+              <td>
+                <%= experience[:time_and_place] %>
+              </td>
+              <td>
+                <%= experience[:member] %>
+              </td>
+              <td>
+                <%= experience[:communication] %>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>

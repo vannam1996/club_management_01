@@ -1197,7 +1197,7 @@ en:
     effective_communication: "Effective communication"
     new_errors: "You have already created a sponsor invitation for this event, please check again"
     new_sponsor: "Create a sponsorship invitation lette"
-    sponsor: "Sponsorship invitation letter"
+    sponsors: "Sponsorship invitation letter"
   social_share_button:
     share_to: "Share"
   new_post: "Create post"
