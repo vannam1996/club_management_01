@@ -1131,6 +1131,8 @@ en:
       detail_event: "Details money"
       location: "Location"
       name: "Name"
+    list_activity:
+      member_join: "%{size} member"
   style_event:
     event_public: "Public"
   update_events_report: "Please update the event before creating the report!"
@@ -1216,3 +1218,5 @@ en:
     post_update: "Update"
     destroy_success: "Delete success"
     destroy_errors: "Error in processing,please try again"
+  show_more_descrip: "details"
+  date_start_nil: "No starting date"

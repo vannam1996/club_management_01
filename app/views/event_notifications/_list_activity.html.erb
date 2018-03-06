@@ -1,0 +1,44 @@
+<% group_by_month(events).each do |key, events| %>
+  <tr class="head-activity">
+    <td class="upcoming">
+      <div>
+        <% if key && key.is_a?(Date) %>
+          <%= t "month" %> <%= key.month %>-<%= key.year %>
+        <% else %>
+          <%= t "date_start_nil" %>
+        <% end %>
+      </div>
+    </td>
+    <td colspan="3"></td>
+  </tr>
+  <% events.each do |event| %>
+    <tr class="event-item list-event-<%= event.id %>">
+      <td class="author">
+        <div class="event-author inline-items">
+          <div class="author-thumb img_small">
+            <%= link_to club_event_url(event.club, event) do %>
+              <%= image_tag event.image, class: "img-responsive centered-and-cropped" %>
+            <% end %>
+          </div>
+          <div class="author-date event-name">
+            <%= link_to event.name, club_event_url(event.club, event), class: "author-name h6" %>
+            <% unless event.date_start.blank? && event.date_end.blank? %>
+              <time class="published"><%= event.date_start %>/<%= event.date_end %></time>
+            <% end %>
+            <%= t ".member_join", size: event.user_events.size %>
+          </div>
+        </div>
+      </td>
+      <td class="location">
+        <div class="place inline-items">
+          <svg class="olymp-add-a-place-icon"><use xlink:href="<%= url_to_asset("icons/icons.svg#olymp-add-a-place-icon") %>"></use></svg>
+          <span><%= event.location %></span>
+        </div>
+      </td>
+      <td class="description">
+        <p class="description"><%= raw(event.description.truncate(Settings.event_truncate)) unless event.description.nil? %></p>
+      </td>
+      <%= render partial: "event_notifications/action_event", locals: {event: event} %>
+    </tr>
+  <% end %>
+<% end %>

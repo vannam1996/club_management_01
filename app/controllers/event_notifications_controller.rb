@@ -7,8 +7,13 @@ class EventNotificationsController < ApplicationController
   before_action :set_gon_varible, only: :new
 
   def show
-    @events_notification = @club.events.newest
-      .in_categories(Event.money_event_keys).page(params[:page]).per Settings.per_page
+    if params[:category].to_i == Event.event_categories[:activity_money]
+      @events_activity = @club.events.newest
+        .activity_money.page(params[:page]).per Settings.per_page
+    else
+      @events_notification = @club.events.newest
+        .notification.page(params[:page]).per Settings.per_page
+    end
   end
 
   def new

@@ -3,7 +3,23 @@
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 tab_detail_club">
       <div class="ui-block" id="event-noti">
         <div class="ui-block-title ui-block-title-small">
-          <h6 class="title col-md-1"><%= t "event_activity" %></h6>
+          <div class="tab-in-activity">
+            <div class="row">
+              <div class="col-md-8">
+                <ul class="profile-menu">
+                  <li>
+                    <%= link_to t("event_activity"), "#event-activity",
+                      class: "w3-third tablink w3-bottombar w3-hover-light-grey w3-padding w3-border-red" %>
+                  </li>
+                  <li>
+                    <%= link_to t("notification"), "#event-notification",
+                      class: "w3-third tablink w3-bottombar w3-hover-light-grey w3-padding" %>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <h6 class="title col-md-1"></h6>
           <% if @club.is_admin? current_user %>
             <%= link_to new_club_event_notification_path(
               club_id: @club.id), class: "btn btn-sm btn-breez" do %>
@@ -12,8 +28,14 @@
           <% end %>
         </div>
         <div id="list-event-show-notification">
-          <%= render partial: "events/event", locals: {events: @events_notification,
-            tab_activity: true} %>
+          <div class="event-table" id="event-activity">
+            <%= render partial: "events/event", locals: {events: @events_activity.activity_money,
+              tab_activity: true} %>
+          </div>
+          <div class="event-table hide-div" id="event-notification">
+            <%= render partial: "events/event", locals: {events: @events_activity.notification,
+              tab_activity: true} %>
+          </div>
         </div>
       </div>
       <div class="ui-block" id="image">
@@ -71,3 +93,4 @@
 <div id="modal-edit-infor" class="modal fade" tabindex="-1"
   role="dialog" aria-hidden="true">
 </div>
+<%= javascript_include_tag "tabs" %>
