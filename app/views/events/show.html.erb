@@ -171,7 +171,7 @@
     </div>
   </div>
 </div>
-<% if @event.sponsors.blank? %>
+<% if @event.sponsors.present? %>
   <div id="modal-show-sponsor" class="modal fade" tabindex="-1"
     role="dialog" aria-hidden="true">
     <%= render partial: "sponsors/detail_sponsor", locals: {sponsor: @event.sponsors} %>
