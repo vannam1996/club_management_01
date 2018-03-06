@@ -1,5 +1,5 @@
 <% @sponsor.experience.each do |key, experience| %>
-  <% unless check_experience(experience) %>
+  <% unless check_experience_detail?(experience) %>
     <div class="form-group col-md-3 form-experience">
       <div class="col-md-12">
         <div class="form-group">

@@ -42,15 +42,9 @@
                         <%= t "sponsors.new_sponsor" %>
                       <% end %>
                     <% else %>
-                      <%= link_to edit_club_event_sponsor_path(@club, @event, @event.sponsor_ids),
+                      <%= link_to "#modal-show-sponsor", data: {toggle: "modal"},
                         class: "btn btn-sm btn-breez new-sponsor" do %>
-                        <i class="fa fa-pencil"></i>
-                        <%= t "edit" %>
-                      <% end %>
-                      <%= link_to club_event_sponsor_path(@club, @event, @event.sponsor_ids),
-                        class: "btn btn-sm btn-breez new-sponsor", method: :delete do %>
-                        <i class="fa fa-remove"></i>
-                        <%= t "delete" %>
+                        <%= t "sponsors.sponsors" %>
                       <% end %>
                     <% end %>
                     <%= render "user_events/join_event_toggle" %>
@@ -176,4 +170,8 @@
       </div>
     </div>
   </div>
+</div>
+<div id="modal-show-sponsor" class="modal fade" tabindex="-1"
+  role="dialog" aria-hidden="true">
+  <%= render partial: "sponsors/detail_sponsor", locals: {sponsor: @event.sponsors} %>
 </div>
