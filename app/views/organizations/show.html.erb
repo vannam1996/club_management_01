@@ -132,6 +132,11 @@
                         <% end %>
                       </li>
                       <li>
+                        <%= link_to set_sponsor_events_path(organization_id: @organization.id), remote: :true do %>
+                          <%= t "sponsors.sponsors" %>
+                        <% end %>
+                      </li>
+                      <li>
                         <%= link_to report_categories_path(organization_slug: @organization.slug), remote: :true do %>
                           <%= t "manager_report_category" %>
                         <% end %>

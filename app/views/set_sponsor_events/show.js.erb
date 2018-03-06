@@ -1,0 +1,4 @@
+<% if @sponsor %>
+  $('#statistic-modal').html('<%= j render "show" %>');
+  $('#statistic-modal').modal('show');
+<% end %>
