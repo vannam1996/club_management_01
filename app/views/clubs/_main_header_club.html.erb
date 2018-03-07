@@ -88,6 +88,13 @@
                       <% end %>
                     </li>
                   <% end %>
+                  <% if @club.is_admin? current_user %>
+                    <li>
+                      <%= link_to club_sponsors_path(@club), remote: :true, id: "none-tab" do %>
+                        <%= t "sponsors.sponsors" %>
+                      <% end %>
+                    </li>
+                  <% end %>
                 </ul>
               </div>
               <div class="col-md-1 offset-md-1 pull-right">
@@ -102,6 +109,12 @@
                         <%= link_to edit_club_path(id: @club, tab: Settings.club.infor),
                           remote: :true, class: "set-image-club" do %>
                           <i class="fa fa-pencil-square-o"></i> <%= t "edit_infor_club" %>
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= link_to new_club_sponsor_path(@club),
+                          class: "set-image-club" do %>
+                          <i class="fa fa-plus"></i> <%= t "sponsors.new_sponsor" %>
                         <% end %>
                       </li>
                       <li>

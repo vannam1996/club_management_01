@@ -34,20 +34,6 @@
             <div class="pull-right">
               <% case when @event.activity_money? %>
                 <div class="row">
-                  <% if @club.is_admin?(current_user) %>
-                    <% if @event.sponsors.blank? %>
-                      <%= link_to new_club_event_sponsor_path(@club, @event),
-                        class: "btn btn-sm btn-breez new-sponsor" do %>
-                        <i class="fa fa-plus"></i>
-                        <%= t "sponsors.new_sponsor" %>
-                      <% end %>
-                    <% else %>
-                      <%= link_to "#modal-show-sponsor", data: {toggle: "modal"},
-                        class: "btn btn-sm btn-breez new-sponsor" do %>
-                        <%= t "sponsors.sponsors" %>
-                      <% end %>
-                    <% end %>
-                  <% end %>
                   <div id="join-toggle">
                     <%= render "user_events/join_event_toggle" %>
                   </div>
@@ -189,10 +175,4 @@
     </div>
   </div>
 </div>
-<% if @event.sponsors.present? %>
-  <div id="modal-show-sponsor" class="modal fade" tabindex="-1"
-    role="dialog" aria-hidden="true">
-    <%= render partial: "sponsors/detail_sponsor", locals: {sponsor: @event.sponsors} %>
-  </div>
-<% end %>
 <%= javascript_include_tag "add_member_join_event" %>

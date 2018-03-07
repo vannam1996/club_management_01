@@ -1201,6 +1201,8 @@ en:
     new_errors: "You have already created a sponsor invitation for this event, please check again"
     new_sponsor: "Create a sponsorship invitation lette"
     sponsors: "Sponsorship invitation letter"
+    event_name: "Event name is coming"
+    not_sponsor: "There are no sponsorships yet"
   social_share_button:
     share_to: "Share"
   new_post: "Create post"

@@ -1,0 +1,20 @@
+<div class="row">
+  <div class = "col-md-12">
+    <div class="ui-block col-md-12">
+      <div class="list-report ui-block-title">
+        <h6 class="title"><%= t "sponsors.sponsors" %></h6>
+        <%= link_to new_club_sponsor_path(@club),
+          class: "btn btn-sm btn-breez pull-right" do %>
+          <i class="fa fa-plus-circle"></i> <%= t "sponsors.new_sponsor" %>
+        <% end %>
+      </div>
+      <div id="list-report">
+        <%= render partial: "list_club_sponsor", locals: {sponsors: sponsors} %>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="sponsor-modal" class="modal fade" tabindex="-1"
+  role="dialog" aria-hidden="true">
+  <%= render "statistic_reports/modal" %>
+</div>

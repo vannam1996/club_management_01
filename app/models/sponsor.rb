@@ -5,7 +5,6 @@ class Sponsor < ApplicationRecord
   serialize :communication_plan
   serialize :participating_units
 
-  belongs_to :event
   belongs_to :organization
   belongs_to :club
 

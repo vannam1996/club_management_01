@@ -6,7 +6,7 @@
         <article class="hentry post has-post-thumbnail thumb-full-width private-event">
           <div class="row">
             <div class="col-md-1 confirm-donate">
-              <%= link_to club_event_path(@club, @event), title: t("back"),
+              <%= link_to club_path(@club), title: t("back"),
                 class: "btn btn-sm btn-primary" do %>
                 <i class="fa fa-arrow-left"></i>
               <% end %>
@@ -14,7 +14,7 @@
             <div class="col-md-10">
               <div class="block-title">
                 <h5 class="text-center"><strong><%= t "sponsors.sponsors" %></strong></h5>
-                <h6 class="text-center"><strong><%= @club.name %>: <%= @event.name %></strong></h6>
+                <h6 class="text-center"><strong><%= @club.name %></strong></h6>
               </div>
               <%= render "form_sponsor" %>
             </div>

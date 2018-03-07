@@ -1,0 +1,4 @@
+<% if @sponsor.destroy %>
+  $('.sponsor-<%= params[:id] %>').fadeOut();
+<% end %>
+$('#page-container').append('<%= j render "shared/flash_warning" %>');

@@ -1,0 +1,4 @@
+<% if @sponsor %>
+  $('#sponsor-modal').html('<%= j render "set_sponsor_events/show" %>');
+  $('#sponsor-modal').modal('show');
+<% end %>
