@@ -26,6 +26,18 @@
                 title: t("info"), class: "btn btn-warning btn-info-report" do %>
                 <i class="fa fa-info"></i>
               <% end %>
+              <% if sponsor.pending? %>
+                <%= link_to set_sponsor_event_path(sponsor.id, status: Sponsor.statuses[:accept],
+                  organization_id: @organization.id), remote: true, method: :put, title: t("accept"),
+                  class: "btn btn-breez btn-info-report" do %>
+                  <i class="fa fa-check-square-o"></i>
+                <% end %>
+                <%= link_to edit_set_sponsor_event_path(sponsor.id, organization_id: @organization.id),
+                  remote: true, title: t("reject"),
+                  class: "btn btn-danger btn-info-report" do %>
+                  <i class="fa fa-ban"></i>
+                <% end %>
+              <% end %>
             </td>
           </tr>
         <% end %>
@@ -37,7 +49,3 @@
     <h5 class="center notifi-empty"><%= t "no_category" %></h5>
   </div>
 <% end %>
-<div id="statistic-modal" class="modal fade" tabindex="-1"
-  role="dialog" aria-hidden="true">
-  <%= render "statistic_reports/modal" %>
-</div>

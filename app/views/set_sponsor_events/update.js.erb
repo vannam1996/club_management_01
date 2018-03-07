@@ -1,0 +1,5 @@
+$('.container').append('<%= j render partial: "shared/flash_warning" %>');
+$('#organization_club').html('<%= j render "index" %>');
+$('#sponsor-modal').modal('hide');
+$('.modal-backdrop').remove()
+$('body').removeClass('modal-open');
