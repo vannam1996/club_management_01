@@ -1203,6 +1203,7 @@ en:
     sponsors: "Sponsorship invitation letter"
     event_name: "Event name is coming"
     not_sponsor: "There are no sponsorships yet"
+    reason_reject: "Reason reject"
   social_share_button:
     share_to: "Share"
   new_post: "Create post"

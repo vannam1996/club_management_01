@@ -1,0 +1,24 @@
+<div class="col-md-12 col-md-offset-2">
+  <div class="modal-dialog">
+    <div class="modal-content modal-report-detail">
+      <div class="modal-header">
+        <h6 class="col-md-12 text-center">
+          <%= t "sponsors.reason_reject" %>
+        </h6>
+      </div>
+      <div class="modal-body">
+        <div class="col-md-10 col-sm-12 col-xs-12 offset-md-1">
+          <div class="inline-items report-detail">
+            <span class="sponsor-detail">
+              <%= @sponsor.note %>
+            </span><br/>
+          </div>
+        </div>
+      </div>
+      <div class="text-center">
+        <%= button_tag t("close"), class: "btn btn-sm btn-warning",
+          "data-dismiss": "modal" %>
+      </div>
+    </div>
+  </div>
+</div>

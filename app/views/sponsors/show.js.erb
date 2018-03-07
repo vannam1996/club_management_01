@@ -1,4 +1,8 @@
 <% if @sponsor %>
-  $('#sponsor-modal').html('<%= j render "set_sponsor_events/show" %>');
+  <% if params[:status].to_i == Sponsor.statuses[:rejected] %>
+    $('#sponsor-modal').html('<%= j render "infor_rejected" %>');
+  <% else %>
+    $('#sponsor-modal').html('<%= j render "set_sponsor_events/show" %>');
+  <% end %>
   $('#sponsor-modal').modal('show');
 <% end %>

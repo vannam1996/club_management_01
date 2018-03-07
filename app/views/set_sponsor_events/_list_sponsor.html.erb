@@ -3,9 +3,10 @@
     <table class="table ui-block table-pricing">
       <thead>
         <tr>
-          <th class="text-center"><%= t "name_event" %></th>
           <th class="text-center"><%= t "name_club" %></th>
+          <th class="text-center"><%= t "sponsors.event_name" %></th>
           <th class="text-center"><%= t "timeline" %></th>
+          <th class="text-center"><%= t "sponsors.place" %></th>
           <th class="text-center"><%= t "action" %></th>
         </tr>
       </thead>
@@ -13,13 +14,16 @@
         <% sponsors.each do |sponsor| %>
           <tr class="add-user-member category-<%= sponsor.id %>">
             <td class= "text-center type-name ">
-              <%= sponsor.event.name %>
+              <%= sponsor.club_name %>
             </td>
             <td class="text-center">
-              <%= sponsor.event.club_name %>
+              <%= sponsor.name_event %>
             </td>
             <td class="text-center">
-              <%= l sponsor.created_at, format: :short %>
+              <%= l sponsor.time, format: :short %>
+            </td>
+            <td class="text-center">
+              <%= sponsor.place %>
             </td>
             <td class="text-center">
               <%= link_to set_sponsor_event_path(sponsor.id), remote: true,
