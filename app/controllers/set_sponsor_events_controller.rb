@@ -4,8 +4,7 @@ class SetSponsorEventsController < ApplicationController
   before_action :load_sponsor, only: :show
 
   def index
-    @sponsors = @organization.sponsors.newest.page(params[:page])
-      .per Settings.per_page_report_category
+    @sponsors = Support::SponsorSupport.new params[:page], @organization
   end
 
   def show; end

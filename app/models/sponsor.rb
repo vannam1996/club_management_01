@@ -9,6 +9,8 @@ class Sponsor < ApplicationRecord
   belongs_to :organization
   belongs_to :club
 
+  enum status: {pending: 0, accept: 1, rejected: 2}
+
   scope :newest, ->{order created_at: :desc}
 
   delegate :name, to: :club, allow_nil: :true
