@@ -141,5 +141,5 @@ Rails.application.routes.draw do
   resources :set_static_reports, only: :index
   resources :budgets, only: :index
   resources :posts, except: :new
-  resources :set_sponsor_events, only: [:index, :show]
+  resources :set_sponsor_events, except: %i(new destroy)
 end

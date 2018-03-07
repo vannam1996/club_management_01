@@ -1,0 +1,6 @@
+<% if @sponsor %>
+  $('#modal-note-reject').html('<%= j render partial: "note_reject" %>')
+  $('#modal-note-reject').modal('show')
+<% else %>
+  $('#container').append('<%= j render "shared/flash_warning" %>');
+<% end %>
