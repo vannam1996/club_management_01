@@ -1,0 +1,82 @@
+<div class="modal-dialog ui-block window-popup private-event user-event-join hide-div"
+  id="modal-add-member">
+  <div class="row">
+    <div class="col-md-1">
+      <%= link_to "", title: t("back"), id: "add-member-join",
+        class: "btn btn-sm btn-primary" do %>
+        <i class="fa fa-arrow-left"></i>
+      <% end %>
+    </div>
+    <h4 class="title col-md-10 text-center"><%= t "add_member_join" %></h4>
+    <div class="col-md-1">
+      <%= button_tag type: "button", class: "close", data: {dismiss: "modal"} do %>
+        &times;
+      <% end %>
+    </div>
+  </div>
+  <div id="data-event">
+    <%= form_for @event.user_events.build, method: :post do %>
+      <%= hidden_field_tag :id, @club.id %>
+      <%= hidden_field_tag :event_id, @event.id %>
+      <div class="form-search">
+        <div class="row">
+          <div class="col-md-12">
+            <span class="input-group-addon" id="basic-addon1">
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </span>
+            <%= text_field_tag :search_user, "", class: "form-control input-search",
+              placeholder: t("edit_member.search_member") %>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 pull-left checkbox add-all-funtion ui-block">
+        <label><%= check_box_tag("checkall", false, false, class: "select-all") %>
+          <%= t "checkall" %></label>
+      </div>
+      <div class="widget-simple list-scroll">
+        <div class="table-responsive">
+          <table class="table ui-block table-pricing results">
+            <tbody>
+              <% if users.any? %>
+                <% users.each do |user| %>
+                  <tr class="add-user-member">
+                    <td class="check-user">
+                      <%= check_box_tag("user_id[]", user.id, false, class: "checkbox") %>
+                    </td>
+                    <td>
+                      <div class="col-md-1 avarta-memeber">
+                        <%= link_to user_path(user.id) do %>
+                          <%= image_tag user.avatar, class: "member-organization-view view-avt-member",
+                            title: "#{user.full_name}" %>
+                        <% end %>
+                      </div>
+                    </td>
+                    <td>
+                      <%= user.full_name %>
+                    </td>
+                    <td>
+                      <%= user.email %>
+                    </td>
+                  </tr>
+                <% end %>
+              <% else %>
+                <tr class="text-center">
+                  <td colspan="4">
+                    <h3 class="center notifi-empty"><%= t "empty" %></h3>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer text-center">
+        <%= submit_tag t("save"), class: "btn btn-sm btn-primary col-md-2" %>
+        <button type="button" class="btn btn-sm button-more" data-dismiss="modal">
+          <%= t "close" %>
+        </button>
+      </div>
+    <% end %>
+  </div>
+</div>
+<%= javascript_include_tag "search_member" %>

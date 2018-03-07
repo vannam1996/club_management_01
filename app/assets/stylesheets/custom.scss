@@ -1002,6 +1002,7 @@ a.pull-right.add_fields {
 
 .w3-border-red {
   border-color: red !important;
+  color: #313235 !important;
 }
 
 .w3-padding {
@@ -1010,4 +1011,35 @@ a.pull-right.add_fields {
 
 .w3-bottombar {
   border-bottom: 6px solid #ccc;
+}
+
+.user-event-join {
+  width: 60%;
+}
+
+.view-more-user {
+  width: 25px !important;
+  height: 25px !important;
+  border-radius: 20px !important;
+  margin-bottom: 5px !important;
+  line-height: 23px;
+}
+
+.title-block {
+  text-transform: uppercase;
+  font-size: 12px;
+  color: #313235 !important;
+}
+
+.close-modal {
+  margin-left: -8px;
+  margin-top: -32px;
+}
+
+.comment-post-event {
+  margin-top: 5px;
+}
+
+.view-avt-member {
+  margin-bottom: 0px !important;
 }

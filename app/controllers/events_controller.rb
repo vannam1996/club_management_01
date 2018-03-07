@@ -47,6 +47,7 @@ class EventsController < ApplicationController
     end
     @posts = @event.posts.includes(:user).newest.page(params[:page]).per Settings.per_page
     @post = Post.new
+    load_member_not_join
   end
 
   def update

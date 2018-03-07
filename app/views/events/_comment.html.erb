@@ -2,7 +2,9 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12 site-block">
-        <h3 class="site-heading"><strong><%= t("comments.comment") if @event.comments.any? %></strong></h3>
+        <div class="ui-block-title">
+          <h6 class="title col-md-1 title-block"><%= t "comments.comment" %></h6>
+        </div>
         <ul class="comments-list">
           <%= render partial: "events/list_comment", locals: {comments: comments} %>
         </ul>

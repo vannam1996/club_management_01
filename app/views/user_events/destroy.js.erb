@@ -1,5 +1,14 @@
-$('.join-event-toggle-container').html('<%= j render "join_event_toggle" %>');
-alert(I18n.t("see_you_next_time"));
-$(".join-event").click(function(){
-  $("#new_user_event").submit();
-});
+<% if params[:member_id] %>
+  $('#view_list_member_join').html('<%= j render partial: "events/view_list_member_join" %>');
+  $('#list_member_join').html('<%= j render partial: "events/list_member_join",
+    locals: {users: @member_not_join} %>');
+  $('#modal-list-member').show();
+  $('#modal-add-member').hide();
+<% else %>
+  $('#join-toggle').html('<%= j render "join_event_toggle" %>');
+  $(".join-event").click(function(){
+    $("#new_user_event").submit();
+  });
+<% end %>
+$('#member-has-join').html('<%= j render "events/member_join" %>')
+$('.container').append('<%= j render partial: "shared/flash_warning" %>');
