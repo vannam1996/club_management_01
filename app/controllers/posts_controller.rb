@@ -13,7 +13,7 @@ class PostsController < ApplicationController
     else
       flash.now[:success] = t ".create_errors"
     end
-    all_post
+    redirect_to club_event_path(@event, club_id: @event.club.slug)
   end
 
   def show; end
@@ -48,11 +48,13 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit :name, :content, :target_id, :target_type
+    params.require(:post).permit :name, :content, :target_id, :target_type,
+      post_galleries_attributes: [:url]
   end
 
   def post_update_params
-    params.require(:post).permit :name, :content
+    params.require(:post).permit :name, :content,
+      post_galleries_attributes: [:url, :_destroy]
   end
 
   def load_post

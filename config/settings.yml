@@ -8,6 +8,7 @@ max_description: 3000
 max_for_limit: 5
 per_page: 5
 event_truncate: 360
+notification_truncate: 200
 truncate_description: 90
 truncate_organization: 30
 description_event: 360
@@ -285,3 +286,4 @@ per_page_budget: [5, 10, 15, 20]
 value_enum_style_event_detail_pay: 0
 value_enum_style_event_detail_get: 1
 number_view_user_event: 8
+image_plus: "icon-plus.png"

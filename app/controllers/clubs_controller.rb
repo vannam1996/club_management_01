@@ -189,7 +189,7 @@ class ClubsController < ApplicationController
   end
 
   def load_event_tab_activity
-    @events_activity = @club.events.newest.in_categories(Event.money_event_keys)
+    @events_activity = @club.events.includes(:user).newest.in_categories(Event.money_event_keys)
       .page(params[:page]).per Settings.per_page
   end
 end

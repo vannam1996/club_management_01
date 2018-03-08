@@ -1,19 +1,42 @@
 <% events.each do |event| %>
   <tr class="event-item list-event-<%= event.id %>">
     <td class="description width-80">
-      <%= link_to event.name, club_event_url(event.club, event), class: "author-name h3" %>
-      <% if event.description.present? %>
-        <div id="description-<%= event.id %>">
-          <%= raw(event.description.truncate(Settings.event_truncate, separator: " ")) unless event.description.nil? %>
-          <%= link_to "", data: {event: event.id},
-            title: t("show_more_descrip"), class: "show-more" do %>
-            <%= t "show_more_descrip" %>
+      <div class="row">
+        <div class="col-md-1 avarta-memeber">
+          <%= link_to user_path(event.user_id) do %>
+            <%= image_tag event.user_avatar, class: "notification-owner",
+              title: "#{event.user.full_name}" %>
           <% end %>
         </div>
-        <div class="hide-div" id="content-<%= event.id %>">
-          <%= raw(event.description) unless event.description.nil? %>
+        <div class="col-md-11">
+          <div class="post-meta d-flex align-items-center flex-wrap">
+            <%= link_to user_path(event.user_id), class: "link_user mr-05" do %>
+              <%= event.user.full_name %>
+            <% end %>
+            <div class="text-muted">
+              <i class="fa fa-clock-o time_create" aria-hidden="true"></i>
+              <span><%= t "posts.ago", time: time_ago_in_words(event.created_at, locale: :en) %></span>
+            </div>
+          </div>
+          <div class="content">
+            <%= link_to event.name, club_event_url(event.club, event), class: "author-name h5 link_notification" %></br>
+            <% if event.description.present? %>
+              <div id="description-<%= event.id %>">
+                <%= raw(event.description.truncate(Settings.notification_truncate, separator: " ")) %>
+                <% if raw(event.description).length > Settings.notification_truncate %>
+                  <%= link_to "", data: {event: event.id},
+                    title: t("show_more_descrip"), class: "show-more" do %>
+                    <%= t "show_more_descrip" %>
+                  <% end %>
+                <% end %>
+              </div>
+              <div class="hide-div" id="content-<%= event.id %>">
+                <%= raw(event.description) if (raw(event.description).length > Settings.notification_truncate) %>
+              </div>
+            <% end %>
+          </div>
         </div>
-      <% end %>
+      </div>
     </td>
     <%= render partial: "event_notifications/action_event", locals: {event: event} %>
   </tr>

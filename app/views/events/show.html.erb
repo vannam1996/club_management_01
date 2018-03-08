@@ -169,7 +169,19 @@
               <%= render partial: "events/comment", locals: {comments: @comments, event: @event} %>
             </div>
             <div class="ui-block" id="post">
-              <%= render partial: "events/post", locals: {posts: @posts} %>
+              <div class="ui-block-title ui-block-title-small">
+                <h6 class="title col-md-1"><%= t "post"%></h6>
+                  <%= link_to "#modal-new-post", data: {toggle: :collapse}, class: "btn btn-sm btn-breez" do %>
+                    <i class="fa fa-plus"></i> <%= t "new_post" %>
+                  <% end %>
+              </div>
+              <div id="modal-new-post" class="collapse" tabindex="-1"
+                role="dialog" aria-hidden="true">
+                <%= render partial: "events/new_post", locals: {post: @post, event: @event} %>
+              </div>
+              <div id="post-list">
+                <%= render partial: "events/post", locals: {posts: @posts} %>
+              </div>
             </div>
           </div>
         </article>

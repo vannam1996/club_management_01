@@ -1,17 +1,18 @@
-<div class="col-md-12 col-md-offset-2">
-  <div class="modal-dialog edit-club modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title text-center"><%= t "title_modal_new_post" %></h4>
+<div class="col-md-10 push-md-1">
+  <div class="">
+    <div class="">
+      <div class="">
+        <h4 class="modal-title text-center"><%= title_form params[:action] %></h4>
       </div>
-      <div class="modal-body">
+      <div class="">
         <section class="site-content">
           <div class="container">
             <div class="row">
               <div class="col-md-12 site-block">
                 <div class="media-body media-comment">
-                  <%= form_for post, class: "post-form inline-items", remote: status_remote_by_params_action(params[:action]) do |f| %>
+                  <%= form_for post, class: "post-form inline-items" do |f| %>
                     <div class="form-group">
+                      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
                       <%= hidden_field_tag :event_id, event.id %>
                       <%= f.label(:name, class: "control-label label-bold") do %>
                         <%= t("posts.name") %>
@@ -19,13 +20,27 @@
                       <% end %>
                       <%= f.text_field :name, class: "form-control input-text-custom",
                         placeholder: t("posts.name_post"), required: true %></br>
-                      <%= f.label(:name, class: "control-label label-bold") do %>
+                      <%= f.label(:content, class: "control-label label-bold") do %>
                         <%= t("posts.content") %>
                         <span class="text-danger">*</span>
                       <% end %>
                       <%= f.cktext_area :content, class: "form-control text-area-post",
                         id: "profile-newsfeed-post", rows: 4, required: :true,
                         placeholder: t("your_comment") %>
+                      <% post.post_galleries.build %>
+                      <div class="fields_gallery">
+                        <div class="image-preview row">
+                          <%= f.fields_for :post_galleries do |gallery| %>
+                            <%= render partial: "posts/post_gallery_field", locals: {f: gallery} %>
+                          <% end %>
+                          <div class="col-md-2 list-gallery nested-fields">
+                            <%= link_to_add_association f, :post_galleries,
+                              partial: "posts/post_gallery_field", class: "btn btn-breez btn-sm button-add-gallery" do %>
+                              <i class="fa fa-plus"></i>
+                            <% end %>
+                          </div>
+                        </div>
+                      </div>
                       <%= f.hidden_field :target_id, value: event.id %>
                       <%= f.hidden_field :target_type, value: event.class %>
                       <%= f.submit text_button(params[:action]),
@@ -42,3 +57,4 @@
     </div>
   </div>
 </div>
+<%= javascript_include_tag "post" %>

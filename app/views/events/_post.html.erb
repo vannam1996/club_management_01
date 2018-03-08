@@ -1,40 +1,68 @@
-<div class="ui-block-title ui-block-title-small">
-  <h6 class="title col-md-1"><%= t "post"%></h6>
-    <%= link_to "#modal-new-post", data: {toggle: :collapse}, class: "btn btn-sm btn-breez" do %>
-      <i class="fa fa-plus"></i> <%= t "new_post" %>
-    <% end %>
-</div>
-<div id="modal-new-post" class="collapse" tabindex="-1"
-  role="dialog" aria-hidden="true">
-  <%= render partial: "events/new_post", locals: {post: @post, event: @event} %>
-</div>
 <% if posts.any? %>
   <% posts.each do |post| %>
     <div class="content-posts">
-      <div class="listing-grid">
-        <div class="row">
-          <div class="col-md-2 col-sm-2 col-xs-2 hidden-xs">
-              <%= image_tag post.user.avatar, class: "img-responsive center-block" %>
-          </div>
-          <div class="col-md-10 col-sm-10 col-xs-10 topic-post-content">
-            <div class="col-md-9 col-sm-8 col-xs-12">
-              <h3><%= link_to post.name, post_path(post) %></h3>
-              <div class="listing-meta">
-                <span>
-                  <i class="fa fa-clock-o" aria-hidden="true"></i>
-                  <%= l post.created_at, format: :full_date %>
-                </span>
-              </div>
+      <div class="row">
+        <div class="col-md-1 avarta-memeber">
+          <%= link_to user_path(post.user_id) do %>
+            <%= image_tag post.user_avatar, class: "notification-owner",
+              title: "#{post.user_full_name}" %>
+          <% end %>
+        </div>
+        <div class="col-md-11">
+          <div class="post-meta d-flex align-items-center flex-wrap">
+            <%= link_to user_path(post.user_id), class: "link_user mr-05" do %>
+              <%= post.user_full_name %>
+            <% end %>
+            <div class="text-muted">
+              <i class="fa fa-clock-o time_create" aria-hidden="true"></i>
+              <span><%= t "posts.posted", time: time_ago_in_words(post.created_at, locale: :en) %></span>
             </div>
-            <div class="col-md-12 col-sm-12 col-xs-12 truncate-post">
-              <div class="content-post">
-                <%= raw post.content.truncate(Settings.truncat_content_post) %>
+          </div>
+          <div class="content">
+            <%= link_to post.name, post_path(post), class: "author-name h5 link_notification" %></br>
+            <% if post.content.present? %>
+              <div id="content-truncate-<%= post.id %>">
+                <%= raw(post.content.truncate(Settings.description_event, separator: " ")) %>
+                <% if raw(post.content).length > Settings.description_event %>
+                  <%= link_to "", data: {post: post.id},
+                    title: t("show_more_descrip"), class: "show-more" do %>
+                    <%= t "show_more_descrip" %>
+                  <% end %>
+                <% end %>
               </div>
+            <% end %>
+            <div class="hide-div" id="content-<%= post.id %>">
+              <%= raw(post.content) if (raw(post.content).length > Settings.description_event) %>
+              <% if post.post_galleries.present? %>
+                <div id="page-container">
+                  <section class="site-content site-section">
+                    <div class="container">
+                      <div class="row portfolio">
+                        <div class="tz-gallery list-gellary">
+                          <div class="row">
+                            <% post.post_galleries.each do |image| %>
+                              <div class="portfolio-item img-<%= image.id %>"
+                                data-category="">
+                                <%= link_to "#{image.url}", class: "list-image lightbox" do  %>
+                                  <%= image_tag image.url, class: "centered-and-cropped" %>
+                                <% end %>
+                              </div>
+                            <% end %>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                </div>
+              <% end %>
             </div>
           </div>
         </div>
       </div>
     </div>
   <% end %>
-  <%= paginate posts, remote: true, params: {controller: "posts", action: "index", event_id: @event.id} %>
+  <div id="view-more" class="hide-div">
+    <%= paginate posts, remote: true, params: {controller: "posts", action: "index", event_id: @event.id} %>
+  </div>
 <% end %>
+<%= javascript_include_tag "images", "data-turbolinks-track" => true  %>
