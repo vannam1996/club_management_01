@@ -13,4 +13,5 @@ $(function() {
     });
     container.append(new_field_group);
   });
+  $( '.datepicker' ).datepicker({dateFormat: 'dd/mm/yy'});
 });

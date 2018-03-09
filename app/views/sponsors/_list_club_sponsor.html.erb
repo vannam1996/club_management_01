@@ -32,14 +32,13 @@
                 title: t("info"), class: "btn btn-warning btn-info-report" do %>
                 <i class="fa fa-info"></i>
               <% end %>
-              <% if sponsor.pending? %>
+              <% if sponsor.pending? || sponsor.rejected? %>
                 <%= link_to edit_club_sponsor_path(@club.id, sponsor.id),
                   title: t("edit"), class: "btn btn-primary btn-info-report" do %>
                   <i class="fa fa-edit"></i>
                 <% end %>
                 <%= link_to club_sponsor_path(@club.id, sponsor.id), remote: true, method: :delete,
-                  title: t("delete"), data: {confirm: t("confirm_delete")},
-                  class: "btn btn-danger btn-info-report" do %>
+                  title: t("delete"), class: "btn btn-danger btn-info-report" do %>
                   <i class="fa fa-remove"></i>
                 <% end %>
               <% end %>
