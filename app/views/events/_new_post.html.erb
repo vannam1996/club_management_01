@@ -28,7 +28,10 @@
                         id: "profile-newsfeed-post", rows: 4, required: :true,
                         placeholder: t("your_comment") %>
                       <% post.post_galleries.build %>
-                      <div class="fields_gallery">
+                      <div class="fields_gallery" id="fields_image">
+                        <%= label_tag("", class: "control-label label-gallery label-bold") do %>
+                          <%= t("posts.image") %>
+                        <% end %>
                         <div class="image-preview row">
                           <%= f.fields_for :post_galleries do |gallery| %>
                             <%= render partial: "posts/post_gallery_field", locals: {f: gallery} %>
@@ -36,6 +39,22 @@
                           <div class="col-md-2 list-gallery nested-fields">
                             <%= link_to_add_association f, :post_galleries,
                               partial: "posts/post_gallery_field", class: "btn btn-breez btn-sm button-add-gallery" do %>
+                              <i class="fa fa-plus"></i>
+                            <% end %>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="fields_gallery" id="fields_video">
+                        <%= label_tag("", class: "control-label label-gallery label-bold") do %>
+                          <%= t("posts.video") %>
+                        <% end %>
+                        <div class="image-preview row">
+                          <%= f.fields_for :post_galleries do |gallery| %>
+                            <%= render partial: "posts/post_video_field", locals: {f: gallery} %>
+                          <% end %>
+                          <div class="col-md-12 list-gallery nested-fields">
+                            <%= link_to_add_association f, :post_galleries,
+                              partial: "posts/post_video_field", class: "btn btn-breez btn-sm button-add-video" do %>
                               <i class="fa fa-plus"></i>
                             <% end %>
                           </div>

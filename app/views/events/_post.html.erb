@@ -23,7 +23,8 @@
             <% if post.content.present? %>
               <div id="content-truncate-<%= post.id %>">
                 <%= raw(post.content.truncate(Settings.description_event, separator: " ")) %>
-                <% if raw(post.content).length > Settings.description_event %>
+                <% if raw(post.content).length > Settings.description_event ||
+                    post.post_galleries.present? %>
                   <%= link_to "", data: {post: post.id},
                     title: t("show_more_descrip"), class: "show-more" do %>
                     <%= t "show_more_descrip" %>
@@ -33,28 +34,38 @@
             <% end %>
             <div class="hide-div" id="content-<%= post.id %>">
               <%= raw(post.content) if (raw(post.content).length > Settings.description_event) %>
-              <% if post.post_galleries.present? %>
-                <div id="page-container">
-                  <section class="site-content site-section">
-                    <div class="container">
-                      <div class="row portfolio">
-                        <div class="tz-gallery list-gellary">
+              <div id="page-container">
+                <section class="site-content site-section">
+                  <div class="container">
+                    <div class="row portfolio">
+                      <div class="tz-gallery list-gellary">
+                        <% if post.post_galleries.image.present? %>
                           <div class="row">
-                            <% post.post_galleries.each do |image| %>
-                              <div class="portfolio-item img-<%= image.id %>"
-                                data-category="">
+                            <% post.post_galleries.image.each do |image| %>
+                              <div class="portfolio-item img-<%= image.id %>">
                                 <%= link_to "#{image.url}", class: "list-image lightbox" do  %>
                                   <%= image_tag image.url, class: "centered-and-cropped" %>
                                 <% end %>
                               </div>
                             <% end %>
                           </div>
-                        </div>
+                        <% end %>
+                        <% if post.post_galleries.video.present? %>
+                          <div class="row">
+                            <% post.post_galleries.video.each do |video| %>
+                              <div class="portfolio-item video-<%= video.id %>">
+                                <%= link_to "#{video}", class: "list-image lightbox" do  %>
+                                  <iframe src="<%= gsub_url_youtube video.url_video %>" allowfullscreen></iframe>
+                                <% end %>
+                              </div>
+                            <% end %>
+                          </div>
+                        <% end %>
                       </div>
                     </div>
-                  </section>
-                </div>
-              <% end %>
+                  </div>
+                </section>
+              </div>
             </div>
           </div>
         </div>

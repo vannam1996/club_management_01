@@ -1,0 +1,14 @@
+<div class="col-md-12 list-video nested-fields">
+  <div class="new_report_category row">
+    <div class="col-md-1">
+      <%= f.hidden_field :style, value: PostGallery.styles.key(PostGallery.styles[:video]) %>
+      <%= f.label t("posts.video_url"), class: "control-label label-bold label-url" %>
+    </div>
+    <%= f.text_field :url_video, class: "form-control input-text col-md-10 url-input" %>
+    <div class="delete-img col-md-1 bt-del-field">
+      <%= link_to_remove_association f do %>
+        <i class="fa fa-window-close"></i>
+      <% end %>
+    </div>
+  </div>
+</div>

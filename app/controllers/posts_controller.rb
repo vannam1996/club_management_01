@@ -7,11 +7,11 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.new post_params
     if @post.save
-      flash.now[:success] = t ".create_success"
+      flash[:success] = t ".create_success"
     elsif @post.errors.any?
-      flash.now[:danger] = @post.errors.full_messages
+      flash[:danger] = @post.errors.full_messages
     else
-      flash.now[:success] = t ".create_errors"
+      flash[:danger] = t "error_in_processing"
     end
     redirect_to club_event_path(@event, club_id: @event.club.slug)
   end
@@ -19,7 +19,7 @@ class PostsController < ApplicationController
   def show; end
 
   def index
-    all_post
+    all_post if @event
     @post = Post.new
   end
 
@@ -31,7 +31,7 @@ class PostsController < ApplicationController
     elsif @post.errors.any?
       flash[:danger] = @post.errors.full_messages
     else
-      flash[:success] = t ".update_errors"
+      flash[:danger] = t "error_in_processing"
     end
     redirect_to post_path @post
   end
@@ -40,7 +40,7 @@ class PostsController < ApplicationController
     if @post.destroy
       flash[:success] = t ".destroy_success"
     else
-      flash[:success] = t ".destroy_errors"
+      flash[:danger] = t ".destroy_errors"
     end
     redirect_to club_event_path(@event, club_id: @event.club.slug)
   end
@@ -49,29 +49,32 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit :name, :content, :target_id, :target_type,
-      post_galleries_attributes: [:url]
+      post_galleries_attributes: [:url, :url_video, :style]
   end
 
   def post_update_params
     params.require(:post).permit :name, :content,
-      post_galleries_attributes: [:url, :_destroy]
+      post_galleries_attributes: [:url, :url_video, :style, :_destroy, :id]
   end
 
   def load_post
     @post = Post.find_by id: params[:id]
     return if @post
-    flash.now[:danger] = t ".cant_find_post"
+    flash[:danger] = t ".cant_find_post"
+    return if request.xhr?
     redirect_to root_path
   end
 
   def load_event
     @event = Event.find_by id: params[:event_id]
     return if @event
-    flash.now[:danger] = t ".cant_find_event"
+    flash[:danger] = t ".cant_find_event"
+    return if request.xhr?
     redirect_to root_path
   end
 
   def all_post
-    @posts = @event.posts.includes(:user).newest.page(params[:page]).per Settings.per_page
+    @posts = @event.posts.includes(:user, :post_galleries).newest.page(params[:page])
+      .per Settings.per_page
   end
 end

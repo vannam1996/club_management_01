@@ -18,4 +18,8 @@ module PostsHelper
   def title_form action
     action == Settings.edit ? t("posts.title_modal_edit_post") : t("posts.title_modal_new_post")
   end
+
+  def gsub_url_youtube url
+    url.gsub("watch?v=", "embed/")
+  end
 end
