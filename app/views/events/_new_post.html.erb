@@ -32,11 +32,11 @@
                         <%= label_tag("", class: "control-label label-gallery label-bold") do %>
                           <%= t("posts.image") %>
                         <% end %>
-                        <div class="image-preview row">
+                        <div class="image-preview row" id="image-list-preview">
                           <%= f.fields_for :post_galleries do |gallery| %>
                             <%= render partial: "posts/post_gallery_field", locals: {f: gallery} %>
                           <% end %>
-                          <div class="col-md-2 list-gallery nested-fields">
+                          <div class="col-md-2 list-gallery nested-fields hide-div">
                             <%= link_to_add_association f, :post_galleries,
                               partial: "posts/post_gallery_field", class: "btn btn-breez btn-sm button-add-gallery" do %>
                               <i class="fa fa-plus"></i>
@@ -48,11 +48,11 @@
                         <%= label_tag("", class: "control-label label-gallery label-bold") do %>
                           <%= t("posts.video") %>
                         <% end %>
-                        <div class="image-preview row">
+                        <div class="image-preview row" id="video-list-url">
                           <%= f.fields_for :post_galleries do |gallery| %>
                             <%= render partial: "posts/post_video_field", locals: {f: gallery} %>
                           <% end %>
-                          <div class="col-md-12 list-gallery nested-fields">
+                          <div class="col-md-12 list-video nested-fields hide-div">
                             <%= link_to_add_association f, :post_galleries,
                               partial: "posts/post_video_field", class: "btn btn-breez btn-sm button-add-video" do %>
                               <i class="fa fa-plus"></i>

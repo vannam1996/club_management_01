@@ -5,7 +5,7 @@
       <%= f.label t("posts.video_url"), class: "control-label label-bold label-url" %>
     </div>
     <%= f.text_field :url_video, class: "form-control input-text col-md-10 url-input" %>
-    <div class="delete-img col-md-1 bt-del-field">
+    <div class="delete-img col-md-1 bt-del-field hide-div">
       <%= link_to_remove_association f do %>
         <i class="fa fa-window-close"></i>
       <% end %>

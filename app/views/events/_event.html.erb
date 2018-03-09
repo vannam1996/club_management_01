@@ -1,13 +1,16 @@
 <% if current_user.user_clubs.joined.of_club(@club) %>
-  <% if events.any? %>
+  <% if events.present? %>
     <table class="event-item-table">
       <tbody>
         <% if events.first.activity_money? && tab_activity %>
-          <%= render partial: "event_notifications/list_activity", locals: {events: events} %>
+          <%= render partial: "event_notifications/list_activity", locals: {events: events,
+            page: events.current_page || Settings.page_default} %>
         <% elsif events.first.notification? && tab_activity %>
-          <%= render partial: "event_notifications/list_notification", locals: {events: events} %>
+          <%= render partial: "event_notifications/list_notification", locals: {events: events,
+            page: events.current_page || Settings.page_default} %>
         <% else %>
-          <%= render partial: "events/view_list_event", locals: {events: events} %>
+          <%= render partial: "events/view_list_event", locals: {events: events,
+            page: events.current_page || Settings.page_default} %>
         <% end %>
       </tbody>
     </table>
@@ -21,7 +24,8 @@
             club_id: @club.id, category: Event.event_categories[:notification]}, remote: true %>
         <% end %>
       <% else %>
-        <%= paginate events, remote: true %>
+        <%= paginate events, remote: true,
+          params: {controller: "clubs", action: "show", id: @club.slug} %>
       <% end %>
     </div>
   <% else %>

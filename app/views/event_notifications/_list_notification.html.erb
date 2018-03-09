@@ -38,7 +38,8 @@
         </div>
       </div>
     </td>
-    <%= render partial: "event_notifications/action_event", locals: {event: event} %>
+    <%= render partial: "event_notifications/action_event", locals: {event: event,
+      category: Event.event_categories[:notification], page: page} %>
   </tr>
 <% end %>
 <%= javascript_include_tag "event_notification" %>

@@ -15,4 +15,12 @@ module EventNotificationsHelper
   def group_by_month events
     events.group_by{|e| e.date_start&.beginning_of_month}
   end
+
+  def confirm_delete event_category
+    if event_category == Event.event_categories[:notification]
+      t(".confirm_notification")
+    else
+      t(".confirm_activity")
+    end
+  end
 end

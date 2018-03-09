@@ -1418,6 +1418,9 @@ vi:
       name: "Tên"
     list_activity:
       member_join: "%{size} thành viên tham gia"
+    action_event:
+      confirm_notification: "Bạn muốn xóa thông báo này"
+      confirm_activity: "Bạn muốn xóa hoạt động này"
   style_event:
     event_public: "Công khai"
   update_events_report: "Vui lòng cập nhật sự kiện trước khi tạo báo cáo!"

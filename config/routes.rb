@@ -104,7 +104,7 @@ Rails.application.routes.draw do
     end
     resources :sponsors
     resources :budgets
-    resources :event_notifications, except: [:index, :destroy]
+    resources :event_notifications, except: [:index]
   end
 
   resources :invite_join_clubs, only: :create
