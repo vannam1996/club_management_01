@@ -1,0 +1,5 @@
+<% if is_owner_message? message %>
+  <%= render partial: "messages/message_owner", locals: {message: message} %>
+<% else %>
+  <%= render partial: "messages/message", locals: {message: message} %>
+<% end %>

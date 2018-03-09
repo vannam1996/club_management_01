@@ -1,13 +1,13 @@
 <li>
-  <div class="author-thumb avatar">
-    <%= image_tag message.user.avatar, title: "#{message.user.full_name}"  %>
-  </div>
-  <div class="notification-event message">
+  <div class="notification-event message-owner">
     <span class="chat-message-item"><%= message.content %></span>
     <span class="notification-date">
       <time class="entry-date updated" datetime="#{l message.created_at,
         format: :full_date}"> <%= l message.created_at, format: :full_date %>
       </time>
     </span>
+  </div>
+  <div class="author-thumb avatar">
+    <%= image_tag message.user.avatar, title: "#{message.user.full_name}"  %>
   </div>
 </li>

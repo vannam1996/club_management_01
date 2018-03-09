@@ -1,4 +1,5 @@
 class Message < ApplicationRecord
+  attr_accessor :owner_id
   belongs_to :user
   belongs_to :club
 
@@ -10,6 +11,6 @@ class Message < ApplicationRecord
 
   private
   def send_message
-    SendMessageJob.perform_now self
+    SendMessageJob.perform_now self, owner_id
   end
 end

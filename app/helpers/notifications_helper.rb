@@ -28,6 +28,9 @@ module NotificationsHelper
       club_path(id: notification.container)
     when Settings.notification_report
       url_notification_report notification
+    when Settings.notification_sponsor
+      organization_club_path(organization_id: notification.trackable.club.organization,
+        id: notification.trackable.club)
     else
       club_album_path(club_id: notification.container_id, id: notification.trackable_id)
     end
@@ -65,6 +68,14 @@ module NotificationsHelper
 
   def check_notification_create_update_report notification
     notification.key == Settings.create_report || notification.key == Settings.update_report
+  end
+
+  def check_notification_create_update_sponsor notification
+    notification.key == Settings.create_sponsor || notification.key == Settings.update_sponsor
+  end
+
+  def check_notification_accept_reject_sponsor notification
+    notification.key == Settings.accept_sponsor || notification.key == Settings.reject_sponsor
   end
 
   def check_notification_remind_system notification

@@ -1,0 +1,7 @@
+<% if check_notification_create_update_sponsor notification %>
+  <%= render partial: "notifications/notification_create_update_sponsor",
+    locals: {notification: notification} %>
+<% elsif check_notification_accept_reject_sponsor notification %>
+  <%= render partial: "notifications/notification_accept_reject_sponsor",
+    locals: {notification: notification} %>
+<% end %>
