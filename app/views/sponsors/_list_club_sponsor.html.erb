@@ -1,0 +1,62 @@
+<% if sponsors.any? %>
+  <div class="table-reponsive">
+    <table class="table ui-block table-pricing">
+      <thead>
+        <tr>
+          <th><%= t "sponsors.event_name" %></th>
+          <th><%= t "sponsors.time" %></th>
+          <th><%= t "sponsors.place" %></th>
+          <th><%= t "status" %></th>
+          <th class="text-center"><%= t "action" %></th>
+        </tr>
+      </thead>
+      <tbody id="table-list-sponsor">
+        <% sponsors.each do |sponsor| %>
+          <tr class="add-user-member sponsor-<%= sponsor.id %>">
+            <td>
+              <%= sponsor.name_event %>
+            </td>
+            <td>
+              <%= l sponsor.time, format: :short %>
+            </td>
+            <td>
+              <%= sponsor.place %>
+            </td>
+            <td class="status">
+              <span class="status-report-<%= sponsor.status %>">
+                <%= status_show sponsor %>
+              </span>
+            </td>
+            <td class="text-center">
+              <%= link_to club_sponsor_path(@club.id, sponsor.id), remote: true,
+                title: t("info"), class: "btn btn-warning btn-info-report" do %>
+                <i class="fa fa-info"></i>
+              <% end %>
+              <% if sponsor.pending? %>
+                <%= link_to edit_club_sponsor_path(@club.id, sponsor.id), method: :put,
+                  title: t("edit"), class: "btn btn-primary btn-info-report" do %>
+                  <i class="fa fa-edit"></i>
+                <% end %>
+                <%= link_to club_sponsor_path(@club.id, sponsor.id), remote: true, method: :delete,
+                  title: t("delete"), class: "btn btn-danger btn-info-report" do %>
+                  <i class="fa fa-remove"></i>
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-12">
+    <nav aria-label="Page navigation example">
+      <%= paginate sponsors, remote: true %>
+    </nav>
+  </div>
+<% else %>
+  <tr class="text-center">
+    <td colspan="4">
+      <h5 class="center notifi-empty"><%= t "sponsors.not_sponsor" %></h5>
+    </td>
+  </tr>
+<% end %>

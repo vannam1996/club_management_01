@@ -14,7 +14,7 @@ class Organization < ApplicationRecord
   has_many :club_types, dependent: :destroy
   has_many :report_categories, dependent: :destroy
   has_many :events, through: :clubs
-  has_many :sponsors, through: :events
+  has_many :sponsors, through: :clubs
   has_many :organization_settings, dependent: :destroy
 
   validates :name, uniqueness: true, presence: true,

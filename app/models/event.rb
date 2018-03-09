@@ -12,7 +12,6 @@ class Event < ApplicationRecord
   has_many :donate, dependent: :destroy
   has_many :albums, dependent: :destroy
   has_many :event_details, dependent: :destroy
-  has_many :sponsors, dependent: :destroy
 
   accepts_nested_attributes_for :event_details, allow_destroy: true,
     reject_if: proc {|attributes| attributes[:description].blank?}
