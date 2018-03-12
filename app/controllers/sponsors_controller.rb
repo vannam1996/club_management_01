@@ -46,7 +46,7 @@ class SponsorsController < ApplicationController
     params.require(:sponsor).permit(:event_id, :purpose, :time, :place,
       :organizational_units, :participating_units, :name_event,
       :communication_plan, :prize, :regulations, :expense, :sponsor, :interest).merge! experience: experience,
-      club_id: @club.id
+      club_id: @club.id, user_id: current_user.id, status: Sponsor.statuses[:pending]
   end
 
   def load_club

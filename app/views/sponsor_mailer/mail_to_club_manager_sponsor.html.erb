@@ -1,0 +1,9 @@
+<strong><%= @club.name %></strong><br>
+<strong><%= @sponsor.name_event %></strong><br>
+<% if @sponsor.rejected? %>
+  <%= t "reject_sponsor_content" %><br>
+  <%= t "reason_reject" %>: <%= @sponsor.note %><br>
+<% else %>
+  <%= t "approved_sponsor_content" %><br>
+<% end %>
+<%= link_to t("click_here"), @url %>
