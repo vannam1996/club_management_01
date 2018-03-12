@@ -1522,3 +1522,6 @@ vi:
   member_has_join: "Thành viên đã tham gia"
   add_member_join: "Thêm thành viên tham gia"
   choose_image: "Nhấn để chọn hình ảnh"
+  reject_sponsor_mail: "Từ chối thư mời tài trợ"
+  reject_sponsor_content: "Thư mời tài trợ của bạn đã bị từ chối."
+  approved_sponsor_content: "Thư mời tài trợ của bạn đã được chấp nhận."

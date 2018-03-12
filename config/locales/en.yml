@@ -1238,3 +1238,6 @@ en:
   member_has_join: "Participants"
   add_member_join: "add participants"
   choose_image: "Press to choose image"
+  reject_sponsor_mail: "Refuse sponsorship"
+  reject_sponsor_content: "Your sponsorship request has been declined."
+  approved_sponsor_content: "Your sponsorship request has been accepted."
