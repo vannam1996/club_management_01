@@ -8,6 +8,7 @@
   </div>
   <%= hidden_field_tag :num_message, {}, class: "num-step-message",
     value: @infor_club.messages.size %>
+  <%= hidden_field_tag :owner_id, current_user.id %>
   <div class="content-chat">
     <div class="mCustomScrollbar custom_content_chat" data-mcs-theme="dark"
       id="viewport-content">
@@ -18,8 +19,10 @@
         </a>
         </li><br>
       <% end %>
-      <ul class="notification-list chat-message chat-message-field" id="list-messages">
-        <%= render @infor_club.messages.includes :user %>
+      <ul class="notification-list chat-message" id="list-messages">
+        <%= render partial: "messages/list_messages",
+          collection: @infor_club.messages.includes(:user),
+          as: :message, locals: {owner_id: current_user.id} %>
       </ul>
     </div>
     <%= form_for @message, remote: true, html: {class: "row row-chat"} do |f| %>

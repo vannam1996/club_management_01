@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
   before_action :authenticate_user!
-  before_action :load_club
+  before_action :load_club, only: :index
 
   def index
     @messages = @club.messages.newest.limit(Settings.messages_load_more)

@@ -1491,6 +1491,13 @@ vi:
     event_name: "Tên sự kiện sắp diễn ra"
     not_sponsor: "Chưa có thư mời tài trợ nào"
     reason_reject: "Lý do từ chối"
+    createsponsor: "Tạo thư mời tài trợ"
+    updatesponsor: "Cập nhật thư mời tài trợ"
+    errors_process: "Có lỗi xảy ra vui lòng thử lại"
+    create_success: "Tạo thư mời tài trợ thành công"
+    update_success: "Cập nhật thư mời tài trợ thành công"
+    acceptsponsor: "chấp nhận"
+    rejectsponsor: "từ chối"
   social_share_button:
     share_to: "Chia sẽ"
   new_post: "Tạo bài viết"

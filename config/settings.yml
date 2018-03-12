@@ -289,3 +289,9 @@ number_view_user_event: 8
 image_plus: "icon-plus.png"
 folder_assets: "assets"
 page_default: 1
+create_sponsor: "CreateSponsor"
+update_sponsor: "UpdateSponsor"
+notification_sponsor: "Sponsor"
+accept_sponsor: "AcceptSponsor"
+reject_sponsor: "RejectSponsor"
+class_sponsor: "Sponsor"

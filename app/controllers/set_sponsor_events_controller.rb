@@ -12,18 +12,24 @@ class SetSponsorEventsController < ApplicationController
   def edit; end
 
   def update
-    case when params[:status].to_i == Sponsor.statuses[:accept]
-      approve_sponsor
-    when params[:status].to_i == Sponsor.statuses[:rejected]
-      reject_sponsor
-    else
-      flash.now[:danger] = t "approve_error"
+    ActiveRecord::Base.transaction do
+      case when params[:status].to_i == Sponsor.statuses[:accept]
+        approve_sponsor
+        create_activity_sponsor Settings.accept_sponsor
+      when params[:status].to_i == Sponsor.statuses[:rejected]
+        reject_sponsor
+        create_activity_sponsor Settings.reject_sponsor
+      else
+        flash.now[:danger] = t "approve_error"
+      end
     end
     @sponsors = Support::SponsorSupport.new params[:page], @organization
     respond_to do |format|
       format.html
       format.js
     end
+  rescue
+    flash.now[:danger] = t "approve_error"
   end
 
   private
@@ -63,5 +69,10 @@ class SetSponsorEventsController < ApplicationController
     else
       flash.now[:danger] = t "reject_error"
     end
+  end
+
+  def create_activity_sponsor key
+    create_acivity @sponsor, key,
+      @sponsor.club, current_user, Activity.type_receives[:club_manager]
   end
 end

@@ -1207,6 +1207,13 @@ en:
     event_name: "Event name is coming"
     not_sponsor: "There are no sponsorships yet"
     reason_reject: "Reason reject"
+    createsponsor: "Create sponsor"
+    updatesponsor: "Update sponsor"
+    errors_process: "Errors in processing"
+    create_success: "Create sponsor success"
+    update_success: "Update sponsor success"
+    acceptsponsor: "accept"
+    rejectsponsor: "reject"
   social_share_button:
     share_to: "Share"
   new_post: "Create post"

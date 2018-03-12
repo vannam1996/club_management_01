@@ -13,23 +13,37 @@ class SponsorsController < ApplicationController
 
   def create
     sponsor = Sponsor.new sponsor_params
-    if sponsor.save
-      flash[:success] = t "success_process"
-      redirect_to club_path @club
-    else
-      flash_error sponsor
-      redirect_back fallback_location: new_club_sponsor_path(@club)
+    ActiveRecord::Base.transaction do
+      if sponsor.save
+        create_acivity sponsor, Settings.create_sponsor,
+          @club.organization, current_user, Activity.type_receives[:organization_manager]
+        flash[:success] = t ".create_success"
+        redirect_to club_path @club
+      else
+        flash_error sponsor
+        redirect_back fallback_location: new_club_sponsor_path(@club)
+      end
     end
+  rescue
+    flash.now[:danger] = t ".errors_process"
+    redirect_back fallback_location: new_club_sponsor_path(@club)
   end
 
   def update
-    if @sponsor.update_attributes sponsor_params
-      flash[:success] = t "success_process"
-      redirect_to club_path @club
-    else
-      flash_error sponsor
-      redirect_back fallback_location: edit_club_sponsor_path(@club)
+    ActiveRecord::Base.transaction do
+      if @sponsor.update_attributes sponsor_params
+        create_acivity @sponsor, Settings.update_sponsor,
+          @club.organization, current_user, Activity.type_receives[:organization_manager]
+        flash[:success] = t ".update_success"
+        redirect_to club_path @club
+      else
+        flash_error sponsor
+        redirect_back fallback_location: edit_club_sponsor_path(@club)
+      end
     end
+  rescue
+    flash.now[:danger] = t ".errors_process"
+    redirect_back fallback_location: edit_club_sponsor_path(@club)
   end
 
   def destroy

@@ -9,6 +9,9 @@
       <% if notification.trackable_type == Settings.notification_report %>
         <%= render partial: "notifications/notification_main_report",
           locals: {notification: notification} %>
+      <% elsif notification.trackable_type == Settings.class_sponsor %>
+        <%= render partial: "notifications/notification_main_sponsor",
+          locals: {notification: notification} %>
       <% else %>
         <div class="notification-event">
           <div class="notification-value">

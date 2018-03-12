@@ -225,7 +225,6 @@
             .chat-message-item{
               float: none;
               background-color: #f0f4f9;
-              color: #888da8;
             }
           }
         }
@@ -1175,4 +1174,15 @@ a.pull-right.add_fields {
 }
 .mar-left3 {
   margin-left: 3px;
+}
+.message {
+  padding-left: 10px !important;
+  width: 75% !important;
+}
+.message-owner {
+  margin-left: 30px !important;
+}
+.chat-message li {
+  border-bottom: none !important;
+  color: black !important;
 }
