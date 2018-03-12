@@ -2,7 +2,7 @@ class EventNotificationsController < ApplicationController
   before_action :authenticate_user!
   before_action :load_club
   authorize_resource class: false, through: :club
-  before_action :load_event_notification, only: :update
+  before_action :load_event_notification, only: [:update, :destroy]
   before_action :replace_string_in_money
   before_action :set_gon_varible, only: :new
 
@@ -29,7 +29,7 @@ class EventNotificationsController < ApplicationController
         Activity.type_receives[:club_member]
       service_money.save_event_and_plus_money_club_in_activity_event
       flash[:success] = t ".create_success"
-      redirect_to club_event_path params[:club_id], event.id
+      page_redirect event
     end
   rescue
     if event && event.errors.any?
@@ -48,7 +48,7 @@ class EventNotificationsController < ApplicationController
       service_money.update_first_money_of_event
       service_money.update_event_and_money_club_in_activity_event
       flash[:success] = t ".update_success"
-      redirect_to club_event_path(club_id: @club.id, id: @event.id)
+      page_redirect @event
     end
   rescue
     if @event && @event.errors.any?
@@ -62,12 +62,11 @@ class EventNotificationsController < ApplicationController
 
   def destroy
     if @event && @event.destroy
-      flash[:success] = t ".success_process"
-      redirect_to organization_club_path @club.organization.slug, @club
+      flash.now[:success] = t ".success_process"
     else
-      flash[:danger] = t ".error_in_process"
-      redirect_back fallback_location: club_path(club_id: @club.id)
+      flash.now[:danger] = t ".error_in_process"
     end
+    all_event_by_category
   end
 
   private
@@ -123,8 +122,7 @@ class EventNotificationsController < ApplicationController
     params.require(:event).permit(:club_id, :name, :date_start, :status,
       :date_end, :location, :description, :image, :user_id, :is_public,
       event_details_attributes: [:description, :money, :id, :_destroy, :style])
-      .merge! event_category: event_category, expense: count_money.money,
-      albums_attributes: [name: params[:event][:name], club_id: @club.id]
+      .merge! event_category: event_category, expense: count_money.money
   end
 
   def replace_string_in_money
@@ -142,5 +140,42 @@ class EventNotificationsController < ApplicationController
   def set_gon_varible
     gon.notification = Event.event_categories[:notification]
     gon.activity_money = Event.event_categories[:activity_money]
+  end
+
+  def all_event_by_category
+    if params[:category].to_i == Event.event_categories[:activity_money]
+      load_events_activity
+    else
+      load_events_notification
+    end
+  end
+
+  def page_redirect event
+    if event.notification?
+      redirect_to @club
+    else
+      redirect_to club_event_path(club_id: @club.id, id: event.id)
+    end
+  end
+
+  def load_events_activity
+    @events_activity = @club.events.newest
+      .activity_money.page(params[:page]).per Settings.per_page
+    if @events_activity.blank? && params[:page].to_i > Settings.one
+      @events_activity = @club.events.newest
+        .activity_money.page(params[:page].to_i - Settings.one).per Settings.per_page
+    end
+    @events = @club.events.newest.event_category_activity_money(Event.array_style_event_money_except_activity,
+      Event.event_categories[:activity_money])
+      .includes(:budgets, :event_details).page(Settings.page_default).per Settings.per_page
+  end
+
+  def load_events_notification
+    @events_notification = @club.events.newest
+      .notification.page(params[:page]).per Settings.per_page
+    if @events_notification.blank? && params[:page].to_i > Settings.one
+      @events_notification = @club.events.newest
+        .notification.page(params[:page].to_i - Settings.one).per Settings.per_page
+    end
   end
 end

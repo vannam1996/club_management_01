@@ -1,0 +1,6 @@
+$('#list-event-show').html('<%= j render partial: "events/event", locals: {events: @events,
+  tab_activity: false} %>');
+$('#event-activity').html('<%= j render partial: "events/event", locals: {events: @events_activity,
+  tab_activity: true} %>');
+$('.container').append('<%= j render partial: "shared/flash_warning" %>');
+$('.notify').slideUp(3000);

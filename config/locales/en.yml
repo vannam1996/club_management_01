@@ -1136,6 +1136,9 @@ en:
       name: "Name"
     list_activity:
       member_join: "%{size} member"
+    action_event:
+      confirm_notification: "You want to delete this notification"
+      confirm_activity: "You want to delete this activity"
   style_event:
     event_public: "Public"
   update_events_report: "Please update the event before creating the report!"

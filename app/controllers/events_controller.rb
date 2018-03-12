@@ -71,12 +71,11 @@ class EventsController < ApplicationController
 
   def destroy
     if @event && @event.destroy
-      flash[:success] = t "event_notifications.success_process"
-      redirect_to organization_club_path @club.organization.slug, @club
+      flash.now[:success] = t "event_notifications.success_process"
     else
-      flash[:danger] = t "event_notifications.error_in_process"
-      redirect_back fallback_location: club_path(club_id: @club.id)
+      flash.now[:danger] = t "event_notifications.error_in_process"
     end
+    load_events
   end
 
   private
@@ -156,5 +155,18 @@ class EventsController < ApplicationController
 
   def set_gon_varible
     gon.event_money = Event.event_categories.except(:notification, :activity_money)
+  end
+
+  def load_events
+    @events = @club.events.newest.event_category_activity_money(Event.array_style_event_money_except_activity,
+      Event.event_categories[:activity_money])
+      .includes(:budgets, :event_details).page(params[:page]).per Settings.per_page
+    if @events.blank? && params[:page].to_i > Settings.one
+      @events = @club.events.newest.event_category_activity_money(Event.array_style_event_money_except_activity,
+        Event.event_categories[:activity_money])
+        .includes(:budgets, :event_details).page(params[:page].to_i - Settings.one).per Settings.per_page
+    end
+    @events_activity = @club.events.newest
+      .activity_money.page(Settings.page_default).per Settings.per_page
   end
 end

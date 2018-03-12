@@ -33,7 +33,7 @@
                 <i class="fa fa-info"></i>
               <% end %>
               <% if sponsor.pending? %>
-                <%= link_to edit_club_sponsor_path(@club.id, sponsor.id), method: :put,
+                <%= link_to edit_club_sponsor_path(@club.id, sponsor.id),
                   title: t("edit"), class: "btn btn-primary btn-info-report" do %>
                   <i class="fa fa-edit"></i>
                 <% end %>
