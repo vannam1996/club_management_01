@@ -1,12 +1,13 @@
 <% @sponsor.experience.each do |key, experience| %>
   <% unless check_experience_detail?(experience) %>
-    <div data-role="dynamic-fields">
+    <div id="delete_experience_<%= key %>">
       <div class="form-inline">
         <div class="row">
-          <div class="form-group col-md-3 form-experience mar-0px">
-            <div class="col-md-12 width-100">
+          <div class="form-group col-md-3 form-experience" id="delete_experience_<%= key %>">
+            <div class="col-md-12">
               <div class="form-group">
-                <%= text_field_tag "event[]", experience[:event], class: "form-control input-text white-bgr mar-right3",
+                <%= text_field_tag "event[]", experience[:event],
+                  class: "form-control input-text white-bgr mar-right3",
                   placeholder: t("sponsors.event") %>
               </div>
             </div>
@@ -14,15 +15,17 @@
           <div class="form-group col-md-3 form-experience mar-0px">
             <div class="col-md-12 width-100">
               <div class="form-group">
-                <%= text_field_tag "time[]", experience[:time_and_place], class: "form-control input-text white-bgr mar-right3",
+                <%= text_field_tag "time[]", experience[:time_and_place],
+                  class: "form-control input-text white-bgr mar-right3",
                   placeholder: t("sponsors.time_and_place") %>
               </div>
             </div>
           </div>
-          <div class="form-group col-md-2 form-experience mar-0px">
+          <div class="form-group col-md-3 form-experience mar-0px">
             <div class="col-md-12 width-100">
               <div class="form-group">
-                <%= text_field_tag "member[]", experience[:member], class: "form-control input-text white-bgr mar-right3",
+                <%= text_field_tag "member[]", experience[:member],
+                  class: "form-control input-text white-bgr mar-right3",
                   placeholder: t("sponsors.number_of_participants") %>
               </div>
             </div>
@@ -30,13 +33,14 @@
           <div class="form-group col-md-3 form-experience mar-0px">
             <div class="col-md-12 width-100">
               <div class="form-group">
-                <%= text_field_tag "communication[]", experience[:communication], class: "form-control input-text white-bgr mar-right3 mar-left3",
+                <%= text_field_tag "communication[]", experience[:communication],
+                  class: "form-control input-text white-bgr mar-right3",
                   placeholder: t("sponsors.effective_communication") %>
               </div>
             </div>
           </div>
           <div class="form-experience">
-            <button class="btn-primary" data-role="remove">
+            <button class="btn-primary delete_experience" data-role="remove" data-id="<%= key %>">
               <i class="fa fa-minus"></i>
             </button>
           </div>
@@ -45,3 +49,4 @@
     </div>
   <% end %>
 <% end %>
+<%= javascript_include_tag "delete_experience" %>
