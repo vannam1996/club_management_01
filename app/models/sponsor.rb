@@ -12,6 +12,5 @@ class Sponsor < ApplicationRecord
 
   scope :newest, ->{order created_at: :desc}
 
-  delegate :name, to: :club, allow_nil: :true
-  delegate :name, to: :event, allow_nil: :true
+  delegate :name, to: :club, prefix: true, allow_nil: :true
 end

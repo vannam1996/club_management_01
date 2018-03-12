@@ -6,9 +6,12 @@ module SponsorsHelper
 
   def status_show sponsor
     if sponsor.rejected?
-      t"#{sponsor.status}"
+      link_to club_sponsor_path(@club.id, sponsor.id, status: Sponsor.statuses[:rejected]),
+        remote: true, title: t("sponsors.reason_reject") do
+        content_tag(:i, t("#{sponsor.status}"), class: "fa fa-eye")
+      end
     else
-      t"#{sponsor.status}"
+      t "#{sponsor.status}"
     end
   end
 end
