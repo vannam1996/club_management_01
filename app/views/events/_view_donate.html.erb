@@ -70,7 +70,7 @@
         </td>
         <% unless user_donate.accept? %>
           <% if current_user.id == user_donate.user_id %>
-            <td class="text-center confirm-donate">
+            <td class="text-center confirm-donate" id="action-<%= user_donate.id %>">
               <%= link_to club_event_donate_path(@club, @event, user_donate.id),
                 remote: :true, class: "btn btn-blue", title: t("edit") do %>
                 <i class="fa fa-pencil"></i>

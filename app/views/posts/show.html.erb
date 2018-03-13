@@ -63,7 +63,7 @@
               <div class="pull-right">
                 <% if can? :edit, @post %>
                   <%= link_to edit_post_path(@post),
-                    remote: true, title: t("edit"), class: "btn btn-sm btn-primary" do %>
+                    remote: true, title: t("edit"), class: "btn btn-sm btn-primary", id: "edit-post" do %>
                     <i class="fa fa-edit"></i>
                   <% end %>
                 <% end %>
@@ -81,3 +81,5 @@
     </div>
   </div>
 </div>
+<%= include_gon %>
+<%= javascript_include_tag "edit_post" %>

@@ -58,6 +58,23 @@
           disabled: true %>
       </div>
     </div>
+  <% elsif @event.activity_money? %>
+    <div class="form-group">
+      <%= link_to "#money-details", data: {toggle: :collapse},
+        class: "control-label label-bold col-md-3", id: "collapse-money", title: t(".spending") do %>
+        <%= t ".spending" %><i class="fa fa-caret-square-o-down" id="icon-open"></i>
+      <% end %>
+    </div>
+    <div class = "form-money collapse" id = "money-details">
+      <%= render partial: "event_details/details_event", locals: {f: f} %>
+      <div class="form-group col-md-12 expense" id="expense">
+        <%= f.label(:expense, class: "control-label", id: "label-expense") do %>
+          <%= t(".amount_for") %>
+        <% end %>
+        <%= f.text_field :expense, class: "form-control input-text",
+          placeholder: t("club_manager.event.expense_holder"), required: true, disabled: true %>
+      </div>
+    </div>
   <% end %>
   <div class="form-group col-md-12">
     <%= f.label(:location, class: "control-label") do %>
@@ -109,3 +126,4 @@
   </div>
 <% end %>
 <%= javascript_include_tag "check_box" %>
+<%= javascript_include_tag "option_event_activity" %>

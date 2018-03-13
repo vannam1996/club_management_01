@@ -64,7 +64,9 @@ class UpdateClubMoneyService
 
   def update_money
     if @event.get_money_member?
-      @event.club.update_attributes! money: @event.club.money - (@event.budgets.size * @event.expense.to_i)
+      @event.club.update_attributes! money: @event.club.money -
+        (@event.budgets.size * @event.expense.to_i) +
+        (@event.budgets.size * @event_params[:expense].to_i)
     end
   end
 

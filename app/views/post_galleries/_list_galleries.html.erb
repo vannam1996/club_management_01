@@ -1,0 +1,28 @@
+<section class="site-content site-section">
+  <div class="container">
+    <div class="row portfolio">
+      <div class="tz-gallery list-gellary">
+        <div class="row">
+          <% if galleries.image.present? %>
+            <% galleries.image.each do |image| %>
+              <div class="portfolio-item img-<%= image.id %>">
+                <%= link_to "#{image.url}", class: "list-image lightbox" do  %>
+                  <%= image_tag image.url, class: "centered-and-cropped" %>
+                <% end %>
+              </div>
+            <% end %>
+          <% end %>
+          <% if galleries.video.present? %>
+            <% galleries.video.each do |video| %>
+              <div class="portfolio-item video-<%= video.id %>">
+                <%= link_to "#{video}", class: "list-image lightbox" do  %>
+                  <iframe src="<%= gsub_url_youtube video.url_video %>" allowfullscreen></iframe>
+                <% end %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

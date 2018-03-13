@@ -22,4 +22,34 @@ module PostsHelper
   def gsub_url_youtube url
     url.gsub("watch?v=", "embed/")
   end
+
+  def take_image post, size
+    post.post_galleries.image.take(size)
+  end
+
+  def list_image post
+    post.post_galleries.image
+  end
+
+  def list_video post
+    post.post_galleries.video
+  end
+
+  def rest_gallery_size post
+    if list_image(post).size > Settings.image_view_post_concat
+      list_image(post).size + list_video(post).size -
+        Settings.image_view_post_concat - Settings.video_view_post_concat
+    else
+      list_video(post).size - Settings.video_view_post_concat
+    end
+  end
+
+  def last_index post, index
+    index == take_image(post, Settings.image_view_post_concat).size - Settings.one
+  end
+
+  def is_have_rest_gallery? post
+    list_image(post).size > Settings.image_view_post_concat ||
+      list_video(post).size > Settings.video_view_post_concat
+  end
 end

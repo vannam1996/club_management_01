@@ -124,36 +124,33 @@
               <%= render partial: "view_donate", locals: {donates: @event.donate.newest} %>
             </div>
           <% when @event.activity_money? %>
-              <div id="modal-add-user-event" class="modal fade" tabindex="-1"
-                role="dialog" aria-hidden="true">
-                <% if @club.is_admin? current_user %>
-                  <div id="list_member_join">
-                    <%= render partial: "list_member_join", locals: {users: @member_not_join} %>
-                  </div>
-                <% end %>
-                <div id="view_list_member_join">
-                  <%= render "view_list_member_join" %>
+            <div id="modal-add-user-event" class="modal fade" tabindex="-1"
+              role="dialog" aria-hidden="true">
+              <% if @club.is_admin? current_user %>
+                <div id="list_member_join">
+                  <%= render partial: "list_member_join", locals: {users: @member_not_join} %>
                 </div>
+              <% end %>
+              <div id="view_list_member_join">
+                <%= render "view_list_member_join" %>
               </div>
+            </div>
           <% end %>
           <div class="comment-post">
             <div class="row">
               <div class="col-md-8">
                 <ul class="profile-menu tab_list_detail_club">
                   <li>
-                    <%= link_to t("comment"), "#comment", class: "active" %>
+                    <%= link_to t("post"), "#post", class: "active" %>
                   </li>
                   <li>
-                    <%= link_to t("post"), "#post" %>
+                    <%= link_to t("comment"), "#comment" %>
                   </li>
                 </ul>
               </div>
             </div>
           </div>
           <div class = "tab_detail_club comment-post-event">
-            <div class="ui-block" id="comment">
-              <%= render partial: "events/comment", locals: {comments: @comments, event: @event} %>
-            </div>
             <div class="ui-block" id="post">
               <div class="ui-block-title ui-block-title-small">
                 <h6 class="title col-md-1"><%= t "post"%></h6>
@@ -168,6 +165,9 @@
               <div id="post-list">
                 <%= render partial: "events/post", locals: {posts: @posts} %>
               </div>
+            </div>
+            <div class="ui-block" id="comment">
+              <%= render partial: "events/comment", locals: {comments: @comments, event: @event} %>
             </div>
           </div>
         </article>

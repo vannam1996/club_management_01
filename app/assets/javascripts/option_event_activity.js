@@ -1,5 +1,8 @@
 $(document).ready(function () {
-  $('#event_event_details_attributes_0_description').prop('required', false);
+  var val = $('#event_event_details_attributes_0_description').val();
+  if (val === ''){
+    $('#event_event_details_attributes_0_description').prop('required', false);
+  }
   $('#event_event_category').change(function(){
     var cat = $('#event_event_category').val();
     if (cat === gon.notification.toString()){

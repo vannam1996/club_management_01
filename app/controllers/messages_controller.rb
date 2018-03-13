@@ -7,6 +7,8 @@ class MessagesController < ApplicationController
       .offset params[:num_message].to_i
   end
 
+  def create; end
+
   private
   def load_club
     @club = current_user.clubs.find_by id: params[:id]
