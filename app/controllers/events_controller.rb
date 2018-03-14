@@ -81,18 +81,16 @@ class EventsController < ApplicationController
   private
   def load_club
     @club = Club.friendly.find params[:club_id]
-    unless @club
-      flash[:danger] = t "not_found"
-      redirect_to root_url
-    end
+    return if @club
+    flash[:danger] = t "not_found"
+    redirect_to(root_url) unless request.xhr?
   end
 
   def load_event
     @event = Event.find_by id: params[:id]
-    unless @event
-      flash[:danger] = t "not_found"
-      redirect_to root_url
-    end
+    return if @event
+    flash[:danger] = t "not_found"
+    redirect_to(root_url) unless request.xhr?
   end
 
   def event_params

@@ -18,7 +18,8 @@ RSpec.describe ReportCategoriesController, type: :controller do
         report_category_params = FactoryGirl.attributes_for(:report_category)
         expect do
           post :create, xhr: true, params: {
-            report_category: report_category_params, organization_slug: organization.slug
+            report_category: report_category_params, organization_slug: organization.slug,
+              style: 1
           }
         end.to change(ReportCategory, :count).by 1
         expect(response).to be_ok
@@ -27,7 +28,8 @@ RSpec.describe ReportCategoriesController, type: :controller do
       it "create fails with invalid params" do
         expect do
           post :create, xhr: true, params: {
-            report_category: {name: ""}, organization_slug: organization.slug
+            report_category: {name: ""}, organization_slug: organization.slug,
+              style: 1
           }
         end.to change(ReportCategory, :count).by 0
         expect(response).to be_ok
@@ -42,14 +44,16 @@ RSpec.describe ReportCategoriesController, type: :controller do
     context "when params present" do
       it "update success with valid params" do
         post :update, xhr: true, params: {
-          name: "abcd", status: 1, organization_slug: organization.slug, id: report_category.id
+          name: "abcd", status: 1, organization_slug: organization.slug, id: report_category.id,
+            style: 1
         }
         expect(response).to be_ok
         expect(flash[:success]).to be_present
       end
       it "update fail with name nil" do
         post :update, xhr: true, params: {
-          name: "", status: 1, organization_slug: organization.slug, id: report_category.id
+          name: "", status: 1, organization_slug: organization.slug, id: report_category.id,
+            style: 1
         }
         expect(response).to be_ok
       end

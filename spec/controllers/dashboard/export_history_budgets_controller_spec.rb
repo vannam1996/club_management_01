@@ -16,13 +16,13 @@ RSpec.describe Dashboard::ExportHistoryBudgetsController, type: :controller do
   end
 
   describe "GET #index" do
-    context "when params[:id] present" do
-      before{get :index, xhr: true, params: {id: club.id}}
-      it{expect(response).to be_ok}
+    context "when paramsid valid" do
+      before{get :index, params: {club_id: club.id}}
+      it{expect(flash[:danger]).to be_present}
     end
-    context "when params[:id] not present" do
-      before{get :index, params: {id: 0}}
-      it{expect(flash[:danger]).to eq "Không thể tìm thấy câu lạc bộ!"}
+    context "when params id invalid" do
+      before{get :index, params: {club_id: club.id + 1}}
+      it{expect(flash[:danger]).to eq I18n.t("cant_found_club")}
     end
   end
 end

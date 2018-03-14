@@ -7,5 +7,6 @@ FactoryGirl.define do
     detail_report{Faker::Lorem.sentence}
     plan_next_month{Faker::Lorem.sentence}
     time 2
+    status 2
   end
 end
