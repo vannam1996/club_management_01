@@ -23,7 +23,7 @@
           <% if @club.is_admin? current_user %>
             <%= link_to new_club_event_notification_path(
               club_id: @club.id), class: "btn btn-sm btn-breez" do %>
-              <i class="fa fa-plus-circle"> </i><%= t "new_noti" %>
+              <i class="fa fa-plus-circle"> </i><%= t "new_activity" %>
             <% end %>
           <% end %>
         </div>
@@ -66,7 +66,7 @@
           <% if @club.is_admin? current_user %>
             <%= link_to new_club_event_path(
               club_id: @club.id), class: "btn btn-sm btn-breez" do %>
-              <i class="fa fa-plus-circle"> </i><%= t "new_event" %>
+              <i class="fa fa-plus-circle"> </i><%= t "form_event.new_event_money" %>
             <% end %>
           <% end %>
         </div>

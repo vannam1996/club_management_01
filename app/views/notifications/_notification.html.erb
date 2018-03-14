@@ -19,7 +19,6 @@
               <a href="#" class="h6 notification-friend"><%= notification.owner_full_name %></a>
               <%= t "has_been" %><%= t notification.key.try(:downcase) %>
               <% if notification.trackable_type == Settings.event %>
-                <%= t notification.trackable_type.try(:downcase) %>
                 <%= t "notification_event.#{notification.trackable.event_category}" %>
                 <a href="#" class="notification-link"><%= notification.trackable_name %></a>
                 <%= t "in_the" %>

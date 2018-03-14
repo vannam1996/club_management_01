@@ -23,4 +23,12 @@ module EventNotificationsHelper
       t(".confirm_activity")
     end
   end
+
+  def label_name event
+    if event.notification?
+      t ".name_notification"
+    else
+      t ".name_activity"
+    end
+  end
 end

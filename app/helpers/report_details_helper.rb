@@ -61,6 +61,10 @@ module ReportDetailsHelper
     end
   end
 
+  def is_size_more_eight? detail
+    detail.user_events.size > Settings.number_view_user_event
+  end
+
   private
 
   def total_pay_get_money array_detail
