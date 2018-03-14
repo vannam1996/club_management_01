@@ -29,9 +29,11 @@
             <%= raw(event.description) %>
           </td>
           <td>
-            <% event.user_events.each do |user_event| %>
-              <%= user_event.user_full_name %>
-            <% end %>
+            <ul class="<%= "scroll-user-event" if is_size_more_eight?(event) %>">
+              <% event.user_events.each do |user_event| %>
+                <li><%= user_event.user_full_name %></li>
+              <% end %>
+            </ul>
           </td>
         </tr>
       <% end %>

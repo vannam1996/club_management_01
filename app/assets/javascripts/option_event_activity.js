@@ -8,9 +8,13 @@ $(document).ready(function () {
     if (cat === gon.notification.toString()){
       $('#collapse-money').hide();
       $('#event_event_details_attributes_0_description').prop('required', false);
+      $('#js-lb-name').text($('#js-lb-name-notification').text());
+      $('#js-text-name').attr('placeholder', $('#js-lb-name-notification').text());
     }
     else if (cat === gon.activity_money.toString()) {
       $('#collapse-money').show();
+      $('#js-lb-name').text($('#js-lb-name-activity').text());
+      $('#js-text-name').attr('placeholder', $('#js-lb-name-activity').text());
     }
   });
 

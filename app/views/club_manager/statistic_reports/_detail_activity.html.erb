@@ -5,6 +5,7 @@
         <th class="column-date"><%= t ".date" %></th>
         <th><%= t "name" %></th>
         <th><%= t ".detail" %></th>
+        <th class="col-user-event"><%= t ".member" %></th>
       </tr>
     </thead>
     <tbody>
@@ -17,6 +18,15 @@
           </td>
           <td><%= detail.name_event %></td>
           <td><%= raw(detail.detail) %></td>
+          <td>
+            <% if detail.user_events.is_a? Array %>
+              <ul class="<%= "scroll-user-event" if is_size_more_eight?(detail) %>">
+                <% detail.user_events.each do |name| %>
+                  <li><%= "#{name}" %></li>
+                <% end %>
+              </ul>
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>

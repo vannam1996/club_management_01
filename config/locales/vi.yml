@@ -468,6 +468,7 @@ vi:
       detail_activity:
         date: "Ngày"
         detail: "Nội dung"
+        member: "Người tham gia"
       detail_member:
         name_member: "Tên"
         events_join: "Sự kiện tham gia"
@@ -1408,6 +1409,11 @@ vi:
       submit: "Gửi"
       reset: "Hủy"
       spending: "Chi tiêu (nếu có) "
+      name: "Tên"
+      type: "Loại"
+      name_notification: "Tên thông báo"
+      name_activity: "Tên hoạt động"
+      image: "Hình ảnh"
     form_club_event_noti:
       amount_for: "Tổng tiền"
       spending: "Chi tiêu (nếu có) "
@@ -1416,6 +1422,10 @@ vi:
       detail_event: "Chi tiết thu chi"
       location: "Địa chỉ"
       name: "Tên"
+      type: "Loại"
+      name_notification: "Tên thông báo"
+      name_activity: "Tên hoạt động"
+      image: "Hình ảnh"
     list_activity:
       member_join: "%{size} thành viên tham gia"
     action_event:
@@ -1539,3 +1549,9 @@ vi:
   errors_delete: "Yêu cầu của bạn đã được xác nhận. Không thể xóa!"
   delete_success: "Thành công"
   events_blank: "Thời gian bạn chọn không có sự kiện nào"
+  form_event:
+    type_money: "Loại chi tiêu"
+    name: "Khoản thu chi"
+    image: "Hình ảnh"
+    new_event_money: " Tạo chi tiêu mới"
+  new_activity: " Tạo hoạt động"

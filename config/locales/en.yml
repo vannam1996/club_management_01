@@ -445,6 +445,7 @@ en:
       detail_activity:
         date: "Date"
         detail: "Description"
+        member: "Member join"
       detail_member:
         name_member: "Name"
         events_join: "Event"
@@ -1126,6 +1127,11 @@ en:
       submit: "Submit"
       reset: "Reset"
       spending: "Spending (if any) "
+      name: "Name"
+      type: "Type"
+      name_notification: "Name notification"
+      name_activity: "Name activity"
+      image: "Image"
     form_club_event_noti:
       amount_for: "Total money"
       spending: "Spending (if any) "
@@ -1134,6 +1140,10 @@ en:
       detail_event: "Details money"
       location: "Location"
       name: "Name"
+      type: "Type"
+      name_notification: "Name notification"
+      name_activity: "Name activity"
+      image: "Image"
     list_activity:
       member_join: "%{size} member"
     action_event:
@@ -1255,3 +1265,9 @@ en:
   errors_delete: "Your request has been confirmed. Can not delete"
   delete_success: "Success"
   events_blank: "Events blank"
+  form_event:
+    type_money: "Type"
+    name: "Name"
+    image: "Image"
+    new_event_money: " New spending"
+  new_activity: " New activity"
