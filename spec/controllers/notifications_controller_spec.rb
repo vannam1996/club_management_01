@@ -31,7 +31,7 @@ RSpec.describe NotificationsController, type: :controller do
       before do
         get :index
       end
-      it{expect(flash[:danger]).to eq "Bạn không có thông báo nào"}
+      it{expect(response).to be_ok}
     end
   end
 end

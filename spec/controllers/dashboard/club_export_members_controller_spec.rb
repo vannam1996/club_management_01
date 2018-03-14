@@ -13,11 +13,11 @@ RSpec.describe Dashboard::ClubExportMembersController, type: :controller do
 
   describe "GET #index" do
     context "when params[:id] present" do
-      before{get :index, xhr: true, params: {id: club.id}}
-      it{expect(response).to be_ok}
+      before{get :index, xhr: true, params: {id: club.slug}}
+      it{expect(response.body).not_to be_empty}
     end
     context "when params[:id] not present" do
-      before{get :index, xhr: true, params: {id: 0}}
+      before{get :index, xhr: true, params: {id: "acs"}}
       it{expect(flash[:danger]).to eq "Bạn không có quyền truy cập trang này"}
     end
   end

@@ -25,7 +25,7 @@ class ClubManager::StatisticReportsController < ApplicationController
   end
 
   def destroy
-    if @static_report.pending? || report.rejected?
+    if @static_report && (@static_report.pending? || @static_report.rejected?)
       if @static_report.destroy
         flash[:success] = t "success_process"
       else
@@ -102,12 +102,14 @@ class ClubManager::StatisticReportsController < ApplicationController
   end
 
   def load_report_categories
-    @report_categories = @club.organization.report_categories.active
+    @report_categories = @club.organization.report_categories.active if @club
   end
 
   def load_static_report
-    @static_report = StatisticReport.find_by id: params[:id]
-    return if @static_report
-    flash.now[:danger] = t "error_find_report"
+    if @club
+      @static_report = StatisticReport.find_by(id: params[:id])
+      return if @static_report
+      flash.now[:danger] = t "error_find_report"
+    end
   end
 end
