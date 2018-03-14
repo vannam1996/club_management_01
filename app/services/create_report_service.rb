@@ -37,11 +37,11 @@ class CreateReportService
   end
 
   def save_report event, report_category
-    if report_category.money? 
+    if report_category.money?
       report_detail_new event, report_category
     else
       report_active event, report_category
-    end  
+    end
   end
 
   def money_detail_report event
@@ -77,12 +77,12 @@ class CreateReportService
   end
 
   def report_detail_new event, report_category
-    if (event.activity_money? || event.money?) && event.event_details.present? 
+    if (event.activity_money? || event.money?) && event.event_details.present?
       ReportDetail.new(detail: budgets_detail(event, report_category),
         statistic_report_id: @static_report.id, report_category_id: report_category.id,
         style: :money, money: money_detail_report(event),
         first_money: event.amount, date_event: event.created_at, name_event: event.name,
-        user_events: event.user_events.map(&:user_id))
+        user_events: event.user_events.map(&:user_full_name))
     elsif !event.activity_money?
       report_active event, report_category
     end
@@ -93,7 +93,7 @@ class CreateReportService
       statistic_report_id: @static_report.id, report_category_id: report_category.id,
       style: style_report_detail(report_category), money: money_detail_report(event),
       first_money: event.amount, date_event: event.created_at, name_event: event.name,
-      user_events: event.user_events.map(&:user_id))
+      user_events: event.user_events.map(&:user_full_name))
   end
 
   def style_report_detail report_category
@@ -101,6 +101,6 @@ class CreateReportService
       ReportDetail.styles[:money]
     elsif report_category.activity?
       ReportDetail.styles[:active]
-    end 
+    end
   end
 end
