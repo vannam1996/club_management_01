@@ -32,8 +32,13 @@ $(document).ready(function () {
   $('#post-list').on('click', '.show-more',function(e){
     e.preventDefault();
     id_post = $(this).attr('data-post');
-    $('#content-truncate-' + id_post).hide();
-    $('#content-' + id_post).show();
+    $.get('/posts/' + id_post + '/post_galleries', {content: 'true'} , null, 'script');
+  });
+
+  $('#post-list').on('click', '.show-more-image',function(e){
+    e.preventDefault();
+    id_post = $(this).attr('data-post');
+    $.get('/posts/' + id_post + '/post_galleries', null , null, 'script');
   });
 
   $(window).scroll(function(){

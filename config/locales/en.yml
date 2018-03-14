@@ -1251,3 +1251,7 @@ en:
   reject_sponsor_mail: "Refuse sponsorship"
   reject_sponsor_content: "Your sponsorship request has been declined."
   approved_sponsor_content: "Your sponsorship request has been accepted."
+  show_more_descrip_gallery: "Click to show image and video"
+  errors_delete: "Your request has been confirmed. Can not delete"
+  delete_success: "Success"
+  events_blank: "Events blank"

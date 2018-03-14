@@ -1,0 +1,13 @@
+<% if @post %>
+  <% if params[:content] %>
+    $('#content-truncate-<%= @post.id %>').hide();
+    $('#content-<%= @post.id %>').show();
+  <% end %>
+  if ($('#full-gallery-<%= @post.id %>').css('display') == 'none') {
+    $('#full-gallery-<%= @post.id %>').html('<%= j render partial: "post_galleries/list_galleries", locals: {galleries: @galleries} %>')
+    $('#full-gallery-<%= @post.id %>').show();
+    $('#gallery-<%= @post.id %>').hide();
+  }
+<% else %>
+  $('.container').append('<%= j render partial: "shared/flash_warning" %>');
+<% end %>

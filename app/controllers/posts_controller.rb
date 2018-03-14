@@ -16,7 +16,13 @@ class PostsController < ApplicationController
     redirect_to club_event_path(@event, club_id: @event.club.slug)
   end
 
-  def show; end
+  def show
+    if params[:edit]
+      gon.edit = true
+    else
+      gon.edit = false
+    end
+  end
 
   def index
     all_post if @event

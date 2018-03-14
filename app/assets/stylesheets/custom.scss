@@ -1186,3 +1186,25 @@ a.pull-right.add_fields {
   border-bottom: none !important;
   color: black !important;
 }
+.post-owner {
+  width: 35px;
+  height: 35px;
+  border-radius: 100%;
+  margin-bottom: 5px;
+  margin-right: 10px;
+}
+.btn-show-more-image {
+  transition: .5s ease;
+  position: absolute;
+  top: 38%;
+  left: 45%;
+  transform: translate(-50%, -50%);
+}
+.more-img a {
+  font-size: 70px;
+  color: white;
+  opacity: 0.8;
+}
+.row-mgr-bt {
+  margin-bottom: 5px;
+}

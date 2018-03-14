@@ -29,7 +29,7 @@
     <% end %>
     <div class="form-group col-md-12 expense">
       <%= f.label(:expense, class: "control-label label-bold", id: "label-expense") do %>
-        <%= t("amount_for") %>
+        <%= label_money @event %>
       <% end %>
       <%= f.text_field :expense, class: "form-control input-text",
         placeholder: t("club_manager.event.expense_holder"), required: true,

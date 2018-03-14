@@ -1535,3 +1535,7 @@ vi:
   reject_sponsor_mail: "Từ chối thư mời tài trợ"
   reject_sponsor_content: "Thư mời tài trợ của bạn đã bị từ chối."
   approved_sponsor_content: "Thư mời tài trợ của bạn đã được chấp nhận."
+  show_more_descrip_gallery: "Xem thêm ảnh và video"
+  errors_delete: "Yêu cầu của bạn đã được xác nhận. Không thể xóa!"
+  delete_success: "Thành công"
+  events_blank: "Thời gian bạn chọn không có sự kiện nào"

@@ -1,7 +1,7 @@
 class DonatesController < ApplicationController
   before_action :authenticate_user!
   before_action :load_club
-  before_action :load_event, only: [:create, :update, :show, :edit, :new]
+  before_action :load_event
   before_action :load_donate, only: [:edit, :show, :destroy, :update]
   before_action :donate_accept?, only: :update
 
@@ -46,7 +46,13 @@ class DonatesController < ApplicationController
   end
 
   def destroy
-    flash[:danger] = t "error_process" unless @donate.destroy
+    if @donate.accept?
+      flash.now[:danger] = t "errors_delete"
+    elsif @donate.destroy
+      flash.now[:success] = t "delete_success"
+    else
+      flash.now[:danger] = t "error_process"
+    end
     respond_to do |format|
       format.js
     end

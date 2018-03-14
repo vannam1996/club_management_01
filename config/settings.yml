@@ -11,7 +11,7 @@ event_truncate: 360
 notification_truncate: 200
 truncate_description: 90
 truncate_organization: 30
-description_event: 360
+description_event: 660
 truncat_content_post: 300
 max_location: 150
 delete: "delete"
@@ -295,3 +295,5 @@ notification_sponsor: "Sponsor"
 accept_sponsor: "AcceptSponsor"
 reject_sponsor: "RejectSponsor"
 class_sponsor: "Sponsor"
+image_view_post_concat: 4
+video_view_post_concat: 1

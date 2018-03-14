@@ -8,6 +8,10 @@ class Dashboard::ExportHistoryBudgetsController < ApplicationController
       @events = @club.events.newest.event_category_activity_money(Event.array_style_event_money_except_activity,
         Event.event_categories[:activity_money])
     end
+    if @events.blank?
+      flash[:danger] = t "events_blank"
+      redirect_to @club
+    end
     respond_to do |format|
       format.html
       format.xlsx do

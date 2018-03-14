@@ -124,4 +124,14 @@ module EventsHelper
       style_default
     end
   end
+
+  def label_money event
+    if event.money?
+      t("event_notifications.amount_for")
+    elsif event.get_money_member?
+      t("amount_member")
+    else
+      t("amount_for")
+    end
+  end
 end

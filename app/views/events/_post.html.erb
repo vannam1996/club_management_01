@@ -1,14 +1,27 @@
 <% if posts.any? %>
   <% posts.each do |post| %>
     <div class="content-posts">
-      <div class="row">
-        <div class="col-md-1 avarta-memeber">
+      <div class="row row-mgr-bt">
+        <div class="avarta-memeber">
           <%= link_to user_path(post.user_id) do %>
-            <%= image_tag post.user_avatar, class: "notification-owner",
+            <%= image_tag post.user_avatar, class: "post-owner",
               title: "#{post.user_full_name}" %>
           <% end %>
         </div>
         <div class="col-md-11">
+          <div class = "pull-right">
+            <% if can? :edit, post %>
+              <%= link_to post_path(post, edit: true), title: t("edit") do %>
+                <i class="fa fa-edit"></i>
+              <% end %>
+            <% end %>
+            <% if can? :destroy, post %>
+              <%= link_to post_path(post, event_id: post.target.id), method: :delete,
+                title: t("delete"), data: {confirm: t("posts.confirm_delete")} do %>
+                <i class="fa fa-times"></i>
+              <% end %>
+            <% end %>
+          </div>
           <div class="post-meta d-flex align-items-center flex-wrap">
             <%= link_to user_path(post.user_id), class: "link_user mr-05" do %>
               <%= post.user_full_name %>
@@ -20,52 +33,68 @@
           </div>
           <div class="content">
             <%= link_to post.name, post_path(post), class: "author-name h5 link_notification" %></br>
-            <% if post.content.present? %>
-              <div id="content-truncate-<%= post.id %>">
-                <%= raw(post.content.truncate(Settings.description_event, separator: " ")) %>
-                <% if raw(post.content).length > Settings.description_event ||
-                    post.post_galleries.present? %>
-                  <%= link_to "", data: {post: post.id},
-                    title: t("show_more_descrip"), class: "show-more" do %>
-                    <%= t "show_more_descrip" %>
-                  <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <% if post.content.present? %>
+            <div id="content-truncate-<%= post.id %>">
+              <%= raw(post.content.truncate(Settings.description_event, separator: " ")) %>
+              <% if raw(post.content).length > Settings.description_event ||
+                  post.post_galleries.present? %>
+                <%= link_to "", data: {post: post.id},
+                  title: t("show_more_descrip"), class: "show-more" do %>
+                  <%= t "show_more_descrip" %>
                 <% end %>
-              </div>
-            <% end %>
-            <div class="hide-div" id="content-<%= post.id %>">
-              <%= raw(post.content) if (raw(post.content).length > Settings.description_event) %>
+              <% end %>
+            </div>
+            <div id ="gallery-<%= post.id %>">
               <div id="page-container">
                 <section class="site-content site-section">
                   <div class="container">
                     <div class="row portfolio">
                       <div class="tz-gallery list-gellary">
-                        <% if post.post_galleries.image.present? %>
-                          <div class="row">
-                            <% post.post_galleries.image.each do |image| %>
+                        <div class="row">
+                          <% if post.post_galleries.image.present? %>
+                            <% take_image(post, Settings.image_view_post_concat).each_with_index do |image, index| %>
                               <div class="portfolio-item img-<%= image.id %>">
                                 <%= link_to "#{image.url}", class: "list-image lightbox" do  %>
                                   <%= image_tag image.url, class: "centered-and-cropped" %>
                                 <% end %>
-                              </div>
-                            <% end %>
-                          </div>
-                        <% end %>
-                        <% if post.post_galleries.video.present? %>
-                          <div class="row">
-                            <% post.post_galleries.video.each do |video| %>
-                              <div class="portfolio-item video-<%= video.id %>">
-                                <%= link_to "#{video}", class: "list-image lightbox" do  %>
-                                  <iframe src="<%= gsub_url_youtube video.url_video %>" allowfullscreen></iframe>
+                                <% if last_index(post, index) && is_have_rest_gallery?(post) %>
+                                  <div class="btn-show-more-image">
+                                    <div class="more-img">
+                                      <%= link_to "", data: {post: post.id}, title: t("show_more_descrip_gallery"),
+                                        class: "show-more-image" do %>
+                                        +<%= rest_gallery_size post %>
+                                      <% end %>
+                                    </div>
+                                  </div>
                                 <% end %>
                               </div>
                             <% end %>
-                          </div>
-                        <% end %>
+                          <% end %>
+                          <% if post.post_galleries.video.present? %>
+                            <div class="portfolio-item video-<%= list_video(post).first.id %>">
+                              <%= link_to "#{list_video(post).first}", class: "list-image lightbox" do  %>
+                                <iframe src="<%= gsub_url_youtube list_video(post).first.url_video %>" allowfullscreen></iframe>
+                              <% end %>
+                            </div>
+                          <% end %>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </section>
               </div>
+            </div>
+          <% end %>
+          <div class="hide-div col-md-12" id="content-<%= post.id %>">
+            <%= raw(post.content) if (raw(post.content).length > Settings.description_event) %>
+          </div>
+          <div>
+            <div class="page-container hide-div" id="full-gallery-<%= post.id %>">
             </div>
           </div>
         </div>
