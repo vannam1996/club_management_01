@@ -1,4 +1,6 @@
 class ReportCategory < ApplicationRecord
+  acts_as_paranoid
+
   has_many :report_details, dependent: :destroy
   belongs_to :organization
 

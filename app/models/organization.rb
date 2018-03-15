@@ -1,4 +1,6 @@
 class Organization < ApplicationRecord
+  acts_as_paranoid
+
   attr_accessor :bgr_crop_x, :bgr_crop_y, :bgr_crop_w, :bgr_crop_h
 
   extend FriendlyId

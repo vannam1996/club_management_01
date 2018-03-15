@@ -1,4 +1,5 @@
 class ReportDetail < ApplicationRecord
+  acts_as_paranoid
 
   serialize :detail
   serialize :user_events, Array

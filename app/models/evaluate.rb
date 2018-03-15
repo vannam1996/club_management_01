@@ -1,4 +1,6 @@
 class Evaluate < ApplicationRecord
-  belongs_to :criteria_detail
+  acts_as_paranoid
+
   belongs_to :club
+  has_many :evaluate_details
 end

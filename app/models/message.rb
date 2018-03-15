@@ -1,4 +1,6 @@
 class Message < ApplicationRecord
+  acts_as_paranoid
+
   attr_accessor :owner_id
   belongs_to :user
   belongs_to :club

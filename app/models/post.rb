@@ -1,4 +1,6 @@
 class Post < ApplicationRecord
+  acts_as_paranoid
+
   belongs_to :user
   belongs_to :target, polymorphic: true
   has_many :post_galleries, dependent: :destroy

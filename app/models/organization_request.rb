@@ -1,4 +1,6 @@
 class OrganizationRequest < ApplicationRecord
+  acts_as_paranoid
+
   belongs_to :user
   has_many :activities, as: :target
 

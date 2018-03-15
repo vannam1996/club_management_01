@@ -1,4 +1,6 @@
 class ClubType < ApplicationRecord
+  acts_as_paranoid
+
   belongs_to :organization
   has_many :clubs, dependent: :destroy
   has_many :club_requests, dependent: :destroy

@@ -1,4 +1,6 @@
 class Club < ApplicationRecord
+  acts_as_paranoid
+
   attr_accessor :logo_crop_x, :logo_crop_y, :logo_crop_w, :logo_crop_h,
     :image_crop_x, :image_crop_y, :image_crop_w, :image_crop_h
 

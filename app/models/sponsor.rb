@@ -1,4 +1,6 @@
 class Sponsor < ApplicationRecord
+  acts_as_paranoid
+
   serialize :purpose
   serialize :experience, Hash
   serialize :organizational_units

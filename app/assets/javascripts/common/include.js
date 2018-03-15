@@ -100,7 +100,7 @@ var turbolink_app = function(){
       return false
     });
 
-    $('.notifyBody').click(function(){
+    $('#notificationsBody').on('click', '.notifyBody', function(){
       $.post('/activities', {id: $(this).attr('data-id')}, function(data){});
       window.open($(this).attr('data-link'), '_self');
     });

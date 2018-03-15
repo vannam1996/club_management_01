@@ -1,4 +1,6 @@
 class ClubRequest < ApplicationRecord
+  acts_as_paranoid
+
   belongs_to :organization
   belongs_to :user
   has_many :user_club_requests, dependent: :destroy
