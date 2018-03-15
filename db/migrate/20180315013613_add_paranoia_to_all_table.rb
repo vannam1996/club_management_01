@@ -12,10 +12,10 @@ class AddParanoiaToAllTable < ActiveRecord::Migration[5.0]
     add_index :club_types, :deleted_at
     add_column :comments, :deleted_at, :datetime
     add_index :comments, :deleted_at
-    add_column :criteria, :deleted_at, :datetime
-    add_index :criteria, :deleted_at
-    add_column :criteria_details, :deleted_at, :datetime
-    add_index :criteria_details, :deleted_at
+    add_column :rules, :deleted_at, :datetime
+    add_index :rules, :deleted_at
+    add_column :rule_details, :deleted_at, :datetime
+    add_index :rule_details, :deleted_at
     add_column :donates, :deleted_at, :datetime
     add_index :donates, :deleted_at
     add_column :evaluates, :deleted_at, :datetime
