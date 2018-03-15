@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  acts_as_paranoid
   acts_as_taggable
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,

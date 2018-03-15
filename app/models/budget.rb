@@ -1,4 +1,6 @@
 class Budget < ApplicationRecord
+  acts_as_paranoid
+
   belongs_to :event
   belongs_to :user
 

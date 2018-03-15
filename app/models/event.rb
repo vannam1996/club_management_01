@@ -1,4 +1,5 @@
 class Event < ApplicationRecord
+  acts_as_paranoid
   serialize :description
 
   has_many :news, dependent: :destroy

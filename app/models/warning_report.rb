@@ -1,4 +1,6 @@
 class WarningReport < ApplicationRecord
+  acts_as_paranoid
+
   belongs_to :club
 
   serialize :user_read, Array
