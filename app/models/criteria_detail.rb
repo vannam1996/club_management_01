@@ -1,4 +1,4 @@
-class CriteriaDetail < ApplicationRecorddetails
+class CriteriaDetail < ApplicationRecord
   acts_as_paranoid
 
   belongs_to :criteria
