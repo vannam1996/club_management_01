@@ -1,0 +1,63 @@
+<div class="modal-dialog modal-lg">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title text-center col-md-12">
+        <%= t "rules_point.title_link" %>
+      </h4>
+      <%= button_tag type: "button", class: "close btn-close-modal",
+        data: {dismiss: "modal"} do %>
+        &times;
+      <% end %>
+    </div>
+    <%= form_for [@organization, @rule], remote: true do |f| %>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="col-md-3 control-label label-bold">
+            <%= t "form_rule.name_criteria" %>
+            <span class="text-danger">*</span>
+          </label>
+          <div class="col-md-12">
+            <%= f.text_field :name, required: true,
+            class: "form-control input-text input-pad-8-12" %>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-3 control-label label-bold">
+            <%= t "form_rule.note" %>
+            <span class="text-danger"></span>
+          </label>
+          <div class="col-md-12">
+            <%= f.text_area :note, class: "form-control input-text input-pad-8-12" %>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <label class="col-md-3 control-label label-bold">
+              <%= t "form_rule.details" %>
+            </label>
+          </div>
+          <label class="col-md-3 control-label label-bold">
+            <%= t "form_rule.content" %>
+            <span class="text-danger">*</span>
+          </label>
+          <label class="col-md-3 push-md-5 control-label label-bold">
+            <%= t "form_rule.mark" %>
+            <span class="text-danger">*</span>
+          </label>
+          <%= f.fields_for :rule_details do |detail| %>
+            <%= render partial: "rule_details_field", locals: {f: detail} %>
+          <% end %>
+          <div class="row">
+            <%= link_to_add_association f, :rule_details,
+              partial: "rule_details_field", class: "btn btn-breez btn-sm button-add-detail col-md-1" do %>
+              <i class="fa fa-plus"></i>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer text-center">
+        <%= f.button label_button_submit(params[:action]), type: :submit, class: "btn btn-sm btn-primary btn-create-type" %>
+      </div>
+    <% end %>
+  </div>
+</div>

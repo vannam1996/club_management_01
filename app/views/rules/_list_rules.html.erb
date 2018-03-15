@@ -1,0 +1,48 @@
+<div class="ui-block col-md-12">
+  <div class="infor-request ui-block-title">
+    <h6 class="title"><%= t "list_rules.title" %></h6>
+    <div class="pull-right funtion-request">
+      <%= link_to "#new-criteria", data: {toggle: :modal},
+        class: "btn btn-breez btn-sm" do %>
+        <i class="fa fa-check-square-o" aria-hidden="true"></i>
+        <%= t "list_rules.new_criteria" %>
+      <% end %>
+      <%= link_to organization_path(@organization), remote: :true,
+        class: "btn btn-primary btn-sm button-back" do %>
+        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+        <%= t "back" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="modal fade" id="new-criteria" role="dialog">
+    <%= render "form_rule" %>
+  </div>
+  <% if rules.any? %>
+    <div class="table-responsive">
+      <table class="table ui-block table-pricing table-td-middle">
+        <thead>
+          <tr>
+            <th class="text-center"><%= t "list_rules.name" %></th>
+            <th class="text-center"><%= t "list_rules.date_create" %></th>
+            <th class="text-center"><%= t "list_rules.total_point" %></th>
+            <th class="text-center"><%= t "list_rules.action" %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render partial: "rule", collection: rules, as: :rule %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-12">
+      <nav aria-label="Page navigation example">
+        <%= paginate rules, remote: true %>
+      </nav>
+    </div>
+  <% else %>
+    <div class="row text-center">
+      <h5 class="center notifi-empty"><%= t "list_rules.no_criteria" %></h5>
+    </tr>
+  <% end %>
+</div>
+<div class="modal fade" id="modal-edit-rule" role="dialog">
+</div>

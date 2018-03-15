@@ -1,0 +1,6 @@
+<% if @organization %>
+  $('#organization_club').html('<%= j render partial: "list_rules", locals: {rules: @rules} %>')
+<% else %>
+  $('.container').append('<%= j render "shared/flash_warning" %>')
+  $('.notify').slideUp(3000);
+<% end %>

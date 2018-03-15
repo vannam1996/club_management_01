@@ -1272,3 +1272,29 @@ en:
     new_event_money: " New spending"
   new_activity: " New activity"
   join_to_see_money: "You are not authorize to see this tab"
+  rules_point:
+    title_link: "Evaluation Criteria"
+  list_rules:
+    title: "Evaluation Criteria"
+    no_criteria: " No categories!"
+    new_criteria: "Create new criteria"
+    name: "Name criteria"
+    date_create: "Date create"
+    total_point: "Total point"
+    action: "Action"
+    confirm_del: "You want to delete this criteria?"
+  form_rule:
+    name_criteria: "Name criteria"
+    btn_create: "Create"
+    content: "Content"
+    mark: "Point"
+    btn_update: "Update"
+    details: "Details criteria"
+    note: "Note"
+  flash_rule:
+    success: "Success"
+    errors: "Errors in processing"
+    cant_find_org: "Can't find organization"
+    cant_find_rule: "Can't find criteria"
+  rule_details:
+    content: "Content"

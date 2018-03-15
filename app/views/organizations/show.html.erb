@@ -142,6 +142,12 @@
                         <% end %>
                       </li>
                       <li>
+                        <%= link_to organization_rules_path(organization_id: @organization.slug),
+                          remote: :true do %>
+                          <%= t "rules_point.title_link" %>
+                        <% end %>
+                      </li>
+                      <li>
                         <%= link_to organization_settings_path(organization_slug: @organization),
                           remote: :true do %>
                           <%= t "organization_settings.index.title" %>

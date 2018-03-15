@@ -822,7 +822,7 @@ a.pull-right.add_fields {
 }
 
 .full-width {
-  width: 100%;
+  width: 100% !important;
 }
 
 .button-add-detail {
@@ -1221,4 +1221,22 @@ a.pull-right.add_fields {
 }
 .full-height {
   height: 100% !important;
+}
+.input-pad-8-12 {
+  padding: 8px 12px;
+}
+.form-inline {
+  display: inline !important;
+}
+.table-td-middle td{
+  vertical-align: middle;
+}
+.btn-close-modal {
+  margin-left: -10px;
+}
+.col-with-30 {
+  width: 30%;
+}
+.col-with-10 {
+  width: 10%;
 }

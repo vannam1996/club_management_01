@@ -114,6 +114,7 @@ Rails.application.routes.draw do
   resources :organizations do
     resources :club_types, except: %(index new)
     resources :clubs, except: %i(destroy edit)
+    resources :rules, except: :new
   end
   resources :time_line_homes
   resources :time_line_homes

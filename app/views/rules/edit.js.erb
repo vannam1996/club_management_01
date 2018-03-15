@@ -1,0 +1,7 @@
+<% if @organization && @rule %>
+  $('#modal-edit-rule').html('<%= j render "form_rule" %>');
+  $('#modal-edit-rule').modal('show');
+<% else %>
+  $('.container').append('<%= j render "shared/flash_warning" %>')
+  $('.notify').slideUp(3000);
+<% end %>
