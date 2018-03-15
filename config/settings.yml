@@ -297,3 +297,4 @@ reject_sponsor: "RejectSponsor"
 class_sponsor: "Sponsor"
 image_view_post_concat: 4
 video_view_post_concat: 1
+per_page_criteria: 10

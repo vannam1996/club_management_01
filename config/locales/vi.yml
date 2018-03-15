@@ -1555,3 +1555,12 @@ vi:
     image: "Hình ảnh"
     new_event_money: " Tạo chi tiêu mới"
   new_activity: " Tạo hoạt động"
+  criterias:
+    title_link: "Tiêu chí đánh giá"
+    list_criterias:
+      title: "Tiêu chí đánh giá"
+      no_criteria: " Chưa có danh mục nào!"
+      new_criteria: "Tạo mới tiêu chí"
+    form_new_criteria:
+      name_criteria: "Tên"
+      btn_create: "Tạo mới"

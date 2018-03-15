@@ -1,0 +1,16 @@
+<div class="infor-request ui-block-title">
+  <%= form_for [@organization, @organization.criterias.build],
+    url: organization_criterias_path, remote: true, html: {class: "form-inline"} do |f| %>
+    <div id="error-explanation"></div>
+    <div class = "row">
+      <%= f.label t(".name_criteria"), class: "control-label label-name-type" %>
+      <div class="pull-left col-md-8">
+        <%= f.text_field :name, required: true,
+          class: "form-control input-text input-pad-8-12 full-width" %>
+      </div>
+      <div class="pull-right">
+        <%= f.button t(".btn_create"), type: :submit, class: "btn btn-sm btn-primary btn-create-type" %>
+      </div>
+    </div>
+  <% end %>
+</div>
