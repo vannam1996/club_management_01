@@ -68,7 +68,7 @@ class ApplicationController < ActionController::Base
 
   def load_member_not_join
     @members = @event.users
-    user_club_ids = @event.club.user_clubs.pluck(:user_id)
+    user_club_ids = @event.club.user_clubs.joined.pluck(:user_id)
     member_ids = @members.pluck(:user_id)
     @member_not_join = User.done_by_ids(user_club_ids - member_ids)
   end

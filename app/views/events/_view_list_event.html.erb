@@ -1,53 +1,57 @@
-<% events.each do |event| %>
-  <tr class="event-item list-event-<%= event.id %>">
-    <td class="upcoming">
-      <div class="date-event">
-        <svg class="olymp-small-calendar-icon"><use xlink:href="<%= url_to_asset("icons/icons.svg#olymp-small-calendar-icon") %>"></use></svg>
-        <span class="day"><%= l event.date_start, format: :day if event.date_start.present? %></span>
-        <span class="month"><%= l event.date_start, format: :month if event.date_start.present? %></span>
-      </div>
-    </td>
-    <td class="author">
-      <div class="event-author inline-items">
-        <div class="author-thumb img_small">
-          <%= link_to club_event_url(event.club, event) do %>
-            <%= image_tag event.image, class: "img-responsive centered-and-cropped" %>
-          <% end %>
+<% if is_member_of_club? @club %>
+  <% events.each do |event| %>
+    <tr class="event-item list-event-<%= event.id %>">
+      <td class="upcoming">
+        <div class="date-event">
+          <svg class="olymp-small-calendar-icon"><use xlink:href="<%= url_to_asset("icons/icons.svg#olymp-small-calendar-icon") %>"></use></svg>
+          <span class="day"><%= l event.date_start, format: :day if event.date_start.present? %></span>
+          <span class="month"><%= l event.date_start, format: :month if event.date_start.present? %></span>
         </div>
-        <div class="author-date event-name">
-          <%= link_to event.name, club_event_url(event.club, event), class: "author-name h6" %>
-          <% if event.notification? %>
-            <i class="fa fa-bell icon-event"></i>
-          <% else %>
-            <i class="fa fa-money icon-event"></i>
-          <% end %>
-          <% unless event.date_start.blank? && event.date_end.blank? %>
-            <time class="published"><%= event.date_start %>/<%= event.date_end %></time>
-          <% end %>
-        </div>
-      </div>
-    </td>
-    <td class="location">
-      <div class="place inline-items">
-        <svg class="olymp-add-a-place-icon"><use xlink:href="<%= url_to_asset("icons/icons.svg#olymp-add-a-place-icon") %>"></use></svg>
-        <span><%= event.location %></span>
-      </div>
-    </td>
-    <td class="description">
-      <p class="description"><%= raw(event.description.truncate(Settings.event_truncate)) unless event.description.nil? %></p>
-    </td>
-    <% if @club.is_admin?(current_user) && event.by_user?(current_user) && event.inprocess? %>
-      <td class="funtion-event">
-        <%= link_to edit_club_event_path(@club.id, event.id, event_category: event.event_category), title: t("edit"),
-          class: "btn btn-sm btn-primary" do %>
-          <i class="fa fa-pencil-square-o"></i>
-        <% end %>
-        <%= link_to club_event_path(@club.id, event.id, page: events.current_page), title: t("delete"),
-          class: "btn btn-sm btn-danger", method: :delete, remote: true,
-          data: {confirm: t("delete_event")} do %>
-          <i class="fa fa-remove"></i>
-        <% end %>
       </td>
-    <% end %>
-  </tr>
+      <td class="author">
+        <div class="event-author inline-items">
+          <div class="author-thumb img_small">
+            <%= link_to club_event_url(event.club, event) do %>
+              <%= image_tag event.image, class: "img-responsive centered-and-cropped" %>
+            <% end %>
+          </div>
+          <div class="author-date event-name">
+            <%= link_to event.name, club_event_url(event.club, event), class: "author-name h6" %>
+            <% if event.notification? %>
+              <i class="fa fa-bell icon-event"></i>
+            <% else %>
+              <i class="fa fa-money icon-event"></i>
+            <% end %>
+            <% unless event.date_start.blank? && event.date_end.blank? %>
+              <time class="published"><%= event.date_start %>/<%= event.date_end %></time>
+            <% end %>
+          </div>
+        </div>
+      </td>
+      <td class="location">
+        <div class="place inline-items">
+          <svg class="olymp-add-a-place-icon"><use xlink:href="<%= url_to_asset("icons/icons.svg#olymp-add-a-place-icon") %>"></use></svg>
+          <span><%= event.location %></span>
+        </div>
+      </td>
+      <td class="description">
+        <p class="description"><%= raw(event.description.truncate(Settings.event_truncate)) unless event.description.nil? %></p>
+      </td>
+      <% if @club.is_admin?(current_user) && event.by_user?(current_user) && event.inprocess? %>
+        <td class="funtion-event">
+          <%= link_to edit_club_event_path(@club.id, event.id, event_category: event.event_category), title: t("edit"),
+            class: "btn btn-sm btn-primary" do %>
+            <i class="fa fa-pencil-square-o"></i>
+          <% end %>
+          <%= link_to club_event_path(@club.id, event.id, page: events.current_page), title: t("delete"),
+            class: "btn btn-sm btn-danger", method: :delete, remote: true,
+            data: {confirm: t("delete_event")} do %>
+            <i class="fa fa-remove"></i>
+          <% end %>
+        </td>
+      <% end %>
+    </tr>
+  <% end %>
+<% else %>
+  <h5 class="notifi-join text-center"><%= t "join_to_see_money" %></h5>
 <% end %>

@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :load_user, only: [:show, :edit]
+  before_action :load_user, only: [:show, :edit, :update]
   before_action :load_organizations, only: [:show, :edit]
+  authorize_resource
 
   def show
     @clubs = Club.of_user_clubs(@user.user_clubs.joined)
@@ -21,7 +22,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    if current_user.update user_params
+    if @user.update user_params
       flash[:success] = t("update_user_success")
       bypass_sign_in(current_user)
       redirect_to user_url(current_user)

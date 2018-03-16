@@ -11,8 +11,6 @@ class Ability
         report.club.user_clubs.pluck(:user_id).include? user.id
       end
     else
-      can :read, :all
-
       can :is_admin, Club do |club|
         club.user_clubs.manager.map(&:user_id).include?(user.id)
       end
@@ -21,8 +19,6 @@ class Ability
         type.organization.user_organizations.are_admin.pluck(:user_id)
           .include?(user.id)
       end
-
-      can [:edit, :update, :create], [Club]
 
       can :manage, [Organization] do |organization|
         organization.user_organizations.are_admin.map(&:user_id).include? user.id
@@ -57,12 +53,65 @@ class Ability
         video.album.club.user_clubs.manager.pluck(:user_id).include? user.id
       end
 
-      can [:create, :update], Post do |post|
+      can :show, Post do |post|
+        post.target.club.user_clubs.joined.pluck(:user_id).include? user.id
+      end
+
+      can [:edit, :update], Post do |post|
         post.user_id == user.id
+      end
+
+      can [:create], Post do |post|
+        post.target.club.user_clubs.joined.pluck(:user_id).include?(user.id)
       end
 
       can :destroy, Post do |post|
         post.user_id == user.id || post.target.club.user_clubs.manager.pluck(:user_id).include?(user.id)
+      end
+
+      can [:create], Comment do |comment|
+        comment.target.club.user_clubs.joined.pluck(:user_id).include?(user.id)
+      end
+
+      can [:update], Comment do |comment|
+        post.user_id == user.id
+      end
+
+      can [:create], UserEvent do |user_event|
+        user_event.event.club.user_clubs.joined.pluck(:user_id).include?(user.id)
+      end
+
+      can [:show], Event do |event|
+        event.club.user_clubs.joined.pluck(:user_id).include?(user.id) ||
+          event.is_public
+      end
+
+      can [:create, :update], Event do |event|
+        event.club.user_clubs.manager.pluck(:user_id).include?(user.id)
+      end
+
+      can [:destroy], Event do |event|
+        event.id = user.id &&
+          event.club.user_clubs.manager.pluck(:user_id).include?(user.id)
+      end
+
+      can [:show], Club
+
+      can [:manage], Club do |club|
+        club.user_clubs.manager.pluck(:user_id).include?(user.id)
+      end
+
+      can [:create], Club do |club|
+        club.organization.user_organizations.are_admin.pluck(:user_id).include?(user.id)
+      end
+
+      can [:show], User do |user_load|
+        (user.clubs.ids & user_load.clubs.ids).present? || user.id == user_load.id ||
+          user.user_organizations.are_admin.any?
+      end
+
+      can [:edit, :update], User do |user_load|
+        user.id == user_load.id
       end
     end
   end

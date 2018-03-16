@@ -134,4 +134,8 @@ module EventsHelper
       t("amount_for")
     end
   end
+
+  def is_member_of_club? club
+    current_user.user_clubs.joined.of_club(club)
+  end
 end

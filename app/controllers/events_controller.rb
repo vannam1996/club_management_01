@@ -6,6 +6,7 @@ class EventsController < ApplicationController
   before_action :check_is_admin, only: [:new, :edit, :destroy]
   before_action :replace_string_in_money, only: [:create, :update]
   before_action :set_gon_varible, only: :new
+  authorize_resource
 
   def new
     @event = Event.new
@@ -46,7 +47,8 @@ class EventsController < ApplicationController
       @comments = @event.comments.includes(:user).newest.take(Settings.limit_comments)
     end
     @posts = @event.posts.includes(:user, :post_galleries).newest.page(params[:page]).per Settings.per_page
-    @post = Post.new
+    @post = @event.posts.build
+    @comment = @event.comments.build
     load_member_not_join
   end
 
