@@ -33,11 +33,13 @@
             </div>
             <div class="pull-right">
               <% case when @event.activity_money? %>
-                <div class="row">
-                  <div id="join-toggle">
-                    <%= render "user_events/join_event_toggle" %>
+                <% if can? :create, @event.user_events.build %>
+                  <div class="row">
+                    <div id="join-toggle">
+                      <%= render "user_events/join_event_toggle" %>
+                    </div>
                   </div>
-                </div>
+                <% end %>
               <% when @event.get_money_member? %>
                 <%= link_to t("get_money"), "#collapse1", data: {toggle: "collapse"},
                   class: "btn btn-blue btn-sm" %>
@@ -154,14 +156,18 @@
             <div class="ui-block" id="post">
               <div class="ui-block-title ui-block-title-small">
                 <h6 class="title col-md-1"><%= t "post"%></h6>
+                <% if can? :create, @post %>
                   <%= link_to "#modal-new-post", data: {toggle: :collapse}, class: "btn btn-sm btn-breez" do %>
                     <i class="fa fa-plus"></i> <%= t "new_post" %>
                   <% end %>
+                <% end %>
               </div>
-              <div id="modal-new-post" class="collapse" tabindex="-1"
-                role="dialog" aria-hidden="true">
-                <%= render partial: "events/new_post", locals: {post: @post, event: @event} %>
-              </div>
+              <% if can? :create, @post %>
+                <div id="modal-new-post" class="collapse" tabindex="-1"
+                  role="dialog" aria-hidden="true">
+                  <%= render partial: "events/new_post", locals: {post: @post, event: @event} %>
+                </div>
+              <% end %>
               <div id="post-list">
                 <%= render partial: "events/post", locals: {posts: @posts} %>
               </div>

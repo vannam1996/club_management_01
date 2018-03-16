@@ -68,4 +68,8 @@ module ClubsHelper
       image_tag club.logo_url, class: "img-cover", title: t("image_cover")
     end
   end
+
+  def is_in_organization_of_club? club
+    current_user.organizations.pluck(:id).include?(club.organization.id)
+  end
 end

@@ -1555,3 +1555,4 @@ vi:
     image: "Hình ảnh"
     new_event_money: " Tạo chi tiêu mới"
   new_activity: " Tạo hoạt động"
+  join_to_see_money: "Bạn không có quyền xem chi tiêu"

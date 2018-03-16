@@ -19,4 +19,6 @@
     </div>
   </div>
 </section>
-<%= render "new_comment" %>
+<% if can? :create, @comment %>
+  <%= render "new_comment" %>
+<% end%>
