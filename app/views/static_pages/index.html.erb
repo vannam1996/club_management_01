@@ -40,27 +40,27 @@
       <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 col-xs-12">
         <div class="registration-login-form" data-mh="log-tab">
           <!-- Nav tabs -->
-          <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item active">
-              <a class="nav-link" data-toggle="tab" href="#profile" role="tab">
+          <ul class="nav nav-tabs">
+            <li class="nav-item full-height">
+              <!-- <a class="nav-link" data-toggle="tab" href="#profile" role="tab"> -->
+              <a class="nav-link">
                 <svg class="olymp-login-icon"><use xlink:href="<%= url_to_asset("icons/icons.svg#olymp-login-icon") %>"></use></svg>
               </a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link" data-toggle="tab" href="#home" role="tab">
                 <svg class="olymp-register-icon"><use xlink:href="<%= url_to_asset("icons/icons.svg#olymp-register-icon") %>"></use></svg>
               </a>
-            </li>
+            </li> -->
           </ul>
           <!-- Tab panes -->
-          <div class="tab-content">
+          <!-- <div class="tab-content">
             <div class="tab-pane" id="home" role="tabpanel" data-mh="log-tab">
-              <%= render "registrations/new" %>
             </div>
-            <div class="tab-pane active" id="profile" role="tabpanel" data-mh="log-tab">
+            <div class="tab-pane active" id="profile" role="tabpanel" data-mh="log-tab"> -->
               <%= render "authentications/form" %>
-            </div>
-          </div>
+            <!-- </div>
+          </div> -->
         </div>
       </div>
     </div>
