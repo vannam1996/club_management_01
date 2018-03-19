@@ -1,0 +1,69 @@
+<tr>
+  <td class="text-center col-with-30"><%= rule.name %></td>
+  <td class="text-center"><%= l rule.created_at, format: :short %></td>
+  <td class="text-center"><%= rule.rule_details.sum(&:points) %></td>
+  <td class="text-center">
+    <%= link_to "#details-rule-#{rule.id}", data: {toggle: :modal},
+      class: "btn btn-breez btn-bottom-0" do %>
+      <i class="fa fa-info" aria-hidden="true"></i>
+    <% end %>
+    <%= link_to edit_organization_rule_path(organization_id: @organization.slug, id: rule.id),
+      remote: true, class: "btn btn-warning btn-bottom-0" do %>
+      <i class="fa fa-edit" aria-hidden="true"></i>
+    <% end %>
+    <%= link_to organization_rule_path(organization_id: @organization.slug, id: rule.id),
+      method: :delete, data: {confirm: t("list_rules.confirm_del")}, remote: true,
+      class: "btn btn-danger btn-bottom-0" do %>
+      <i class="fa fa-remove" aria-hidden="true"></i>
+    <% end %>
+    <div class="modal fade" id="details-rule-<%= rule.id %>" role="dialog">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title  text-center col-md-12">
+              <%= t"rules_point.title_link" %></h4>
+            <%= button_tag type: "button", class: "close btn-close-modal",
+              data: {dismiss: "modal"} do %>
+              &times;
+            <% end %>
+          </div>
+          <div class="modal-body">
+            <% if rule.rule_details.present? %>
+              <div class="table-responsive">
+                <table class="ui-block table-pricing table-white list-event-notifications">
+                  <thead>
+                    <tr>
+                      <th><%= t "rule_details.content" %></th>
+                      <th class="col-with-10"><%= t "rule_details.mark" %></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% rule.rule_details.each do |detail| %>
+                      <tr>
+                        <td class="text-left"><%= detail.content %></td>
+                        <td><%= detail.points %></td>
+                      </tr>
+                    <% end %>
+                    <tr>
+                      <td class="label-bold"><%= t "list_rules.total_point" %></td>
+                      <td><%= rule.rule_details.sum(&:points) %></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            <% end %>
+            <div class="form-group text-left">
+              <label class="control-label label-bold">
+                <%= t "form_rule.note" %>:
+              </label>
+                <%= simple_format(rule.note) %>
+            </div>
+          </div>
+          <div class="modal-footer text-center">
+            <%= button_tag t("close"), data: {dismiss: "modal"}, class: "btn btn-sm btn-primary btn-create-type" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </td>
+</tr>

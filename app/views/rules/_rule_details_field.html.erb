@@ -1,0 +1,15 @@
+<div class="row nested-fields mgr-top-10">
+  <div class="col-md-7">
+    <%= f.text_area :content, required: true, class: "form-control input-text input-pad-8-12" %>
+  </div>
+  <div class="col-md-3 push-md-1">
+    <%= f.number_field :points, required: true,
+      step: Settings.step_number_field_mark,
+      value: value_mark_field(f.object),
+      min: Settings.min_number_field_mark,
+      class: "form-control input-text input-pad-8-12" %>
+  </div>
+  <div class="col-md-1 push-md-1">
+    <%= link_to_remove_association button_tag('-', type: "button", class: "btn btn-primary field-btn"), f %>
+  </div>
+</div>

@@ -23,6 +23,10 @@ module ApplicationHelper
     flash[:danger] = object.errors.full_messages
   end
 
+  def flash_error_ajax object
+    flash.now[:danger] = object.errors.full_messages
+  end
+
   def manager_of_club user
     @user_clubs = user.user_clubs.manager
   end

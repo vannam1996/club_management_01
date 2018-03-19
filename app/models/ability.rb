@@ -113,6 +113,11 @@ class Ability
       can [:edit, :update], User do |user_load|
         user.id == user_load.id
       end
+
+      can :manage, Rule do |rule|
+        rule.organization.user_organizations.are_admin.pluck(:user_id)
+          .include?(user.id)
+      end
     end
   end
 end

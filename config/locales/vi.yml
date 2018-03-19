@@ -618,6 +618,11 @@ vi:
         reset_password_token: "Mã thay đổi mật khẩu"
       report_category:
         name: ""
+      rule:
+        name: "Tên"
+      rule_detail:
+        content: "Nội dung"
+        points: "Điểm"
     errors:
       messages:
         record_invalid: "Bản ghi không hợp lệ"
@@ -804,6 +809,16 @@ vi:
           attributes:
             name:
               taken: "Đã tồn tại !"
+        rule:
+          attributes:
+            name:
+              blank: " không được bỏ trống"
+        rule_detail:
+          attributes:
+            content:
+              blank: " không được bỏ trống"
+            points:
+              blank: " không được bỏ trống"
   not_found_user_event: "Không tìm thấy sự kiện mà bạn tham gia!"
   not_found_user_club: "Không tìm thấy câu lạc bộ mà bạn tham gia!"
   see_you_next_time: "Bạn đã hủy tham gia!!!"
@@ -1556,3 +1571,30 @@ vi:
     new_event_money: " Tạo chi tiêu mới"
   new_activity: " Tạo hoạt động"
   join_to_see_money: "Bạn không có quyền xem chi tiêu"
+  rules_point:
+    title_link: "Tiêu chí đánh giá"
+  list_rules:
+    title: "Tiêu chí đánh giá"
+    no_criteria: " Chưa có danh mục nào!"
+    new_criteria: "Tạo mới tiêu chí"
+    name: "Tên tiêu chí"
+    date_create: "Ngày tạo"
+    total_point: "Tổng điểm"
+    action: "Hành động"
+    confirm_del: "Bạn muốn xóa tiêu chí này?"
+  form_rule:
+    name_criteria: "Tên tiêu chí"
+    btn_create: "Tạo mới"
+    content: "Nội dung"
+    mark: "Điểm"
+    btn_update: "Cập nhật"
+    details: "Chi tiết tiêu chí"
+    note: "Ghi chú"
+  flash_rule:
+    success: "Thành công"
+    errors: "Có lỗi xảy ra"
+    cant_find_org: "Không tìm thấy tổ chức"
+    cant_find_rule: "Không tìm thấy tiêu chí"
+  rule_details:
+    content: "Nội dung"
+    mark: "Điểm"
