@@ -126,17 +126,19 @@
               <%= render partial: "view_donate", locals: {donates: @event.donate.newest} %>
             </div>
           <% when @event.activity_money? %>
-            <div id="modal-add-user-event" class="modal fade" tabindex="-1"
-              role="dialog" aria-hidden="true">
-              <% if @club.is_admin? current_user %>
-                <div id="list_member_join">
-                  <%= render partial: "list_member_join", locals: {users: @member_not_join} %>
+            <% if is_member_of_club? @club %>
+              <div id="modal-add-user-event" class="modal fade" tabindex="-1"
+                role="dialog" aria-hidden="true">
+                <% if @club.is_admin? current_user %>
+                  <div id="list_member_join">
+                    <%= render partial: "list_member_join", locals: {users: @member_not_join} %>
+                  </div>
+                <% end %>
+                <div id="view_list_member_join">
+                  <%= render "view_list_member_join" %>
                 </div>
-              <% end %>
-              <div id="view_list_member_join">
-                <%= render "view_list_member_join" %>
               </div>
-            </div>
+            <% end %>
           <% end %>
           <div class="comment-post">
             <div class="row">

@@ -22,11 +22,13 @@
         <%= paginate events, params: {controller: "event_notifications", action: "show",
           club_id: @club.id, category: Event.event_categories[:notification]}, remote: true %>
       <% end %>
-    <% else %>
+    <% elsif is_member_of_club? @club %>
       <%= paginate events, remote: true,
         params: {controller: "clubs", action: "show", id: @club.slug} %>
     <% end %>
   </div>
+<% elsif tab_activity %>
+  <h5 class="notifi-join text-center"><%= t "no_activity" %></h5>
 <% else %>
-  <h5 class="notifi-join text-center"><%= t "no_event" %></h5>
+  <h5 class="notifi-join text-center"><%= t "no_spending" %></h5>
 <% end %>

@@ -2,20 +2,22 @@
   <h6 class="event-description-title"><%= t "club_manager.event.joined" %>
     : <%= @members.size %>
   </h6>
-  <div class="row">
-    <% @members.take(Settings.number_view_user_event).each do |user| %>
+  <% if is_member_of_club? @club %>
+    <div class="row">
+      <% @members.take(Settings.number_view_user_event).each do |user| %>
+        <div class="col-md-1 avarta-memeber">
+          <%= link_to user_path(user.id) do %>
+            <%= image_tag user.avatar, class: "member-organization-view",
+              title: "#{user.full_name}" %>
+          <% end %>
+        </div>
+      <% end %>
       <div class="col-md-1 avarta-memeber">
-        <%= link_to user_path(user.id) do %>
-          <%= image_tag user.avatar, class: "member-organization-view",
-            title: "#{user.full_name}" %>
+        <%= link_to "#modal-add-user-event", data: {toggle: :modal},
+          class: "", title: t("more") do %>
+          <span class = "view-user-member view-more-user">+</span>
         <% end %>
       </div>
-    <% end %>
-    <div class="col-md-1 avarta-memeber">
-      <%= link_to "#modal-add-user-event", data: {toggle: :modal},
-        class: "", title: t("more") do %>
-        <span class = "view-user-member view-more-user">+</span>
-      <% end %>
     </div>
-  </div>
+  <% end %>
 <% end %>

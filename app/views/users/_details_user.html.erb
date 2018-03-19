@@ -48,12 +48,9 @@
         </div>
         <div class="tab_content_account">
           <div id="list_my_group" class="tab_account_content">
-            <ul class="notification-list friend-requests">
+            <div class="notification-list friend-requests">
               <%= render "user_club", clubs: @clubs %>
-            </ul>
-            <nav aria-label="Page navigation example">
-              <%= paginate @clubs, remote: true %>
-            </nav>
+            </div>
           </div>
           <% if current_user.is_user? @user %>
             <div id="my_settings" class="tab_account_content">
