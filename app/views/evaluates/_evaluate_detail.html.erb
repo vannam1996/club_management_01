@@ -1,0 +1,54 @@
+<div class="modal-dialog modal-lg">
+  <div class="modal-content modal-report-detail">
+    <div class="modal-header">
+      <h4 class="modal-title text-center col-md-12">
+        <%= t ".detail_evaluate", month: evaluate.time, year: evaluate.year %>
+      </h4>
+      <%= button_tag type: "button", class: "close btn-close-modal",
+        data: {dismiss: "modal"} do %>
+        &times;
+      <% end %>
+    </div>
+    <div class="modal-body">
+      <div class="table-responsive">
+        <table class="table ui-block table-white table-pricing">
+          <thead>
+            <tr>
+              <th class="text-center col-width-30"><%= t ".rule" %></th>
+              <th class="text-center"><%= t ".content_rule_detail" %></th>
+              <th class="text-center col-width-10"><%= t ".point" %></th>
+              <th class="text-center col-width-20"><%= t ".note" %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% get_and_group_rule_details(evaluate).each do |key, rule_details| %>
+              <tr>
+                <td rowspan="<%= size_row_span rule_details %>">
+                  <%= rule_details.first.rule_name %>
+                </td>
+                <td><%= rule_details.first.content %></td>
+                  <td class="text-center"><%= rule_details.first.points %></td>
+                  <td class="text-center"><%= note_evaluate_detail evaluate, rule_details.first %></td>
+              </tr>
+              <% rule_details.drop(Settings.one).each do |rule_detail| %>
+                <tr>
+                  <td><%= rule_detail.content %></td>
+                  <td class="text-center"><%= rule_detail.points %></td>
+                  <td class="text-center"><%= note_evaluate_detail evaluate, rule_detail %></td>
+                </tr>
+              <% end %>
+            <% end %>
+            <tr>
+              <td class="text-center" colspan="2"><strong><%= t ".total_point" %></strong></td>
+              <td class="text-center"><strong><%= evaluate.total_points %></strong></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="modal-footer text-center">
+      <%= button_tag t("close"), data: {dismiss: "modal"}, class: "btn btn-sm btn-primary btn-create-type" %>
+    </div>
+  </div>
+</div>

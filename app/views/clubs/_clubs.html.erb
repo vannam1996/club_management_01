@@ -27,6 +27,13 @@
           <div class="swiper-container cutom_hard_height">
             <p> <%= club.content.truncate(Settings.truncate.club.description).html_safe unless club.content.nil? %></p>
           </div>
+          <% if params[:controller] == "organizations" %>
+            <%= link_to club_evaluates_path(club_id: club.slug), remote: true,
+              class: "btn btn-breez" do %>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <%= t "evaluates.title_link" %>
+            <% end %>
+          <% end %>
         </div>
       </div>
     </div>

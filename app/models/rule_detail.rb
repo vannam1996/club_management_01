@@ -6,4 +6,8 @@ class RuleDetail < ApplicationRecord
 
   validates :content, presence: true
   validates :points, presence: true
+
+  scope :by_ids, ->ids{where id: ids}
+
+  delegate :name, to: :rule, prefix: true, allow_nil: :true
 end

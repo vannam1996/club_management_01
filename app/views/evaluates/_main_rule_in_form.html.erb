@@ -1,0 +1,13 @@
+<td><%= rule_detail.content %></td>
+<td class="text-center"><%= rule_detail.points %></td>
+<td class="text-center">
+  <div class="toggle-btn <%= class_checkbox @evaluate, params[:action], rule_detail %>">
+    <%= check_box_tag "rule_detail_ids[]", rule_detail.id,
+      is_have_in_evaluate_details?(@evaluate, params[:action], rule_detail),
+      class: "cb-value js-cb-point", data: {point: rule_detail.points} %>
+    <span class="round-btn"></span>
+  </div>
+</td>
+<td><%= text_field_tag "note[]", note_evaluate_detail(@evaluate, rule_detail), class: "form-control input-text-custom",
+  id: "js-text-note-#{rule_detail.id}",
+  disabled: !is_have_in_evaluate_details?(@evaluate, params[:action], rule_detail) %></td>

@@ -1,5 +1,5 @@
 <tr>
-  <td class="text-center col-with-30"><%= rule.name %></td>
+  <td class="text-center col-width-30"><%= rule.name %></td>
   <td class="text-center"><%= l rule.created_at, format: :short %></td>
   <td class="text-center"><%= rule.rule_details.sum(&:points) %></td>
   <td class="text-center">
@@ -34,7 +34,7 @@
                   <thead>
                     <tr>
                       <th><%= t "rule_details.content" %></th>
-                      <th class="col-with-10"><%= t "rule_details.mark" %></th>
+                      <th class="col-width-10"><%= t "rule_details.mark" %></th>
                     </tr>
                   </thead>
                   <tbody>

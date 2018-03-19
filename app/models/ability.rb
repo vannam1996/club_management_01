@@ -120,6 +120,15 @@ class Ability
         rule.organization.user_organizations.are_admin.pluck(:user_id)
           .include?(user.id)
       end
+
+      can :manage, Evaluate do |evaluate|
+        evaluate.club.organization.user_organizations.are_admin.pluck(:user_id)
+          .include?(user.id)
+      end
+
+      can :read, Evaluate do |evaluate|
+        evaluate.club.user_clubs.manager.pluck(:user_id).include?(user.id)
+      end
     end
   end
 end
