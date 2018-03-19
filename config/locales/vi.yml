@@ -1523,6 +1523,11 @@ vi:
     update_success: "Cập nhật thư mời tài trợ thành công"
     acceptsponsor: "chấp nhận"
     rejectsponsor: "từ chối"
+    money_receive: "Số tiền hỗ trợ"
+    cofirm_receive: "Xác nhận đã nhận tiền"
+    propose: "Đề xuất"
+    receive: "Được cấp"
+    confirm_success: "Xác nhận thành công"
   social_share_button:
     share_to: "Chia sẽ"
   new_post: "Tạo bài viết"
@@ -1601,3 +1606,4 @@ vi:
   join_to_see_money: "Bạn không có quyền xem chi tiêu!"
   no_spending: "Hiện tại chưa có chi tiêu nào!"
   no_activity: "Hiện tại chưa có hoạt động nào!"
+  money_sponsor: "Số tiền hỗ trợ"

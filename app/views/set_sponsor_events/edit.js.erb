@@ -1,5 +1,9 @@
 <% if @sponsor %>
-  $('#modal-note-reject').html('<%= j render partial: "note_reject" %>')
+  <% if params[:status].to_i == Sponsor.statuses[:accept]  %>
+    $('#modal-note-reject').html('<%= j render partial: "input_money" %>')
+  <% else %>
+    $('#modal-note-reject').html('<%= j render partial: "note_reject" %>')
+  <% end %>
   $('#modal-note-reject').modal('show')
 <% else %>
   $('#container').append('<%= j render "shared/flash_warning" %>');

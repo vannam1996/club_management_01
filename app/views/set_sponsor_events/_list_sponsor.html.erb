@@ -31,8 +31,8 @@
                 <i class="fa fa-info"></i>
               <% end %>
               <% if sponsor.pending? %>
-                <%= link_to set_sponsor_event_path(sponsor.id, status: Sponsor.statuses[:accept],
-                  organization_id: @organization.id), remote: true, method: :put, title: t("accept"),
+                <%= link_to edit_set_sponsor_event_path(sponsor.id, status: Sponsor.statuses[:accept],
+                  organization_id: @organization.id), remote: true, title: t("accept"),
                   class: "btn btn-breez btn-info-report" do %>
                   <i class="fa fa-check-square-o"></i>
                 <% end %>

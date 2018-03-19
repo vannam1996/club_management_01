@@ -31,14 +31,19 @@ class SponsorsController < ApplicationController
 
   def update
     ActiveRecord::Base.transaction do
-      if @sponsor.update_attributes sponsor_params
-        create_acivity @sponsor, Settings.update_sponsor,
-          @club.organization, current_user, Activity.type_receives[:organization_manager]
-        flash[:success] = t ".update_success"
+      if params[:sponsor]
+        if @sponsor.update_attributes sponsor_params
+          create_acivity @sponsor, Settings.update_sponsor,
+            @club.organization, current_user, Activity.type_receives[:organization_manager]
+          flash[:success] = t ".update_success"
+          redirect_to club_path @club
+        else
+          flash_error sponsor
+          redirect_back fallback_location: edit_club_sponsor_path(@club)
+        end
+      elsif @sponsor.confirm!
+        flash[:success] = t ".confirm_success"
         redirect_to club_path @club
-      else
-        flash_error sponsor
-        redirect_back fallback_location: edit_club_sponsor_path(@club)
       end
     end
   rescue

@@ -12,6 +12,7 @@ class Sponsor < ApplicationRecord
   belongs_to :user
 
   enum status: {pending: 0, accept: 1, rejected: 2}
+  enum status_receive: {confirm: 1, pending_confirm: 2, waiting: 0}
 
   scope :newest, ->{order created_at: :desc}
 

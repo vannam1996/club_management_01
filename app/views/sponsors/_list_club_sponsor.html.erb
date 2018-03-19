@@ -6,6 +6,8 @@
           <th><%= t "sponsors.event_name" %></th>
           <th><%= t "sponsors.time" %></th>
           <th><%= t "sponsors.place" %></th>
+          <th><%= t "sponsors.propose" %></th>
+          <th><%= t "sponsors.receive" %></th>
           <th><%= t "status" %></th>
           <th class="text-center"><%= t "action" %></th>
         </tr>
@@ -21,6 +23,12 @@
             </td>
             <td>
               <%= sponsor.place %>
+            </td>
+            <td>
+              <%= number_to_currency sponsor.sponsor, locals: :vi %>
+            </td>
+            <td>
+              <%= number_to_currency sponsor.money_receive, locals: :vi %>
             </td>
             <td class="status">
               <span class="status-report-<%= sponsor.status %>">
@@ -40,6 +48,12 @@
                 <%= link_to club_sponsor_path(@club.id, sponsor.id), remote: true, method: :delete,
                   title: t("delete"), class: "btn btn-danger btn-info-report" do %>
                   <i class="fa fa-remove"></i>
+                <% end %>
+              <% elsif sponsor.pending_confirm? %>
+                <%= link_to club_sponsor_path(@club.id, sponsor.id), method: :patch,
+                  title: t("sponsors.cofirm_receive"), data: {confirm: t("sponsors.cofirm_receive")},
+                  class: "btn btn-breez btn-info-report" do %>
+                  <i class="fa fa-check"></i>
                 <% end %>
               <% end %>
             </td>

@@ -45,6 +45,14 @@ class SetSponsorEventsController < ApplicationController
       .merge! status: Sponsor.statuses[:rejected]
   end
 
+  def accept_sponsor_params
+    if params[:sponsor] && params[:sponsor][:money_receive]
+      params[:sponsor][:money_receive].gsub!(",", "")
+    end
+    params.require(:sponsor).permit(:money_receive)
+      .merge! status: Sponsor.statuses[:accept], status_receive: Sponsor.status_receives[:pending_confirm]
+  end
+
   def load_sponsor
     @sponsor = Sponsor.find_by id: params[:id]
     unless @sponsor
@@ -54,7 +62,7 @@ class SetSponsorEventsController < ApplicationController
   end
 
   def approve_sponsor
-    if @sponsor.accept!
+    if @sponsor.update_attributes accept_sponsor_params
       SendMailSponsorJob.perform_now @sponsor
       flash.now[:success] = t "approve_success"
     else
