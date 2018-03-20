@@ -24,7 +24,7 @@ class Ability
         organization.user_organizations.are_admin.map(&:user_id).include? user.id
       end
 
-      can :update, [StatisticReport] do |statistic|
+      can [:update, :read], [StatisticReport] do |statistic|
         organization = Organization.find_by id: statistic.club.organization.id
         organization.user_organizations.are_admin.pluck(:user_id)
           .include?(user.id)
@@ -48,6 +48,8 @@ class Ability
       can :manage, :event_notification do |club|
         club.keys.first.user_clubs.manager.pluck(:user_id).include?(user.id)
       end
+
+      can :show, :event_notification
 
       can :manage, Video do |video|
         video.album.club.user_clubs.manager.pluck(:user_id).include? user.id
@@ -77,8 +79,8 @@ class Ability
         post.user_id == user.id
       end
 
-      can [:create], UserEvent do |user_event|
-        user_event.event.club.user_clubs.joined.pluck(:user_id).include?(user.id)
+      can [:create, :destroy], UserEvent do |user_event|
+        user_event.event.club.user_clubs.manager.pluck(:user_id).include?(user.id)
       end
 
       can [:show], Event do |event|

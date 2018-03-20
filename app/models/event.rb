@@ -53,6 +53,7 @@ class Event < ApplicationRecord
     else event_category in (?)
     end", activity_money_id, ids
   end
+  scope :event_public, ->{where is_public: true}
 
   enum status: {inprocess: 0, finished: 1}
   enum event_category: {notification: 0, activity_money: 2,

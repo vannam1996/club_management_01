@@ -2,6 +2,7 @@ class UserEventsController < ApplicationController
   before_action :authenticate_user!
   before_action :load_event, only: [:create, :destroy]
   before_action :load_user_event, only: :destroy
+  authorize_resource
 
   def create
     if params[:user_event]

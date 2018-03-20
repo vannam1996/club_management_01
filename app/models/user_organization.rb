@@ -17,6 +17,8 @@ class UserOrganization < ApplicationRecord
   delegate :full_name, :avatar, :email, :phone, to: :user, prefix: :user, allow_nil: :true
   delegate :name, :description, :phone, :email, :logo, to: :organization, allow_nil: :true
 
+  after_destroy :leave_club_in_organization
+
   class << self
     def join? organization
       find_by(organization_id: organization.id).nil?
@@ -44,5 +46,11 @@ class UserOrganization < ApplicationRecord
     def load_user user_id
       find_by id: user_id
     end
+  end
+
+  def leave_club_in_organization
+    club_ids = self.organization.clubs.ids
+    user_clubs = UserClub.by_user_id_and_club_ids self.user_id, club_ids
+    user_clubs.destroy_all if user_clubs.present?
   end
 end

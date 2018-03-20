@@ -1298,3 +1298,5 @@ en:
     cant_find_rule: "Can't find criteria"
   rule_details:
     content: "Content"
+  no_spending: "Have not yet spending!"
+  no_activity: "Have not yet activity!"

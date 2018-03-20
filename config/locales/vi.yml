@@ -1598,3 +1598,6 @@ vi:
   rule_details:
     content: "Nội dung"
     mark: "Điểm"
+  join_to_see_money: "Bạn không có quyền xem chi tiêu!"
+  no_spending: "Hiện tại chưa có chi tiêu nào!"
+  no_activity: "Hiện tại chưa có hoạt động nào!"

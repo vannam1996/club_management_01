@@ -1,14 +1,19 @@
-<% @clubs.each do |club| %>
-  <li>
-    <div class="author-thumb">
-      <%= image_tag club.logo, class: "avatar-club" %>
-    </div>
-    <div class="notification-event">
-      <%= link_to club.name, club, class: "h6 notification-friend" %>
-      <span class="chat-message-item"><%= club.display_organization %></span>
-    </div>
-    <span class="notification-icon">
-      <%= link_to t("profile_settings.read_more"), club, class: "btn btn-sm bg-blue" %>
-    </span>
-  </li>
-<% end %>
+<ul>
+  <% @clubs.each do |club| %>
+    <li>
+      <div class="author-thumb">
+        <%= image_tag club.logo, class: "avatar-club" %>
+      </div>
+      <div class="notification-event">
+        <%= link_to club.name, club, class: "h6 notification-friend" %>
+        <span class="chat-message-item"><%= club.display_organization %></span>
+      </div>
+      <span class="notification-icon">
+        <%= link_to t("profile_settings.read_more"), club, class: "btn btn-sm bg-blue" %>
+      </span>
+    </li>
+  <% end %>
+</ul>
+<nav aria-label="Page navigation example">
+  <%= paginate @clubs, remote: true %>
+</nav>

@@ -73,6 +73,10 @@ class ApplicationController < ActionController::Base
     @member_not_join = User.done_by_ids(user_club_ids - member_ids)
   end
 
+  def is_in_club? club, user
+    club.user_clubs.joined.pluck(:user_id).include? user.id
+  end
+
   private
   def set_locale
     I18n.locale = session[:locale] || I18n.default_locale

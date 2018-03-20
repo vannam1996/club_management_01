@@ -8,8 +8,13 @@ class EventNotificationsController < ApplicationController
 
   def show
     if params[:category].to_i == Event.event_categories[:activity_money]
-      @events_activity = @club.events.newest
-        .activity_money.page(params[:page]).per Settings.per_page
+      if is_in_club? @club, current_user
+        @events_activity = @club.events.newest
+          .activity_money.page(params[:page]).per Settings.per_page
+      else
+        @events_activity = @club.events.event_public.newest
+          .activity_money.page(params[:page]).per Settings.per_page
+      end
     else
       @events_notification = @club.events.newest
         .notification.page(params[:page]).per Settings.per_page
