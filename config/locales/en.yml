@@ -417,6 +417,17 @@ en:
     clubs: "Clubs joined"
     show: "Show member"
   club_manager:
+    evaluates:
+      evaluate_not_found: "Can't find evaluate"
+      club_not_found: "Can't find club"
+      list_evaluates:
+        list_evaluates: "List evaluate club %{name}"
+        time: "Time"
+        total_point: "Total point"
+        no_evaluate: "No evaluate"
+        created_at: "Date evaluate"
+        create_evaluate: "Create evaluate"
+        owner: "Owner"
     statistic_reports:
       list_report:
         person_report: "Person report"
@@ -1301,6 +1312,7 @@ en:
   no_spending: "Have not yet spending!"
   no_activity: "Have not yet activity!"
   evaluates:
+    evaluate: "Evaluate"
     success: "Success"
     error_process: "Errors inprocess"
     title_link: "Evaluate"
@@ -1313,6 +1325,7 @@ en:
       no_evaluate: "No evaluate"
       created_at: "Date evaluate"
       create_evaluate: "Create evaluate"
+      owner: "Owner"
     form_new:
       new_evaluate: "Evaluate"
       submit: "Create"

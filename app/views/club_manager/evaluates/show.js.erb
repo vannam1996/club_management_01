@@ -1,0 +1,6 @@
+<% if @evaluate %>
+  $('#detail-evaluate').html('<%= j render partial: "evaluates/evaluate_detail", locals: {evaluate: @evaluate} %>')
+  $('#detail-evaluate').modal('show');
+<% else %>
+  $('.container').append('<%= j render partial: "shared/flash_warning" %>');
+<% end %>

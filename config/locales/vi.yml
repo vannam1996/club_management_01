@@ -440,6 +440,17 @@ vi:
     clubs: "Câu lạc bộ đã tham gia"
     show: "Thành viên"
   club_manager:
+    evaluates:
+      evaluate_not_found: "Không tìm thấy đánh giá"
+      club_not_found: "Không tìm thấy câu lạc bộ"
+      list_evaluates:
+        list_evaluates: "Danh sách đánh giá câu lạc bộ %{name}"
+        time: "Thời gian"
+        total_point: "Tổng điểm"
+        no_evaluate: "Chưa có đánh giá nào"
+        created_at: "Ngày đánh giá"
+        create_evaluate: "Tạo đánh giá"
+        owner: "Người đánh giá"
     statistic_reports:
       list_report:
         person_report: "Người báo cáo"
@@ -1602,6 +1613,7 @@ vi:
   no_spending: "Hiện tại chưa có chi tiêu nào!"
   no_activity: "Hiện tại chưa có hoạt động nào!"
   evaluates:
+    evaluate: "Danh sách đánh giá"
     success: "Thành công"
     error_process: "Xảy ra lỗi trong quá trình, vui lòng thử lại!"
     title_link: "Đánh giá"
@@ -1614,6 +1626,7 @@ vi:
       no_evaluate: "Chưa có đánh giá nào"
       created_at: "Ngày đánh giá"
       create_evaluate: "Tạo đánh giá"
+      owner: "Người đánh giá"
     form_new:
       new_evaluate: "Đánh giá hoạt động"
       submit: "Tạo đánh giá"

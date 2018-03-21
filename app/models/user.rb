@@ -28,6 +28,7 @@ class User < ApplicationRecord
   has_many :statistic_reports, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :sponsors, dependent: :destroy
+  has_many :evaluates, dependent: :destroy
 
   mount_uploader :avatar, AvatarUploader
 

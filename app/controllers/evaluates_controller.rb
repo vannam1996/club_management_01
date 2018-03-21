@@ -61,7 +61,8 @@ class EvaluatesController < ApplicationController
   end
 
   def params_evaluate
-    params.permit(:time).merge! year: params[:date][:year], total_points: count_point
+    params.permit(:time).merge! year: params[:date][:year], total_points: count_point,
+      user_id: current_user.id
   end
 
   def count_point

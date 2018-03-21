@@ -2,19 +2,12 @@
   <div class="infor-request ui-block-title">
     <h6 class="title"><%= t ".list_evaluates", name: @club.name %></h6>
     <div class="pull-right funtion-request">
-      <%= link_to new_club_evaluate_path(club_id: @club.slug), remote: true,
-        class: "btn btn-breez btn-sm" do %>
-        <i class="fa fa-check-square-o" aria-hidden="true"></i>
-        <%= t ".create_evaluate" %>
-      <% end %>
-      <%= link_to organization_path(@club.organization, club: :true), remote: :true,
+      <%= link_to club_path(@club),
         class: "btn btn-primary btn-sm button-back" do %>
         <i class="fa fa-arrow-left" aria-hidden="true"></i>
         <%= t "back" %>
       <% end %>
     </div>
-  </div>
-  <div class="modal fade" id="new-evaluate" role="dialog">
   </div>
     <div class="table-responsive">
       <table class="table ui-block table-pricing">
@@ -42,4 +35,3 @@
 </div>
 <div class="modal fade" id="detail-evaluate" role="dialog">
 </div>
-<%= javascript_include_tag "evaluate" %>
