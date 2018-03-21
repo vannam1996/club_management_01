@@ -118,6 +118,12 @@
                         <% end %>
                       </li>
                       <li>
+                        <%= link_to club_manager_evaluates_path(club_id: @club.slug), remote: true,
+                          class: "set-image-club" do %>
+                          <i class="fa fa-star-o"></i> <%= t "evaluates.evaluate" %>
+                        <% end %>
+                      </li>
+                      <li>
                         <% if @club.is_active %>
                           <%= link_to edit_set_active_club_path(@club, active: Settings.club.not_active), class: "set-image-club" do %>
                             <i class="fa fa-pause-circle-o"></i>

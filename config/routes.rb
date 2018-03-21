@@ -56,6 +56,7 @@ Rails.application.routes.draw do
       resources :requests
     end
     resources :budgets
+    resources :evaluates, only: [:index, :show]
   end
 
   namespace :dashboard do

@@ -10,6 +10,9 @@ class Ability
       can :read, StatisticReport do |report|
         report.club.user_clubs.pluck(:user_id).include? user.id
       end
+      can :read, Evaluate do |evaluate|
+        evaluate.club.user_clubs.manager.pluck(:user_id).include?(user.id)
+      end
     else
       can :is_admin, Club do |club|
         club.user_clubs.manager.map(&:user_id).include?(user.id)
@@ -124,10 +127,6 @@ class Ability
       can :manage, Evaluate do |evaluate|
         evaluate.club.organization.user_organizations.are_admin.pluck(:user_id)
           .include?(user.id)
-      end
-
-      can :read, Evaluate do |evaluate|
-        evaluate.club.user_clubs.manager.pluck(:user_id).include?(user.id)
       end
     end
   end
