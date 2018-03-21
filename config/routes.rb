@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get "/auth/:provider/callback", to: "omniauth_callbacks#create"
   get "/auth/failure", to: "omniauth_callbacks#failure"
 
+  post "/hook", to: "wsm_hooks#destroy_user"
+
   devise_for :users, controllers: {registrations: "registrations",
     sessions: "authentications", passwords: "passwords",
     omniauth_callbacks: "omniauth_callbacks"}
