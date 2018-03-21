@@ -10,4 +10,5 @@ class Rule < ApplicationRecord
     reject_if: proc {|attributes| attributes[:content].blank?}
 
   scope :newest, ->{order created_at: :desc}
+  scope :order_asc, ->{order created_at: :asc}
 end

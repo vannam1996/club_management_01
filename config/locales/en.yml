@@ -1300,3 +1300,33 @@ en:
     content: "Content"
   no_spending: "Have not yet spending!"
   no_activity: "Have not yet activity!"
+  evaluates:
+    success: "Success"
+    error_process: "Errors inprocess"
+    title_link: "Evaluate"
+    evaluate_not_found: "Can't find evaluate"
+    club_not_found: "Can't find club"
+    list_evaluates:
+      list_evaluates: "List evaluate club %{name}"
+      time: "Time"
+      total_point: "Total point"
+      no_evaluate: "No evaluate"
+      created_at: "Date evaluate"
+      create_evaluate: "Create evaluate"
+    form_new:
+      new_evaluate: "Evaluate"
+      submit: "Create"
+      update: "Update"
+    rule_fields:
+      mark: "Point"
+      note: "Note"
+      rule_detail: "Details"
+      rule: "Criteria"
+      total_point: "Total point"
+    evaluate_detail:
+      detail_evaluate: "Details evaluate %{month}/%{year}."
+      content_rule_detail: "Details"
+      point: "Point"
+      note: "Note"
+      total_point: "Total point"
+      rule: "Criteria"

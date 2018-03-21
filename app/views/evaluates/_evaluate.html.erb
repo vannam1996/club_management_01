@@ -1,0 +1,30 @@
+<tr class="evaluate-<%= evaluate.id %>">
+  <td class= "text-center type-name ">
+    <%= evaluate.time %>/<%= evaluate.year %>
+  </td>
+  <td class="text-center">
+    <%= l evaluate.created_at, format: :short %>
+  </td>
+  <td class="text-center">
+    <%= evaluate.total_points %>
+  </td>
+  <td class="text-center">
+    <% if can? :read, evaluate %>
+      <%= link_to club_evaluate_path(club_id: @club.slug, id: evaluate.id),
+        title: t("info"), remote: :true, class: "btn btn-warning btn-bottom-0" do %>
+        <i class="fa fa-info"></i>
+      <% end %>
+    <% end %>
+    <% if can? :manage, evaluate %>
+      <%= link_to edit_club_evaluate_path(club_id: @club.slug, id: evaluate.id),
+        title: t("edit"), remote: :true, class: "btn btn-primary btn-bottom-0" do %>
+        <i class="fa fa-edit"></i>
+      <% end %>
+      <%= link_to club_evaluate_path(club_id: @club.slug, id: evaluate.id), method: :delete, title: t("delete"),
+        data: {confirm: t("confirm_delete_type")}, remote: true,
+        class: "btn btn-danger btn-bottom-0" do %>
+        <i class="fa fa-remove"></i>
+      <% end %>
+    <% end %>
+  </td>
+</tr>

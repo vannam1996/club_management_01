@@ -1,0 +1,38 @@
+<div class="table-responsive">
+  <table class="ui-block table-pricing table-white" >
+    <thead>
+      <tr>
+        <th class="col-width-20 text-center"><%= t ".rule" %></th>
+        <th class="text-center"><%= t ".rule_detail" %></th>
+        <th class="text-center col-width-10"><%= t ".mark" %></th>
+        <th class="text-center col-width-10"><%= t "action" %></th>
+        <th class="text-center col-width-20"><%= t ".note" %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @rules.each do |rule| %>
+        <tr>
+          <td rowspan="<%= rule.rule_details.size %>"><%= rule.name %></td>
+          <%= render partial: "main_rule_in_form", locals: {rule_detail: rule.rule_details.first} %>
+        </tr>
+        <% rule.rule_details.drop(Settings.one).each do |rule_detail| %>
+          <tr>
+            <%= render partial: "main_rule_in_form", locals: {rule_detail: rule_detail} %>
+          </tr>
+        <% end %>
+      <% end %>
+      <tr>
+        <td colspan="2" class="text-center">
+          <strong>
+            <%= t ".total_point" %>
+          </strong>
+        </td>
+        <td class="text-center">
+          <label id="js-lb-total-point" class="label-bold"><%= total_point @evaluate %></label>
+        </td>
+        <td colspan="2"></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<%= javascript_include_tag "check_box" %>

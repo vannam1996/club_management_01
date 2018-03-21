@@ -1601,3 +1601,33 @@ vi:
   join_to_see_money: "Bạn không có quyền xem chi tiêu!"
   no_spending: "Hiện tại chưa có chi tiêu nào!"
   no_activity: "Hiện tại chưa có hoạt động nào!"
+  evaluates:
+    success: "Thành công"
+    error_process: "Xảy ra lỗi trong quá trình, vui lòng thử lại!"
+    title_link: "Đánh giá"
+    evaluate_not_found: "Không tìm thấy đánh giá"
+    club_not_found: "Không tìm thấy câu lạc bộ"
+    list_evaluates:
+      list_evaluates: "Danh sách đánh giá câu lạc bộ %{name}"
+      time: "Thời gian"
+      total_point: "Tổng điểm"
+      no_evaluate: "Chưa có đánh giá nào"
+      created_at: "Ngày đánh giá"
+      create_evaluate: "Tạo đánh giá"
+    form_new:
+      new_evaluate: "Đánh giá hoạt động"
+      submit: "Tạo đánh giá"
+      update: "Cập nhật"
+    rule_fields:
+      mark: "Điểm"
+      note: "Ghi chú"
+      rule_detail: "Chi tiết"
+      rule: "Tiêu chí"
+      total_point: "Tổng điểm"
+    evaluate_detail:
+      detail_evaluate: "Chi tiết đánh giá tháng %{month} năm %{year}."
+      content_rule_detail: "Chi tiết"
+      point: "Điểm"
+      note: "Ghi chú"
+      total_point: "Tổng điểm"
+      rule: "Tiêu chí"
