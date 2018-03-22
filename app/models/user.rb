@@ -16,13 +16,12 @@ class User < ApplicationRecord
   has_many :organization_requests, dependent: :destroy
   has_many :images
   has_many :comments, dependent: :destroy
-  has_many :reason_leaves, dependent: :destroy
+  has_many :reasons, dependent: :destroy
   has_many :news, dependent: :destroy
   has_many :clubs, through: :user_clubs
   has_many :events, through: :user_events
-  has_many :notifications, as: :target, dependent: :destroy
   has_many :target_hobbies_tags, as: :target, dependent: :destroy
-  has_many :activities, as: :person_target, dependent: :destroy
+  has_many :activities, as: :owner, dependent: :destroy
   has_many :messages, dependent: :destroy
   has_many :donate, dependent: :destroy
   has_many :statistic_reports, dependent: :destroy

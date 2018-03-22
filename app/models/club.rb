@@ -25,6 +25,7 @@ class Club < ApplicationRecord
   has_many :warning_reports, dependent: :destroy
   has_many :sponsors, dependent: :destroy
   has_many :evaluates, dependent: :destroy
+  has_many :reasons, dependent: :destroy
 
   belongs_to :organization
   belongs_to :club_type
