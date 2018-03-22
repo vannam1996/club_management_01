@@ -37,7 +37,14 @@
     </div>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-primary" data-dismiss="modal"><%= t("close") %></button>
+    <% if can? :create, @club.events.build %>
+      <%= link_to new_club_event_path(
+        club_id: @club.id), class: "btn btn-sm btn-breez" do %>
+        <i class="fa fa-plus-circle"> </i><%= t "form_event.new_event_money" %>
+      <% end %>
+    <% end %>
+    <button type="button" class="btn btn-sm btn-primary mgr-left-0"
+      data-dismiss="modal"><%= t("close") %></button>
   </div>
 </div>
 <%= javascript_include_tag "budgets" %>
