@@ -1,15 +1,24 @@
 jQuery(document).ready(function($) {
-  jQuery(document).on('change', '#file-upload', function(e) {
+  $(document).on('change', '#file-upload', function(e) {
+    var input = this;
     var preview = document.getElementById("img-upload");
     var file    = document.querySelector('input[type=file]').files[0];
-    var reader  = new FileReader();
-    reader.onloadend = function () {
-      preview.src = reader.result;
+    var acceptFileTypes = /^image\/(jpg|png|jpeg|gif)$/i;
+    if(file['type'].length && !acceptFileTypes.test(file['type'])) {
+      alert(I18n.t('js.file_type'));
+      input.value = '';
+      return false;
     }
-    if (file) {
-      reader.readAsDataURL(file);
-    } else {
-      preview.src = "";
+    else if (preview != null){
+      var reader  = new FileReader();
+      reader.onloadend = function () {
+        preview.src = reader.result;
+      }
+      if (file) {
+        reader.readAsDataURL(file);
+      } else {
+        preview.src = '';
+      }
     }
   });
 
@@ -20,6 +29,7 @@ jQuery(document).ready(function($) {
   $('.select-select2').select2();
 
   $('.input-slider').slider();
+
 });
 
 var turbolink_app = function(){

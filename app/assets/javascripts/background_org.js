@@ -1,16 +1,26 @@
 $(document).on('change', 'input#background-org', function(event){
   $('#image-background-org').cropper('destroy');
-  var input = $(event.currentTarget);
-  var file = input[0].files[0];
+  var input = this;
+  var target = $(event.currentTarget);
+  var file = target[0].files[0];
   var reader = new FileReader();
-  reader.onload = function(e){
-    var img = new Image();
-    img.src = e.target.result;
-    $('#image-background-org').attr('src', img.src);
-    $('.cropper-canvas img, .cropper-view-box img').attr('src', img.src);
-    cropImage();
-  };
-  reader.readAsDataURL(file);
+  var acceptFileTypes = /^image\/(jpg|png|jpeg|gif)$/i;
+  var img_tag = target.parent().find('#preview_avatar').children('img');
+  if(file['type'].length && !acceptFileTypes.test(file['type'])) {
+      alert(I18n.t('js.file_type'));
+      input.value = '';
+      return false;
+    }
+  else{
+    reader.onload = function(e){
+      var img = new Image();
+      img.src = e.target.result;
+      $('#image-background-org').attr('src', img.src);
+      $('.cropper-canvas img, .cropper-view-box img').attr('src', img.src);
+      cropImage();
+    };
+    reader.readAsDataURL(file);
+  }
 });
 
 function cropImage(){

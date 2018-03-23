@@ -1,4 +1,4 @@
-<% notifications.each do |notification| %>
+<% notifications.take(Settings.max_notification).each do |notification| %>
   <% if notification.trackable_type.present? %>
     <li class="custom_notifications">
       <div class="notifyBody notification-<%= option_class(notification.user_read) %>"

@@ -1343,3 +1343,5 @@ en:
       note: "Note"
       total_point: "Total point"
       rule: "Criteria"
+  js:
+    file_type: "Not an accepted file type"

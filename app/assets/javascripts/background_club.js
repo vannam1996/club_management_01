@@ -1,17 +1,26 @@
 $(document).on('change', 'input#club_image', function(event){
   $('#image-background-club').cropper('destroy');
-  var input = $(event.currentTarget);
-  var file = input[0].files[0];
+  var input = this;
+  var target = $(event.currentTarget);
+  var file = target[0].files[0];
   var reader = new FileReader();
-  var img_tag = input.parent().find('#preview_avatar').children('img');
-  reader.onload = function(e){
-    var img = new Image();
-    img.src = e.target.result;
-    $('#image-background-club').attr('src', img.src);
-    $('.cropper-canvas img, .cropper-view-box img').attr('src', img.src);
-    cropImage();
-  };
-  reader.readAsDataURL(file);
+  var acceptFileTypes = /^image\/(jpg|png|jpeg|gif)$/i;
+  var img_tag = target.parent().find('#preview_avatar').children('img');
+  if(file['type'].length && !acceptFileTypes.test(file['type'])) {
+      alert(I18n.t('js.file_type'));
+      input.value = '';
+      return false;
+    }
+  else{
+    reader.onload = function(e){
+      var img = new Image();
+      img.src = e.target.result;
+      $('#image-background-club').attr('src', img.src);
+      $('.cropper-canvas img, .cropper-view-box img').attr('src', img.src);
+      cropImage();
+    };
+    reader.readAsDataURL(file);
+  }
 });
 
 $(document).on('change', '.radio-image', function(){
@@ -45,7 +54,7 @@ function cropImage(){
     background: false,
     zoomable: false,
     getData: true,
-    aspectRatio: 3.2,
+    aspectRatio: 2.9,
     built: function () {
       var croppedCanvas = $(this).cropper('getCroppedCanvas', {
         width: 100,

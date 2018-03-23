@@ -27,9 +27,6 @@ class BackgroundClubUploader < CarrierWave::Uploader::Base
   version :thumb do
     process :crop_image
   end
-  version :in_list_club do
-    process :crop_image_for_list
-  end
 
   def extension_whitelist
     %w(jpg jpeg gif png)
@@ -42,18 +39,6 @@ class BackgroundClubUploader < CarrierWave::Uploader::Base
         y = model.image_crop_y.to_i
         w = model.image_crop_w.to_i
         h = model.image_crop_h.to_i
-        img.crop "#{w}x#{h}+#{x}+#{y}"
-      end
-    end
-  end
-
-  def crop_image_for_list
-    if model.image_crop_x.present?
-      manipulate! do |img|
-        x = model.image_crop_x.to_i
-        y = model.image_crop_y.to_i
-        w = model.image_crop_w.to_i
-        h = model.image_crop_h.to_i + Settings.size_image_club
         img.crop "#{w}x#{h}+#{x}+#{y}"
       end
     end

@@ -85,7 +85,7 @@
       <%= t "form_event.image" %>
     </label>
     <div class="col-md-12">
-      <%= f.file_field :image %>
+      <%= f.file_field :image, id: "file-upload", accept: Settings.image_upload %>
     </div>
   </div>
   <div class="form-group">

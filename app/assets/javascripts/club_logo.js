@@ -1,17 +1,27 @@
 $(document).on('change', 'input#club_logo', function(event){
   $('#logo-club-crop').cropper('destroy');
-  var input = $(event.currentTarget);
-  var file = input[0].files[0];
+  var input = this;
+  var target = $(event.currentTarget);
+  var file = target[0].files[0];
   var reader = new FileReader();
-  var img_tag = input.parent().find('#preview_avatar').children('img');
-  reader.onload = function(e){
-    var img = new Image();
-    img.src = e.target.result;
-    $('#logo-club-crop').attr('src', img.src);
-    $('.cropper-canvas img, .cropper-view-box img').attr('src', img.src);
-    cropImage();
-  };
-  reader.readAsDataURL(file);
+  var img_tag = target.parent().find('#preview_avatar').children('img');
+  var acceptFileTypes = /^image\/(jpg|png|jpeg|gif)$/i;
+  var img_tag = target.parent().find('#preview_avatar').children('img');
+  if(file['type'].length && !acceptFileTypes.test(file['type'])) {
+      alert(I18n.t('js.file_type'));
+      input.value = '';
+      return false;
+    }
+  else{
+    reader.onload = function(e){
+      var img = new Image();
+      img.src = e.target.result;
+      $('#logo-club-crop').attr('src', img.src);
+      $('.cropper-canvas img, .cropper-view-box img').attr('src', img.src);
+      cropImage();
+    };
+    reader.readAsDataURL(file);
+  }
 });
 
 function cropImage(){

@@ -26,7 +26,7 @@
         <section>
           <div class="top-header-avatar top-header-author col-md-12">
             <div class="avatar-user author-thumb">
-              <%= image_tag @user.avatar, class: "img-cover img_small" %>
+              <%= image_tag @user.avatar, class: "img-cover img_small", id: "img-upload" %>
             </div>
           </div>
         </section>
@@ -92,7 +92,7 @@
                       <div class="form-group">
                         <label for="vatar"><%= t "avatar" %></label>
                         <%= f.file_field :avatar, accept: Settings.user.avatar_upload,
-                          class: "form-control", id: "file-upload" %>
+                          class: "form-control js-file-image", id: "file-upload" %>
                       </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
