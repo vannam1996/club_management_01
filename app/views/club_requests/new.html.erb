@@ -58,13 +58,13 @@
             </div>
             <div class="col-md-12 logo-club">
               <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-8">
                   <label for="contact-email"><%= t "logo_club" %></label>
-                  <%= f.file_field :logo, id: "file-upload" %>
+                  <%= f.file_field :logo, id: "file-upload", accept: Settings.image_upload %>
                 </div>
                 <div class="spacing"></div>
-                <div class="col-md-8">
-                  <%= image_tag "flogo.png", class: "img-height-100", id: "img-upload" %>
+                <div class="col-md-4">
+                  <%= image_tag "flogo.png", class: "img-wh-150 centered-and-cropped", id: "img-upload" %>
                 </div>
               </div>
             </div>

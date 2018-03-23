@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 tab_detail_club">
-      <div class="ui-block" id="event-noti">
+      <div class="ui-block js-tab-club" id="event-noti">
         <div class="ui-block-title ui-block-title-small">
           <div class="tab-in-activity">
             <div class="row">
@@ -38,7 +38,7 @@
           </div>
         </div>
       </div>
-      <div class="ui-block" id="image">
+      <div class="ui-block js-tab-club" id="image">
         <div class="ui-block-title ui-block-title-small">
           <h6 class="title col-md-1"><%= t "albums" %></h6>
           <% if @club.is_admin? current_user %>
@@ -51,16 +51,16 @@
           <%= render partial: "albums/album" %>
         </div>
       </div>
-      <div class="ui-block" id="content_club">
+      <div class="ui-block js-tab-club" id="content_club">
         <%= render "club_content_goad" %>
       </div>
-      <div class="ui-block" id="plan">
+      <div class="ui-block js-tab-club" id="plan">
         <%= render "club_plan" %>
       </div>
-      <div class="ui-block" id="rules_club">
+      <div class="ui-block js-tab-club" id="rules_club">
         <%= render "club_rules" %>
       </div>
-      <div class="ui-block" id="event">
+      <div class="ui-block js-tab-club" id="event">
         <div class="ui-block-title ui-block-title-small">
           <h6 class="title col-md-1"><%= t "events_money" %></h6>
           <% if @club.is_admin? current_user %>
@@ -75,10 +75,11 @@
             tab_activity: false} %>
         </div>
       </div>
-      <div class="ui-block" id="statistic_report"></div>
+      <div class="ui-block js-tab-club" id="statistic_report"></div>
       <div id="history-report">
       </div>
-      <div class="ui-block" id="club_sponsor"></div>
+      <div class="ui-block js-tab-club" id="club_sponsor"></div>
+      <div class="ui-block js-tab-club" id="evaluates-list"></div>
     </div>
   </div>
 </div>

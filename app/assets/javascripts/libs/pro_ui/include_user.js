@@ -23,19 +23,19 @@ jQuery(document).ready(function($) {
 
   $('input.rating[type=number]').rating();
 
-  $(document).on('change', '#file-upload', function(e) {
-    var preview = document.getElementById("img-upload");
-    var file    = document.querySelector('input[type=file]').files[0];
-    var reader  = new FileReader();
-    reader.onloadend = function () {
-      preview.src = reader.result;
-    }
-    if (file) {
-      reader.readAsDataURL(file);
-    } else {
-      preview.src = "";
-    }
-  });
+  // $(document).on('change', '#file-upload', function(e) {
+  //   var preview = document.getElementById("img-upload");
+  //   var file    = document.querySelector('input[type=file]').files[0];
+  //   var reader  = new FileReader();
+  //   reader.onloadend = function () {
+  //     preview.src = reader.result;
+  //   }
+  //   if (file) {
+  //     reader.readAsDataURL(file);
+  //   } else {
+  //     preview.src = "";
+  //   }
+  // });
 
   $('.load-more-message').click(function(){
     if($(this).scrollTop() == 0){

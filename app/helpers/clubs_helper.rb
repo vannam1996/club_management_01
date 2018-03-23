@@ -46,10 +46,10 @@ module ClubsHelper
   end
 
   def set_image_in_list_club club
-    if club && club.image.in_list_club.file && club.image.in_list_club.file.exists?
-      image_tag club.image_url(:in_list_club), class: "centered-and-cropped"
+    if club && club.image.thumb.file && club.image.thumb.file.exists?
+      image_tag club.image_url(:thumb), class: "centered-and-cropped list-club-image"
     elsif club
-      image_tag club.image_url, class: "centered-and-cropped"
+      image_tag club.image_url, class: "centered-and-cropped list-club-image"
     end
   end
 

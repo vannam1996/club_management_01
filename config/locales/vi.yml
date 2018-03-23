@@ -1644,3 +1644,5 @@ vi:
       note: "Ghi chú"
       total_point: "Tổng điểm"
       rule: "Tiêu chí"
+  js:
+    file_type: "Loại file không được hỗ trợ"

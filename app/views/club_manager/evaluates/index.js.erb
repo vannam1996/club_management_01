@@ -1,5 +1,8 @@
 <% if @club %>
-  $('.tab_detail_club').html('<%= j render partial: "list_evaluates", locals: {evaluates: @evaluates} %>');
+  $('.tab_detail_club .js-tab-club').hide();
+  $('.tab_list_detail_club li a').removeClass('active');
+  $('#evaluates-list').html('<%= j render partial: "list_evaluates", locals: {evaluates: @evaluates} %>');
+  $('#evaluates-list').show();
 <% else %>
   $('.container').append('<%= j render partial: "shared/flash_warning" %>');
 <% end %>

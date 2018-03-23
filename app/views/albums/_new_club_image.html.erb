@@ -13,7 +13,8 @@
               <%= f.fields_for :images do |image| %>
                 <div class="field">
                   <%= image.file_field :url, multiple: true, name: "images[urls][]",
-                    class:"upload-image" %>
+                    class: "upload-image", id: "file-upload",
+                    accept: Settings.image_upload %>
                 </div>
               <% end %>
             </div>

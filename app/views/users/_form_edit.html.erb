@@ -51,7 +51,7 @@
       <span class="text-danger">*</span></label>
       <div class="col-md-6">
         <div class="input-group">
-          <%= f.file_field :avatar, class: "form-control", id: "file-upload" %>
+          <%= f.file_field :avatar, class: "form-control", id: "file-upload", accept: Settings.image_upload %>
           <span class="input-group-addon"><i class="fa fa-picture-o"></i></span>
         </div>
       </div>
