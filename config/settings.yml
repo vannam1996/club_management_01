@@ -304,3 +304,4 @@ default_number_field: 0
 wsm_action_deleted: "deleted"
 max_notification: 30
 image_upload: "image/jpeg, image/gif, image/png, image/jpg"
+wsm_action_updated: "updated"

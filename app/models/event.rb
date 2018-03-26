@@ -28,6 +28,8 @@ class Event < ApplicationRecord
   validates :expense, length: {maximum: Settings.max_exspene}
   validates :location, length: {maximum: Settings.max_location}
   validates :date_end, presence: true
+  validates :date_start, presence: true
+  validate :end_date_is_after_start_date
 
   scope :top_like, ->{order num_like: :desc}
   scope :of_month_payment, ->month_payment{where month_of_payment: month_payment}
@@ -152,5 +154,14 @@ class Event < ApplicationRecord
 
   def in_type_money_event?
     self.money? || self.activity_money? || self.subsidy? || self.donate?
+  end
+
+  private
+
+  def end_date_is_after_start_date
+    return if date_end.blank? || date_start.blank?
+    if date_end < date_start
+      errors.add(:date_end, I18n.t("date_end_errors"))
+    end
   end
 end

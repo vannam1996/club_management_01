@@ -3,7 +3,7 @@ class WsmHooksController < ApplicationController
   before_action :verify_token!
   before_action :verify_domain!
 
-  def destroy_user
+  def update
     user_destroy_service = UserDestroyService.new request
     user_destroy_service.synchronized_wsm_user
 

@@ -7,6 +7,7 @@
         <th class="table-paymoney"><%= t "time_report" %></th>
         <th><%= t "name" %></th>
         <th class="table-content"><%= t "content" %></th>
+        <th class="table-content"><%= t ".member" %></th>
       </tr>
     </thead>
     <tbody>
@@ -18,6 +19,15 @@
           </td>
           <td>
             <%= raw(budget.detail) %>
+          </td>
+          <td>
+            <% if budget.user_events.is_a? Array %>
+              <ul class="<%= "scroll-user-event" if is_size_more_eight?(budget) %>">
+                <% budget.user_events.each do |name| %>
+                  <li><%= "#{name}" %></li>
+                <% end %>
+              </ul>
+            <% end %>
           </td>
         </tr>
       <% end %>
