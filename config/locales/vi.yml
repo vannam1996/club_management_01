@@ -483,6 +483,8 @@ vi:
       detail_member:
         name_member: "Tên"
         events_join: "Sự kiện tham gia"
+      list_activity_report:
+        member: "Người tham gia"
     money: "Tiền quỹ: "
     cant_fount: "Không thể tìm thấy câu lạc bộ!"
     user_club:
@@ -1646,3 +1648,4 @@ vi:
       rule: "Tiêu chí"
   js:
     file_type: "Loại file không được hỗ trợ"
+  date_end_errors: "không thể trước ngày bắt đầu"

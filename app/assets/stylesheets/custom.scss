@@ -6,6 +6,7 @@
       padding: 0;
       .notifyBody{
         padding: 15px;
+        width: 100%;
         .author-thumb{
           float: left;
           margin-right: 10px;
@@ -1258,4 +1259,7 @@ a.pull-right.add_fields {
 }
 .list-club-image {
   height: 120px;
+}
+.error-messages {
+  color: red;
 }

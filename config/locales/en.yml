@@ -460,6 +460,8 @@ en:
       detail_member:
         name_member: "Name"
         events_join: "Event"
+      list_activity_report:
+        member: "Member join"
     money: "Money"
     cant_fount: "Can found club!"
     user_club:
@@ -1345,3 +1347,4 @@ en:
       rule: "Criteria"
   js:
     file_type: "Not an accepted file type"
+  date_end_errors: "cannot be before the start date"

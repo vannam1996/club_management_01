@@ -47,4 +47,8 @@ module StatisticReportsHelper
       event.expense
     end
   end
+
+  def is_can_edit_report? report
+    current_user.id == report.user_id && (report.pending? || report.rejected?)
+  end
 end

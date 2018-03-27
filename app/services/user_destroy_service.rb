@@ -6,14 +6,22 @@ class UserDestroyService
 
   def synchronized_wsm_user
     if is_deleted_action?
-      user = User.find_by email: @data["user_group"]["user"]["email"]
+      user = User.find_by email: @data["user"]["email"]
       user.destroy if user
+    elsif is_updated_action?
+      user = User.find_by email: @data["user"]["email"]
+      if user && @data["user"]["name"]
+        user.update_attributes full_name: @data["user"]["name"]
+      end
     end
   end
 
   private
   def is_deleted_action?
-    @data["action"] == Settings.wsm_action_deleted && @data["user_group"] &&
-      @data["user_group"]["user"]
+    @data["action"] == Settings.wsm_action_deleted && @data["user"].present?
+  end
+
+  def is_updated_action?
+    @data["action"] == Settings.wsm_action_updated && @data["user"].present?
   end
 end
