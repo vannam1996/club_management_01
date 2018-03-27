@@ -35,11 +35,11 @@ class ClubManager::UserClubsController < BaseClubManagerController
 
   def destroy
     if @user_club.destroy
-      flash[:success] = t("deleted_successfull")
+      flash.now[:success] = t("deleted_successfull")
     else
-      flash[:danger] = t("error_process")
+      flash.now[:danger] = t("error_process")
     end
-    redirect_back fallback_location: club_manager_path(@club)
+    redirect_back(fallback_location: club_manager_path(@club)) unless request.xhr?
   end
 
   private
@@ -47,7 +47,7 @@ class ClubManager::UserClubsController < BaseClubManagerController
     @user_club = UserClub.find_by id: params[:id]
     unless @user_club
       flash[:danger] = t "cant_found_request"
-      redirect_to club_manager_path
+      redirect_to(club_manager_path) unless request.xhr?
     end
   end
 end

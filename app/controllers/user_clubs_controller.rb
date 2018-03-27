@@ -17,7 +17,7 @@ class UserClubsController < ApplicationController
   end
 
   def show
-    @user_clubs = @club.user_clubs.joined
+    @user_clubs = @club.user_clubs.joined.includes(:user)
     respond_to do |format|
       format.js
     end
