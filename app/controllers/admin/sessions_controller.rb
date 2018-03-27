@@ -9,6 +9,10 @@ class Admin::SessionsController < Devise::SessionsController
     super
   end
 
+  def destroy
+    super
+  end
+
   private
   def after_sign_in_path_for _admin
     admin_path

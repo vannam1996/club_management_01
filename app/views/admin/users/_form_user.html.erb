@@ -1,0 +1,88 @@
+<div class="modal-dialog modal-lg">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h4 class="modal-title"><%= title_form_user params[:action] %></h4>
+    </div>
+    <div class="modal-body">
+      <%= form_for [:admin, @user], html: {class: "form-horizontal form-bordered"},
+        remote: true do |f| %>
+        <div class="form-group">
+          <%= f.label :full_name, class: "col-md-3 control-label" do %>
+            <%= t "activerecord.attributes.user.full_name" %>
+            <span class="text-danger">*</span>
+          <% end %>
+          <div class="col-md-6">
+            <div class="input-group">
+              <%= f.text_field :full_name, class: "form-control",
+                placeholder: t("admin_manage.input_name") %>
+              <span class="input-group-addon"><i class="fa fa-user"></i></span>
+            </div>
+            <%= f.error_span :full_name %>
+          </div>
+        </div>
+        <div class="form-group">
+          <%= f.label :email, class: "col-md-3 control-label" do %>
+            <%= t "activerecord.attributes.user.email" %>
+            <span class="text-danger">*</span>
+          <% end %>
+          <div class="col-md-6">
+            <div class="input-group">
+              <%= f.email_field :email, class: "form-control",
+                placeholder: t("admin_manage.input_email") %>
+              <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+            </div>
+            <%= f.error_span :email %>
+          </div>
+        </div>
+        <div class="form-group">
+          <%= f.label :phone, class: "col-md-3 control-label" %>
+          <div class="col-md-6">
+            <div class="input-group">
+              <%= f.text_field :phone, class: "form-control",
+                placeholder: t("admin_manage.input_phone") %>
+              <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <%= f.label :avatar, class: "col-md-3 control-label" %>
+          <div class="col-md-6">
+          <%= f.file_field :avatar, accept: Settings.image_upload %>
+          </div>
+        </div>
+        <div class="form-group">
+          <%= f.label :password, class: "col-md-3 control-label" %>
+          <div class="col-md-6">
+            <div class="input-group">
+              <%= f.password_field :password, class: "form-control",
+                placeholder: t("admin_manage.input_password") %>
+              <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+            </div>
+            <%= f.error_span :password %>
+          </div>
+        </div>
+        <div class="form-group">
+          <%= f.label :password_confirmation, class: "col-md-3 control-label" %>
+          <div class="col-md-6">
+            <div class="input-group">
+              <%= f.password_field :password_confirmation, class: "form-control",
+                placeholder: t("admin_manage.input_confirm") %>
+              <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+            </div>
+            <%= f.error_span :password_confirmation %>
+          </div>
+        </div>
+        <div class="form-group form-actions">
+          <div class="col-md-9 col-md-offset-5">
+            <%= f.submit title_button_form(params[:action]), class: "btn btn-md btn-primary" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">
+        <%= t "admin_manage.btn_close_modal" %></button>
+    </div>
+  </div>
+</div>

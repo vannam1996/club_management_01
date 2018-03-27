@@ -624,8 +624,11 @@ vi:
         location: "Địa chỉ"
         description: "Mô tả"
       user:
+        avatar: "Ảnh đại diện"
+        full_name: "Họ tên"
         tag_list: "Danh sách Tags: "
-        email: "email"
+        email: "Email"
+        phone: "Số điện thoại"
         password: "Mật khẩu"
         password_confirmation: "Xác nhận mật khẩu"
         reset_password_token: "Mã thay đổi mật khẩu"
@@ -802,6 +805,8 @@ vi:
               blank: " không được bỏ trống"
         user:
           attributes:
+            full_name:
+              blank: "Không được bỏ trống"
             password:
               blank: " không được bỏ trống"
               too_short: *too_short
@@ -1649,3 +1654,25 @@ vi:
   js:
     file_type: "Loại file không được hỗ trợ"
   date_end_errors: "không thể trước ngày bắt đầu"
+  admin_manage:
+    date_join: "Ngày tham gia"
+    organization: "Tổ chức tham gia"
+    org_filter: "Lọc theo tổ chức"
+    no_user: "Không tìm thấy người dùng"
+    user_name: "Họ tên"
+    email: "Email"
+    update_user: "Cập nhật"
+    input_name: "Nhập họ tên"
+    input_phone: "Nhập số điện thoại"
+    input_email: "Nhập email"
+    input_password: "Nhập mật khẩu"
+    input_confirm: "Xác nhận mật khẩu"
+    update_success: "Cập nhật thành công"
+    btn_close_modal: "Đóng"
+    new_user: " Tạo người dùng"
+    create_success: "Thành công"
+    errors: "Có lỗi xảy ra, vui lòng thử lại."
+    destroy_success: "Đã xóa người dùng"
+    confirm_del: "Bạn muốn xóa người dùng này"
+    club: "Câu lạc bộ tham gia"
+    search: "Tên hoặc email"

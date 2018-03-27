@@ -1,46 +1,47 @@
-<div class="center"><%= image_tag @user.avatar,
-  class: "circle-profile" %></div><hr>
 <div class="row">
-  <div class="col-md-3"></div>
-  <div class="col-md-2">
-    <strong class="pull-right"><%= t "name" %></strong>
+  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+    <div class="center"><%= image_tag @user.avatar,
+      class: "avatar-user" %>
+    </div>
   </div>
-  <div class="col-md-6 center"><%= @user.full_name %></div>
-  <div class="col-md-1"></div>
-</div><hr>
+  <div class="user-detail col-lg-6 col-md-6 col-sm-12 col-xs-12">
+    <div class="inline-items">
+      <strong><%= t "club_request.name" %>:</strong>
+      <span><%= @user.full_name %></span>
+    </div>
+    <div class="inline-items">
+      <strong><%= t "email" %>:</strong>
+      <span>
+        <%= @user.email %>
+      </span>
+    </div>
+    <div class="inline-items">
+      <strong><%= t "phone" %>:</strong>
+      <span>
+        <%= @user.phone %>
+      </span>
+    </div>
+    <div class="inline-items">
+      <strong><%= t "admin_manage.date_join" %>:</strong>
+      <span>
+        <%= l @user.created_at, format: :short %>
+      </span>
+    </div>
+  </div>
+</div>
 <div class="row">
-  <div class="col-md-3"></div>
-  <div class="col-md-2">
-    <strong class="pull-right"><%= t "email" %></strong>
+  <div class="col-md-12 user-detail">
+    <div class="inline-items">
+      <strong><%= t "admin_manage.organization" %>:</strong>
+      <span>
+        <%= render "organizations" %>
+      </span>
+    </div>
+    <div class="inline-items">
+      <strong><%= t "admin_manage.club" %>:</strong>
+      <span>
+        <%= render "clubs" %>
+      </span>
+    </div>
   </div>
-  <div class="col-md-6 center"><%= @user.email %></div>
-  <div class="col-md-1"></div>
-</div><hr>
-<div class="row">
-  <div class="col-md-3"></div>
-  <div class="col-md-2">
-    <strong class="pull-right"><%= t "phone" %></strong>
-  </div>
-  <div class="col-md-6 center"><%= @user.phone %></div>
-  <div class="col-md-1"></div>
-</div><hr>
-<div class="row">
-  <div class="col-md-3"></div>
-  <div class="col-md-2">
-    <strong class="pull-right"><%= t "organizations.organization" %></strong>
-  </div>
-  <div class="col-md-6 center">
-    <%= render "organization" %>
-  </div>
-  <div class="col-md-1"></div>
-</div><hr>
-<div class="row">
-  <div class="col-md-3"></div>
-  <div class="col-md-2">
-    <strong class="pull-right"><%= t "admin_of" %></strong>
-  </div>
-  <div class="col-md-6 center">
-    <%= render "admin_organization"  %>
-  </div>
-  <div class="col-md-1"></div>
 </div>

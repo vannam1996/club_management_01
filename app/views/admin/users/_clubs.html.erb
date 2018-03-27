@@ -1,0 +1,11 @@
+<% if user_clubs_of_user(@user).blank? %>
+  <%= t "none" %>
+<% else %>
+  <% user_clubs_of_user(@user).each do |user_club| %>
+    <%= user_club.name %>
+    <% if user_club.is_manager %>
+      <span class="text-danger">*</span>
+    <% end %>
+    &nbsp
+  <% end %>
+<% end %>

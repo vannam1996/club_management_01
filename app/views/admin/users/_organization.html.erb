@@ -1,7 +1,0 @@
-<% if @user.organizations.blank? %>
-  <%= t "none" %>
-<% else %>
-  <% @user.organizations.each do |organization| %>
-    <%= organization.name %><br>
-  <% end %>
-<% end %>

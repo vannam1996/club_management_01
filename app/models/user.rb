@@ -8,7 +8,6 @@ class User < ApplicationRecord
   has_many :ratings, as: :rateable
   has_many :user_organizations, dependent: :destroy
   has_many :organizations, through: :user_organizations
-  has_many :user_organizations, dependent: :destroy
   has_many :user_clubs, dependent: :destroy
   has_many :user_events, dependent: :destroy
   has_many :events, dependent: :destroy

@@ -3,27 +3,42 @@
     <li><%= t "admin" %></li>
     <li><%= link_to t("list_users"), admin_users_path %></a></li>
   </ul>
-  <div class="block full">
-    <div class="block-title">
-      <h2><strong><%= t "users" %></strong></h2>
+  <div class="block full mtg-bt-0">
+    <div class="row block-title">
+      <div class="col-md-6">
+        <h2><strong><%= t "users" %></strong></h2>
+        <%= link_to new_admin_user_path, remote: true,
+          class: "btn btn-primary" do %>
+          <i class="fa fa-plus"></i><%= t "admin_manage.new_user" %>
+        <% end %>
+      </div>
+      <div class="col-md-6">
+        <%= search_form_for @q, url: admin_users_path, remote: true do |f| %>
+        <div class="col-md-6">
+          <div class="input-group pad-5 full-width">
+            <%= f.select(:organizations_id_eq, @organizations.collect {|org| [org.name, org.id ]}
+              .unshift([t("admin_manage.org_filter"), nil]),
+              {}, class: "form-control select_custom")  %>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="input-group pad-5">
+            <%= f.text_field :full_name_or_email_cont, placeholder: t("admin_manage.search"),
+              class: "form-control" %>
+            <span class="input-group-btn">
+            <%= f.button :submit, class: "btn btn-primary" do %>
+              <i class="fa fa-search"></i>
+            <% end %>
+            </span>
+          </div>
+        </div>
+        <% end %>
+      </div>
     </div>
-    <div class="table-responsive">
-      <table id="example-datatable"
-        class="table table-vcenter table-condensed table-bordered">
-        <thead>
-          <tr>
-            <th class="text-center"><%= t "id" %></th>
-            <th class="text-center"><i class="gi gi-user"></i></th>
-            <th><%= t "user_name" %></th>
-            <th><%= t "email" %></th>
-            <th><%= t "organizations.organization" %></th>
-            <th class="text-center"><%= t "view_profile" %></th>
-          </tr>
-        </thead>
-        <tbody>
-          <%= render "list" %>
-        </tbody>
-      </table>
+    <div id="table-list-user">
+      <%= render "table_list_user" %>
     </div>
   </div>
+</div>
+<div id="modal-details-user" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
 </div>

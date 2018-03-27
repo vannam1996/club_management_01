@@ -1,18 +1,32 @@
 <div id="sidebar">
   <div id="sidebar-scroll">
     <div class="sidebar-content">
+      <%= link_to admin_path, class: "sidebar-brand" do %>
+        <span class="sidebar-nav-mini-hide">
+          <strong class="padding_left_after_login">
+            <%= t "dashboard" %>
+          </strong>
+        </span>
+      <% end %>
       <div class="sidebar-section sidebar-user clearfix sidebar-nav-mini-hide">
-        <div class="sidebar-user-name"></div>
+        <div class="sidebar-user-avatar">
+          <%= link_to admin_users_path(current_admin) do %>
+            <%= image_tag current_admin.avatar %>
+          <% end %>
+        </div>
+        <div class="sidebar-user-name"><%= current_admin.full_name %></div>
         <div class="sidebar-user-links">
-          <%= link_to t("do_nothing"), title: t("profile") do %>
-            <i class="gi gi-user"></i></a>
+          <%= link_to admin_user_path(current_admin), title: t("profile") do %>
+            <i class="fa fa-user"></i></a>
           <% end %>
-          <%= link_to "#modal-user-settings", title: t("setting") do %>
-            <i class="gi gi-cogwheel"></i></a>
+          <%= link_to "#", title: t("setting") do %>
+            <i class="fa fa-envelope"></i></a>
           <% end %>
-          <%= link_to destroy_admin_session_path, method: :delete,
-            title: t("logout") do %>
-            <i class="gi gi-exit"></i></a>
+          <%= link_to "#", title: t("setting") do %>
+            <i class="fa fa-cog"></i></a>
+          <% end %>
+          <%= link_to destroy_admin_session_path(current_admin), method: :delete, title: t("logout") do %>
+            <i class="fa fa-sign-out"></i></a>
           <% end %>
         </div>
       </div>

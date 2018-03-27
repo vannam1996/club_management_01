@@ -3,6 +3,8 @@ class Ability
 
   def initialize user, controller_namespace
     case controller_namespace
+    when Settings.namespace_admin
+      can :manage, User
     when Settings.namespace_club_manage
       can :manage, StatisticReport do |report|
         report.club.user_clubs.manager.pluck(:user_id).include? user.id

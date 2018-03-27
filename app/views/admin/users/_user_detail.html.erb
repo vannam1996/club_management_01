@@ -1,0 +1,15 @@
+<div class="modal-dialog modal-lg">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h4 class="modal-title"><%= @user.full_name %></h4>
+    </div>
+    <div class="modal-body">
+      <%= render "user_profile" %>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">
+        <%= t "admin_manage.btn_close_modal" %></button></button>
+    </div>
+  </div>
+</div>
