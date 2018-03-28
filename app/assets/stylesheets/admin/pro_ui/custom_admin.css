@@ -68,3 +68,20 @@
   -moz-border-radius: 50px;
   -webkit-border-radius: 50px;
 }
+.centered-and-cropped {
+  object-fit: cover;
+}
+.bgr-org {
+  max-width: 100%;
+}
+.table-scroll-sm {
+  max-height: 200px;
+}
+.table-align-left tr td {
+  text-align: left;
+}
+.list-scroll {
+  width: 100%;
+  max-height: 400px;
+  overflow-y: scroll;
+}

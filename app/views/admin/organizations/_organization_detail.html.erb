@@ -1,0 +1,57 @@
+<div class="modal-dialog modal-lg">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h4 class="modal-title"><%= @organization.name %></h4>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          <div class="center"><%= image_tag @organization.logo,
+            class: "bgr-org centered-and-cropped" %>
+          </div>
+        </div>
+        <div class="user-detail col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          <div class="inline-items">
+            <strong><%= t "club_request.org.name" %>:</strong>
+            <span><%= @organization.name %></span>
+          </div>
+          <div class="inline-items">
+            <strong><%= t "email" %>:</strong>
+            <span>
+              <%= @organization.email %>
+            </span>
+          </div>
+          <div class="inline-items">
+            <strong><%= t "phone" %>:</strong>
+            <span>
+              <%= @organization.phone %>
+            </span>
+          </div>
+          <div class="inline-items">
+            <strong><%= t "admin_manage.org.description" %>:</strong>
+            <span>
+              <%= @organization.description %>
+            </span>
+          </div>
+          <div class="inline-items">
+            <strong><%= t "admin_manage.org.date_create" %>:</strong>
+            <span>
+              <%= l @organization.created_at, format: :short %>
+            </span>
+          </div>
+          <div class="inline-items">
+            <strong><%= t "admin_manage.org.size_member" %>:</strong>
+            <span>
+              <%= @organization.user_organizations.joined.size %>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">
+        <%= t "admin_manage.btn_close_modal" %></button></button>
+    </div>
+  </div>
+</div>

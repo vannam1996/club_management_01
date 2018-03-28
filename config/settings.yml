@@ -308,3 +308,5 @@ wsm_action_updated: "updated"
 per_page_user: 15
 namespace_admin: "Admin"
 class_admin: "Admin"
+action_new: "new"
+action_create: "create"

@@ -1,18 +1,14 @@
-class Admin::OrganizationsController < ApplicationController
-  layout "admin_layout"
-  before_action :admin_signed_in
+class Admin::OrganizationsController < Admin::AdminController
+  before_action :load_organization, except: [:new, :index, :create]
+  before_action :all_user, only: [:new, :create]
 
   def index
-    @organizations = Organization.newest
+    @q = Organization.search params[:q]
+    @organizations = @q.result
+      .newest.page(params[:page]).per Settings.per_page_user
   end
 
-  def show
-    @organization = Organization.friendly.find params[:id]
-    unless @organization
-      flash[:danger] = t "not_found_oraganization"
-      render :index
-    end
-  end
+  def show; end
 
   def new
     @organization = Organization.new
@@ -20,12 +16,31 @@ class Admin::OrganizationsController < ApplicationController
 
   def create
     @organization = Organization.new organization_params
-    if @organization.save
-      flash[:success] = t "create_organization_success"
-      redirect_to admin_organizations_path
-    else
-      flash_error @organization
-      redirect_to :back
+    ActiveRecord::Base.transaction do
+      if @organization.save!
+        add_manager_organization
+        flash.now[:success] = t "admin_manage.org.create_success"
+      end
+    end
+  rescue
+    flash.now[:danger] = t "admin_manage.org.errors"
+  end
+
+  def edit; end
+
+  def update
+    if @organization && @organization.update_attributes(organization_params)
+      flash.now[:success] = t "admin_manage.org.update_success"
+    elsif @organization
+      flash.now[:danger] = t "admin_manage.errors"
+    end
+  end
+
+  def destroy
+    if @organization && @organization.destroy
+      flash.now[:success] = t "admin_manage.org.destroy_success"
+    elsif @organization
+      flash.now[:danger] = t "admin_manage.org.errors"
     end
   end
 
@@ -33,5 +48,26 @@ class Admin::OrganizationsController < ApplicationController
   def organization_params
     params.require(:organization).permit :name, :email, :phone, :logo,
       :location, :description
+  end
+
+  def load_organization
+    @organization = Organization.find_by slug: params[:id]
+    return if @organization
+    flash.now[:danger] = t "admin_manage.org.not_find_org"
+  end
+
+  def add_manager_organization
+    if params[:user_id].is_a? Array
+      user_organizations = []
+      params[:user_id].each do |id|
+        user_organizations << @organization.user_organizations.new(user_id: id,
+          status: :joined, is_admin: true)
+      end
+    end
+    UserOrganization.import user_organizations if user_organizations.present?
+  end
+
+  def all_user
+    @users = User.all
   end
 end

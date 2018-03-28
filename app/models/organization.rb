@@ -10,7 +10,6 @@ class Organization < ApplicationRecord
   has_many :users, through: :user_organizations
   has_many :user_organizations, dependent: :destroy
   has_many :club_requests, dependent: :destroy
-  has_many :notifications, as: :target, dependent: :destroy
   has_many :activities, as: :container, dependent: :destroy
   has_many :activities, as: :trackable, dependent: :destroy
   has_many :club_types, dependent: :destroy

@@ -1,0 +1,24 @@
+<div class="table-responsive">
+  <% if @organizations.present? %>
+    <table id="example-datatable"
+      class="table table-vcenter table-condensed table-bordered">
+      <thead>
+        <tr>
+          <th class="text-center"><%= t "id" %></th>
+          <th><%= t "admin_manage.org.name" %></th>
+          <th><%= t "admin_manage.org.email" %></th>
+          <th><%= t "admin_manage.org.address" %></th>
+          <th><%= t "admin_manage.org.phone" %></th>
+          <th><%= t "admin_manage.org.description" %></th>
+          <th class="text-center"><%= t "action" %></th>
+        </tr>
+      </thead>
+      <tbody id="list-org-body-table">
+        <%= render partial: "organization", collection: @organizations, as: :organization %>
+      </tbody>
+    </table>
+    <%= paginate @organizations, remote: true  %>
+  <% else %>
+    <%= t "admin_manage.org.no_org" %>
+  <% end %>
+</div>

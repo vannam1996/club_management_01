@@ -1,45 +1,39 @@
 <div id="page-content">
   <ul class="breadcrumb breadcrumb-top">
     <li><%= t "admin" %></li>
-    <li><%= link_to t("list_organizations"), admin_organizations_path %></a></li>
+    <li><%= link_to t("admin_manage.org.organization"), admin_organizations_path %></a></li>
   </ul>
-  <div class="block full">
-    <div class="block-title">
-.      <h2><strong><%= t "organizations.organization" %></strong></h2>
+  <div class="block full mtg-bt-0">
+    <div class="row block-title">
+      <div class="col-md-6">
+        <h2><strong><%= t "admin_manage.org.organization" %></strong></h2>
+        <%= link_to new_admin_organization_path, remote: true,
+          class: "btn btn-primary" do %>
+          <i class="fa fa-plus"></i><%= t "admin_manage.org.new_org" %>
+        <% end %>
+      </div>
+      <div class="col-md-6">
+        <%= search_form_for @q, url: admin_organizations_path, remote: true do |f| %>
+        <div class="col-md-6">
+        </div>
+        <div class="col-md-6">
+          <div class="input-group pad-5">
+            <%= f.text_field :name_or_email_cont, placeholder: t("admin_manage.search"),
+              class: "form-control" %>
+            <span class="input-group-btn">
+            <%= f.button :submit, class: "btn btn-primary" do %>
+              <i class="fa fa-search"></i>
+            <% end %>
+            </span>
+          </div>
+        </div>
+        <% end %>
+      </div>
     </div>
-    <div class="table-responsive">
-      <table id="example-datatable"
-        class="table table-vcenter table-condensed table-bordered">
-        <thead>
-          <tr>
-            <th class="text-center"><i class="gi gi-building"></i></th>
-            <th><%= t "organization_name" %></th>
-            <th><%= t "email" %></th>
-            <th><%= t "location" %></th>
-            <th><%= t "phone" %></th>
-            <th><%= t "description" %></th>
-            <th class="text-center"><%= t "view_profile" %></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @organizations.each do |organization|%>
-            <tr>
-              <td class="text-center">
-                <%= image_tag organization.logo, class: "circle-profile-list" %>
-              </td>
-              <td><%= organization.name %></td>
-              <td><%= organization.email %></td>
-              <td><%= organization.location %></td>
-              <td><%= organization.phone %></td>
-              <td><%= organization.description %></td>
-              <td class="text-center">
-                <%= link_to t("view"), admin_organization_path(organization),
-                  class: "btn btn-primary" %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+    <div id="table-list-organization">
+      <%= render "table_list_organization" %>
     </div>
   </div>
+</div>
+<div id="modal-organization" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
 </div>

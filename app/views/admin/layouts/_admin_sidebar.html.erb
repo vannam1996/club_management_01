@@ -61,19 +61,11 @@
           <% end %>
         </li>
         <li>
-          <%= link_to t("do_nothing"), class: "sidebar-nav-menu" do %>
-            <i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
-            <i class="gi gi-building sidebar-nav-icon"></i>
-            <span class="sidebar-nav-mini-hide"><%= t "organizations.organization" %></span></a>
+          <%= link_to admin_organizations_path do %>
+            <i class="gi gi-check sidebar-nav-icon"></i>
+            <span class="sidebar-nav-mini-hide">
+              <%= t "organizations.organization" %></span>
           <% end %>
-          <ul>
-            <li>
-              <%= link_to t("list_organizations"), admin_organizations_path %>
-            </li>
-            <li>
-              <%= link_to t("new_organizations"), new_admin_organization_path %>
-            </li>
-          </ul>
         </li>
       </ul>
     </div>
