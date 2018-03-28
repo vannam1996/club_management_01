@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
   before_action :current_user_clubs, if: :user_signed_in?
   before_action :load_warnimg_report, if: :user_signed_in?
+  before_action :load_all_organization, if: :admin_signed_in?
   include ApplicationHelper
   include NotificationsHelper
 
@@ -99,5 +100,9 @@ class ApplicationController < ActionController::Base
 
   def key_money_event
     Event.event_categories.except(:money, :get_money_member, :donate, :subsidy).keys
+  end
+
+  def load_all_organization
+    @organizations = Organization.all
   end
 end

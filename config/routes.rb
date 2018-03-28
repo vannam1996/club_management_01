@@ -26,7 +26,9 @@ Rails.application.routes.draw do
   namespace :admin do
     get "/" => "static_pages#index"
     resources :users
-    resources :organizations
+    resources :organizations, except: [:edit, :update, :destroy] do
+      resources :clubs
+    end
     resources :feed_backs, only: :index
     resources :organization_requests
   end

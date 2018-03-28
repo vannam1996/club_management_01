@@ -1,0 +1,28 @@
+<div id="page-content">
+  <ul class="breadcrumb breadcrumb-top">
+    <li><%= link_to t("admin"), admin_path %></li>
+    <li><%= link_to @organization.name, admin_organization_path(@organization) %></li>
+    <li><%= link_to t("list_clubs"), admin_organization_clubs_path(@organization) %></li>
+  </ul>
+  <div class="block full">
+    <div class="block-title">
+      <h2><strong><%= t "list_clubs" %></strong></h2>
+      <div class="col-md-3 pull-right">
+        <%= search_form_for @q, url: admin_organization_clubs_path(@organization), remote: true do |f| %>
+          <div class="input-group pad-5">
+            <%= f.text_field :name_cont, placeholder: t("search"),
+              class: "form-control" %>
+            <span class="input-group-btn">
+            <%= f.button :submit, class: "btn btn-primary" do %>
+              <i class="fa fa-search"></i>
+            <% end %>
+            </span>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div id="table-list-club">
+      <%= render "list_clubs" %>
+    </div>
+  </div>
+</div>

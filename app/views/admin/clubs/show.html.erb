@@ -1,0 +1,87 @@
+<div id="page-content">
+  <ul class="breadcrumb breadcrumb-top">
+    <li><%= link_to t("show_organization"), admin_organizations_path %></li>
+    <li><%= link_to @organization.name, admin_organization_path(@organization) %></li>
+    <li><%= link_to t("list_clubs"), admin_organization_clubs_path(@organization) %></li>
+    <li><%= link_to @club.name, t("do_nothing") %></a></li>
+  </ul>
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+      <div class="block full">
+        <div class="block-title">
+          <h2><strong><%= link_to @club.name, t("do_nothing") %></strong></h2>
+        </div>
+        <div class="block-content">
+          <div class="center"><%= image_tag @club.image,
+            class: "club-image" %></div><hr>
+          <div class="row">
+            <div class="col-md-2">
+              <strong class="pull-right"><%= t "name" %></strong>
+            </div>
+            <div class="col-md-6"><%= @club.name %></div>
+            <div class="col-md-1"></div>
+          </div><hr>
+          <div class="row">
+            <div class="col-md-2">
+              <strong class="pull-right"><%= t "members" %></strong>
+            </div>
+            <div class="col-md-6"><%= @club.user_clubs.size %></div>
+            <div class="col-md-1"></div>
+          </div><hr>
+          <div class="row">
+            <div class="col-md-2">
+              <strong class="pull-right"><%= t "description" %></strong>
+            </div>
+            <div class="col-md-6"><%= @club.description %></div>
+          </div><hr>
+          <div class="row">
+            <div class="col-md-2">
+              <strong class="pull-right"><%= t "content" %></strong>
+            </div>
+            <div class="col-md-6"><%= @club.content %></div>
+          </div><hr>
+          <div class="row">
+            <div class="col-md-2">
+              <strong class="pull-right"><%= t "goal" %></strong>
+            </div>
+            <div class="col-md-6"><%= @club.goal %></div>
+          </div><hr>
+          <div class="row">
+            <div class="col-md-2">
+              <strong class="pull-right"><%= t "plan" %></strong>
+            </div>
+            <div class="col-md-6"><%= @club.plan %></div>
+          </div><hr>
+          <div class="row">
+            <div class="col-md-2">
+              <strong class="pull-right"><%= t "rules" %></strong>
+            </div>
+            <div class="col-md-6"><%= @club.rules %></div>
+          </div><hr>
+          <div class="row">
+            <div class="col-md-2">
+              <strong class="pull-right"><%= t "rule_finance" %></strong>
+            </div>
+            <div class="col-md-6"><%= @club.rule_finance %></div>
+          </div><hr>
+          <div class="row">
+            <div class="col-md-2">
+              <strong class="pull-right"><%= t "time_club" %></strong>
+            </div>
+            <div class="col-md-6">
+              <span>
+                <% if @club.time_activity.present? %>
+                  <% @club.time_activity.each do |time|%>
+                    <%= time %>
+                  <% end %>
+                <% end %>
+              </span>
+            </div>
+          </div><hr>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-1"></div>
+  </div>
+</div>
