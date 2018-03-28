@@ -1,16 +1,15 @@
 <header class="navbar navbar-default">
   <ul class="nav navbar-nav-custom">
     <li>
-      <%= link_to t("do_nothing"), class: "toggle-sidebar" do %>
+      <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar');">
         <i class="fa fa-bars fa-fw"></i>
-      <% end %>
+      </a>
     </li>
   </ul>
   <ul class="nav navbar-nav-custom pull-right">
     <li>
-      <%= link_to t("do_nothing") do %>
-        <i class="gi gi-globe_af"></i>
-        <span class="label label-primary label-indicator animation-floating"></span>
+      <%= link_to admin_user_path(current_admin) do %>
+        <%= image_tag current_admin.avatar, class: "centered-and-cropped icon-logo" %>
       <% end %>
     </li>
     <li class="dropdown">

@@ -1,0 +1,11 @@
+<% if user_oranizations_of_user(@user).blank? %>
+  <%= t "none" %>
+<% else %>
+  <% user_oranizations_of_user(@user).each do |user_organization| %>
+    <%= user_organization.name %>
+    <% if user_organization.is_admin? %>
+      <span class="text-danger">*</span>
+    <% end %>
+    &nbsp
+  <% end %>
+<% end %>

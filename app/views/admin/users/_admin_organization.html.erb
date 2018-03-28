@@ -1,9 +1,0 @@
-<% if @user.organizations.blank? %>
-  <%= t "none" %>
-<% else %>
-  <% @user.user_organizations.each do |user_organization| %>
-    <% if user_organization.is_admin? %>
-      <%= user_organization.name %><br>
-    <% end %>
-  <% end %>
-<% end %>

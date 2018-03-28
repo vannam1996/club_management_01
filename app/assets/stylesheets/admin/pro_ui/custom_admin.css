@@ -1,5 +1,13 @@
+@keyframes animatedBackground {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -600px 600px;
+  }
+}
 .bg_login_admin{
-  background-image: url("landing-users.png");
+  background-image: url("../../landing-users.png");
   animation: animatedBackground 30s linear infinite;
   -moz-animation: animatedBackground 30s linear infinite;
   -webkit-animation: animatedBackground 30s linear infinite;
@@ -28,4 +36,35 @@
 }
 .span-date{
   margin-top: 8px;
+}
+.icon-logo {
+  width: 40px;
+}
+.mtg-bt-0 {
+  margin-bottom: 0px !important;
+}
+.user-detail{
+  line-height: 2;
+}
+.avatar-user {
+  width: 180px;
+  height: 180px;
+  border-radius: 100%;
+}
+.pad-5 {
+  padding: 5px;
+}
+.input-group .search-user {
+  width: 50% !important;
+  float: right !important;
+}
+.full-width {
+  width: 100%;
+}
+.avt-small {
+  width: 25px;
+  height: 25px;
+  border-radius: 100%;
+  -moz-border-radius: 50px;
+  -webkit-border-radius: 50px;
 }

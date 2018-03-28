@@ -305,3 +305,6 @@ wsm_action_deleted: "deleted"
 max_notification: 30
 image_upload: "image/jpeg, image/gif, image/png, image/jpg"
 wsm_action_updated: "updated"
+per_page_user: 15
+namespace_admin: "Admin"
+class_admin: "Admin"

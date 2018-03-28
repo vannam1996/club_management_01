@@ -1,0 +1,7 @@
+<% if @user %>
+  $('#modal-details-user').html('<%= j render "form_user" %>')
+  $('#modal-details-user').modal('show');
+<% else %>
+  $('#main-container').append('<%= j render partial: "shared/flash_warning" %>');
+  $('.notify').slideUp(3000);
+<% end %>

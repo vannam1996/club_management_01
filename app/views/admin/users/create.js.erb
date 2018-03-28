@@ -1,0 +1,8 @@
+<% if @user.errors.any? %>
+  $('#modal-details-user').html('<%= j render "form_user" %>')
+<% else %>
+  $('#table-list-user').html('<%= j render "table_list_user" %>')
+  $('#modal-details-user').modal('hide');
+  $('#main-container').append('<%= j render partial: "shared/flash_warning" %>');
+  $('.notify').slideUp(3000);
+<% end %>
