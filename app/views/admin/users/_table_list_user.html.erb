@@ -11,7 +11,7 @@
           <th class="text-center"><%= t "action" %></th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="list-user-body-table">
         <%= render partial: "user", collection: @users, as: :user %>
       </tbody>
     </table>

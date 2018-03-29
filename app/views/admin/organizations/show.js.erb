@@ -1,0 +1,7 @@
+<% if @organization %>
+  $('#modal-organization').html('<%= j render "organization_detail" %>')
+  $('#modal-organization').modal('show');
+<% else %>
+  $('#main-container').append('<%= j render partial: "shared/flash_warning" %>');
+  $('.notify').slideUp(3000);
+<% end %>

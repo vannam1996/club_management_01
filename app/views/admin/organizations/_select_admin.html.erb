@@ -1,0 +1,51 @@
+<div class="form-group">
+  <%= label_tag "", class: "col-md-3 control-label" do %>
+    <%= t "admin_manage.org.manager" %>
+    <span class="text-danger">*</span>
+  <% end %>
+  <div class="form-search">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <div class="input-group">
+          <%= text_field_tag :search_user, nil, placeholder: t("edit_member.search_member"),
+            class: "form-control input-search" %>
+          <span class="input-group-btn">
+          <%= button_tag "", class: "btn btn-primary" do %>
+            <i class="fa fa-search"></i>
+          <% end %>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="widget-simple list-scroll">
+    <div class="table-scroll-sm">
+      <table class="table ui-block table-pricing results table-align-left">
+        <tbody>
+          <% if @users.any? %>
+            <% @users.each do |user| %>
+              <tr class="add-user-member">
+                <td class="check-user">
+                  <%= check_box_tag("user_id[]", user.id, false, class: "checkbox") %>
+                </td>
+                <td>
+                  <%= user.full_name %>
+                </td>
+                <td>
+                  <%= user.email %>
+                </td>
+              </tr>
+            <% end %>
+          <% else %>
+            <tr class="text-center">
+              <td colspan="4">
+                <h3 class="center notifi-empty"><%= t "empty" %></h3>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<%= javascript_include_tag "search_member" %>

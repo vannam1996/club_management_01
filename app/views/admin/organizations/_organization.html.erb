@@ -1,0 +1,30 @@
+<tr class="organization-<%= organization.id %>">
+  <td class="text-center">
+    <%= organization.id %>
+  </td>
+  <td>
+    <%= image_tag organization.logo, class: "centered-and-cropped avt-small" %>&nbsp;&nbsp;
+    <%= organization.name %>
+  </td>
+  <td><%= organization.email %></td>
+  <td><%= organization.location %></td>
+  <td><%= organization.phone %></td>
+  <td><%= organization.description %></td>
+  <td class="text-center">
+    <div class="btn-group btn-group-xs">
+      <%= link_to admin_organization_path(id: organization.slug), remote: true,
+        class: "btn btn-primary" do %>
+        <i class="fa fa-eye"></i>
+      <% end %>
+      <%= link_to edit_admin_organization_path(id: organization.slug), remote: true,
+        class: "btn btn-default" do %>
+        <i class="fa fa-pencil"></i>
+      <% end %>
+      <%= link_to admin_organization_path(id: organization.slug), remote: true, method: :delete,
+        data: {confirm: t("admin_manage.org.confirm_del")},
+        class: "btn btn-danger" do %>
+        <i class="fa fa-trash"></i>
+      <% end %>
+    </div>
+  </td>
+</tr>

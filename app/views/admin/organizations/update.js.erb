@@ -1,0 +1,8 @@
+<% if @organization.errors.any? %>
+  $('#modal-organization').html('<%= j render "form_organization" %>')
+<% else %>
+  $('.organization-<%= @organization.id %>').replaceWith('<%= j render partial: "organization", locals: {organization: @organization} %>')
+  $('#modal-organization').modal('hide');
+  $('#main-container').append('<%= j render partial: "shared/flash_warning" %>');
+  $('.notify').slideUp(3000);
+<% end %>

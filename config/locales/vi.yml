@@ -794,6 +794,7 @@ vi:
           attributes:
             name:
               taken: " đã tồn tại"
+              blank: " không được bỏ trống"
             email:
               blank: " không được bỏ trống"
               taken: " đã tồn tại"
@@ -1676,3 +1677,23 @@ vi:
     confirm_del: "Bạn muốn xóa người dùng này"
     club: "Câu lạc bộ tham gia"
     search: "Tên hoặc email"
+    org:
+      name: "Tên tổ chức"
+      email: "Email"
+      address: "Địa chỉ"
+      phone: "Số điện thoại"
+      description: "Mô tả"
+      no_org: "Không có tổ chức nào"
+      new_org: " Tạo tổ chức"
+      date_create: "Ngày tạo"
+      not_find_org: "Không tìm thấy tổ chức"
+      new: "Tạo tổ chức"
+      update: "Cập nhật"
+      confirm_del: "Bạn muốn xóa tổ chức này"
+      create_success: "Thành công"
+      errors: "Có lỗi xảy ra, vui lòng thử lại."
+      destroy_success: "Đã xóa tổ chức"
+      update_success: "Cập nhật thành công"
+      size_member: "Thành viên"
+      organization: "Tổ chức"
+      manager: "Quản lý"
