@@ -35,10 +35,10 @@ class Event < ApplicationRecord
   scope :of_month_payment, ->month_payment{where month_of_payment: month_payment}
   scope :newest, ->{order created_at: :desc}
   scope :periodic, ->{where event_category: Settings.periodic_category}
-  scope :by_current_year, ->{where "year(created_at) = ?", Time.zone.now.year}
-  scope :by_quarter, ->months{where("month(created_at) in (?)", months)}
+  scope :by_current_year, ->{where "year(date_end) = ?", Time.zone.now.year}
+  scope :by_quarter, ->months{where("month(date_end) in (?)", months)}
   scope :by_event, ->event_category{where event_category: event_category}
-  scope :by_years, ->years{where "year(created_at) = ?", years}
+  scope :by_years, ->years{where "year(date_end) = ?", years}
   scope :without_notification, ->category_notification do
     where.not event_category: category_notification
   end
