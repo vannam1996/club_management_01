@@ -81,7 +81,7 @@ class CreateReportService
       ReportDetail.new(detail: budgets_detail(event, report_category),
         statistic_report_id: @static_report.id, report_category_id: report_category.id,
         style: :money, money: money_detail_report(event),
-        first_money: event.amount, date_event: event.created_at, name_event: event.name,
+        first_money: event.amount, date_event: event.date_end, name_event: event.name,
         user_events: event.user_events.map(&:user_full_name))
     elsif !event.activity_money?
       report_active event, report_category
@@ -92,7 +92,7 @@ class CreateReportService
     ReportDetail.new(detail: event.description,
       statistic_report_id: @static_report.id, report_category_id: report_category.id,
       style: style_report_detail(report_category), money: money_detail_report(event),
-      first_money: event.amount, date_event: event.created_at, name_event: event.name,
+      first_money: event.amount, date_event: event.date_end, name_event: event.name,
       user_events: event.user_events.map(&:user_full_name))
   end
 
