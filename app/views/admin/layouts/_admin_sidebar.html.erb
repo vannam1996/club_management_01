@@ -67,6 +67,22 @@
               <%= t "organizations.organization" %></span>
           <% end %>
         </li>
+        <li>
+          <%= link_to t("do_nothing"), class: "sidebar-nav-menu" do %>
+            <i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
+            <i class="gi gi-building sidebar-nav-icon"></i>
+            <span class="sidebar-nav-mini-hide"><%= t "club" %></span></a>
+          <% end %>
+          <ul>
+            <% if @organizations.present? %>
+              <% @organizations.each do |organization| %>
+                <li>
+                  <%= link_to organization.name, admin_organization_clubs_path(organization) %>
+                </li>
+              <% end %>
+            <% end %>
+          </ul>
+        </li>
       </ul>
     </div>
   </div>

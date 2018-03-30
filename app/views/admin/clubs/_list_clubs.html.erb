@@ -1,0 +1,45 @@
+<div class="table-responsive">
+  <table id="example-datatable"
+    class="table table-vcenter table-condensed table-bordered">
+    <thead>
+      <tr>
+        <th class="text-center"><i class="gi gi-building"></i></th>
+        <th><%= t "club_name" %></th>
+        <th class="text-center"><%= t "members" %></th>
+        <th><%= t "goal" %></th>
+        <th class="text-center"><%= t "view_profile" %></th>
+        <th class="text-center"><%= t "action" %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @clubs.each do |club|%>
+        <tr class="club-<%= club.id %>">
+          <td class="text-center">
+            <%= image_tag club.logo, class: "circle-profile-list" %>
+          </td>
+          <td><%= club.name %></td>
+          <td class="text-center"><%= club.user_clubs.size %><i class="fa fa-user-o" aria-hidden="true"></i></td>
+          <td><%= club.goal %></td>
+          <td class="text-center">
+            <%= link_to t("view"), admin_organization_club_path(@organization, club),
+              class: "btn btn-primary" %>
+          </td>
+          <td class="text-center">
+            <div class="btn-group btn-group-xs">
+              <%= link_to edit_admin_organization_club_path(@organization, club), remote: true,
+                class: "btn btn-default" do %>
+                <i class="fa fa-pencil"></i>
+              <% end %>
+              <%= link_to admin_organization_club_path(@organization, club), remote: true, method: :delete,
+                data: {confirm: t("admin_manage.confirm_del")},
+                class: "btn btn-danger" do %>
+                <i class="fa fa-trash"></i>
+              <% end %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= paginate @clubs, remote: true  %>
+</div>
